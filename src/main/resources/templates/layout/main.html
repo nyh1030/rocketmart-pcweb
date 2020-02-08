@@ -2,19 +2,19 @@
 <html lagn="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
     <head>
-        <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Rocket Mart</title>
+        <title>Rocket Mart</title>
         <!-- 공통 css, js, meta tag -->
         <th:block th:replace="fragments/include/head :: headFragment"></th:block>
     </head>
 
     <body>
-        <th:block th:replace="fragments/include/header:: headerFragment"></th:block>
+        <th:block th:replace="fragments/include/header"></th:block>
 
-      <!--  <th:block th:replace="fragments/content/content"></th:block>-->
+        <th:block th:replace="fragments/content/content"></th:block>
 
-        <th:block th:replace="fragments/include/footer:: footerFragment"></th:block>
+        <th:block th:replace="fragments/include/footer"></th:block>
 
-        <th:block th:replace="fragments/include/overlay:: overlayFragment"></th:block>
+        <th:block th:replace="fragments/include/overlay"></th:block>
 
 
         <!-- 공통 script -->
