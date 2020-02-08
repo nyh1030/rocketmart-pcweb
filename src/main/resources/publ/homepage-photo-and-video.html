@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Martfury - Multi Vendor &amp; Marketplace</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
+    <link rel="stylesheet" href="plugins/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/owl-carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="plugins/slick/slick/slick.css">
+    <link rel="stylesheet" href="plugins/lightGallery-master/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home-photo.css">
+</head>
+
+<body>
+    <header class="header header--photo" data-sticky="true">
+        <div class="ps-logo"><img src="img/logo-photo.png" alt=""></div>
+        <div class="header__content">
+            <ul class="menu menu--photo">
+                <li><a href="#"><strong>Sell Stocks</strong></a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+            <div class="header__actions">
+                <div class="header__language"><i class="icon-network"></i>
+                    <select class="ps-select">
+                        <option value="1">Eng</option>
+                        <option value="2">Francais</option>
+                    </select>
+                </div>
+                <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a></div>
+                <div class="ps-block--user-header">
+                    <div class="ps-block__left"><i class="icon-user"></i></div>
+                    <div class="ps-block__right"><a href="my-account.html">Login/ Register</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header class="header header--mobile header--mobile-photo" data-sticky="true">
+        <div class="navigation--mobile">
+            <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo-photo.png" alt=""></a></div>
+            <div class="navigation__right">
+                <div class="header__actions">
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                        <div class="ps-cart__content">
+                            <div class="ps-cart__items">
+                                <div class="ps-product--cart-mobile">
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
+                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                    </div>
+                                </div>
+                                <div class="ps-product--cart-mobile">
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
+                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
+                                        <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-cart__footer">
+                                <h3>Sub Total:<strong>$59.99</strong></h3>
+                                <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a></figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-block--user-header">
+                        <div class="ps-block__left"><i class="icon-user"></i></div>
+                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="ps-panel--sidebar" id="cart-mobile">
+        <div class="ps-panel__header">
+            <h3>Shopping Cart</h3>
+        </div>
+        <div class="navigation__content">
+            <div class="ps-cart--mobile">
+                <div class="ps-cart__content">
+                    <div class="ps-product--cart-mobile">
+                        <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                        <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
+                            <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-cart__footer">
+                    <h3>Sub Total:<strong>$59.99</strong></h3>
+                    <figure><a class="ps-btn" href="shopping-cart.html">View Cart</a><a class="ps-btn" href="checkout.html">Checkout</a></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--include navigation-mobile-->
+    <div class="navigation--list">
+        <div class="navigation__content"><a class="navigation__item ps-toggle--sidebar" href="#menu-mobile"><i class="icon-menu"></i><span> Menu</span></a><a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a><a class="navigation__item ps-toggle--sidebar" href="#search-sidebar"><i class="icon-magnifier"></i><span> Search</span></a><a class="navigation__item ps-toggle--sidebar" href="#cart-mobile"><i class="icon-bag2"></i><span> Cart</span></a></div>
+    </div>
+    <!--include search-sidebar-->
+    <div class="ps-panel--sidebar" id="menu-mobile">
+        <div class="ps-panel__header">
+            <h3>Menu</h3>
+        </div>
+        <div class="ps-panel__content">
+            <ul class="menu--mobile">
+                <li><a href="#"><strong>Sell Stocks</strong></a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+    <main id="homepage-photo">
+        <div class="ps-home-search bg--cover" data-background="img/home/home-photo/banner.jpg">
+            <div class="ps-section__wrapper">
+                <div class="ps-section__header">
+                    <p><strong>171,484,880</strong> stock photos, vectors and videos</p>
+                    <h3>The all-in-one platform for your <br/> photo and video needs.</h3>
+                </div>
+                <form class="ps-form--photo-search" action="index.html" method="get">
+                    <div class="ps-form__content">
+                        <div class="form-group form-group--icon">
+                            <input class="form-control" type="text" placeholder="Search for stock images, vectors or videos."><i class="icon-magnifier"></i>
+                        </div>
+                        <select class="ps-select">
+                            <option value="1">Photo & Videos</option>
+                            <option value="2">Vector</option>
+                            <option value="3">Icons</option>
+                        </select>
+                    </div>
+                    <div class="ps-form__footer"><a href="#">Natural</a><a href="#">Digital</a><a href="#">Travel</a><a href="#">Business</a><a href="#">Animal</a><a href="#">Technology</a></div>
+                </form>
+            </div>
+            <h5>Photo by<a href="#"> Harry Maguire</a></h5>
+        </div>
+        <div class="ps-home-media">
+            <div class="ps-section__header">
+                <ul class="ps-list">
+                    <li class="active"><a href="#"> Editorial</a></li>
+                    <li><a href="#">Wallpapers</a></li>
+                    <li><a href="#">Textures & Patterns</a></li>
+                    <li><a href="#">Nature</a></li>
+                    <li><a href="#">Current Events</a></li>
+                    <li><a href="#">Architecture</a></li>
+                    <li><a href="#">Business & Work</a></li>
+                    <li><a href="#">Film</a></li>
+                    <li><a href="#">Animals</a></li>
+                    <li><a href="#">Travel</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">Food & Drink</a></li>
+                    <li><a href="#">Spirituality</a></li>
+                    <li><a href="#">Experimental</a></li>
+                    <li><a href="#">People</a></li>
+                    <li><a href="#">Health</a></li>
+                </ul>
+            </div>
+            <div class="ps-section__content">
+                <div class="masonry-wrapper" data-col-lg="4" data-col-md="3" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+                    <div class="ps-masonry">
+                        <div class="grid-sizer"></div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/1.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/2.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/3.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-block--top-photographer bg--cover" data-background="img/home/home-photo/popular-bg.jpg">
+                                    <div class="ps-block__header">
+                                        <p>Leaderboard Last 30 Days</p>
+                                        <h3>Top Photographers</h3>
+                                    </div>
+                                    <div class="ps-block__content">
+                                        <div class="ps-block__author">
+                                            <div class="ps-block__author-thumbnail"><img src="img/home/home-photo/author-1.png" alt=""></div>
+                                            <figure><a href="#">Alice Felani</a>
+                                                <p>1,2K Followers | 25,5K Sales</p>
+                                            </figure>
+                                        </div>
+                                        <div class="ps-block__author">
+                                            <div class="ps-block__author-thumbnail"><img src="img/home/home-photo/author-2.png" alt=""></div>
+                                            <figure><a href="#">Roberto Firmino</a>
+                                                <p>1,2K Followers | 25,5K Sales</p>
+                                            </figure>
+                                        </div>
+                                        <div class="ps-block__author">
+                                            <div class="ps-block__author-thumbnail"><img src="img/home/home-photo/author-3.png" alt=""></div>
+                                            <figure><a href="#">Jurgen Kloop</a>
+                                                <p>1,2K Followers | 25,5K Sales</p>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <div class="ps-block__footer"><a href="#">View more<i class="icon-chevron-right"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/6.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/5.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/8.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/7.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/9.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/10.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/13.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/12.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/11.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/17.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/14.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/16.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="grid-item__content-wrapper">
+                                <div class="ps-product--photo"><a href="product-default.html"><img src="img/home/home-photo/home-content/15.jpg" alt=""></a>
+                                    <div class="ps-product__content"><a href="#"><span>PixaStudio</span></a>
+                                        <ul class="ps-product__actions">
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-bag2"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Quick View"><i class="icon-eye"></i></a></li>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-section__footer"><a class="ps-section__morelink" href="#">More</a></div>
+        </div>
+        <section class="ps-home-testimonial">
+            <div class="container">
+                <div class="ps-section__wrapper">
+                    <div class="ps-section__left">
+                        <div class="ps-block--testimonial-bg bg--top" data-background="img/home/home-photo/testimonial-1.jpg">
+                            <div class="ps-block__content">
+                                <h3>“I'm addicted to the idea of creating things that are both deep and simple.”</h3>
+                                <figure>
+                                    <figcaption>Alice Stephan</figcaption>
+                                    <p>Kiev, Ukraine</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-section__right">
+                        <div class="ps-block--testimonial-bg dark bg--top" data-background="img/home/home-photo/testimonial-2.jpg">
+                            <div class="ps-block__content">
+                                <h3>"I'm forever glad I happen to find myself in this state."</h3>
+                                <figure>
+                                    <figcaption>Naby Keita</figcaption>
+                                    <p>Iasi, Romania</p>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ps-home-share-work">
+            <div class="container-fluid">
+                <div class="ps-section__header">
+                    <p>Join Martfury Marketplace</p>
+                    <h3>Share your work and start earning</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-section__left"><img src="img/home/home-photo/share-work.png" alt=""></div>
+                    <div class="ps-section__right">
+                        <div class="row ps-section__wrapper">
+                            <div class="col-sm-6 col-12">
+                                <figure>
+                                    <div class="ps-block--icon"><i class="icon-cash-dollar"></i>
+                                        <h5>Make 50% Every Time You Sell</h5>
+                                        <p>A photo can sell again and again to multiple clients.</p>
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="col-sm-6 col-12">
+                                <figure>
+                                    <div class="ps-block--icon"><i class="icon-loupe"></i>
+                                        <h5>Always Keep Your Copyright</h5>
+                                        <p>You choose which photos you want to sell and retain the copyright to your work.</p>
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="col-sm-6 col-12">
+                                <figure>
+                                    <div class="ps-block--icon"><i class="icon-group-work"></i>
+                                        <h5>Make 50% Every Time You Sell</h5>
+                                        <p>A photo can sell again and again to multiple clients.</p>
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="col-sm-6 col-12">
+                                <figure>
+                                    <div class="ps-block--icon"><i class="icon-bubbles"></i>
+                                        <h5>24/7 dedicated support</h5>
+                                        <p>Our supporters alway 24/7 to help you anythings</p>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="ps-section__footer"><a class="ps-btn" href="#">Become A Contributor</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ps-home-blog">
+            <div class="container-fluid">
+                <div class="ps-section__content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-post">
+                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="blog-detail.html"></a><img src="img/home/home-photo/blog-1.jpg" alt=""></div>
+                                <div class="ps-post__content"><a class="ps-post__meta" href="#">Review Product</a><a class="ps-post__title" href="#">Harman Kadon Onyx Studio Mini, Reviews & Experiences</a>
+                                    <p>December 17, 2018 by<a href="#"> Admin</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-post">
+                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="blog-detail.html"></a><img src="img/home/home-photo/blog-2.jpg" alt=""></div>
+                                <div class="ps-post__content"><a class="ps-post__meta" href="#">Tips & Tricks</a><a class="ps-post__title" href="#">B&O Play - Best Headphone For You</a>
+                                    <p>December 17, 2019 by<a href="#"> Drfuri</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-post">
+                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="blog-detail.html"></a><img src="img/home/home-photo/blog-3.jpg" alt=""></div>
+                                <div class="ps-post__content"><a class="ps-post__meta" href="#">Review Product</a><a class="ps-post__title" href="#">Experience Great Sound With Beats’sHeadphone</a>
+                                    <p>Jul 09th, 2019 by<a href="#"> LoganCee</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-post">
+                                <div class="ps-post__thumbnail"><a class="ps-post__overlay" href="blog-detail.html"></a><img src="img/home/home-photo/blog-3.jpg" alt=""></div>
+                                <div class="ps-post__content"><a class="ps-post__meta" href="#">Review Product</a><a class="ps-post__title" href="#">Experience Great Sound With Beats’sHeadphone</a>
+                                    <p>Jul 09th, 2019 by<a href="#"> LoganCee</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ps-home-brands">
+            <div class="container-fluid">
+                <div class="ps-section__header">
+                    <h3>MartFury connects 22+ million <br> creators to the world's leading visual brands</h3>
+                </div>
+                <div class="ps-section__content"><a href="#"><img src="img/home/home-photo/brand-1.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-2.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-3.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-4.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-5.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-6.png" alt=""></a><a href="#"><img src="img/home/home-photo/brand-7.png" alt=""></a></div>
+            </div>
+        </section>
+        <footer class="ps-footer ps-footer--photo">
+            <div class="container-fluid">
+                <div class="ps-footer__wrapper">
+                    <div class="ps-footer__left">
+                        <aside class="widget widget_footer">
+                            <h4 class="widget-title">Contact us</h4>
+                            <div class="ps-site-info">
+                                <p>Call us 24/7</p>
+                                <h5>1800 97 97 59</h5>
+                                <p>502 New Design Str, Melbourne, Australia <br/><a href="#">contact@martfury.com</a></p>
+                                <ul class="ps-list--social">
+                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="ps-footer__content">
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                        <aside class="widget widget_footer">
+                                            <h4 class="widget-title">Quick links</h4>
+                                            <ul class="ps-list--link">
+                                                <li><a href="policy.html">Policy</a></li>
+                                                <li><a href="term-condition.html">Term & Condition</a></li>
+                                                <li><a href="shipping.html">Shipping</a></li>
+                                                <li><a href="return.html">Return</a></li>
+                                                <li><a href="faqs.html">FAQs</a></li>
+                                            </ul>
+                                        </aside>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6 ">
+                                        <aside class="widget widget_footer">
+                                            <h4 class="widget-title">Company</h4>
+                                            <ul class="ps-list--link">
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="affilate.html">Affilate</a></li>
+                                                <li><a href="shipping.html">Career</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </aside>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                                        <aside class="widget widget_footer">
+                                            <h4 class="widget-title">Bussiness</h4>
+                                            <ul class="ps-list--link">
+                                                <li><a href="our-press.html">Our Press</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="my-account.html">My account</a></li>
+                                                <li><a href="shop.html">Shop</a></li>
+                                            </ul>
+                                        </aside>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 ">
+                                <aside class="widget widget_newletters widget_footer">
+                                    <h4 class="widget-title">Newsletter</h4>
+                                    <p>Register now to get updates on promotions & coupons</p>
+                                    <form class="ps-form--newletter" action="#" method="get">
+                                        <div class="form-group--nest">
+                                            <input class="form-control" type="text" placeholder="Email Address">
+                                            <button class="ps-btn">Subscribe</button>
+                                        </div>
+                                    </form>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-footer__copyright">
+                    <p>© 2019 Martfury. All Rights Reserved</p>
+                    <p><span>We Using Safe Payment For:</span><a href="#"><img src="img/payment-method/1.jpg" alt=""></a><a href="#"><img src="img/payment-method/2.jpg" alt=""></a><a href="#"><img src="img/payment-method/3.jpg" alt=""></a><a href="#"><img src="img/payment-method/4.jpg" alt=""></a><a href="#"><img src="img/payment-method/5.jpg" alt=""></a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <div id="back2top"><i class="pe-7s-angle-up"></i></div>
+    <div class="ps-site-overlay"></div>
+    <div id="loader-wrapper">
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
+        <div class="ps-search__content">
+            <form class="ps-form--primary-search" action="do_action" method="post">
+                <input class="form-control" type="text" placeholder="Search for...">
+                <button><i class="aroma-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    <script src="plugins/jquery-1.12.4.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="plugins/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="plugins/masonry.pkgd.min.js"></script>
+    <script src="plugins/isotope.pkgd.min.js"></script>
+    <script src="plugins/jquery.matchHeight-min.js"></script>
+    <script src="plugins/slick/slick/slick.min.js"></script>
+    <script src="plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script src="plugins/slick-animation.min.js"></script>
+    <script src="plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="plugins/jquery.slimscroll.min.js"></script>
+    <script src="plugins/select2/dist/js/select2.full.min.js"></script>
+    <script src="plugins/gmap3.min.js"></script>
+    <!-- custom scripts-->
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxflHHc5FlDVI-J71pO7hM1QJNW1dRp4U&amp;region=GB"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--<script src="/resource/js/${scriptVersion}/order.min.js?v={version}"></script>-->
+    <!--<script src="/resource/js/order.js?v={version}"></script>-->
+
+    <title>Title</title>
+</head>
+<body>
+${IDX}
+
+
+RECORD<T1> record = .....;
+
+    List<Map<String, Object>> result = ...;
+
+record.get(T1.IDX);
+
+</body>
+</html>
+
+<script>
+    var jqxhr = $.ajax("/rest/test")
+        .done(function() {
+            alert("성공");
+        })
+        .fail(function() {
+            alert("실패");
+        })
+        .always(function() {
+            alert("완료");
+        });
+
+    jqxhr.always(function() {
+        alert("두번째 성공");
+    });
+
+    jqxhr();
+
+</script>
