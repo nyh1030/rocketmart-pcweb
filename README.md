@@ -9,7 +9,8 @@
 - SQL Mapper - Mybatis
 - 형상관리 - Git
 - 배포(CI) - Jenkins
-
+- Layout - Responsive, Bootstrap 4.x
+- Compatible Browsers	Firefox, Safari, Opera, Chrome, Edge
 
 
 
@@ -38,8 +39,9 @@
 
 
 
+#### 템플릿 URL
 
-
+https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-with-dashboard/23954976
 
 
 
