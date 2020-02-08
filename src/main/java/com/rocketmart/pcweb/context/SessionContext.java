@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component("sessionContext")
 public class SessionContext {
 
-    static class Mgr {
+/*    static class Mgr {
         String mgrId;
 
         Mgr(String mgrId) {
@@ -19,5 +19,5 @@ public class SessionContext {
 
     public String getMgrId() {
         return mgr.getMgrId;
-    }
+    }*/
 }

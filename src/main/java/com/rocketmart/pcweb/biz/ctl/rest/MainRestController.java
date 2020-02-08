@@ -11,15 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainRestController {
 
-    @Autowired
-    private SessionContext context;
-
     @GetMapping("/test")
-    public Map<String, Object> test(Product product){
-
-        context.username = "남";
-
-        return new HashMap<>();
+    public String test(){
+        return "testtttt";
     }
 
 

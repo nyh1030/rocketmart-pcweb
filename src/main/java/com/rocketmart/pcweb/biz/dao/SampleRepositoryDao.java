@@ -6,16 +6,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SampleRepositoryDao {
 
-    @Autowired
+/*    @Autowired
     DSLContext context;
-
-    @Autowired
-    private JDBCT
 
     public List<Map<String, Object>> selectSample() {
 
         return context.select()
                 .from(SAMPLE)
                 .getQuery();
-    }
+    }*/
 }
