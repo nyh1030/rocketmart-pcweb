@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" >
+<head th:fragment="headerFragment">
+
 <header class="header header--standard header--market-place-1" data-sticky="true">
     <div class="header__content">
         <div class="container">
@@ -95,10 +100,10 @@
                             </li>
                         </ul>
                     </div>
-                </div><a class="ps-logo" href="index.html"><img src="img/logo.png" alt=""></a>
+                </div><a class="ps-logo" href="../../index.html"><img src="../../../static/img/logo.png" alt=""></a>
             </div>
             <div class="header__content-center">
-                <form class="ps-form--quick-search" action="index.html" method="get">
+                <form class="ps-form--quick-search" action="../../index.html" method="get">
                     <div class="form-group--icon"><i class="icon-chevron-down"></i>
                         <select class="form-control">
                             <option value="1">All</option>
@@ -117,13 +122,13 @@
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="../../../static/img/products/clothing/7.jpg" alt=""></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
                                 </div>
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="../../../static/img/products/clothing/5.jpg" alt=""></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
@@ -243,9 +248,9 @@
             </div>
             <div class="navigation__right">
                 <ul class="menu">
-                    <li class="current-menu-item menu-item-has-children"><a href="index.html">Home</a><span class="sub-toggle"></span>
+                    <li class="current-menu-item menu-item-has-children"><a href="../../index.html">Home</a><span class="sub-toggle"></span>
                         <ul class="sub-menu">
-                            <li><a href="index.html">Marketplace Full Width</a>
+                            <li><a href="../../index.html">Marketplace Full Width</a>
                             </li>
                             <li><a href="homepage-2.html">Home Auto Parts</a>
                             </li>
@@ -433,20 +438,20 @@
 </header>
 <header class="header header--mobile" data-sticky="true">
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a></div>
+        <div class="navigation__left"><a class="ps-logo" href="../../index.html"><img src="../../../static/img/logo_light.png" alt=""></a></div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                                <div class="ps-product__thumbnail"><a href="#"><img src="../../../static/img/products/clothing/7.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
                             </div>
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
+                                <div class="ps-product__thumbnail"><a href="#"><img src="../../../static/img/products/clothing/5.jpg" alt=""></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
@@ -466,7 +471,7 @@
         </div>
     </div>
     <div class="ps-search--mobile">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+        <form class="ps-form--search-mobile" action="../../index.html" method="get">
             <div class="form-group--nest">
                 <input class="form-control" type="text" placeholder="Search something...">
                 <button><i class="icon-magnifier"></i></button>
@@ -474,3 +479,6 @@
         </form>
     </div>
 </header>
+
+</head>
+</html>

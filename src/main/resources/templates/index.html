@@ -1,44 +1,8 @@
 <!DOCTYPE html>
-<html lagn="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
 
-<head>
-    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Rocket Mart</title>
-    <!-- 공통 css, js, meta tag -->
-    <th:block th:replace="fragments/common/head"></th:block>
-</head>
-
-<body>
-    <th:block th:replace="fragments/header"></th:block>
-
-    <th:block th:replace="fragments/content"></th:block>
-
-    <th:block th:replace="fragments/common/footer"></th:block>
-
-    <th:block th:replace="fragments/common/overlay"></th:block>
-
-
-
-</body>
+<div layout:fragment="main"></div>
 
 </html>
-
-<script>
-
-/*    var jqxhr = $.ajax("/rest/test")
-        .done(function() {
-            alert("성공");
-        })
-        .fail(function() {
-            alert("실패");
-        })
-        .always(function() {
-            alert("완료");
-        });
-
-    jqxhr.always(function() {
-        alert("두번째 성공");
-    });
-
-    jqxhr();*/
-
-</script>
