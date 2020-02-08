@@ -4,3 +4,8 @@ spring:
       enabled: true
     livereload:
       enabled: true
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite::resource:qsvc.splite3
+  jooq:
+    sql-dialect: sqlite
