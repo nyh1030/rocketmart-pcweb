@@ -6,7 +6,7 @@
 - JDK - 1.8
 - Builder - Gradle 6.0
 - DB - MariaDB
-- SQL Mapper - Mybatis
+- DB Interface - jOOQ // SQL Mapper - Mybatis 대신에 사용 
 - 형상관리 - Git
 - 배포(CI) - Jenkins
 - Layout - Responsive, Bootstrap 4.x
