@@ -4,8 +4,18 @@ spring:
       enabled: true
     livereload:
       enabled: true
+
   datasource:
-    driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite::resource:qsvc.splite3
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mariadb://127.0.0.1:3306/rocketmart
+    hikari:
+      maximum-pool-size: 10
+
   jooq:
-    sql-dialect: sqlite
+    sql-dialect: mariadb
+
+logging:
+  level:
+    org.jooq.tools.LoggerListener: debug
