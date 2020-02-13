@@ -15,6 +15,4 @@ public class MainRestCtl {
     public String test(){
         return "testtttt";
     }
-
-
 }
