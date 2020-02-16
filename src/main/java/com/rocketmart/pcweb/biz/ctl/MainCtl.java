@@ -2,16 +2,23 @@ package com.rocketmart.pcweb.biz.ctl;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainCtl {
 
     private String prefixPath = "fragments/content";
 
-    // 메인
     @GetMapping("/main")
     public String main(){
         return "index";
+    }
+
+    @GetMapping("/account")
+    public String account(
+            @RequestParam(value = "gbn", required = false, defaultValue = "login") String gbn
+    ) {
+        return prefixPath.concat("/account/account");
     }
 
     // 제품정보 > 브랜드 추가
@@ -31,6 +38,5 @@ public class MainCtl {
     public String brand_detail() {
         return prefixPath.concat("/mypage/brand_detail");
     }
-
 }
 

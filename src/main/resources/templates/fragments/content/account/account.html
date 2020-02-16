@@ -12,7 +12,7 @@
         </div>
         <div class="ps-my-account">
             <div class="container">
-                <form class="ps-form--account ps-tab-root" action="link.html" method="get">
+                <form class="register ps-form--account ps-tab-root" method="post">
                     <ul class="ps-tab-list">
                         <li class="active"><a href="#sign-in">Login</a></li>
                         <li><a href="#register">Register</a></li>
@@ -22,7 +22,7 @@
                             <div class="ps-form__content">
                                 <h5>Log In Your Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="email address">
+                                    <input class="form-control" type="text" placeholder="Email address">
                                 </div>
                                 <div class="form-group form-forgot">
                                     <input class="form-control" type="text" placeholder="Password"><a href="">Forgot?</a>
@@ -41,25 +41,29 @@
                             <div class="ps-form__content">
 
                                 <div class="ps-form__decs">
-                                    <div class="ps-radio">
-                                        <input class="form-control" type="radio" id="user-type-1" name="user-type">
-                                        <label for="user-type-1">I'm a buyer in Veitnam</label>
-                                    </div>
-                                    <div class="ps-radio">
-                                        <input class="form-control" type="radio" id="user-type-2" name="user-type">
-                                        <label for="user-type-2">I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</label>
-                                    </div>
+                                    <p class="form-row form-group user-role">
+                                        <label class="radio">
+                                            <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="customer" checked="checked">
+                                            <span>I'm a buyer in Veitnam</span>
+                                        </label>
+
+                                        <label class="radio">
+                                            <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="seller">
+                                            <span>I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</span>
+                                        </label>
+                                    </p>
                                 </div>
 
                                 <h5>Register An Account</h5>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="email address">
+                                    <input class="form-control" type="email" placeholder="Email address" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="password">
+                                    <input class="form-control" type="password" id="userPw" placeholder="Password" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" placeholder="Confirm password">
+                                    <input class="form-control" type="password" id="userPwChk" placeholder="Confirm Password" required="required">
+                                    <small id="chkNotice"></small>
                                 </div>
                                 <p class="form-row form-group form-row-wide">
                                     <label for="business-registration">Business Registration <span class="required">*</span></label>
@@ -67,7 +71,7 @@
                                 </p>
 
 
-                                <div class="show_if_seller" style="display: block;">
+                                <div class="show_if_seller" style="display: none;">
 
                                     <p class="form-row form-group form-row-wide">
                                         <label for="your-name">Your Name <span class="required">*</span></label>
@@ -88,8 +92,13 @@
 
                                     <div class="form-group">
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
-                                            <label for="remember-me">Rememeber me</label>
+                                            <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions" required="required">
+                                            <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
+
+                                        </div>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="privacy_policy" name="privacy_policy" required="required">
+                                            <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
                                         </div>
                                     </div>
 
@@ -97,7 +106,7 @@
 
 
                                 <div class="form-group submit">
-                                    <button class="ps-btn ps-btn--fullwidth">Register</button>
+                                    <button type="submit" id="btnRegister" class="ps-btn ps-btn--fullwidth">Register</button>
                                 </div>
                             </div>
                         </div>
@@ -108,3 +117,70 @@
     </div>
 </th:block>
 </html>
+
+<script>
+(function($) {
+    var register = {
+        init: function() {
+            var form = $('form.register');
+            $('.user-role input[type=radio]', form).on('change', this.showSellerForm);
+            $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
+            $('#phone-number', form).keydown(this.ensurePhoneNumber);
+        },
+        /*        validate: function(self) {
+                    $('form.register').validate({
+                        errorPlacement: function(error, element) {
+                            var form_group = $(element).closest('.form-group');
+                            form_group.addClass('has-error').append(error);
+                        },
+                        success: function(label, element) {
+                            $(element).closest('.form-group').removeClass('has-error');
+                        },
+                        submitHandler: function(form) {
+                            form.submit();
+                        }
+                    });
+                },*/
+        confirmPasswordForm: function(e) {
+            if('' != $('#userPwChk').val()){
+                if($('#userPw').val() != $('#userPwChk').val()){
+                    $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');
+                    $("#btnRegister").attr("disabled", "disabled");
+                } else{
+                    $('#chkNotice').html('<strong color="#199894b3">Passwords match</strong>');
+                    $("#btnRegister").removeAttr("disabled");
+                }
+            }else{
+                $('#chkNotice').html('');
+            }
+        },
+        showSellerForm: function() {
+            var value = $(this).val();
+            if (value === 'seller') {
+                $('.show_if_seller').find('input, select').removeAttr('disabled');
+                $('.show_if_seller').slideDown();
+            } else {
+                $('.show_if_seller').find('input, select').attr('disabled', 'disabled');
+                $('.show_if_seller').slideUp();
+            }
+        },
+        ensurePhoneNumber: function(e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 91, 107, 109, 110, 187, 189, 190]) !== -1 || (e.keyCode == 65 && e.ctrlKey === true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        }
+    };
+    $(function() {
+        register.init();
+        var shouldTrigger = !$('.show_if_seller').is(':hidden');
+        if (shouldTrigger) {
+            var form = $('form.register');
+            $('.user-role input[type=radio]', form).trigger('change');
+        }
+    });
+})(jQuery);
+</script>
+
