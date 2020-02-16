@@ -1,4 +1,4 @@
-package com.rocketmart.pcweb.biz.service;
+package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.pcweb.biz.dao.BrandDto;
 import com.rocketmart.pcweb.biz.dao.BrandRepository;
