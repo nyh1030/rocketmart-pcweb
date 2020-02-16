@@ -718,7 +718,7 @@
         productFilterToggle();
         tabs();
         slickConfig();
-        productLightbox();
+        //productLightbox();
         rating();
         backToTop();
         stickyHeader();
