@@ -9,12 +9,28 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mariadb:http://127.0.0.1:3306/rocketmart
+    url: jdbc:mariadb://127.0.0.1:3306/rocketmart
     hikari:
       maximum-pool-size: 10
 
   jooq:
     sql-dialect: mariadb
+
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 200MB
+
+attach-file:
+  path: ./fileUpload
+
 
 logging:
   level:
