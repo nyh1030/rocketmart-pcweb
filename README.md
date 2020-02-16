@@ -11,7 +11,7 @@
 - 배포(CI) - Jenkins
 - Layout - Responsive, Bootstrap 4.x
 - Compatible Browsers	Firefox, Safari, Opera, Chrome, Edge
-
+- 네이버 클라우드 플랫폼
 
 
 
@@ -37,12 +37,33 @@
 - [ ] 테이블정의서
 - [ ] ERD
 
-
-
 #### 템플릿 URL
+php 버전이 더 많은 내용을 가지고 있음
 
-https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-with-dashboard/23954976
+ - html5 - https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-with-dashboard/23954976
+ - php - http://demo2.drfuri.com/martfury/
 
+### 설치 URL
+
+ - MariaDB 10.4.12 - https://mariadb.com/download-confirmation/?group-name=MariaDB%20Community%20Server&release-notes-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fmariadb-10412-release-notes%2F&documentation-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fwhat-is-mariadb-104%2F&download-uri=https%3A%2F%2Fdownloads.mariadb.com%2FMariaDB%2Fmariadb-10.4.12%2Fwinx64-packages%2Fmariadb-10.4.12-winx64.msi&product-name=MariaDB%2520Server&download-size=54.23%20MB
+ - Gradle 6.0.1 - https://gradle.org/next-steps/?version=6.0.1&format=all
+
+## DB Naming rule
+```
+- 테이블
+ex) TB_MEM_MST / TB_MEM_DTL
+    TB_PRD_MST / TB_PRD_DTL
+
+ - CUD 테이블 기본 생성 컬럼명
+일련번호
+ex) ******_SEQ (NUMBER 8)
+
+등록&수정
+REG_USR_ID (VARCHAR(20))
+REG_TS (SYSDATE)
+UPD_USR_ID (VARCHAR(20))
+UPD_TS (SYSDATE)
+```
 
 
 
@@ -50,8 +71,5 @@ https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-wi
 ```
 github : https://github.com/nyh1030
 email  : nyhpig@gmail.com
+phone : 010-9989-1405
 ```
-
-
-
-
