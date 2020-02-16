@@ -2491,6 +2491,13 @@ textarea.form-control {
   margin-bottom: 2.5rem;
 }
 
+.form-group .required {
+  color: red;
+  font-weight: 700;
+  border: 0!important;
+  text-decoration: none;
+}
+
 .form-group > label {
   margin-bottom: 1.5rem;
   font-weight: 400;
@@ -11734,7 +11741,7 @@ textarea.form-control {
 .ps-form--account {
   max-width: 430px;
   margin: 0 auto;
-  padding-top: 130px;
+  padding-top: 10px;
 }
 
 .ps-form--account .ps-tab-list {
@@ -11828,7 +11835,7 @@ textarea.form-control {
 }
 
 .ps-form--account .ps-form__content {
-  padding: 30px 30px 0;
+  padding: 30px 30px 30px 30px;
 }
 
 .ps-form--account .ps-form__content h5 {
@@ -12120,6 +12127,13 @@ textarea.form-control {
   .ps-form--photo-search .ps-form__content .select2 .select2-selection {
     margin: 0 auto;
   }
+}
+
+.ps-form__decs{
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 15px;
 }
 
 .ps-search {
