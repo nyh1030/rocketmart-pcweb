@@ -30,10 +30,10 @@ public class RocketmartPcwebApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*int resultCount = brandService.insertBrandInfo(BrandDto.builder().brandId("nike").brandName("나이키").build());
+        int resultCount = brandService.insertBrandInfo(BrandDto.builder().brandId("nike").brandName("나이키").build());
         log.info("resultCount ::: {}", resultCount);
 
         List<BrandDto> resultList = brandService.findAll();
-        log.info("resultList ::: {}", resultList.toString());*/
+        log.info("resultList ::: {}", resultList.toString());
     }
 }

@@ -15,11 +15,11 @@ public class BrandService {
 	@Autowired
 	private BrandRepository brandMapper;
 
-/*	public List<BrandDto> findAll() {
+	public List<BrandDto> findAll() {
 		return brandMapper.findAll();
 	}
 
 	public int insertBrandInfo(BrandDto brandDto) {
 		return brandMapper.saveOne(brandDto);
-	}*/
+	}
 }
