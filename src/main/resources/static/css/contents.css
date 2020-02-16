@@ -1,2 +1,31 @@
 @charset "UTF-8";
-.btn_add{margin-bottom:20px;}
+
+.ps-store-list .btn_box{text-align:center;}
+.ps-store-list .btn_box .ps-btn{margin:40px 0 20px;}
+.no_data{text-align:center;color:#666;font-size:15px;margin:20px 0;}
+.ps-btn.type-green{background:#88aa00;color:#fff;}
+.ps-btn.type-green:hover{background:#9cc400;}
+.ps-btn.type-black{background:#000;color:#fff;}
+.ps-btn.type-gray{background:#f5f5f5;color:#000;}
+.ps-btn.type-gray:hover{background:#c0c0c0;color:#000;}
+.ps-btn.type-orange{background:#f05025;padding:0 16px;height:34px;border-radius:5px;color:#fff;}
+label .required{color:red;font-weight:700;}
+.ps-block__header{position:relative;}
+.ps-block__header .ps-btn{font-size:14px;}
+.ps-block__header .ab-r{position:absolute;right:0;top:0;}
+.ps-block__content label{font-size:15px;color:#000;}
+.ps-block__content .ps-radio label,
+.ps-block__content .ps-checkbox label{font-size:14px;}
+.ps-block__content .ps-radio label:before {width:18px;height:18px;}
+.ps-block__content .ps-radio input[type=radio]:checked ~ label:before {background-color:transparent;border-color:#000;}
+.ps-block__content .ps-radio input[type=radio]:checked ~ label:after {top:4px;left:4px;-webkit-transform:scale(1, 1);transform:scale(1, 1);opacity:1;background-color:#000;}
+.ps-block__content .upload_box .img_logo{display:inline-block;width:150px;height:150px;border:1px solid #ddd;}
+.ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
+.ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
+.btns{position:relative;text-align:center;margin:50px 0;}
+.btns .ab-r{position:absolute;right:0;top:0;}
+
+@media (max-width:768px) {
+    .btns .ab-r{position:relative;right:inherit;}
+    .btns .ps-btn{padding:15px;}
+}

@@ -7473,6 +7473,15 @@ textarea.form-control {
   font-size: 20px;
 }
 
+.widget--vendor .ps-list--arrow a:hover,
+.widget--vendor .ps-list--arrow a.active {
+  color:#fcb800;
+}
+
+.widget--vendor .ps-list--arrow a.active{
+  font-weight: bold;
+}
+
 .widget--open-time ul li {
   margin-bottom: 25px;
 }

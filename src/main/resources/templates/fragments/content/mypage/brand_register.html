@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a href="#">회사정보</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-dashboard">
+                        <div class="ps-block__header">
+                            <h3>브랜드 정보</h3>
+                            <button type="button" class="ps-btn type-orange ab-r">삭제하기</button>
+                        </div>
+                        <div class="ps-block__content">
+                            <div class="mb-5">
+                                <label for="">브랜드 이름 <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="" placeholder="" value="" required="">
+                                <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="">브랜드 로고 <span class="required">*</span></label>
+                                <div class="upload_box">
+                                    <div class="img_logo"></div>
+                                    <button type="button" class="ps-btn">upload</button>
+                                    <span class="txt-file">No file yet</span>
+                                </div>
+                                <div class="invalid-feedback">브랜드 로고를 선택해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="">브랜드 오너십 <span class="required">*</span></label>
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="radio01" name="radio" checked>
+                                    <label for="radio01">자사 브랜드 (직접 제조)</label>
+                                </div>
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="radio02" name="radio">
+                                    <label for="radio02">자사 브랜드 (위탁 제조)</label>
+                                </div>
+                                <div class="ps-radio">
+                                    <input class="form-control" type="radio" id="radio03" name="radio">
+                                    <label for="radio03">타사 브랜드 (도소매 유통)</label>
+                                </div>
+                                <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="">브랜드 홈페이지</label>
+                                <input type="text" class="form-control" id="" placeholder="url" value="" required="">
+                            </div>
+                            <div class="mb-5">
+                                <label for="">유투브 채널</label>
+                                <input type="text" class="form-control" id="" placeholder="url" value="" required="">
+                            </div>
+                            <div class="mb-5">
+                                <label for="">인스타그램</label>
+                                <input type="text" class="form-control" id="" placeholder="url" value="" required="">
+                            </div>
+                            <div class="mb-5">
+                                <label for="">브랜드 인증 (중복체크 가능)</label>
+                                <div class="ps-checkbox mb-1">
+                                    <input class="form-control" type="checkbox" id="chk01" name="chk">
+                                    <label for="chk01">Rememeber me</label>
+                                </div>
+                                <div class="ps-checkbox">
+                                    <input class="form-control" type="checkbox" id="chk02" name="chk">
+                                    <label for="chk02">Rememeber me</label>
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="">브랜드 소개</label>
+                                <div class="edit_wrap">
+                                    에디터 들어가는 자리
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button type="button" class="ps-btn type-green">미리보기</button>
+                            <button type="button" class="ps-btn type-black">저장하기</button>
+                            <button type="button" class="ps-btn type-gray ab-r">취소하기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+</th:block>
+</html>
