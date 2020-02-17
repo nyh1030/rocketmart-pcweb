@@ -9,4 +9,5 @@ public class MemberDto {
 
 	private String memId;
 	private String memNm;
+
 }

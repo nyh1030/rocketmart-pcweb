@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbMemMst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = -1867108727;
+    private static final long serialVersionUID = 1688551500;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -41,6 +42,11 @@ public class Rocketmart extends SchemaImpl {
      * 브랜드_정보
      */
     public final TbBrandMst TB_BRAND_MST = com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 회원정보 마스터
+     */
+    public final TbMemMst TB_MEM_MST = com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 
     /**
      * No further instances allowed
@@ -64,6 +70,7 @@ public class Rocketmart extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            TbBrandMst.TB_BRAND_MST);
+            TbBrandMst.TB_BRAND_MST,
+            TbMemMst.TB_MEM_MST);
     }
 }

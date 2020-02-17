@@ -1,6 +1,6 @@
 package com.rocketmart.pcweb.config;
 
-import com.rocketmart.pcweb.biz.svc.MemberService;
+import com.rocketmart.pcweb.biz.svc.CustumUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,25 +9,41 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    private MemberService memberService;
+    private CustumUserDetailService custumUserDetailService;
 
     @Autowired
     public void config(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+       /* auth.inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("1234"))
-                .authorities("ROLE_USER");
+                .authorities("ROLE_USER")*/
+        auth.userDetailsService(custumUserDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+        //return new BCryptPasswordEncoder();
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return String.valueOf(rawPassword);
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return true;
+            }
+
+            @Override
+            public boolean upgradeEncoding(String encodedPassword) {
+                return true;
+            }
+        };
     }
 
     @Override
@@ -47,12 +63,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/member/login")
-                .defaultSuccessUrl("/member/login/result")
                 .permitAll()
                 .and() // 로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/member/logout/result")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
                 // 403 예외처리 핸들링
@@ -62,6 +77,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+       // auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
 }

@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbMemMst;
 
 import javax.annotation.Generated;
 
@@ -26,4 +27,9 @@ public class Tables {
      * 브랜드_정보
      */
     public static final TbBrandMst TB_BRAND_MST = TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 회원정보 마스터
+     */
+    public static final TbMemMst TB_MEM_MST = TbMemMst.TB_MEM_MST;
 }

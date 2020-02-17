@@ -1,13 +1,13 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
 import com.rocketmart.pcweb.biz.dao.MemberDto;
+import com.rocketmart.pcweb.biz.svc.CustumUserDetailService;
 import com.rocketmart.pcweb.biz.svc.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/any/member")
@@ -43,11 +43,11 @@ public class MemberCtl {
     }
 
     // 회원가입 처리
-   @PostMapping("/signup")
-    public String execSignup(MemberDto memberDto) {
-        memberService.joinUser(memberDto);
+   @GetMapping("/signup")
+    public String execSignup() {
+        memberService.insertMemberInfo();
 
-        return "redirect:/user/login";
+           return prefixPath.concat("/member/login");
     }
 
     // 내 정보 페이지

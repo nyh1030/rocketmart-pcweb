@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbMemMst;
 
 import javax.annotation.Generated;
 
@@ -31,6 +32,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index TB_BRAND_MST_PRIMARY = Indexes0.TB_BRAND_MST_PRIMARY;
+    public static final Index TB_MEM_MST_IDX_MEM_SEQ = Indexes0.TB_MEM_MST_IDX_MEM_SEQ;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -38,5 +40,6 @@ public class Indexes {
 
     private static class Indexes0 {
         public static Index TB_BRAND_MST_PRIMARY = Internal.createIndex("PRIMARY", TbBrandMst.TB_BRAND_MST, new OrderField[] { TbBrandMst.TB_BRAND_MST.BRAND_SEQ }, true);
+        public static Index TB_MEM_MST_IDX_MEM_SEQ = Internal.createIndex("IDX_MEM_SEQ", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, false);
     }
 }
