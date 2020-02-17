@@ -1,6 +1,7 @@
 create table tb_mem_mst
 (
     MEM_SEQ        int                                  not null comment '회원정보 일련번호',
+    ROLE           varchar(50)                          null comment '역할',
     MEM_ID         varchar(50)                          not null comment '회원아이디(이메일)',
     MEM_NM         varchar(80)                          not null comment '회원명',
     MEM_PW         varchar(1000)                        null comment '비밀번호',

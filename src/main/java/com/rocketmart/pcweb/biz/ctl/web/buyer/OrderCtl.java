@@ -1,4 +1,4 @@
-package com.rocketmart.pcweb.biz.ctl;
+package com.rocketmart.pcweb.biz.ctl.web.buyer;
 
 import org.springframework.stereotype.Controller;
 

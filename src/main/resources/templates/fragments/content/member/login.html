@@ -127,21 +127,7 @@
             $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
             $('#phone-number', form).keydown(this.ensurePhoneNumber);
         },
-        /*        validate: function(self) {
-                    $('form.register').validate({
-                        errorPlacement: function(error, element) {
-                            var form_group = $(element).closest('.form-group');
-                            form_group.addClass('has-error').append(error);
-                        },
-                        success: function(label, element) {
-                            $(element).closest('.form-group').removeClass('has-error');
-                        },
-                        submitHandler: function(form) {
-                            form.submit();
-                        }
-                    });
-                },*/
-        confirmPasswordForm: function(e) {
+        confirmPasswordForm: function() {
             if('' != $('#userPwChk').val()){
                 if($('#userPw').val() != $('#userPwChk').val()){
                     $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');

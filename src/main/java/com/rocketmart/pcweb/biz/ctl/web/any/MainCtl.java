@@ -1,8 +1,7 @@
-package com.rocketmart.pcweb.biz.ctl;
+package com.rocketmart.pcweb.biz.ctl.web.any;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainCtl {
@@ -14,12 +13,6 @@ public class MainCtl {
         return "index";
     }
 
-    @GetMapping("/account")
-    public String account(
-            @RequestParam(value = "gbn", required = false, defaultValue = "login") String gbn
-    ) {
-        return prefixPath.concat("/account/account");
-    }
 
     // 제품정보 > 브랜드 추가
     @GetMapping("/brand_add")

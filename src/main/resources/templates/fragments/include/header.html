@@ -139,11 +139,11 @@
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
-                            <a th:href="@{/account(gbn='login')}">Login</a>
-                            <a th:href="@{/account(gbn='register')}">Register</a>
+                            <a th:href="@{/any/member/login(gbn='login')}">Login</a>
+                            <a th:href="@{/any/member/login(gbn='register')}">Register</a>
                             <!-- D : 로그인후
-                            <a href="my-account.html">Logout</a>
-                            <a href="my-account.html">Mypage</a>
+                            <a href="my-login.html">Logout</a>
+                            <a href="my-login.html">Mypage</a>
                             -->
                         </div>
                     </div>
@@ -469,8 +469,8 @@
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
-                        <a th:href="@{/account(gbn='login')}">Login</a>
-                        <a th:href="@{/account(gbn='register')}">Register</a>
+                        <a th:href="@{/any/member/login(gbn='login')}">Login</a>
+                        <a th:href="@{/any/member/login(gbn='register')}">Register</a>
                     </div>
                 </div>
             </div>
