@@ -22,7 +22,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
        /* auth.inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("1234"))
                 .authorities("ROLE_USER")*/
-        auth.userDetailsService(custumUserDetailService).passwordEncoder(passwordEncoder());
+   //     auth.userDetailsService(custumUserDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
