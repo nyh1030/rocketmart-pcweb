@@ -1,3 +1,5 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
 <header class="header header--standard header--market-place-1" data-sticky="true">
     <div class="header__content">
         <div class="container">
@@ -139,8 +141,8 @@
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
-                            <a th:href="@{/any/member/login(gbn='login')}">Login</a>
-                            <a th:href="@{/any/member/login(gbn='register')}">Register</a>
+                            <a th:href="@{/any/member/login}">Login</a>
+                            <a th:href="@{/any/member/login}">Register</a>
                             <!-- D : 로그인후
                             <a href="my-login.html">Logout</a>
                             <a href="my-login.html">Mypage</a>
@@ -469,8 +471,8 @@
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
-                        <a th:href="@{/any/member/login(gbn='login')}">Login</a>
-                        <a th:href="@{/any/member/login(gbn='register')}">Register</a>
+                        <a th:href="@{/any/member/login}">Login</a>
+                        <a th:href="@{/any/member/login}">Register</a>
                     </div>
                 </div>
             </div>
@@ -485,3 +487,5 @@
         </form>
     </div>
 </header>
+
+</html>

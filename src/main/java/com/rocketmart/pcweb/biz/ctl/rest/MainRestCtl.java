@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainRestCtl {
 
-    @Autowired
-    private BrandService brandService;
-
     @GetMapping("/test")
     public String test(){
         return "testtttt";
