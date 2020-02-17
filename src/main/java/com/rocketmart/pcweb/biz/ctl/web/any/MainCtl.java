@@ -8,9 +8,9 @@ public class MainCtl {
 
     private String prefixPath = "fragments/content";
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(){
-        return "index";
+        return "/index";
     }
 
 
