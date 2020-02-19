@@ -20,9 +20,9 @@ public class LoginCtl {
 	private MemberSvc memberSvc;
 
 	// 로그인 페이지
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String dispLogin() {
-		return prefixPath.concat("/login/login");
+		return prefixPath.concat("/login/signin");
 	}
 
 	// 로그인 결과 페이지

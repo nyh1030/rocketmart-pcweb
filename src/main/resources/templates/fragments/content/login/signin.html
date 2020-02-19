@@ -21,7 +21,7 @@
                         <div class="ps-tab active" id="sign-in">
                             <div class="ps-form__content">
                                 <form name="signin" action="/any/login/login" method="post">
-                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                    <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                                     <h5>Log In Your Account</h5>
                                     <div class="form-group">
                                         <input class="form-control" id="email" type="text" placeholder="Email address">
@@ -118,9 +118,9 @@
 
 <script>
 (function($) {
-    var signUp = {
+    var signup = {
         init: function() {
-            var form = $('form.signup');
+            var form = $('form[name="signup"]');
             $('.user-role input[type=radio]', form).on('change', this.showSellerForm);
             $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
             $('#tel', form).keydown(this.ensurePhoneNumber);
@@ -141,7 +141,7 @@
         showSellerForm: function() {
             var value = $(this).val();
             if (value === 'SELLER') {
-                $('#registerText').text("계정");
+                $('#registerText').text("계정을 등록해 주세요.");
                 $('label[for="memNm"]').text("담당자 이름(직급)");
                 $('label[for="tel"]').text("연락처");
                 $('label[for="companyNm"]').text("회사명");
@@ -166,7 +166,7 @@
         }
     };
     $(function() {
-        signUp.init();
+        signup.init();
     });
 })(jQuery);
 </script>
