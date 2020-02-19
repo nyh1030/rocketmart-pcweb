@@ -1,10 +1,13 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
+import com.rocketmart.pcweb.biz.dao.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.lang.reflect.Member;
 
 
 @Controller
@@ -40,11 +43,4 @@ public class LoginCtl {
 		return prefixPath.concat("/login/denied");
 	}
 
-	// 회원가입 처리
-	@GetMapping("/signup")
-	public String execSignup() {
-		memberSvc.insertMemberInfo();
-
-		return prefixPath.concat("/login/login");
-	}
 }

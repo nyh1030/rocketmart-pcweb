@@ -1,7 +1,6 @@
 package com.rocketmart.pcweb.config;
 
-import com.rocketmart.pcweb.biz.svc.CustumUserDetailSvc;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.rocketmart.pcweb.biz.svc.LoginSvc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,35 +15,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    private CustumUserDetailSvc custumUserDetailSvc;
 
-    @Autowired
-    public void config(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("1234"))
-                .authorities("ROLE_USER");
-   //     auth.userDetailsService(custumUserDetailService).passwordEncoder(passwordEncoder());
+    private LoginSvc loginSvc;
+
+    public SpringSecurityConfig(LoginSvc loginSvc) {
+        this.loginSvc = loginSvc;
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-/*        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence rawPassword) {
-                return String.valueOf(rawPassword);
-            }
-
-            @Override
-            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return true;
-            }
-
-            @Override
-            public boolean upgradeEncoding(String encodedPassword) {
-                return true;
-            }
-        };*/
     }
 
     @Override
@@ -78,6 +58,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-       // auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(loginSvc).passwordEncoder(passwordEncoder());
     }
 }

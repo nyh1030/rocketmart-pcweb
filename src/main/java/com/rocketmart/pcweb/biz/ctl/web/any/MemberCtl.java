@@ -1,9 +1,11 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
+import com.rocketmart.pcweb.biz.dao.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,11 +17,14 @@ public class MemberCtl {
     @Autowired
     private MemberSvc memberSvc;
 
-    // 내 정보 페이지
-    @GetMapping("/myinfo")
-    public String dispMyInfo() {
-        return prefixPath.concat("/mypage/myinfo");
+    @PostMapping("/signup")
+    public String execSignup(MemberDto memberDto) {
+
+        memberSvc.saveOneForMem(memberDto);
+
+        return "redirect:/";
     }
+
 
 
 }
