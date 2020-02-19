@@ -10,9 +10,9 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class BrandService {
+public class BrandSvc {
 
-/*	@Autowired
+	@Autowired
 	private BrandRepository brandMapper;
 
 	public List<BrandDto> findAll() {
@@ -21,5 +21,5 @@ public class BrandService {
 
 	public int insertBrandInfo(BrandDto brandDto) {
 		return brandMapper.saveOne(brandDto);
-	}*/
+	}
 }

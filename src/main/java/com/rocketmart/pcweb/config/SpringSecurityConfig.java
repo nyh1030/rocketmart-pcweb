@@ -1,6 +1,6 @@
 package com.rocketmart.pcweb.config;
 
-import com.rocketmart.pcweb.biz.svc.CustumUserDetailService;
+import com.rocketmart.pcweb.biz.svc.CustumUserDetailSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-    private CustumUserDetailService custumUserDetailService;
+    private CustumUserDetailSvc custumUserDetailSvc;
 
     @Autowired
     public void config(AuthenticationManagerBuilder auth) throws Exception {

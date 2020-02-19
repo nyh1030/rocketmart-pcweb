@@ -1,7 +1,7 @@
 package com.rocketmart.pcweb;
 
 import com.rocketmart.pcweb.biz.dao.BrandDto;
-import com.rocketmart.pcweb.biz.svc.BrandService;
+import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.common.file.FileUploadProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.List;
 public class RocketmartPcwebApplication implements CommandLineRunner {
 
     @Autowired
-    //private BrandService brandService;
+    private BrandSvc brandSvc;
 
     public static void main(String[] args) {
         SpringApplication.run(RocketmartPcwebApplication.class, args);
@@ -30,10 +30,10 @@ public class RocketmartPcwebApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-/*        int resultCount = brandService.insertBrandInfo(BrandDto.builder().brandId("nike").brandName("나이키").build());
+        int resultCount = brandSvc.insertBrandInfo(BrandDto.builder().brandId("nike").brandName("나이키").build());
         log.info("resultCount ::: {}", resultCount);
 
-        List<BrandDto> resultList = brandService.findAll();
-        log.info("resultList ::: {}", resultList.toString());*/
+        List<BrandDto> resultList = brandSvc.findAll();
+        log.info("resultList ::: {}", resultList.toString());
     }
 }

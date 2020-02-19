@@ -18,11 +18,10 @@ import java.util.List;
 
 @Service
 //@EnableAspectJAutoProxy(proxyTargetClass = true)
-public class CustumUserDetailService implements UserDetailsService {
+public class CustumUserDetailSvc implements UserDetailsService {
 
     @Autowired
     private MemberRepository memberRepository;
-
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
