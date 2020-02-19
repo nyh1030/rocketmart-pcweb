@@ -17413,3 +17413,14 @@ html .bg--parallax {
   padding: 0;
   list-style: none;
 }
+
+/* 추가 */
+ul,ol{
+  padding:0;
+  list-style:none;
+}
+.header .ps-logo{
+  font-size: 30px;
+  color: #000;
+  font-weight: 700;
+}
