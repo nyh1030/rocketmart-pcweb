@@ -19,7 +19,7 @@
                 <!-- .ps-section__right : S -->
                 <div class="ps-section__right">
                     <div class="btn_box">
-                        <button type="button" class="ps-btn">+ 브랜드 추가</button>
+                        <button type="button" id="btnBrandAdd" class="ps-btn">+ 브랜드 추가</button>
                     </div>
                     <div class="no_data">등록된 브랜드가 없습니다.  브랜드를  먼저 추가해주세요.</div>
                 </div>
@@ -28,5 +28,24 @@
         </div>
         <!-- //.container : E -->
     </div>
+
+    <script type="text/javascript">
+        $(() => {
+            EventScope.__init__();
+        });
+
+        const EventScope = {
+
+            __init__() {
+              this.clickEventListener();
+            },
+
+            clickEventListener() {
+                $("#btnBrandAdd").on("click", () => {
+                    location.href = "/brand_register";
+                });
+            }
+        };
+    </script>
 </th:block>
 </html>
