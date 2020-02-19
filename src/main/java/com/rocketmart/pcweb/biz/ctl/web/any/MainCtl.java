@@ -1,4 +1,4 @@
-package com.rocketmart.pcweb.biz.ctl;
+package com.rocketmart.pcweb.biz.ctl.web.any;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,11 +8,11 @@ public class MainCtl {
 
     private String prefixPath = "fragments/content";
 
-    // 메인
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(){
-        return "index";
+        return "/index";
     }
+
 
     // 제품정보 > 브랜드 추가
     @GetMapping("/brand_add")
@@ -31,6 +31,5 @@ public class MainCtl {
     public String brand_detail() {
         return prefixPath.concat("/mypage/brand_detail");
     }
-
 }
 

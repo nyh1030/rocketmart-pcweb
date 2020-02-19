@@ -12138,13 +12138,6 @@ textarea.form-control {
   }
 }
 
-.ps-form__decs{
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
-  padding-bottom: 15px;
-}
-
 .ps-search {
   position: fixed;
   top: 0;
@@ -17414,6 +17407,48 @@ html .bg--parallax {
   list-style: none;
 }
 
+
+.woocommerce-form__label-for-checkbox .checkbox-holder {
+  padding-left: 0
+}
+
+.woocommerce-form__label-for-checkbox .checkbox-holder:before {
+  display: none
+}
+
+.woocommerce-form__label-for-checkbox .checkbox-holder .woocommerce-form__input-checkbox {
+  opacity: 1;
+  display: block
+}
+
+.woocommerce-form__label-for-checkbox .checkbox-holder+span {
+  padding-left: 10px
+}
+
+.woocommerce-form__label-for-checkbox .checkbox-holder+span:before {
+  display: none
+}
+
+.woocommerce-form__label-for-checkbox.radio {
+  margin: 0
+}
+
+.woocommerce-form__label-for-checkbox.radio span:before {
+  content: "\5b";
+  font-family: ElegantIcons;
+  top: -1px
+}
+
+.woocommerce-form__label-for-checkbox.radio .woocommerce-form__input-checkbox:checked+span:before {
+  content: "\5c";
+}
+
+.woocommerce #respond input#submit.disabled,.woocommerce #respond input#submit:disabled,.woocommerce #respond input#submit:disabled[disabled],.woocommerce a.button.disabled,.woocommerce a.button:disabled,.woocommerce a.button:disabled[disabled],.woocommerce button.button.disabled,.woocommerce button.button:disabled,.woocommerce button.button:disabled[disabled],.woocommerce input.button.disabled,.woocommerce input.button:disabled,.woocommerce input.button:disabled[disabled] {
+  color: inherit;
+  cursor: not-allowed;
+  opacity: .5;
+  padding: .618em 1em;
+}
 /* 추가 */
 ul,ol{
   padding:0;

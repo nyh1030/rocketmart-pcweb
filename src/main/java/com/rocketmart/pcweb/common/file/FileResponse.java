@@ -1,8 +1,10 @@
 package com.rocketmart.pcweb.common.file;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class FileResponse {
 
 	private String fileName; // 파일명

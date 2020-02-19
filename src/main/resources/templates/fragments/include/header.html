@@ -1,3 +1,5 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
 <header class="header header--market-place-3" data-sticky="true">
     <div class="header__top">
         <div class="container">
@@ -126,7 +128,15 @@
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block__right">
+                            <!-- D : 로그인전 -->
+                            <a th:href="@{/any/login/login}">Login</a>
+                            <a th:href="@{/any/login/login}">Register</a>
+                            <!-- D : 로그인후
+                            <a href="my-login.html">Logout</a>
+                            <a href="my-login.html">Mypage</a>
+                            -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -174,33 +184,33 @@
     </nav>
 </header>
 <header class="header header--mobile" data-sticky="true">
-<!--    <div class="header__top">
-        <div class="header__left">
-            <p>Welcome to Martfury Online Shopping Store !</p>
-        </div>
-        <div class="header__right">
-            <ul class="navigation__extra">
-                <li><a href="#">Sell on Martfury</a></li>
-                <li><a href="#">Tract your order</a></li>
-                <li>
-                    <div class="ps-dropdown"><a href="#">US Dollar</a>
-                        <ul class="ps-dropdown-menu">
-                            <li><a href="#">Us Dollar</a></li>
-                            <li><a href="#">Euro</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="">English</a>
-                        <ul class="ps-dropdown-menu">
-                            <li><a href="#"><img src="img/flag/germany.png" alt=""> Germany</a></li>
-                            <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>-->
+    <!--    <div class="header__top">
+            <div class="header__left">
+                <p>Welcome to Martfury Online Shopping Store !</p>
+            </div>
+            <div class="header__right">
+                <ul class="navigation__extra">
+                    <li><a href="#">Sell on Martfury</a></li>
+                    <li><a href="#">Tract your order</a></li>
+                    <li>
+                        <div class="ps-dropdown"><a href="#">US Dollar</a>
+                            <ul class="ps-dropdown-menu">
+                                <li><a href="#">Us Dollar</a></li>
+                                <li><a href="#">Euro</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="">English</a>
+                            <ul class="ps-dropdown-menu">
+                                <li><a href="#"><img src="img/flag/germany.png" alt=""> Germany</a></li>
+                                <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
     <div class="navigation--mobile">
         <div class="navigation__left"><a class="ps-logo" href="index.html">rocket<span>mart</span></a></div>
         <div class="navigation__right">
@@ -229,7 +239,10 @@
                 </div>
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
-                    <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                    <div class="ps-block__right">
+                        <a th:href="@{/any/login/login}">Login</a>
+                        <a th:href="@{/any/login/login}">Register</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -243,3 +256,4 @@
         </form>
     </div>
 </header>
+</html>

@@ -55,9 +55,9 @@ jooq {
     rocketmart(sourceSets.main) {
         jdbc { // DB 연결 정보 설정
             driver = 'org.mariadb.jdbc.Driver'
-            url = 'jdbc:mariadb://127.0.0.1:3306/rocketmart'
+            url = 'jdbc:mariadb://49.50.167.112:3306/rocketmart'
             user = 'root'
-            password = 'root'
+            password = 'rocket2019!'
         }
         generator {
             database {
@@ -66,8 +66,9 @@ jooq {
             target {
                 packageName = 'com.rocketmart.jooq' // (9) 패키지 설정
                 directory = 'src/main/java' // (10) 디렉토리
-                clean = true
+                //clean = true as Delete
             }
         }
+
     }
 }

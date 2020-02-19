@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lagn="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
     <head>
         <title>Rocket Mart</title>
         <!-- 공통 css, js, meta tag -->
         <th:block th:replace="fragments/include/head :: headFragment"></th:block>
+        <!-- 공통 script -->
+        <th:block th:replace="fragments/include/script :: scriptFragment"></th:block>
     </head>
 
     <body>
@@ -15,12 +16,7 @@
         <th:block th:replace="fragments/include/footer"></th:block>
 
         <th:block th:replace="fragments/include/overlay"></th:block>
-
-
-        <!-- 공통 script -->
-        <th:block th:replace="fragments/include/script :: scriptFragment"></th:block>
     </body>
-
 </html>
 
 

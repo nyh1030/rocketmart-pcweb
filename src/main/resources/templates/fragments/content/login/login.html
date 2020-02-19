@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-page--my-account">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li>My account</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ps-my-account">
+            <div class="container">
+                <div class="register ps-form--account ps-tab-root">
+                    <ul class="ps-tab-list">
+                        <li class="active"><a href="#sign-in">Login</a></li>
+                        <li><a href="#register">Register</a></li>
+                    </ul>
+                    <div class="ps-tabs">
+                        <div class="ps-tab active" id="sign-in">
+                            <div class="ps-form__content">
+                                <form name="signin" action="/any/login/login" method="post">
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                    <h5>Log In Your Account</h5>
+                                    <div class="form-group">
+                                        <input class="form-control" id="email" type="text" placeholder="Email address">
+                                    </div>
+                                    <div class="form-group form-forgot">
+                                        <input class="form-control" id="password" type="text" placeholder="Password"><a href="">Forgot?</a>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
+                                        </div>
+                                    </div>
+                                    <div class="form-group submtit">
+                                        <button type="submit" class="ps-btn ps-btn--fullwidth">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="ps-tab" id="register">
+                            <div class="ps-form__content">
+                                <form name="signup" action="/any/member/signup" method="post">
+                                    <div class="ps-form__decs">
+                                        <p class="form-row form-group user-role">
+                                            <label class="radio">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="BUYER" checked="checked">
+                                                <span>I'm a buyer in Veitnam</span>
+                                            </label>
+
+                                            <label class="radio">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="SELLER">
+                                                <span>I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</span>
+                                            </label>
+                                        </p>
+                                    </div>
+
+                                    <h5 id="registerText">Register An Account</h5>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" name="memId" placeholder="Email address" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" id="memPw" placeholder="Password" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" id="memPwChk" placeholder="Confirm Password" required="required">
+                                        <small id="chkNotice"></small>
+                                    </div>
+
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="memNm">Your Name<span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="memNm" value="" required="required">
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="tel">Phone Number<span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="tel" value="" required="required">
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyNm">Company or Shop Name<span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyNm" value="" required="required">
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyUrl">Company or Shop URL<span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyUrl" value="" required="required">
+                                    </p>
+
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="bsnsRgstr">Business Registration<span class="required">*</span></label>
+                                        <input class="form-control" type="file" id="bsnsRgstr" accept="image/*,  .pdf" required="required">
+                                    </p>
+
+
+                                    <div class="ps-checkbox agreeContents">
+                                        <input class="form-control" type="checkbox" id="terms_conditions" >
+                                        <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
+
+                                    </div>
+                                    <div class="ps-checkbox agreeContents">
+                                        <input class="form-control" type="checkbox" id="privacy_policy">
+                                        <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
+                                    </div>
+
+                                    <div class="form-group submit">
+                                        <button type="submit" id="btnRegister" class="ps-btn ps-btn--fullwidth">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>
+
+<script>
+(function($) {
+    var signUp = {
+        init: function() {
+            var form = $('form.signup');
+            $('.user-role input[type=radio]', form).on('change', this.showSellerForm);
+            $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
+            $('#tel', form).keydown(this.ensurePhoneNumber);
+        },
+        confirmPasswordForm: function() {
+            if('' != $('#memPwChk').val()){
+                if($('#memPw').val() != $('#memPwChk').val()){
+                    $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');
+                    $("#btnRegister").attr("disabled", "disabled");
+                } else{
+                    $('#chkNotice').html('<strong color="#199894b3">Passwords match</strong>');
+                    $("#btnRegister").removeAttr("disabled");
+                }
+            }else{
+                $('#chkNotice').html('');
+            }
+        },
+        showSellerForm: function() {
+            var value = $(this).val();
+            if (value === 'SELLER') {
+                $('#registerText').text("계정");
+                $('label[for="memNm"]').text("담당자 이름(직급)");
+                $('label[for="tel"]').text("연락처");
+                $('label[for="companyNm"]').text("회사명");
+                $('label[for="companyUrl"]').text("회사 또는 브랜드 홈페이지 주소");
+                $('label[for="bsnsRgstr"]').text("사업자 등록증");
+            } else {
+                $('#registerText').text("Register An Account");
+                $('label[for="memNm"]').text("Your Name");
+                $('label[for="tel"]').text("Phone Number");
+                $('label[for="companyNm"]').text("Company or Shop Name");
+                $('label[for="companyUrl"]').text("Company or Shop URL");
+                $('label[for="bsnsRgstr"]').text("Business Registration");
+            }
+        },
+        ensurePhoneNumber: function(e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 91, 107, 109, 110, 187, 189, 190]) !== -1 || (e.keyCode === 65 && e.ctrlKey === true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
+                return;
+            }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        }
+    };
+    $(function() {
+        signUp.init();
+    });
+})(jQuery);
+</script>
+
