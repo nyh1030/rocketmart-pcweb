@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class BrandService {
 
-	@Autowired
+/*	@Autowired
 	private BrandRepository brandMapper;
 
 	public List<BrandDto> findAll() {
@@ -21,5 +21,5 @@ public class BrandService {
 
 	public int insertBrandInfo(BrandDto brandDto) {
 		return brandMapper.saveOne(brandDto);
-	}
+	}*/
 }

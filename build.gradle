@@ -69,5 +69,6 @@ jooq {
                 //clean = true as Delete
             }
         }
+
     }
 }

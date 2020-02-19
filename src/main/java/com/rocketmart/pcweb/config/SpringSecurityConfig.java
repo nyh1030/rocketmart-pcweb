@@ -9,26 +9,27 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private CustumUserDetailService custumUserDetailService;
 
     @Autowired
     public void config(AuthenticationManagerBuilder auth) throws Exception {
-       /* auth.inMemoryAuthentication()
+        auth.inMemoryAuthentication()
                 .withUser("user").password(passwordEncoder().encode("1234"))
-                .authorities("ROLE_USER")*/
+                .authorities("ROLE_USER");
    //     auth.userDetailsService(custumUserDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        //return new BCryptPasswordEncoder();
-        return new PasswordEncoder() {
+        return new BCryptPasswordEncoder();
+/*        return new PasswordEncoder() {
             @Override
             public String encode(CharSequence rawPassword) {
                 return String.valueOf(rawPassword);
@@ -43,7 +44,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             public boolean upgradeEncoding(String encodedPassword) {
                 return true;
             }
-        };
+        };*/
     }
 
     @Override
