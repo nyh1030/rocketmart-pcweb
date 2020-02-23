@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = -1765075979;
+    private static final long serialVersionUID = 1217133692;
 
     /**
      * The reference instance of <code>rocketmart.tb_brand_mst</code>
@@ -102,6 +102,11 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
      * The column <code>rocketmart.tb_brand_mst.BRAND_INTRODUCTION</code>. 브랜드 소개
      */
     public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.VARCHAR(2000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 소개");
+
+    /**
+     * The column <code>rocketmart.tb_brand_mst.BRAND_FILE_ID</code>. 파일첨부 ID
+     */
+    public final TableField<TbBrandMstRecord, String> BRAND_FILE_ID = createField(DSL.name("BRAND_FILE_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "파일첨부 ID");
 
     /**
      * The column <code>rocketmart.tb_brand_mst.REG_USR_ID</code>. 등록자 아이디
@@ -208,11 +213,11 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Integer, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<Integer, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }
