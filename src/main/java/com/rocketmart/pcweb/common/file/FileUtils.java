@@ -41,6 +41,7 @@ public class FileUtils {
 		int fileSeq = 0;
 		String fileExtensions = file.getContentType();
 		String realFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+		assert fileExtensions != null;
 		String storedFileNm = CommonUtils.getFileId(realFileName.concat(fileExtensions));
 		Path targetLocation = Paths.get(uploadDirPath).toAbsolutePath().normalize().resolve(storedFileNm);
 		try {
