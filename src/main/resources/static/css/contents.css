@@ -23,10 +23,11 @@ label .required{color:red;font-weight:700;}
 .ps-block__content .upload_box .img_logo{display:inline-block;width:150px;height:150px;border:1px solid #ddd;}
 .ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
 .ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
-.ps-block__content .info-list > li{margin-bottom:10px;font-size:15px;}
+.ps-block__content .info-list > li{margin-bottom:10px;}
+.ps-block__content .info-list > li .tit-info{font-size:15px;}
 .ps-block__content .info-list > li a{color:#06c;text-decoration:underline;}
 .ps-block__content .info-list > li .bul-type:before{top:6px;}
-.ps-block__content .info-list > li .type-list{margin:4px 0 0 10px;font-size:14px;}
+.ps-block__content .info-list > li .type-list{margin:4px 0 0 10px;line-height:24px;}
 .ps-block__content .info-list > li .btn-file{font-size:14px;text-decoration:none;margin-left:10px;}
 .ps-block__content .info-list > li .btn-file .fa{margin-right:3px;}
 .btns{position:relative;text-align:center;margin:50px 0;}
