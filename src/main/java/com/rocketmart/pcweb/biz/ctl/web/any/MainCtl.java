@@ -31,5 +31,11 @@ public class MainCtl {
     public String brand_detail() {
         return prefixPath.concat("/mypage/brand_detail");
     }
+
+    // 회사정보
+    @GetMapping("/company_info")
+    public String company_info() {
+        return prefixPath.concat("/mypage/company_info");
+    }
 }
 

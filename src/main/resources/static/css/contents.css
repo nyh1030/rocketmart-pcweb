@@ -13,6 +13,7 @@ label .required{color:red;font-weight:700;}
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
 .ps-block__header .ab-r{position:absolute;right:0;top:0;}
+.ps-block__header .date{margin-top:12px;color:#555;font-size:12px;}
 .ps-block__content label{font-size:15px;color:#000;}
 .ps-block__content .ps-radio label,
 .ps-block__content .ps-checkbox label{font-size:14px;}
@@ -22,8 +23,16 @@ label .required{color:red;font-weight:700;}
 .ps-block__content .upload_box .img_logo{display:inline-block;width:150px;height:150px;border:1px solid #ddd;}
 .ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
 .ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
+.ps-block__content .info-list > li{margin-bottom:10px;font-size:15px;}
+.ps-block__content .info-list > li a{color:#06c;text-decoration:underline;}
+.ps-block__content .info-list > li .bul-type:before{top:6px;}
+.ps-block__content .info-list > li .type-list{margin:4px 0 0 10px;font-size:14px;}
+.ps-block__content .info-list > li .btn-file{font-size:14px;text-decoration:none;margin-left:10px;}
+.ps-block__content .info-list > li .btn-file .fa{margin-right:3px;}
 .btns{position:relative;text-align:center;margin:50px 0;}
 .btns .ab-r{position:absolute;right:0;top:0;}
+.bul-type{position:relative;padding-left:10px;font-weight:bold;}
+.bul-type:before{content:'';display:block;position:absolute;left:0;top:7px;width:4px;height:4px;background:#cecece;}
 
 @media (max-width:768px) {
     .btns .ab-r{position:relative;right:inherit;}
