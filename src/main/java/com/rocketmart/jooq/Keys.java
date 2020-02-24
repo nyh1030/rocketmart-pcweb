@@ -4,8 +4,10 @@
 package com.rocketmart.jooq;
 
 
+import com.rocketmart.jooq.tables.TbBrandFile;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.records.TbBrandFileRecord;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 
@@ -41,6 +43,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<TbBrandFileRecord> KEY_TB_BRAND_FILE_PRIMARY = UniqueKeys0.KEY_TB_BRAND_FILE_PRIMARY;
     public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = UniqueKeys0.KEY_TB_BRAND_MST_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = UniqueKeys0.KEY_TB_MEM_MST_PRIMARY;
 
@@ -59,6 +62,7 @@ public class Keys {
     }
 
     private static class UniqueKeys0 {
+        public static final UniqueKey<TbBrandFileRecord> KEY_TB_BRAND_FILE_PRIMARY = Internal.createUniqueKey(TbBrandFile.TB_BRAND_FILE, "KEY_tb_brand_file_PRIMARY", TbBrandFile.TB_BRAND_FILE.FILE_SEQ);
         public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = Internal.createUniqueKey(TbBrandMst.TB_BRAND_MST, "KEY_tb_brand_mst_PRIMARY", TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_tb_mem_mst_PRIMARY", TbMemMst.TB_MEM_MST.MEM_SEQ);
     }

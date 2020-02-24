@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class FileResponse {
 
+	private String fileSeq; // 파일명
 	private String fileName; // 파일명
 	private String fileDownloadUrl; // 파일 다운로드 URL
 	private String fileType; // 파일 유형

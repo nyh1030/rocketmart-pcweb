@@ -1,13 +1,11 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
-import com.rocketmart.pcweb.biz.dao.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.lang.reflect.Member;
 
 
 @Controller
@@ -23,6 +21,12 @@ public class LoginCtl {
 	@GetMapping("/signin")
 	public String dispLogin() {
 		return prefixPath.concat("/login/signin");
+	}
+
+	// 로그인
+	@PostMapping("/login")
+	public String execLogin() {
+		return "redirect:/";
 	}
 
 	// 로그인 결과 페이지

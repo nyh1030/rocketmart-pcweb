@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row15;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbMemMst extends TableImpl<TbMemMstRecord> {
 
-    private static final long serialVersionUID = -1349179764;
+    private static final long serialVersionUID = 2092967698;
 
     /**
      * The reference instance of <code>rocketmart.tb_mem_mst</code>
@@ -99,9 +99,19 @@ public class TbMemMst extends TableImpl<TbMemMstRecord> {
     public final TableField<TbMemMstRecord, String> COMPANY_URL = createField(DSL.name("COMPANY_URL"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "회사URL");
 
     /**
+     * The column <code>rocketmart.tb_mem_mst.BSNS_TYPE</code>. 사업자유형
+     */
+    public final TableField<TbMemMstRecord, String> BSNS_TYPE = createField(DSL.name("BSNS_TYPE"), org.jooq.impl.SQLDataType.VARCHAR(20).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "사업자유형");
+
+    /**
      * The column <code>rocketmart.tb_mem_mst.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
      */
-    public final TableField<TbMemMstRecord, Integer> BSNS_RGSTR_SEQ = createField(DSL.name("BSNS_RGSTR_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "사업자등록증 일련번호");
+    public final TableField<TbMemMstRecord, Integer> BSNS_RGSTR_SEQ = createField(DSL.name("BSNS_RGSTR_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "사업자등록증 일련번호");
+
+    /**
+     * The column <code>rocketmart.tb_mem_mst.USE_YN</code>. 사용여부
+     */
+    public final TableField<TbMemMstRecord, String> USE_YN = createField(DSL.name("USE_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'Y'", org.jooq.impl.SQLDataType.CHAR)), this, "사용여부");
 
     /**
      * The column <code>rocketmart.tb_mem_mst.REG_USR_ID</code>. 등록자 아이디
@@ -208,11 +218,11 @@ public class TbMemMst extends TableImpl<TbMemMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row15 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Integer, String, String, String, String, String, String, String, Integer, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row15<Integer, String, String, String, String, String, String, String, String, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row15) super.fieldsRow();
     }
 }

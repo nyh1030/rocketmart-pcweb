@@ -1,6 +1,9 @@
 const CommonUtils = {
 
     domTag(pName) {
+    },
+    forwardPage(targetPage) {
+        location.replace(targetPage);
     }
 };
 

@@ -13,6 +13,7 @@ public class BrandDto {
 	private String brandInstagramUrl;
 	private String brandCerify;
 	private String brandIntroduction;
+	private String brandFileSeq;
 	private String regUsrId;
 	private String updUsrId;
 }
