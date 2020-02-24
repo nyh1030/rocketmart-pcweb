@@ -11,7 +11,7 @@ import com.rocketmart.jooq.tables.records.TbBrandFileRecord;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
