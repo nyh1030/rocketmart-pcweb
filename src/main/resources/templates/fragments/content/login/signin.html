@@ -45,12 +45,12 @@
                                     <div class="ps-form__decs">
                                         <p class="form-row form-group user-role">
                                             <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" th:value="BUYER" checked="checked">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="BUYER" checked="checked">
                                                 <span>I'm a buyer in Veitnam</span>
                                             </label>
 
                                             <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" th:value="SELLER">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="SELLER">
                                                 <span>I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</span>
                                             </label>
                                         </p>
@@ -92,28 +92,26 @@
 
                                     <div id="buyerType">
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="buyerChannel1" name="buyerChannel" th:value="10">
-                                            <label for="buyerChannel1">Offline</label>
-                                            <input class="form-control" type="text" id="buyerText1" name="tel">
+                                            <input class="form-control" type="checkbox" id="buyerChannel1" name="buyerChannel" value="10">
+                                            <label for="buyerChannel1">Offline <input class="form-control" type="text" id="buyerText1" name="buyerText"></label>
                                         </div>
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="buyerChannel2" name="buyerChannel" th:value="20">
-                                            <label for="buyerChannel2">Online</label>
-                                            <input class="form-control" type="text" id="buyerText2" name="tel">
+                                            <input class="form-control" type="checkbox" id="buyerChannel2" name="buyerChannel" value="20">
+                                            <label for="buyerChannel2">Online <input class="form-control" type="text" id="buyerText2" name="buyerText"></label>
                                         </div>
                                     </div>
 
-                                    <div id="sellerType" display="none">
+                                    <div id="sellerType" style="display: none">
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" th:value="10">
+                                            <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" value="10">
                                             <label for="bsnsType1">제조업자</label>
                                         </div>
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType2" name="bsnsType" th:value="20">
+                                            <input class="form-control" type="checkbox" id="bsnsType2" name="bsnsType" value="20">
                                             <label for="bsnsType2">책임판매업자</label>
                                         </div>
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType3" name="bsnsType" th:value="30">
+                                            <input class="form-control" type="checkbox" id="bsnsType3" name="bsnsType" value="30">
                                             <label for="bsnsType3">도매/소매 유통업자</label>
                                         </div>
                                     </div>

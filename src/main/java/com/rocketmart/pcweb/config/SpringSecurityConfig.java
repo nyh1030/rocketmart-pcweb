@@ -39,26 +39,33 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .headers().frameOptions().disable()
             .and()*/
+        http.csrf().disable();
+/*
         http.authorizeRequests()
             // 페이지 권한 설정
-            .antMatchers("/admin/**").hasRole("ADMIN")
+*/
+/*            .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/seller/**").hasRole("SELLER")
             .antMatchers("/buyer/**").hasRole("BUYER")
-            .antMatchers("/any/**").permitAll()
+            .antMatchers("/any/**").permitAll()*//*
+
             .antMatchers("/**").permitAll()
-            .and() // 로그인 설정
+*/
+/*            .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/login/signin")
                 .defaultSuccessUrl("/any/login")
-                .permitAll()
+                .permitAll()*//*
+
             .and() // 로그아웃 설정
             .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/any/login/logout"))
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/")
             .invalidateHttpSession(true)
             .and()
             // 403 예외처리 핸들링
             .exceptionHandling().accessDeniedPage("/login/denied");
+*/
 
     }
 

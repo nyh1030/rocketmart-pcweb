@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
+import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,9 @@ public class MemberCtl {
     private MemberSvc memberSvc;
 
     @PostMapping("/signup")
-    public String execSignup(MemberDto memberDto) {
+    public String execSignup(TbMemMstRecord memberRecord) {
 
-        memberSvc.saveOneForMemInfo(memberDto);
+        memberSvc.saveOneForMemInfo(memberRecord);
 
         return "redirect:/login/signin";
     }

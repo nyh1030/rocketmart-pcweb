@@ -1,6 +1,6 @@
 package com.rocketmart.pcweb.biz.svc;
 
-import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
+import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +20,17 @@ public class MemberSvc {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	@Transactional
-	public Map<String, Object> saveOneForMemInfo(MemberDto memberDto) {
+	//회원가입
+	@Transactional(rollbackFor = Exception.class)
+	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord) {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		memberDto.setMemPw(passwordEncoder.encode(memberDto.getMemPw()));
+		memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
 
-		int resultCnt = memberRepository.saveOneForMemInfo(memberDto);
+		int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
 		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");
-		return returnMap;		
+		return returnMap;
 	}
 }

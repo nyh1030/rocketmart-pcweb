@@ -1,6 +1,6 @@
 package com.rocketmart.pcweb.biz.svc;
 
-import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
+import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,20 +27,20 @@ public class LoginSvc implements UserDetailsService {
 	@Override
 
 	public UserDetails loadUserByUsername(String memId) throws UsernameNotFoundException {
-		MemberDto memberDto = (MemberDto) memberRepository.findOneForMemInfo(memId);
+		TbMemMstRecord memberRecord = memberRepository.findOneForMemInfo(memId);
 
 		List<GrantedAuthority> authorities = new ArrayList<>();
 
-		if (memberDto.getRole().contains("ADMIN")) {
+		if (memberRecord.getRole().contains("ADMIN")) {
 			authorities.add(new SimpleGrantedAuthority("ADMIN"));
 		}
-		if (memberDto.getRole().contains("SELLER")) {
+		if (memberRecord.getRole().contains("SELLER")) {
 			authorities.add(new SimpleGrantedAuthority("SELLER"));
 		}
-		if (memberDto.getRole().contains("BUYER")) {
+		if (memberRecord.getRole().contains("BUYER")) {
 			authorities.add(new SimpleGrantedAuthority("BUYER"));
 		}
 
-		return new User(memberDto.getMemId(), memberDto.getMemPw(), authorities);
+		return new User(memberRecord.getMemId(), memberRecord.getMemPw(), authorities);
 	}
 }
