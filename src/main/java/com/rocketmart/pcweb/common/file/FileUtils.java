@@ -23,7 +23,7 @@ public class FileUtils {
 	@Autowired
 	private FileRepository fileRepository;
 
-	public int uploadFile(MultipartFile file, HttpServletRequest request) {
+	public String uploadFile(MultipartFile file, HttpServletRequest request) {
 		//String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
 		String path = "C:\\fileUpload";
 
@@ -35,21 +35,20 @@ public class FileUtils {
 		return this.saveFile(file, path);
 	}
 
-	public int saveFile(MultipartFile file, String uploadDirPath) {
+	public String saveFile(MultipartFile file, String uploadDirPath) {
 		int fileSeq = 0;
-		String fileExtensions = file.getContentType();
 		String realFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-		assert fileExtensions != null;
-		String storedFileNm = CommonUtils.getFileId(realFileName.concat(fileExtensions));
-		Path targetLocation = Paths.get(uploadDirPath).toAbsolutePath().normalize().resolve(storedFileNm);
-		try {
+		String fileExtensions = realFileName.substring(realFileName.indexOf("."));
+		String storedFileNm = CommonUtils.getFileId(realFileName);
+		Path targetLocation = Paths.get(uploadDirPath).toAbsolutePath().normalize().resolve(storedFileNm.concat(".").concat(fileExtensions));
+			try {
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-			fileSeq = this.fileRepository.findOneForMaxSeq();
-			this.fileRepository.saveInfoForBrandFile(fileSeq + 1, storedFileNm, realFileName, fileExtensions);
+			fileSeq = this.fileRepository.findOneForMaxSeq() + 1;
+			this.fileRepository.saveInfoForBrandFile(fileSeq, storedFileNm, realFileName, fileExtensions);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return fileSeq;
+		return String.valueOf(fileSeq);
 	}
 
 	public Resource loadFileAsResource(String fileName, String uploadDirPath) {

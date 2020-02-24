@@ -26,7 +26,7 @@ public class BrandRestCtl {
 	private FileUtils fileUtils;
 
 	@PostMapping("/brand/file/upload")
-	public ResponseEntity<Integer> saveBrandFile(MultipartFile file, HttpServletRequest request) {
+	public ResponseEntity<String> saveBrandFile(MultipartFile file, HttpServletRequest request) {
 		return new ResponseEntity<>(fileUtils.uploadFile(file, request), HttpStatus.OK);
 	}
 
