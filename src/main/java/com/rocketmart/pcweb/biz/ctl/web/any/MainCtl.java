@@ -1,10 +1,16 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
+import com.rocketmart.pcweb.biz.svc.MemberSvc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainCtl {
+
+    @Autowired
+    private MemberSvc memberSvc;
 
     private String prefixPath = "fragments/content";
 
@@ -34,7 +40,11 @@ public class MainCtl {
 
     // 회사정보
     @GetMapping("/company_info")
-    public String company_info() {
+    public String company_info(Model model) {
+
+        // member 조회 Test
+       model.addAttribute("member", this.memberSvc.findOneForMemInfo("admin"));
+
         return prefixPath.concat("/mypage/company_info");
     }
 

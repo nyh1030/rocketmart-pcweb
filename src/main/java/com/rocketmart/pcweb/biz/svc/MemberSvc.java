@@ -33,4 +33,13 @@ public class MemberSvc {
 		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");
 		return returnMap;
 	}
+
+	/**
+	 * 회원정보 조회
+	 * @param memId
+	 * @return TbMemMstRecord
+	 */
+	public TbMemMstRecord findOneForMemInfo(String memId) {
+		return this.memberRepository.findOneForMemInfo(memId);
+	}
 }
