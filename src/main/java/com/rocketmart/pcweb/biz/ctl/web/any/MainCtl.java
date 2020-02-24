@@ -31,5 +31,23 @@ public class MainCtl {
     public String brand_detail() {
         return prefixPath.concat("/mypage/brand_detail");
     }
+
+    // 회사정보
+    @GetMapping("/company_info")
+    public String company_info() {
+        return prefixPath.concat("/mypage/company_info");
+    }
+
+    // contact us > 조회
+    @GetMapping("/contact_list")
+    public String contact_list() {
+        return prefixPath.concat("/admin/contact_list");
+    }
+
+    // contact us > 등록
+    @GetMapping("/contact_register")
+    public String contact_register() {
+        return prefixPath.concat("/admin/contact_register");
+    }
 }
 

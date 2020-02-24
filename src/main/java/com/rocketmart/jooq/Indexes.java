@@ -4,6 +4,7 @@
 package com.rocketmart.jooq;
 
 
+import com.rocketmart.jooq.tables.TbBrandFile;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 
@@ -31,6 +32,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index TB_BRAND_FILE_PRIMARY = Indexes0.TB_BRAND_FILE_PRIMARY;
     public static final Index TB_BRAND_MST_PRIMARY = Indexes0.TB_BRAND_MST_PRIMARY;
     public static final Index TB_MEM_MST_IDX_MEM_SEQ = Indexes0.TB_MEM_MST_IDX_MEM_SEQ;
     public static final Index TB_MEM_MST_PRIMARY = Indexes0.TB_MEM_MST_PRIMARY;
@@ -40,6 +42,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index TB_BRAND_FILE_PRIMARY = Internal.createIndex("PRIMARY", TbBrandFile.TB_BRAND_FILE, new OrderField[] { TbBrandFile.TB_BRAND_FILE.FILE_SEQ }, true);
         public static Index TB_BRAND_MST_PRIMARY = Internal.createIndex("PRIMARY", TbBrandMst.TB_BRAND_MST, new OrderField[] { TbBrandMst.TB_BRAND_MST.BRAND_SEQ }, true);
         public static Index TB_MEM_MST_IDX_MEM_SEQ = Internal.createIndex("IDX_MEM_SEQ", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, false);
         public static Index TB_MEM_MST_PRIMARY = Internal.createIndex("PRIMARY", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, true);

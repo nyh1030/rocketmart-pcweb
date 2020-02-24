@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#">제품정보</a></li>
+                            <li><a href="#" class="active">회사정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-dashboard">
+                        <div class="ps-block__header">
+                            <h3>회사 정보</h3>
+                            <span class="ab-r date">last updated: 2020-01-03  20:31:45</span>
+                        </div>
+                        <div class="ps-block__content">
+                            <ul class="info-list">
+                                <li>
+                                    <span class="tit-info bul-type">회사명 : </span>
+                                    <span class="txt-info">Milktouch Ltd.</span>
+                                </li>
+                                <li>
+                                    <span class="tit-info bul-type">회사 홈페이지 : </span>
+                                    <span class="txt-info">www.milktouch.co.kr</span>
+                                </li>
+                                <li>
+                                    <span class="tit-info bul-type">담당자 정보 : </span>
+                                    <ul class="txt-info type-list">
+                                        <li>- 이름: 상현준</li>
+                                        <li>- 직급 : 선임연구원</li>
+                                        <li>- 전화번호: 111-111-111</li>
+                                        <li>- 이메일:  <a href="mailto:abcd@gmail.com">abcd@gmail.com</a></li>
+                                        <li>- 비밀번호: </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="tit bul-type">사업자 유형 (중복체크 가능)</span>
+                                    <ul class="txt-info type-list">
+                                        <li>- 제조업자</li>
+                                        <li>- 책임판매업자</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="tit bul-type">사업자 등록증</span>
+                                    <span class="txt">
+                                        <a href="#" class="btn-file"><i class="fa fa-file-text-o"></i>파일보기</a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btns">
+                            <button type="button" id="btnSave" class="ps-btn type-black">수정하기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+</th:block>
+</html>

@@ -1378,7 +1378,7 @@ body {
   display: block;
   padding-left: 15px;
   font-family: "Work Sans", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.5px;
   color: #626262;
 }
@@ -7470,7 +7470,7 @@ textarea.form-control {
 
 .widget--vendor .ps-list--arrow a:before {
   content: "\f105";
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .widget--vendor .ps-list--arrow a:hover,
@@ -17450,12 +17450,9 @@ html .bg--parallax {
   padding: .618em 1em;
 }
 /* 추가 */
-ul,ol{
-  padding:0;
-  list-style:none;
-}
-.header .ps-logo{
-  font-size: 30px;
-  color: #000;
-  font-weight: 700;
-}
+ul,ol{padding:0;list-style:none;}
+.header .ps-logo{font-size: 30px;color: #000;font-weight: 700;}
+.ps-table thead > tr > th,
+.ps-table tbody > tr > td{text-align:center;}
+.ps-table tbody > tr > td:first-child{border-left:0;}
+.ps-table tbody > tr > td:last-child{border-right:0;}

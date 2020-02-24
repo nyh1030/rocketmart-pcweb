@@ -4,6 +4,7 @@
 package com.rocketmart.jooq;
 
 
+import com.rocketmart.jooq.tables.TbBrandFile;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 
@@ -22,6 +23,11 @@ import javax.annotation.processing.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * 브랜드_파일
+     */
+    public static final TbBrandFile TB_BRAND_FILE = TbBrandFile.TB_BRAND_FILE;
 
     /**
      * 브랜드_정보

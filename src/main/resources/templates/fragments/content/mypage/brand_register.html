@@ -21,25 +21,25 @@
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
                             <h3>브랜드 정보</h3>
-                            <button type="button" class="ps-btn type-orange ab-r">삭제하기</button>
+                            <button type="button" id="btnInit" class="ps-btn type-orange ab-r">초기화</button>
                         </div>
                         <div class="ps-block__content">
                             <div class="mb-5">
-                                <label for="txtBrandNm">브랜드 이름 <span class="required">*</span></label>
+                                <label for="txtBrandNm" class="bul-type">브랜드 이름 <span class="required">*</span></label>
                                 <input type="text" id="txtBrandNm" class="form-control" required>
                                 <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
                             </div>
-                            <!--<div class="mb-5">
-                                <label for="">브랜드 로고 <span class="required">*</span></label>
+                            <div class="mb-5">
+                                <label for="dvBrandLogo">브랜드 로고 <span class="required">*</span></label>
                                 <div class="upload_box">
-                                    <div class="img_logo"></div>
-                                    <button type="button" class="ps-btn">upload</button>
-                                    <span class="txt-file">No file yet</span>
+                                    <div class="img_logo" id="dvBrandLogo"></div>
+                                    <button type="button" id="btnUpload" class="ps-btn">upload</button>
+<!--                                    <span class="txt-file">No file yet</span>-->
                                 </div>
                                 <div class="invalid-feedback">브랜드 로고를 선택해주세요.</div>
-                            </div>-->
+                            </div>
                             <div class="mb-5">
-                                <label>브랜드 오너십 <span class="required">*</span></label>
+                                <label class="bul-type">브랜드 오너십 <span class="required">*</span></label>
                                 <div class="ps-radio mb-1">
                                     <input class="form-control" type="radio" id="rdoBrandOwnership1" name="rdoBrandOwnership" th:value="01" checked>
                                     <label for="rdoBrandOwnership1">자사 브랜드 (직접 제조)</label>
@@ -48,26 +48,26 @@
                                     <input class="form-control" type="radio" id="rdoBrandOwnership2" name="rdoBrandOwnership" th:value="02">
                                     <label for="rdoBrandOwnership2">자사 브랜드 (위탁 제조)</label>
                                 </div>
-                                <div class="ps-radio">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership">
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="03">
                                     <label for="rdoBrandOwnership2">타사 브랜드 (도소매 유통)</label>
                                 </div>
                                 <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
                             </div>
                             <div class="mb-5">
-                                <label for="txtHomepageUrl">브랜드 홈페이지</label>
+                                <label for="txtHomepageUrl" class="bul-type">브랜드 홈페이지</label>
                                 <input type="text" class="form-control" id="txtHomepageUrl">
                             </div>
                             <div class="mb-5">
-                                <label for="txtYoutubeUrl">유투브 채널</label>
+                                <label for="txtYoutubeUrl" class="bul-type">유투브 채널</label>
                                 <input type="text" class="form-control" id="txtYoutubeUrl">
                             </div>
                             <div class="mb-5">
-                                <label for="txtInstagramUrl">인스타그램</label>
+                                <label for="txtInstagramUrl" class="bul-type">인스타그램</label>
                                 <input type="text" class="form-control" id="txtInstagramUrl">
                             </div>
                             <div class="mb-5">
-                                <label>브랜드 인증 (중복체크 가능)</label>
+                                <label class="bul-type">브랜드 인증 (중복체크 가능)</label>
                                 <div class="ps-checkbox mb-1">
                                     <input class="form-control" type="checkbox" id="chkBrandCerify1" name="chkBrandCerify" th:value="01">
                                     <label for="chkBrandCerify1">ISO 22716 / CGMP</label>
@@ -78,14 +78,13 @@
                                 </div>
                             </div>
                             <div class="mb-5">
-                                <label for="txtBrandIntroduction">브랜드 소개</label>
+                                <label for="txtBrandIntroduction" class="bul-type">브랜드 소개</label>
                                 <div class="edit_wrap">
-                                    <textarea id="txtBrandIntroduction" style="width: 100%" cols="20" rows="10"></textarea>
+                                    <div id="txtBrandIntroduction"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="btns">
-                            <button type="button" id="btnPreView" class="ps-btn type-green">미리보기</button>
                             <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
                             <button type="button" id="btnCancel" class="ps-btn type-gray ab-r">취소하기</button>
                         </div>
@@ -96,45 +95,73 @@
         </div>
         <!-- //.container : E -->
     </div>
-<!--    <script th:src="@{https://unpkg.com/axios/dist/axios.min.js}"></script>-->
 
     <script type="text/javascript">
         $(() => {
-            EventScope.__init__();
+            PageScope.init();
+            EventScope.init();
         });
 
         const PageScope = {
 
+            uploadStarter: null,
+
+            init() {
+                $("#txtBrandIntroduction").summernote({
+                    placeholder: '브랜드를 소개해주세요.',
+                    height: 250,
+                    focus: true
+                });
+
+                this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
+                    method: 'post',
+                    url: '/brand/file/upload',
+                    acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                    addRemoveLinks: true,
+                    autoProcessQueue: false,
+                    maxFiles: 1,
+                    maxFilesize: 10,
+                    clickable: '#btnUpload',
+                    success: (response) => {
+                        console.log(response);
+                    },
+
+                });
+            },
+
             saveBrandInfo() {
-                $.ajax({
+                axios({
                     method: 'post',
                     url: '/brand/info/save',
-                    data: this.getParams(),
-                    dataType: 'json'
-                }).done(data => {
-                    if (data.resultCode === "200") {
-                        alert("브랜드 정보가 저장되었습니다.");
-                        location.replace("/brand_detail");
+                    params: this.getParams()
+                }).then(response => {
+                    console.log(response);
+                    if (response.data === 200) {
+                        alert('브랜드 정보가 저장되었습니다.');
+                        CommonUtils.forwardPage('brand_detail');
                     }
+                })
+                .catch(error => {
+                    console.log(error);
                 });
             },
 
             getParams() {
                 return {
-                    brandNm: $("#txtBrandNm").val(),
-                    brandLogo: $("#txtBrandNm").val(),
-                    brandOwnership: $("#rdoBrandOwnership1").val(),
-                    brandHomePageUrl: $("#txtHomepageUrl").val(),
-                    brandYouTubeUrl: $("#txtYoutubeUrl").val(),
-                    brandInstagramUrl: $("#txtInstagramUrl").val(),
-                    brandCerify: $("#chkBrandCerify1").val(),
-                    brandIntroduction: $("#txtBrandIntroduction").val()
+                    brandNm: $('#txtBrandNm').val(),
+                    brandLogo: $('#txtBrandNm').val(),
+                    brandOwnership: $('#rdoBrandOwnership1').val(),
+                    brandHomePageUrl: $('#txtHomepageUrl').val(),
+                    brandYouTubeUrl: $('#txtYoutubeUrl').val(),
+                    brandInstagramUrl: $('#txtInstagramUrl').val(),
+                    brandCerify: $('#chkBrandCerify1').val(),
+                    brandIntroduction: $('#txtBrandIntroduction').summernote('code')
                 }
             },
 
             invokeValidation() {
-                if (!$("#txtBrandNm").val().trim()) {
-                    alert("브랜드 이름은 필수값 입니다.");
+                if (!$('#txtBrandNm').val().trim()) {
+                    alert('브랜드 이름은 필수값 입니다.');
                     return false;
                 }
                 return true;
@@ -143,17 +170,21 @@
 
         const EventScope = {
 
-            __init__() {
+            init() {
               this.clickEventListener();
             },
 
             clickEventListener() {
-                $("#btnSave").on("click", () => {
+
+                $('#btnSave').on('click', () => {
                     if (!PageScope.invokeValidation()) return;
 
-                    if (confirm("저장하시겠습니까?")) {
-                        PageScope.saveBrandInfo();
+                    if (confirm('저장하시겠습니까?')) {
+                        PageScope.uploadStarter.processQueue();
                     }
+                });
+                $('#btnCancel').on('click', () => {
+                    CommonUtils.forwardPage('/brand_add');
                 });
             }
         };
