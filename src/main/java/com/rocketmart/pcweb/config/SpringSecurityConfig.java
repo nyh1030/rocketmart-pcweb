@@ -41,6 +41,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()*/
         http.csrf().disable();
 /*
+        http
+            .formLogin()
+            .loginPage("/login.html")
+            .failureUrl("/login-error.html")
+          .and()
+            .logout()
+            .logoutSuccessUrl("/index.html");
+
+
         http.authorizeRequests()
             // 페이지 권한 설정
 */
