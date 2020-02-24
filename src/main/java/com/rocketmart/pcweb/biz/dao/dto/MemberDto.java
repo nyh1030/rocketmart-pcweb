@@ -1,4 +1,4 @@
-package com.rocketmart.pcweb.biz.dao;
+package com.rocketmart.pcweb.biz.dao.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,9 +6,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@Builder
 public class MemberDto {
 
+	private	String username;
+	private	String password;
 	private int memSeq;
 	private String role;
 	private String memId;

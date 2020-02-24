@@ -36,24 +36,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable();
-                /*.authorizeRequests()
+              /*  .authorizeRequests()
                 // 페이지 권한 설정
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/seller/**").hasRole("SELLER")
                 .antMatchers("/buyer/**").hasRole("BUYER")
                 .antMatchers("/any/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .and() // 로그인 설정
                 .formLogin()
-                .loginPage("/member/login")
+                .loginPage("/login/signin")
+                .defaultSuccessUrl("/any/login/login")
                 .permitAll()
                 .and() // 로그아웃 설정
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("any/login/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
                 // 403 예외처리 핸들링
-                .exceptionHandling().accessDeniedPage("/member/denied");*/
+                .exceptionHandling().accessDeniedPage("/login/denied");*/
 
     }
 

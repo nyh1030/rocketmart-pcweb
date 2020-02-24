@@ -20,14 +20,14 @@
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="sign-in">
                             <div class="ps-form__content">
-                                <form name="signin" action="/any/login/login" method="post">
+                                <form name="signin" action="/login/signin" method="post">
                                     <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                                     <h5>Log In Your Account</h5>
                                     <div class="form-group">
-                                        <input class="form-control" id="email" type="text" placeholder="Email address">
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="Email address">
                                     </div>
                                     <div class="form-group form-forgot">
-                                        <input class="form-control" id="password" type="text" placeholder="Password"><a href="">Forgot?</a>
+                                        <input class="form-control" id="password" name="password" type="text" placeholder="Password"><a href="">Forgot?</a>
                                     </div>
                                     <div class="form-group">
                                         <div class="ps-checkbox">
@@ -42,16 +42,16 @@
                         </div>
                         <div class="ps-tab" id="register">
                             <div class="ps-form__content">
-                                <form name="signup" action="/any/member/signup" method="post">
+                                <form name="signup" th:action="@{/any/member/signup}" method="post">
                                     <div class="ps-form__decs">
                                         <p class="form-row form-group user-role">
                                             <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="BUYER" checked="checked">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" th:value="BUYER" checked="checked">
                                                 <span>I'm a buyer in Veitnam</span>
                                             </label>
 
                                             <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="SELLER">
+                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" th:value="SELLER">
                                                 <span>I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</span>
                                             </label>
                                         </p>
@@ -59,46 +59,44 @@
 
                                     <h5 id="registerText">Register An Account</h5>
                                     <div class="form-group">
-                                        <input class="form-control" type="email" name="memId" placeholder="Email address" required="required">
+                                        <input class="form-control" type="email" id="memId" name="memId" placeholder="Email address" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" id="memPw" placeholder="Password" required="required">
+                                        <input class="form-control" type="password" id="memPw" name="memPw" placeholder="Password" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" id="memPwChk" placeholder="Confirm Password" required="required">
+                                        <input class="form-control" type="password" id="memPwChk"  name="memPwChk" placeholder="Confirm Password" required="required">
                                         <small id="chkNotice"></small>
                                     </div>
 
                                     <p class="form-row form-group form-row-wide">
                                         <label for="memNm">Your Name<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="memNm" value="" required="required">
+                                        <input class="form-control" type="text" id="memNm" name="memNm" required="required">
                                     </p>
                                     <p class="form-row form-group form-row-wide">
                                         <label for="tel">Phone Number<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="tel" value="" required="required">
+                                        <input class="form-control" type="text" id="tel" name="tel" required="required">
                                     </p>
                                     <p class="form-row form-group form-row-wide">
                                         <label for="companyNm">Company or Shop Name<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="companyNm" value="" required="required">
+                                        <input class="form-control" type="text" id="companyNm" name="companyNm"  required="required">
                                     </p>
                                     <p class="form-row form-group form-row-wide">
                                         <label for="companyUrl">Company or Shop URL<span class="required">*</span></label>
-                                        <input class="form-control" type="text" id="companyUrl" value="" required="required">
+                                        <input class="form-control" type="text" id="companyUrl" name="companyUrl" required="required">
                                     </p>
 
                                     <p class="form-row form-group form-row-wide">
                                         <label for="bsnsRgstr">Business Registration<span class="required">*</span></label>
-                                        <input class="form-control" type="file" id="bsnsRgstr" accept="image/*,  .pdf" required="required">
+                                        <input class="form-control" type="file" id="bsnsRgstr" name="bsnsRgstr" accept="image/*,  .pdf" required="required">
                                     </p>
 
-
                                     <div class="ps-checkbox agreeContents">
-                                        <input class="form-control" type="checkbox" id="terms_conditions" >
+                                        <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions">
                                         <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
-
                                     </div>
                                     <div class="ps-checkbox agreeContents">
-                                        <input class="form-control" type="checkbox" id="privacy_policy">
+                                        <input class="form-control" type="checkbox" id="privacy_policy" name="privacy_policy">
                                         <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
                                     </div>
 
@@ -126,8 +124,8 @@
             $('#tel', form).keydown(this.ensurePhoneNumber);
         },
         confirmPasswordForm: function() {
-            if('' != $('#memPwChk').val()){
-                if($('#memPw').val() != $('#memPwChk').val()){
+            if('' !== $('#memPwChk').val()){
+                if($('#memPw').val() !== $('#memPwChk').val()){
                     $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');
                     $("#btnRegister").attr("disabled", "disabled");
                 } else{

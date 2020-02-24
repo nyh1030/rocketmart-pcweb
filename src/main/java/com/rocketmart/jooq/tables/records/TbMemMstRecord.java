@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbMemMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbMemMstRecord extends UpdatableRecordImpl<TbMemMstRecord> implements Record13<Integer, String, String, String, String, String, String, String, Integer, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -934054879;
+    private static final long serialVersionUID = 454070476;
 
     /**
      * Setter for <code>rocketmart.tb_mem_mst.MEM_SEQ</code>. 회원정보 일련번호
