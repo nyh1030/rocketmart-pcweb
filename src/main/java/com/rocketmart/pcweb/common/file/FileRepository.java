@@ -15,7 +15,7 @@ public class FileRepository {
 	private DSLContext dslContext;
 
 	public int findOneForMaxSeq() {
-		return this.dslContext.select(DSL.max(TbBrandFile.TB_BRAND_FILE.FILE_SEQ))
+		return this.dslContext.select(DSL.coalesce(DSL.max(TbBrandFile.TB_BRAND_FILE.FILE_SEQ), 0))
 				.from(TbBrandFile.TB_BRAND_FILE).fetchOne(Record1::value1);
 	}
 

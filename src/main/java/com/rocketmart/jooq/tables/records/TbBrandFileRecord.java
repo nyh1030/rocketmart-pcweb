@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbBrandFile;
 
 import java.sql.Timestamp;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandFileRecord extends UpdatableRecordImpl<TbBrandFileRecord> implements Record8<Integer, String, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -344436063;
+    private static final long serialVersionUID = 1670683846;
 
     /**
      * Setter for <code>rocketmart.tb_brand_file.FILE_SEQ</code>. 파일 일련번호

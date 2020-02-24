@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="ps-radio mb-1">
                                     <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="03">
-                                    <label for="rdoBrandOwnership2">타사 브랜드 (도소매 유통)</label>
+                                    <label for="rdoBrandOwnership3">타사 브랜드 (도소매 유통)</label>
                                 </div>
                                 <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
                             </div>
@@ -85,6 +85,7 @@
                             </div>
                         </div>
                         <div class="btns">
+                            <button type="button" id="btnPreView" class="ps-btn type-green">미리보기</button>
                             <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
                             <button type="button" id="btnCancel" class="ps-btn type-gray ab-r">취소하기</button>
                         </div>
@@ -109,33 +110,54 @@
             init() {
                 $("#txtBrandIntroduction").summernote({
                     placeholder: '브랜드를 소개해주세요.',
-                    height: 250,
-                    focus: true
+                    height: 250
                 });
 
                 this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
                     method: 'post',
                     url: '/brand/file/upload',
                     acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
-                    addRemoveLinks: true,
+                    addRemoveLinks: false,
                     autoProcessQueue: false,
+                    thumbnailWidth: 200,
+                    thumbnailHeight: 200,
                     maxFiles: 1,
                     maxFilesize: 10,
                     clickable: '#btnUpload',
-                    success: (response) => {
-                        console.log(response);
+                    previewTemplate: `
+                    <div class="dz-preview dz-file-preview" >
+                      <div class="dz-image"><img data-dz-thumbnail /></div>
+                      <div class="dz-details">
+                          <div class="dz-size"><span data-dz-size></span></div>
+                          <div class="dz-filename"><span data-dz-name></span></div>
+                      </div>
+                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                      <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                    </div>`,
+                    init: function() {
+                        this.on("addedfile", file =>{
+                            if (file.status === "queued") {
+                                $(".dz-success-mark").remove();
+                            }
+                        });
                     },
+                    success: (response) => {
+                        if (response.status === "success") {
+                            PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
+                        }
+                    },
+
 
                 });
             },
 
-            saveBrandInfo() {
+            saveBrandInfo(objFileSeq) {
                 axios({
                     method: 'post',
                     url: '/brand/info/save',
-                    params: this.getParams()
+                    params: Object.assign(this.getParams(), objFileSeq)
                 }).then(response => {
-                    console.log(response);
                     if (response.data === 200) {
                         alert('브랜드 정보가 저장되었습니다.');
                         CommonUtils.forwardPage('brand_detail');

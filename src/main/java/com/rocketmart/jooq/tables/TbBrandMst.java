@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row14;
+import org.jooq.Row15;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = -941124859;
+    private static final long serialVersionUID = 1632736374;
 
     /**
      * The reference instance of <code>rocketmart.tb_brand_mst</code>
@@ -127,6 +127,11 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
      * The column <code>rocketmart.tb_brand_mst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbBrandMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
+
+    /**
+     * The column <code>rocketmart.tb_brand_mst.new_column</code>.
+     */
+    public final TableField<TbBrandMstRecord, Integer> NEW_COLUMN = createField(DSL.name("new_column"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
      * Create a <code>rocketmart.tb_brand_mst</code> table reference
@@ -213,11 +218,11 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row14 type methods
+    // Row15 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<Integer, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row14) super.fieldsRow();
+    public Row15<Integer, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp, Integer> fieldsRow() {
+        return (Row15) super.fieldsRow();
     }
 }

@@ -16,10 +16,10 @@ public class BrandRepository {
 		return this.dslContext.insertInto(TbBrandMst.TB_BRAND_MST)
 				.columns(TbBrandMst.TB_BRAND_MST.BRAND_NM, TbBrandMst.TB_BRAND_MST.BRAND_LOGO, TbBrandMst.TB_BRAND_MST.BRAND_OWNERSHIP,
 						TbBrandMst.TB_BRAND_MST.BRAND_HOMEPAGE_URL, TbBrandMst.TB_BRAND_MST.BRAND_YOUTUBE_URL, TbBrandMst.TB_BRAND_MST.BRAND_INSTAGRAM_URL,
-						TbBrandMst.TB_BRAND_MST.BRAND_CERIFY, TbBrandMst.TB_BRAND_MST.BRAND_INTRODUCTION, TbBrandMst.TB_BRAND_MST.REG_USR_ID, TbBrandMst.TB_BRAND_MST.UPD_USR_ID)
+						TbBrandMst.TB_BRAND_MST.BRAND_CERIFY, TbBrandMst.TB_BRAND_MST.BRAND_INTRODUCTION, TbBrandMst.TB_BRAND_MST.BRAND_FILE_SEQ, TbBrandMst.TB_BRAND_MST.REG_USR_ID, TbBrandMst.TB_BRAND_MST.UPD_USR_ID)
 				.values(brandDto.getBrandNm(), brandDto.getBrandLogo(), brandDto.getBrandOwnership(),
 						brandDto.getBrandHomePageUrl(), brandDto.getBrandYouTubeUrl(), brandDto.getBrandInstagramUrl(),
-						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), "ADMIN", "ADMIN")
+						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), brandDto.getBrandFileSeq(), "ADMIN", "ADMIN")
 				.execute();
 	}
 }

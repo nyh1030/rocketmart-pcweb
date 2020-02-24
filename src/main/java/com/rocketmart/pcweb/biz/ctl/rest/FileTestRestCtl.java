@@ -21,23 +21,6 @@ public class FileTestRestCtl {
 	@Autowired
 	private FileUtils fileUtils;
 
-	@PostMapping("/uploadFile")
-	public FileResponse uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
-		int fileName = fileUtils.saveFile(file, path);
-		String fileDownloadPath = ServletUriComponentsBuilder.fromCurrentContextPath()
-				.path("/downloadFile/")
-				.path(fileName+"")
-				.toUriString();
-
-		return FileResponse.builder()
-				.fileName(fileName+"")
-				.fileDownloadUrl(fileDownloadPath)
-				.fileType(file.getContentType())
-				.fileSize(file.getSize())
-				.build();
-	}
-
 	/*@PostMapping("/uploadMultiFiles")
 	public List<FileResponse> uploadMultiFiles(@RequestParam("files") MultipartFile[] files, HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
