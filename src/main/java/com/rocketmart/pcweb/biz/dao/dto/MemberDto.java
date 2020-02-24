@@ -18,6 +18,9 @@ public class MemberDto {
 	private String tel;
 	private String companyNm;
 	private String companyUrl;
+	private String bsnsType;
+	private String buyerChannel;
+	private String buyerText;
 	private int bsnsRgstrSeq;
 	private String regUsrId;
 	private Date regTs;

@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = 1217133692;
+    private static final long serialVersionUID = -941124859;
 
     /**
      * The reference instance of <code>rocketmart.tb_brand_mst</code>
@@ -104,9 +104,9 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.VARCHAR(2000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 소개");
 
     /**
-     * The column <code>rocketmart.tb_brand_mst.BRAND_FILE_ID</code>. 파일첨부 ID
+     * The column <code>rocketmart.tb_brand_mst.BRAND_FILE_SEQ</code>. 파일첨부 ID
      */
-    public final TableField<TbBrandMstRecord, String> BRAND_FILE_ID = createField(DSL.name("BRAND_FILE_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "파일첨부 ID");
+    public final TableField<TbBrandMstRecord, String> BRAND_FILE_SEQ = createField(DSL.name("BRAND_FILE_SEQ"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "파일첨부 ID");
 
     /**
      * The column <code>rocketmart.tb_brand_mst.REG_USR_ID</code>. 등록자 아이디

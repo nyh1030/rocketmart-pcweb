@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/any/login")
 public class LoginCtl {
 
 	private String prefixPath = "fragments/content";
@@ -18,31 +17,31 @@ public class LoginCtl {
 	private MemberSvc memberSvc;
 
 	// 로그인 페이지
-	@GetMapping("/signin")
+	@GetMapping("/login/signin")
 	public String dispLogin() {
 		return prefixPath.concat("/login/signin");
 	}
 
 	// 로그인
-	@PostMapping("/login")
+	@PostMapping("/any/login")
 	public String execLogin() {
 		return "redirect:/";
 	}
 
 	// 로그인 결과 페이지
-	@GetMapping("/login/result")
+	@GetMapping("/any/login/result")
 	public String dispLoginResult() {
 		return prefixPath.concat("/login/loginSuccess");
 	}
 
 	// 로그아웃 결과 페이지
-	@GetMapping("/logout/result")
+	@GetMapping("/any/logout")
 	public String dispLogout() {
 		return prefixPath.concat("/login/logout");
 	}
 
 	// 접근 거부 페이지
-	@GetMapping("/denied")
+	@GetMapping("/any/denied")
 	public String dispDenied() {
 		return prefixPath.concat("/login/denied");
 	}

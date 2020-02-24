@@ -29,7 +29,7 @@ public class LoginSvc implements UserDetailsService {
 	@Override
 
 	public UserDetails loadUserByUsername(String memId) throws UsernameNotFoundException {
-		MemberDto memberDto = (MemberDto) memberRepository.selectOneForMemInfo(memId);
+		MemberDto memberDto = (MemberDto) memberRepository.findOneForMemInfo(memId);
 
 		List<GrantedAuthority> authorities = new ArrayList<>();
 

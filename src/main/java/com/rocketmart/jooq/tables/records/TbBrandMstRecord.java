@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbBrandMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> implements Record14<Integer, String, String, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -240739456;
+    private static final long serialVersionUID = 1259220257;
 
     /**
      * Setter for <code>rocketmart.tb_brand_mst.BRAND_SEQ</code>. 브랜드 일련번호
@@ -159,16 +159,16 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
     }
 
     /**
-     * Setter for <code>rocketmart.tb_brand_mst.BRAND_FILE_ID</code>. 파일첨부 ID
+     * Setter for <code>rocketmart.tb_brand_mst.BRAND_FILE_SEQ</code>. 파일첨부 ID
      */
-    public void setBrandFileId(String value) {
+    public void setBrandFileSeq(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_brand_mst.BRAND_FILE_ID</code>. 파일첨부 ID
+     * Getter for <code>rocketmart.tb_brand_mst.BRAND_FILE_SEQ</code>. 파일첨부 ID
      */
-    public String getBrandFileId() {
+    public String getBrandFileSeq() {
         return (String) get(9);
     }
 
@@ -298,7 +298,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
 
     @Override
     public Field<String> field10() {
-        return TbBrandMst.TB_BRAND_MST.BRAND_FILE_ID;
+        return TbBrandMst.TB_BRAND_MST.BRAND_FILE_SEQ;
     }
 
     @Override
@@ -368,7 +368,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
 
     @Override
     public String component10() {
-        return getBrandFileId();
+        return getBrandFileSeq();
     }
 
     @Override
@@ -438,7 +438,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
 
     @Override
     public String value10() {
-        return getBrandFileId();
+        return getBrandFileSeq();
     }
 
     @Override
@@ -517,7 +517,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
 
     @Override
     public TbBrandMstRecord value10(String value) {
-        setBrandFileId(value);
+        setBrandFileSeq(value);
         return this;
     }
 
@@ -578,7 +578,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
     /**
      * Create a detached, initialised TbBrandMstRecord
      */
-    public TbBrandMstRecord(Integer brandSeq, String brandNm, String brandLogo, String brandOwnership, String brandHomepageUrl, String brandYoutubeUrl, String brandInstagramUrl, String brandCerify, String brandIntroduction, String brandFileId, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
+    public TbBrandMstRecord(Integer brandSeq, String brandNm, String brandLogo, String brandOwnership, String brandHomepageUrl, String brandYoutubeUrl, String brandInstagramUrl, String brandCerify, String brandIntroduction, String brandFileSeq, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
         super(TbBrandMst.TB_BRAND_MST);
 
         set(0, brandSeq);
@@ -590,7 +590,7 @@ public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> impl
         set(6, brandInstagramUrl);
         set(7, brandCerify);
         set(8, brandIntroduction);
-        set(9, brandFileId);
+        set(9, brandFileSeq);
         set(10, regUsrId);
         set(11, regTs);
         set(12, updUsrId);

@@ -20,7 +20,7 @@ public class MemberRepository {
     @Autowired
     private DSLContext dslContext;
 
-    public Result<TbMemMstRecord> selectOneForMemInfo(String memId) {
+    public Result<TbMemMstRecord> findOneForMemInfo(String memId) {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.eq(memId))
                 .fetch();
@@ -35,6 +35,10 @@ public class MemberRepository {
                 .set(TB_MEM_MST.TEL, memberDto.getTel())
                 .set(TB_MEM_MST.COMPANY_NM, memberDto.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, memberDto.getCompanyUrl())
+                .set(TB_MEM_MST.BSNS_RGSTR_SEQ, 5)
+                .set(TB_MEM_MST.BSNS_TYPE, memberDto.getBsnsType())
+                .set(TB_MEM_MST.BUYER_CHANNEL, memberDto.getBuyerChannel())
+                .set(TB_MEM_MST.BUYER_TEXT, memberDto.getBuyerText())
                 .set(TB_MEM_MST.BSNS_RGSTR_SEQ, 5)
                 .set(TB_MEM_MST.REG_USR_ID, "system")
                 .set(TB_MEM_MST.UPD_USR_ID, "system")

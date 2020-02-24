@@ -21,7 +21,7 @@ public class MemberCtl {
 
         memberSvc.saveOneForMemInfo(memberDto);
 
-        return "redirect:/any/login/signin";
+        return "redirect:/login/signin";
     }
 
 

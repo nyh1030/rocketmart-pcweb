@@ -26,8 +26,6 @@ public class MemberSvc {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		memberDto.setMemPw(passwordEncoder.encode(memberDto.getMemPw()));
 
-		memberRepository.saveOneForMemInfo(memberDto);
-
 		int resultCnt = memberRepository.saveOneForMemInfo(memberDto);
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
