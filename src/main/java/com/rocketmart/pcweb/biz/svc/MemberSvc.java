@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
+import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.dao.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class MemberSvc {
 	 * @param memId
 	 * @return Map<String, Object>
 	 */
-	public Map<String, Object> findOneForMemInfo(String memId) {
+	public MemberDto findOneForMemInfo(String memId) {
 		return this.memberRepository.findOneForMemInfo(memId);
 	}
 }

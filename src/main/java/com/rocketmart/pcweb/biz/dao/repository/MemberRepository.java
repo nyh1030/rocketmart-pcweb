@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
+import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,10 +21,10 @@ public class MemberRepository {
      * @param memId
      * @return Map<String, Object>
      */
-    public Map<String, Object> findOneForMemInfo(String memId) {
+    public MemberDto findOneForMemInfo(String memId) {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.eq(memId))
-                .fetchOneMap();
+                .fetchAny().into(MemberDto.class);
     }
 
     public int saveOneForMemInfo(TbMemMstRecord memberRecord) {

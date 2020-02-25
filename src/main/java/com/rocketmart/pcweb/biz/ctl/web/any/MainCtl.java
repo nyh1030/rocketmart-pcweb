@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
+import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,13 +26,12 @@ public class MainCtl {
     @GetMapping("/company_info")
     public String company_info(Model model) {
 
-        Map<String, Object> temp = null;
+        MemberDto temp = null;
 
         temp = this.memberSvc.findOneForMemInfo("admin");
 
         System.out.println(" :: " + temp.toString());
-        System.out.println(" :: " + temp.get("MEM_ID"));
-        System.out.println(" :: " + temp.get("TEL"));
+        System.out.println(" :: " + temp.getMemId());
 
 
         model.addAttribute("mmbr", temp);
