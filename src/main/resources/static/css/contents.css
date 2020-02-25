@@ -5,6 +5,11 @@
 .no_data{text-align:center;color:#666;font-size:15px;margin:20px 0;border:1px solid #ededed;padding:30px 0;}
 .no_data .fa-exclamation-circle{margin-right:10px;vertical-align: baseline;}
 .no_data .fa-exclamation-circle:before{font-size:22px;color:#ccc;}
+.ps-radio label,
+.ps-checkbox label{font-size: 15px;color: #000;}
+.ps-radio label:before {width:18px;height:18px;}
+.ps-radio input[type=radio]:checked ~ label:before {background-color:transparent;border-color:#000;}
+.ps-radio input[type=radio]:checked ~ label:after {top:4px;left:4px;-webkit-transform:scale(1, 1);transform:scale(1, 1);opacity:1;background-color:#000;}
 .ps-btn.type-green{background:#88aa00;color:#fff;}
 .ps-btn.type-green:hover{background:#9cc400;}
 .ps-btn.type-black{background:#000;color:#fff;}
@@ -12,10 +17,10 @@
 .ps-btn.type-gray:hover{background:#c0c0c0;color:#000;}
 .ps-btn.type-orange{background:#f05025;padding:0 16px;height:34px;border-radius:5px;color:#fff;}
 label .required{color:red;font-weight:700;}
-.btns{position:relative;text-align:center;margin:50px 0;}
+.btns{min-height:50px;position:relative;text-align:center;margin:50px 0;}
 .btns .ab-r{position:absolute;right:0;top:0;}
 .bul-type{position:relative;padding-left:10px;font-weight:bold;}
-.bul-type:before{content:'';display:block;position:absolute;left:0;top:50%;width:4px;height:4px;background:#cecece;margin-top:-2px;}
+.bul-type:before{content:'';display:block;position:absolute;left:0;top:50%;width:4px;height:4px;background:#cecece;margin-top:-3px;}
 .date{color: #555;font-size:12px;}
 .ab-r{position:absolute;right:0;top:0;}
 .btn-box.txt-left .ab-r{top:75px;}
@@ -24,12 +29,6 @@ label .required{color:red;font-weight:700;}
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
 .ps-block__header .date{margin-top:12px;color:#555;font-size:12px;}
-.ps-block__content label{font-size:15px;color:#000;}
-.ps-block__content .ps-radio label,
-.ps-block__content .ps-checkbox label{font-size:14px;}
-.ps-block__content .ps-radio label:before {width:18px;height:18px;}
-.ps-block__content .ps-radio input[type=radio]:checked ~ label:before {background-color:transparent;border-color:#000;}
-.ps-block__content .ps-radio input[type=radio]:checked ~ label:after {top:4px;left:4px;-webkit-transform:scale(1, 1);transform:scale(1, 1);opacity:1;background-color:#000;}
 .ps-block__content .upload_box .img_logo{display:inline-block;width:150px;height:150px;border:1px solid #ddd;}
 .ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
 .ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
@@ -47,9 +46,25 @@ label .required{color:red;font-weight:700;}
 .ps-section__right .brand-list li .img-box{width:150px;height:80px;margin:0 auto 20px;border:1px solid #ededed;}
 .ps-section__right .brand-list li .img-box img{max-width:100%;height:100%;}
 .ps-section__right .brand-list li .ps-btn{padding:10px 25px;font-size:15px;}
-
+.select2-container--default .select2-selection--single{border-color:#ddd;}
+.ps-product--detail > .ps-product__content{padding-top:0;border-bottom:1px solid #e1e1e1;padding-bottom:50px;}
+.ps-product--detail .logo-box{margin-bottom:20px;}
+.ps-product--detail .select2{width:100%!important;}
+.ps-product--detail .select-col3{overflow:hidden;}
+.ps-product--detail .select-col3 .select2{float:left;width:calc((100% / 3) - 3px)!important;margin-left:4px;}
+.ps-product--detail .select-col3 .type-first + .select2{margin-left:0}
+.ps-product--detail .radio-wrap .ps-radio,
+.ps-product--detail .chk-wrap .ps-checkbox{display:inline-block;margin-right:20px;}
+.ps-product--detail .chk-wrap .ps-checkbox + input{width: 150px; display: inline-block; height: 30px;margin-left:-10px;}
+.ps-product--detail .txt-impt{color:#f14705;font-weight:600;}
+.ps-product--detail .photo-upload{text-align:center;}
+.ps-product--detail .photo-upload li{width:200px;display:inline-block;text-align:center;margin:0 15px 25px;}
+.ps-product--detail .photo-upload li a{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
+.ps-product--detail .photo-upload li a .img-box{width:100%;height:100%;}
+.ps-product--detail .photo-upload li a .fa{font-size:40px;}
+.ps-product--detail .photo-upload li .txt{display:block;margin-top:5px;font-weight:600;}
 
 @media (max-width:768px) {
     .btns .ab-r{position:relative;right:inherit;}
-    .btns .ps-btn{padding:15px;}
+    .btns .ps-btn{padding:15px 18px;}
 }
