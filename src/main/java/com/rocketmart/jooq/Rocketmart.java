@@ -4,15 +4,15 @@
 package com.rocketmart.jooq;
 
 
-import com.rocketmart.jooq.tables.TbBrandFile;
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
@@ -32,7 +32,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = 1925636912;
+    private static final long serialVersionUID = -351443602;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -40,14 +40,14 @@ public class Rocketmart extends SchemaImpl {
     public static final Rocketmart ROCKETMART = new Rocketmart();
 
     /**
-     * 브랜드_파일
-     */
-    public final TbBrandFile TB_BRAND_FILE = com.rocketmart.jooq.tables.TbBrandFile.TB_BRAND_FILE;
-
-    /**
      * 브랜드_정보
      */
     public final TbBrandMst TB_BRAND_MST = com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 첨부파일
+     */
+    public final TbCmAfile TB_CM_AFILE = com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 
     /**
      * 회원정보 마스터
@@ -76,8 +76,8 @@ public class Rocketmart extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            TbBrandFile.TB_BRAND_FILE,
             TbBrandMst.TB_BRAND_MST,
+            TbCmAfile.TB_CM_AFILE,
             TbMemMst.TB_MEM_MST);
     }
 }

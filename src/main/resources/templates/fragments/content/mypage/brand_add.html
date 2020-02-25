@@ -23,21 +23,9 @@
                         <p class="date ab-r">last updated: 2020-01-03  20:31:45</p>
                     </div>
                     <ul class="brand-list">
-                        <li>
-                            <div class="img-box"><img src="" alt="브랜드로고"></div>
-                            <button type="button" id="" class="ps-btn type-green">수정하기</button>
-                        </li>
-                        <li>
-                            <div class="img-box"><img src="" alt="브랜드로고"></div>
-                            <button type="button" id="" class="ps-btn type-green">수정하기</button>
-                        </li>
-                        <li>
-                            <div class="img-box"><img src="" alt="브랜드로고"></div>
-                            <button type="button" id="" class="ps-btn type-green">수정하기</button>
-                        </li>
-                        <li>
-                            <div class="img-box"><img src="" alt="브랜드로고"></div>
-                            <button type="button" id="" class="ps-btn type-green">수정하기</button>
+                        <li th:each="brand : ${brandList}">
+                            <div class="img-box"><img th:src="${brand.URL_PATH_CD}"></div>
+                            <button type="button" class="ps-btn type-green">수정하기</button>
                         </li>
                     </ul>
                     <div class="btn-box">
@@ -71,7 +59,7 @@
 
             clickEventListener() {
                 $("#btnBrandAdd").on("click", () => {
-                    location.href = "/brand_register";
+                    CommonUtils.redirectPage("/seller/brand_register");
                 });
             }
         };

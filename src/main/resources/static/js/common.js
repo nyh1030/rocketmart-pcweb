@@ -1,6 +1,7 @@
 const CommonUtils = {
 
-    domTag(pName) {
+    redirectPage(targetPage) {
+        location.href = targetPage;
     },
     forwardPage(targetPage) {
         location.replace(targetPage);
