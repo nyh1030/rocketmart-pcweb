@@ -30,8 +30,10 @@ public class MemberRepository {
                 .set(TB_MEM_MST.COMPANY_URL, memberRecord.getCompanyUrl())
                 .set(TB_MEM_MST.BSNS_RGSTR_SEQ, 5)
                 .set(TB_MEM_MST.BSNS_TYPE, memberRecord.getBsnsType())
-                .set(TB_MEM_MST.BUYER_CHANNEL, memberRecord.getBuyerChannel())
-                .set(TB_MEM_MST.BUYER_TEXT, memberRecord.getBuyerText())
+                .set(TB_MEM_MST.OFFLINE_YN, memberRecord.getOfflineYn())
+                .set(TB_MEM_MST.OFFLINE_TEXT, memberRecord.getOfflineText())
+                .set(TB_MEM_MST.ONLINE_YN, memberRecord.getOnlineYn())
+                .set(TB_MEM_MST.ONLINE_TEXT, memberRecord.getOnlineText())
                 .set(TB_MEM_MST.REG_USR_ID, "system")
                 .set(TB_MEM_MST.UPD_USR_ID, "system")
                 .execute();
