@@ -35,11 +35,11 @@ public class MemberSvc {
 	}
 
 	/**
-	 * 회원정보 조회
+	 * 회원 정보 조회
 	 * @param memId
-	 * @return TbMemMstRecord
+	 * @return Map<String, Object>
 	 */
-	public TbMemMstRecord findOneForMemInfo(String memId) {
+	public Map<String, Object> findOneForMemInfo(String memId) {
 		return this.memberRepository.findOneForMemInfo(memId);
 	}
 }

@@ -5,6 +5,8 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 
 @Repository
@@ -13,10 +15,15 @@ public class MemberRepository {
     @Autowired
     private DSLContext dslContext;
 
-    public TbMemMstRecord findOneForMemInfo(String memId) {
+    /**
+     * 회원 정보 조회
+     * @param memId
+     * @return Map<String, Object>
+     */
+    public Map<String, Object> findOneForMemInfo(String memId) {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.eq(memId))
-                .fetchOne();
+                .fetchOneMap();
     }
 
     public int saveOneForMemInfo(TbMemMstRecord memberRecord) {

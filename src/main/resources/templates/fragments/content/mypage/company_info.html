@@ -27,11 +27,11 @@
                             <ul class="info-list">
                                 <li>
                                     <span class="tit-info bul-type">회사명 : </span>
-                                    <span class="txt-info" th:text="${member.memId}"></span>
+                                    <span class="txt-info" th:text="${mmbr.get('MEM_ID')}"></span>
                                 </li>
                                 <li>
                                     <span class="tit-info bul-type">회사 홈페이지 123 : </span>
-                                    <span class="txt-info" th:text="${member.tel}"></span>
+                                    <span class="txt-info" th:text="${mmbr.get('TEL')}"></span>
                                 </li>
                                 <li>
                                     <span class="tit-info bul-type">담당자 정보 : </span>
