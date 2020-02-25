@@ -30,3 +30,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+src/main/resources/static/plugins/lazyload/
+
+src/test/java/com/rocketmart/pcweb/RocketmartPcwebApplicationTests.java

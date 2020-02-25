@@ -1,12 +1,13 @@
 package com.rocketmart.pcweb.common.file;
 
-import com.rocketmart.jooq.tables.TbBrandFile;
-import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCmAfile;
 import org.jooq.DSLContext;
 import org.jooq.Record1;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
 
 @Repository
 public class FileRepository {
@@ -14,16 +15,19 @@ public class FileRepository {
 	@Autowired
 	private DSLContext dslContext;
 
-	public int findOneForMaxSeq() {
-		return this.dslContext.select(DSL.coalesce(DSL.max(TbBrandFile.TB_BRAND_FILE.FILE_SEQ), 0))
-				.from(TbBrandFile.TB_BRAND_FILE).fetchOne(Record1::value1);
+	public int findOneForMaxSeq(String regMenuPart) {
+		return this.dslContext.select(DSL.coalesce(DSL.max(TbCmAfile.TB_CM_AFILE.AFILE_SEQ), 0))
+				.from(TbCmAfile.TB_CM_AFILE)
+				.where(TbCmAfile.TB_CM_AFILE.REG_MENU_PART.eq(regMenuPart))
+				.fetchOne(Record1::value1);
 	}
 
-	public int saveInfoForBrandFile(int fileSeq, String storedFileNm, String realFileNm, String fileExtensions) {
-		return this.dslContext.insertInto(TbBrandFile.TB_BRAND_FILE)
-				.columns(TbBrandFile.TB_BRAND_FILE.FILE_SEQ, TbBrandFile.TB_BRAND_FILE.STORED_FILE_NM, TbBrandFile.TB_BRAND_FILE.REAL_FILE_NM,
-						TbBrandFile.TB_BRAND_FILE.FILE_EXTENSIONS, TbBrandMst.TB_BRAND_MST.REG_USR_ID, TbBrandMst.TB_BRAND_MST.UPD_USR_ID)
-				.values(fileSeq, storedFileNm, realFileNm, fileExtensions, "ADMIN", "ADMIN")
+	public int saveInfoForBrandFile(int afileSeq, int afileNo, String orgnFileNm, String urlPathCd, String afilePath, String regFileNm, String ext, int afileSize, String themaRelmCd, String regMenuPart) {
+		return this.dslContext.insertInto(TbCmAfile.TB_CM_AFILE)
+				.columns(TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO, TbCmAfile.TB_CM_AFILE.ORGN_FILE_NM, TbCmAfile.TB_CM_AFILE.URL_PATH_CD,
+						TbCmAfile.TB_CM_AFILE.AFILE_PATH, TbCmAfile.TB_CM_AFILE.REG_FILE_NM, TbCmAfile.TB_CM_AFILE.EXT, TbCmAfile.TB_CM_AFILE.AFILE_SIZE, TbCmAfile.TB_CM_AFILE.THEMA_RELM_CD, TbCmAfile.TB_CM_AFILE.REG_MENU_PART,
+						TbCmAfile.TB_CM_AFILE.DEL_YN, TbCmAfile.TB_CM_AFILE.REG_USR_ID, TbCmAfile.TB_CM_AFILE.REG_USR_ID)
+				.values(afileSeq, afileNo, orgnFileNm, urlPathCd, afilePath, regFileNm, ext, afileSize, themaRelmCd, regMenuPart, "N", "ADMIN", "ADMIN")
 				.execute();
 	}
 }

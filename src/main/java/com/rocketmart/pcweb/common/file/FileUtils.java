@@ -23,32 +23,36 @@ public class FileUtils {
 	@Autowired
 	private FileRepository fileRepository;
 
-	public String uploadFile(MultipartFile file, HttpServletRequest request) {
+	public String uploadFile(MultipartFile file, HttpServletRequest request, String themaRelmCd, String regMenuPart) {
 		//String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
-		String path = "C:\\fileUpload";
+		String path = "C:\\rocketmart-pcweb\\src\\main\\resources\\static\\afiles\\".concat(themaRelmCd);
 
 		/*String fileDownloadPath = ServletUriComponentsBuilder.fromCurrentContextPath()
 				.path("/downloadFile/")
 				.path(fileName)
 				.toUriString();*/
 
-		return this.saveFile(file, path);
+		return this.saveFile(file, 1, path, themaRelmCd, regMenuPart);
 	}
 
-	public String saveFile(MultipartFile file, String uploadDirPath) {
-		int fileSeq = 0;
-		String realFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-		String fileExtensions = realFileName.substring(realFileName.indexOf("."));
-		String storedFileNm = CommonUtils.getFileId(realFileName);
-		Path targetLocation = Paths.get(uploadDirPath).toAbsolutePath().normalize().resolve(storedFileNm.concat(".").concat(fileExtensions));
-			try {
+	public String saveFile(MultipartFile file, int afileNo, String uploadDirPath, String themaRelmCd, String regMenuPart) {
+		int afileSeq = 0;
+		String fullFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+		String orgnFileNm = fullFileName.substring(0, fullFileName.indexOf("."));
+		String ext = fullFileName.substring(fullFileName.indexOf("."));
+		String regFileNm = CommonUtils.getFileId(orgnFileNm);
+		Path targetLocation = Paths.get(uploadDirPath).toAbsolutePath().normalize().resolve(regFileNm.concat(ext));
+		try {
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-			fileSeq = this.fileRepository.findOneForMaxSeq() + 1;
-			this.fileRepository.saveInfoForBrandFile(fileSeq, storedFileNm, realFileName, fileExtensions);
+
+			afileSeq = this.fileRepository.findOneForMaxSeq(regMenuPart) + 1;
+			String urlPathCd = "http://localhost:8080".concat("/afiles/").concat(themaRelmCd).concat("/").concat(regFileNm).concat(ext);
+
+			this.fileRepository.saveInfoForBrandFile(afileSeq, afileNo, orgnFileNm, urlPathCd, targetLocation.toString(), regFileNm, ext, (int) file.getSize(), themaRelmCd, regMenuPart);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return String.valueOf(fileSeq);
+		return String.valueOf(afileSeq);
 	}
 
 	public Resource loadFileAsResource(String fileName, String uploadDirPath) {

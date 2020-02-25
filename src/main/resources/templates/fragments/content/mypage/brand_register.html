@@ -34,7 +34,6 @@
                                 <div class="upload_box">
                                     <div class="img_logo" id="dvBrandLogo"></div>
                                     <button type="button" id="btnUpload" class="ps-btn">upload</button>
-<!--                                    <span class="txt-file">No file yet</span>-->
                                 </div>
                                 <div class="invalid-feedback">브랜드 로고를 선택해주세요.</div>
                             </div>
@@ -115,7 +114,8 @@
 
                 this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
                     method: 'post',
-                    url: '/brand/file/upload',
+                    url: '/seller/brand/file/upload',
+                    params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
                     acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
                     addRemoveLinks: false,
                     autoProcessQueue: false,
@@ -153,14 +153,15 @@
             },
 
             saveBrandInfo(objFileSeq) {
+                console.log(objFileSeq);
                 axios({
                     method: 'post',
-                    url: '/brand/info/save',
+                    url: '/seller/brand/info/save',
                     params: Object.assign(this.getParams(), objFileSeq)
                 }).then(response => {
                     if (response.data === 200) {
                         alert('브랜드 정보가 저장되었습니다.');
-                        CommonUtils.forwardPage('brand_detail');
+                        CommonUtils.forwardPage('/seller/brand_add');
                     }
                 })
                 .catch(error => {

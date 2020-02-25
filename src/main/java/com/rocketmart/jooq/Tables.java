@@ -4,11 +4,11 @@
 package com.rocketmart.jooq;
 
 
-import com.rocketmart.jooq.tables.TbBrandFile;
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 
 /**
@@ -25,14 +25,14 @@ import javax.annotation.processing.Generated;
 public class Tables {
 
     /**
-     * 브랜드_파일
-     */
-    public static final TbBrandFile TB_BRAND_FILE = TbBrandFile.TB_BRAND_FILE;
-
-    /**
      * 브랜드_정보
      */
     public static final TbBrandMst TB_BRAND_MST = TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 첨부파일
+     */
+    public static final TbCmAfile TB_CM_AFILE = TbCmAfile.TB_CM_AFILE;
 
     /**
      * 회원정보 마스터
