@@ -17,21 +17,18 @@
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
                                 <form name="signup" th:action="@{/any/member/signup}" method="post">
-                                    <div class="ps-form__decs">
-                                        <p class="form-row form-group user-role">
-                                            <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="BUYER" checked="checked">
-                                                <span>I'm a buyer in Veitnam</span>
-                                            </label>
-
-                                            <label class="radio">
-                                                <input type="radio" name="role" class="woocommerce-form__input-checkbox" value="SELLER">
-                                                <span>I'm a seller in Korea(한국 브랜드를 갖고 있습니다)</span>
-                                            </label>
-                                        </p>
+                                    <div class="ps-form__decs form-group user-role">
+                                        <div class="ps-radio mb-1">
+                                            <input class="form-control" type="radio" id="buyer" name="role" value="BUYER" checked>
+                                            <label for="buyer">I'm a buyer in Veitnam</label>
+                                        </div>
+                                        <div class="ps-radio mb-1">
+                                            <input class="form-control" type="radio" id="seller" name="role" value="SELLER">
+                                            <label for="seller">I'm a seller in Korea<br>(한국 브랜드를 갖고 있습니다)</label>
+                                        </div>
                                     </div>
 
-                                    <h5 id="registerText">Register An Account</h5>
+                                    <h4 id="registerText">Register An Account</h4>
                                     <div class="form-group">
                                         <input class="form-control" type="email" id="memId" name="memId" placeholder="Email address" required="required">
                                     </div>
@@ -60,23 +57,28 @@
                                         <input class="form-control" type="text" id="companyUrl" name="companyUrl" required="required">
                                     </p>
 
-                                    <p class="form-row form-group form-row-wide">
-                                        <label for="bsnsRgstr">Business Registration <span class="required">*</span></label>
-                                        <input class="form-control" type="file" id="bsnsRgstr" name="bsnsRgstr" accept="image/*,  .pdf" required="required">
-                                    </p>
-
-                                    <div id="buyerType">
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="offlineYn" name="offlineYn" value="10">
-                                            <label for="offlineYn">Offline <input class="form-control" type="text" id="offlineText" name="offlineText"></label>
-                                        </div>
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="onlineYn" name="onlineYn" value="20">
-                                            <label for="onlineYn">Online <input class="form-control" type="text" id="onlineText" name="onlineText"></label>
+                                    <div id="buyerType" class="form-row form-group form-row-wide">
+                                        <label for="">Distribution Channel <span class="required">*</span> (multiple choice) </label>
+                                        <div>
+                                            <div class="chk-wrap">
+                                                <div class="ps-checkbox">
+                                                    <input class="form-control" type="checkbox" id="offlineYn" name="offlineYn" value="10">
+                                                    <label for="offlineYn">Offline</label>
+                                                </div>
+                                                <input class="form-control type-inline" type="text" id="offlineText" name="offlineText" placeholder="ex.) drug store, pharmacy, door-to-door">
+                                            </div>
+                                            <div class="chk-wrap">
+                                                <div class="ps-checkbox">
+                                                    <input class="form-control" type="checkbox" id="onlineYn" name="onlineYn" value="20">
+                                                    <label for="onlineYn">Online</label>
+                                                </div>
+                                                <input class="form-control type-inline" type="text" id="onlineText" name="onlineText" placeholder="ex.) facebook, own shopping mall, shopee">
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div id="sellerType" style="display: none">
+                                    <div id="sellerType" class="form-group form-row-wide" style="display: none">
+                                        <label for="">사업자유형 <span class="required">*</span> (중복체크가능) </label>
                                         <div class="ps-checkbox">
                                             <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" value="10">
                                             <label for="bsnsType1">제조업자</label>
@@ -91,7 +93,21 @@
                                         </div>
                                     </div>
 
-                                    <div class="ps-checkbox agreeContents">
+                                    <div class="form-group form-row-wide">
+                                        <label for="bsnsRgstr"> Business Registration <span class="required">*</span></label>
+                                        <div class="filebox">
+                                            <input class="form-control" id="bsnsRgstr" value="파일선택" disabled="disabled">
+                                            <label for="ex_filename" class="ps-btn type-black">첨부하기</label>
+                                            <input type="file" id="ex_filename" class="upload-hidden">
+                                        </div>
+                                    </div>
+
+                                 <!--   <div class="form-group">
+                                        <label for="">사업자유형* (중복체크가능) </label>
+
+                                    </div>-->
+
+                                    <div class="ps-checkbox agreeContents type-line">
                                         <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions">
                                         <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
                                     </div>
@@ -100,7 +116,7 @@
                                         <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
                                     </div>
 
-                                    <div class="form-group submit">
+                                    <div class="form-group submit mt-5">
                                         <button type="submit" id="btnRegister" class="ps-btn ps-btn--fullwidth">Register</button>
                                     </div>
                                 </form>
@@ -122,6 +138,7 @@
             $('.user-role input[type=radio]', form).on('change', this.showSellerForm);
             $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
             $('#tel', form).keydown(this.ensurePhoneNumber);
+            this.inputFileForm();
         },
         confirmPasswordForm: function() {
             if('' !== $('#memPwChk').val()){
@@ -167,6 +184,17 @@
             if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
                 e.preventDefault();
             }
+        },
+        inputFileForm: function(){
+            var fileTarget = $('.filebox .upload-hidden');
+            fileTarget.on('change', function(){
+                if(window.FileReader){
+                    var fileName = $(this)[0].files[0].name;
+                } else {
+                    var fileName = $(this).val().split('/').pop().split('\\').pop();
+                }
+                $(this).siblings('.form-control').val(fileName);
+            });
         }
     };
     $(function() {
