@@ -17,8 +17,12 @@ public class BrandSvc {
 	@Autowired
 	private BrandRepository brandRepository;
 
-	public List<Map<String, Object>> findAll() {
-		return brandRepository.findAll();
+	public List<Map<String, Object>> findAllForAfile() {
+		return brandRepository.findAllForAfile();
+	}
+
+	public Map<String, Object> findByBrandSeq(int brandSeq) {
+		return brandRepository.findByBrandSeq(brandSeq);
 	}
 
 	@Transactional(rollbackFor = Exception.class)

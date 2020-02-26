@@ -4,12 +4,14 @@
 package com.rocketmart.jooq;
 
 
+import com.rocketmart.jooq.tables.TbAdminContact;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
-import com.rocketmart.jooq.tables.TbProductMst;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 
 /**
@@ -24,6 +26,11 @@ import javax.annotation.processing.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * 관리자 문의
+     */
+    public static final TbAdminContact TB_ADMIN_CONTACT = TbAdminContact.TB_ADMIN_CONTACT;
 
     /**
      * 브랜드_정보
@@ -43,5 +50,10 @@ public class Tables {
     /**
      * 상품 마스터
      */
-    public static final TbProductMst TB_PRODUCT_MST = TbProductMst.TB_PRODUCT_MST;
+    public static final TbPrdMst TB_PRD_MST = TbPrdMst.TB_PRD_MST;
+
+    /**
+     * 상품별 도매가격(FOB)
+     */
+    public static final TbPrdWholesale TB_PRD_WHOLESALE = TbPrdWholesale.TB_PRD_WHOLESALE;
 }

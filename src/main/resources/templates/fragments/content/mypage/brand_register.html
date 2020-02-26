@@ -144,7 +144,7 @@
                     },
                     success: (response) => {
                         if (response.status === "success") {
-                            PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
                         }
                     },
 
@@ -153,7 +153,6 @@
             },
 
             saveBrandInfo(objFileSeq) {
-                console.log(objFileSeq);
                 axios({
                     method: 'post',
                     url: '/seller/brand/info/save',
@@ -172,7 +171,6 @@
             getParams() {
                 return {
                     brandNm: $('#txtBrandNm').val(),
-                    brandLogo: $('#txtBrandNm').val(),
                     brandOwnership: $('#rdoBrandOwnership1').val(),
                     brandHomePageUrl: $('#txtHomepageUrl').val(),
                     brandYouTubeUrl: $('#txtYoutubeUrl').val(),

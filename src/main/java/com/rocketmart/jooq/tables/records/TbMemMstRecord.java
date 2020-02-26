@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbMemMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,283 +30,283 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbMemMstRecord extends UpdatableRecordImpl<TbMemMstRecord> implements Record20<Integer, String, String, String, String, String, String, String, String, String, String, String, String, String, Integer, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -534685452;
+    private static final long serialVersionUID = -1150366529;
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.MEM_SEQ</code>. 회원정보 일련번호
+     * Setter for <code>rocketmart.TB_MEM_MST.MEM_SEQ</code>. 회원정보 일련번호
      */
     public void setMemSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.MEM_SEQ</code>. 회원정보 일련번호
+     * Getter for <code>rocketmart.TB_MEM_MST.MEM_SEQ</code>. 회원정보 일련번호
      */
     public Integer getMemSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.ROLE</code>. 역할
+     * Setter for <code>rocketmart.TB_MEM_MST.ROLE</code>. 역할
      */
     public void setRole(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.ROLE</code>. 역할
+     * Getter for <code>rocketmart.TB_MEM_MST.ROLE</code>. 역할
      */
     public String getRole() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.MEM_ID</code>. 회원아이디(이메일)
+     * Setter for <code>rocketmart.TB_MEM_MST.MEM_ID</code>. 회원아이디(이메일)
      */
     public void setMemId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.MEM_ID</code>. 회원아이디(이메일)
+     * Getter for <code>rocketmart.TB_MEM_MST.MEM_ID</code>. 회원아이디(이메일)
      */
     public String getMemId() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.MEM_NM</code>. 회원명
+     * Setter for <code>rocketmart.TB_MEM_MST.MEM_NM</code>. 회원명
      */
     public void setMemNm(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.MEM_NM</code>. 회원명
+     * Getter for <code>rocketmart.TB_MEM_MST.MEM_NM</code>. 회원명
      */
     public String getMemNm() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.MEM_PW</code>. 비밀번호
+     * Setter for <code>rocketmart.TB_MEM_MST.MEM_PW</code>. 비밀번호
      */
     public void setMemPw(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.MEM_PW</code>. 비밀번호
+     * Getter for <code>rocketmart.TB_MEM_MST.MEM_PW</code>. 비밀번호
      */
     public String getMemPw() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.APPROVAL_YN</code>. 승인여부
+     * Setter for <code>rocketmart.TB_MEM_MST.APPROVAL_YN</code>. 승인여부
      */
     public void setApprovalYn(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.APPROVAL_YN</code>. 승인여부
+     * Getter for <code>rocketmart.TB_MEM_MST.APPROVAL_YN</code>. 승인여부
      */
     public String getApprovalYn() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.TEL</code>. 전화번호
+     * Setter for <code>rocketmart.TB_MEM_MST.TEL</code>. 전화번호
      */
     public void setTel(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.TEL</code>. 전화번호
+     * Getter for <code>rocketmart.TB_MEM_MST.TEL</code>. 전화번호
      */
     public String getTel() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.COMPANY_NM</code>. 회사명
+     * Setter for <code>rocketmart.TB_MEM_MST.COMPANY_NM</code>. 회사명
      */
     public void setCompanyNm(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.COMPANY_NM</code>. 회사명
+     * Getter for <code>rocketmart.TB_MEM_MST.COMPANY_NM</code>. 회사명
      */
     public String getCompanyNm() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.COMPANY_URL</code>. 회사URL
+     * Setter for <code>rocketmart.TB_MEM_MST.COMPANY_URL</code>. 회사URL
      */
     public void setCompanyUrl(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.COMPANY_URL</code>. 회사URL
+     * Getter for <code>rocketmart.TB_MEM_MST.COMPANY_URL</code>. 회사URL
      */
     public String getCompanyUrl() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.BSNS_TYPE</code>. 사업자유형
+     * Setter for <code>rocketmart.TB_MEM_MST.BSNS_TYPE</code>. 사업자유형
      */
     public void setBsnsType(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.BSNS_TYPE</code>. 사업자유형
+     * Getter for <code>rocketmart.TB_MEM_MST.BSNS_TYPE</code>. 사업자유형
      */
     public String getBsnsType() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.OFFLINE_YN</code>. 바이어 오프라인여부
+     * Setter for <code>rocketmart.TB_MEM_MST.OFFLINE_YN</code>. 바이어 오프라인여부
      */
     public void setOfflineYn(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.OFFLINE_YN</code>. 바이어 오프라인여부
+     * Getter for <code>rocketmart.TB_MEM_MST.OFFLINE_YN</code>. 바이어 오프라인여부
      */
     public String getOfflineYn() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.OFFLINE_TEXT</code>. 바이어 오프라인 비고
+     * Setter for <code>rocketmart.TB_MEM_MST.OFFLINE_TEXT</code>. 바이어 오프라인 비고
      */
     public void setOfflineText(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.OFFLINE_TEXT</code>. 바이어 오프라인 비고
+     * Getter for <code>rocketmart.TB_MEM_MST.OFFLINE_TEXT</code>. 바이어 오프라인 비고
      */
     public String getOfflineText() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.ONLINE_YN</code>. 바이어 온라인여부
+     * Setter for <code>rocketmart.TB_MEM_MST.ONLINE_YN</code>. 바이어 온라인여부
      */
     public void setOnlineYn(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.ONLINE_YN</code>. 바이어 온라인여부
+     * Getter for <code>rocketmart.TB_MEM_MST.ONLINE_YN</code>. 바이어 온라인여부
      */
     public String getOnlineYn() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.ONLINE_TEXT</code>. 바이어 온라인 비고
+     * Setter for <code>rocketmart.TB_MEM_MST.ONLINE_TEXT</code>. 바이어 온라인 비고
      */
     public void setOnlineText(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.ONLINE_TEXT</code>. 바이어 온라인 비고
+     * Getter for <code>rocketmart.TB_MEM_MST.ONLINE_TEXT</code>. 바이어 온라인 비고
      */
     public String getOnlineText() {
         return (String) get(13);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
+     * Setter for <code>rocketmart.TB_MEM_MST.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
      */
     public void setBsnsRgstrSeq(Integer value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
+     * Getter for <code>rocketmart.TB_MEM_MST.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
      */
     public Integer getBsnsRgstrSeq() {
         return (Integer) get(14);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.USE_YN</code>. 사용여부
+     * Setter for <code>rocketmart.TB_MEM_MST.USE_YN</code>. 사용여부
      */
     public void setUseYn(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.USE_YN</code>. 사용여부
+     * Getter for <code>rocketmart.TB_MEM_MST.USE_YN</code>. 사용여부
      */
     public String getUseYn() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.REG_USR_ID</code>. 등록자 아이디
+     * Setter for <code>rocketmart.TB_MEM_MST.REG_USR_ID</code>. 등록자 아이디
      */
     public void setRegUsrId(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.REG_USR_ID</code>. 등록자 아이디
+     * Getter for <code>rocketmart.TB_MEM_MST.REG_USR_ID</code>. 등록자 아이디
      */
     public String getRegUsrId() {
         return (String) get(16);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.TB_MEM_MST.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.TB_MEM_MST.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(17);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.UPD_USR_ID</code>. 수정자 아이디
+     * Setter for <code>rocketmart.TB_MEM_MST.UPD_USR_ID</code>. 수정자 아이디
      */
     public void setUpdUsrId(String value) {
         set(18, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.UPD_USR_ID</code>. 수정자 아이디
+     * Getter for <code>rocketmart.TB_MEM_MST.UPD_USR_ID</code>. 수정자 아이디
      */
     public String getUpdUsrId() {
         return (String) get(18);
     }
 
     /**
-     * Setter for <code>rocketmart.tb_mem_mst.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.TB_MEM_MST.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(19, value);
     }
 
     /**
-     * Getter for <code>rocketmart.tb_mem_mst.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.TB_MEM_MST.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(19);
