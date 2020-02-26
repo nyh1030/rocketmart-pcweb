@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a href="#">회사정보</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-product--detail">
+                        <div class="ps-product__content">
+                            <div class="logo-box">로고이미지 들어가는자리</div>
+                            <ul class="ps-tab-list">
+                                <li class="active"><a href="#tab-1">기본정보</a></li>
+                                <li><a href="#tab-2">가격정보</a></li>
+                                <li><a href="#tab-3">주요특징</a></li>
+                                <li><a href="#tab-4">사진등록</a></li>
+                            </ul>
+                            <div class="ps-tabs">
+                                <!-- 기본정보 : S -->
+                                <div class="ps-tab active" id="tab-1">
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 이름 <span class="required">*</span></label>
+                                        <input type="text" id="" class="form-control" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">브랜드 <span class="required">*</span></label>
+                                        <select name="" id="" class="ps-select">
+                                            <option value="">Milk Touch</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 카테고리 <span class="required">*</span></label>
+                                        <div class="select-col3">
+                                            <select name="" id="" class="ps-select type-first">
+                                                <option value="">카테고리1</option>
+                                            </select>
+                                            <select name="" id="" class="ps-select">
+                                                <option value="">카테고리2</option>
+                                            </select>
+                                            <select name="" id="" class="ps-select">
+                                                <option value="">카테고리3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 소개 영상</label>
+                                        <input type="text" id="" class="form-control" placeholder="url">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 용량 <span class="required">*</span></label>
+                                        <input type="text" id="" class="form-control" required placeholder="ex) 28 oz, 100 ml">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">색상/라인업</label>
+                                        <input type="text" id="" class="form-control" placeholder="Ex) Color #13(rose), #15(dark rabbit),">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">셀러노트</label>
+                                        <div class="edit_wrap">에디터 들어가는 자리</div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 상세 설명 (이미지 첨부 가능)</label>
+                                        <div class="edit_wrap">에디터 들어가는 자리</div>
+                                    </div>
+                                </div>
+                                <!-- //기본정보 : E -->
+                                <div class="ps-tab" id="tab-2">
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
+                                        <input type="number" id="" class="form-control" required placeholder="Number only">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
+                                        <div class="table_wrap">테이블 들어가는 자리</div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">공짜 샘플 제공 여부 <span class="required">*</span></label>
+                                        <div class="radio-wrap">
+                                            <div class="ps-radio">
+                                                <input class="form-control" type="radio" id="radio01" name="radio" checked>
+                                                <label for="radio01">Yes</label>
+                                            </div>
+                                            <div class="ps-radio">
+                                                <input class="form-control" type="radio" id="radio02" name="radio">
+                                                <label for="radio02">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-3">
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 속성 (중복체크 가능)</label>
+                                        <div class="chk-wrap">
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk01" name="">
+                                                <label for="chk01">미백</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk02" name="">
+                                                <label for="chk02">주름 개선</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk03" name="">
+                                                <label for="chk03">자외선차단</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk04" name="">
+                                                <label for="chk04">보습</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk05" name="">
+                                                <label for="chk05">진정</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk06" name="">
+                                                <label for="chk06">친환경</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk07" name="">
+                                                <label for="chk07">잡티관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk08" name="">
+                                                <label for="chk08">콜라겐</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk09" name="">
+                                                <label for="chk09">방수</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk10" name="">
+                                                <label for="chk10">각질관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk11" name="">
+                                                <label for="chk11">탄력개선</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk12" name="">
+                                                <label for="chk12">여드름관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk13" name="">
+                                                <label for="chk13">기미/주근깨관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chk14" name="">
+                                                <label for="chk14">기타</label>
+                                            </div>
+                                            <input type="text" id="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">제품 인증 (중복체크 가능)</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk15" name="">
+                                            <label for="chk15">Natural&Organic (USDA, COSMOS, ECOCERT, etc)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk16" name="">
+                                            <label for="chk16">Cruelty Free & Vegan Certificate</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk17" name="">
+                                            <label for="chk17">Halal Certificate</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">수출 이력</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk18" name="">
+                                            <label for="chk18">Europe (CPNP)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk19" name="">
+                                            <label for="chk19">Russia & CIS (EAC)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk20" name="">
+                                            <label for="chk20">China (NMPA)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk21" name="">
+                                            <label for="chk21">AEAN (DAV, HAS, NPRA etc.)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk22" name="">
+                                            <label for="chk22">USA (VCRP & OTC)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk23" name="">
+                                            <label for="chk23">Australia (NICNAS)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk24" name="">
+                                            <label for="chk24">Japan (PMDA)</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="" class="bul-type">가능한 거래 조건 (중복체크 가능)</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk25" name="">
+                                            <label for="chk25">완제품 형태의 수출</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk26" name="">
+                                            <label for="chk26">원료 공급 형태의 수출</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chk27" name="">
+                                            <label for="chk27">바이어 주문에 대한 위탁생산</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-4">
+                                    <p class="txt-impt">*제품 사진은 반드시 한 장 이상 등록되어야 합니다.</p>
+                                    <ul class="photo-upload">
+                                        <li>
+                                            <a href="#"><div class="img-box">사진들어가는자리</div></a>
+                                            <span class="txt">제품 정면</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">제품 후면</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">제품 측면</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">제형1</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">제형2</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">외부패키지1</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">외부패키지2</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">기타1</span>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <span class="txt">기타2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ps-pagination">
+                                <ul class="pagination">
+                                    <li><a href="#"><i class="icon-chevron-left"></i>이전페이지</a></li>
+                                    <li class="active"><a href="#">다음페이지<i class="icon-chevron-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button type="button" id="btnPreView" class="ps-btn type-green">미리보기</button>
+                            <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
+                            <button type="button" id="btnCancel" class="ps-btn type-gray ab-r">취소하기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript">
+        $(() => {
+            PageScope.init();
+            EventScope.init();
+        });
+
+        const PageScope = {
+
+            uploadStarter: null,
+
+            init() {
+                $("#txtBrandIntroduction").summernote({
+                    placeholder: '브랜드를 소개해주세요.',
+                    height: 250
+                });
+
+                this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
+                    method: 'post',
+                    url: '/brand/file/upload',
+                    acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                    addRemoveLinks: false,
+                    autoProcessQueue: false,
+                    thumbnailWidth: 200,
+                    thumbnailHeight: 200,
+                    maxFiles: 1,
+                    maxFilesize: 10,
+                    clickable: '#btnUpload',
+                    previewTemplate: `
+                    <div class="dz-preview dz-file-preview" >
+                      <div class="dz-image"><img data-dz-thumbnail /></div>
+                      <div class="dz-details">
+                          <div class="dz-size"><span data-dz-size></span></div>
+                          <div class="dz-filename"><span data-dz-name></span></div>
+                      </div>
+                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                      <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                    </div>`,
+                    init: function() {
+                        this.on("addedfile", file =>{
+                            if (file.status === "queued") {
+                                $(".dz-success-mark").remove();
+                            }
+                        });
+                    },
+                    success: (response) => {
+                        if (response.status === "success") {
+                            PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
+                        }
+                    },
+
+
+                });
+            },
+
+            saveBrandInfo(objFileSeq) {
+                axios({
+                    method: 'post',
+                    url: '/brand/info/save',
+                    params: Object.assign(this.getParams(), objFileSeq)
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('브랜드 정보가 저장되었습니다.');
+                        CommonUtils.forwardPage('brand_detail');
+                    }
+                })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+
+            getParams() {
+                return {
+                    brandNm: $('#txtBrandNm').val(),
+                    brandLogo: $('#txtBrandNm').val(),
+                    brandOwnership: $('#rdoBrandOwnership1').val(),
+                    brandHomePageUrl: $('#txtHomepageUrl').val(),
+                    brandYouTubeUrl: $('#txtYoutubeUrl').val(),
+                    brandInstagramUrl: $('#txtInstagramUrl').val(),
+                    brandCerify: $('#chkBrandCerify1').val(),
+                    brandIntroduction: $('#txtBrandIntroduction').summernote('code')
+                }
+            },
+
+            invokeValidation() {
+                if (!$('#txtBrandNm').val().trim()) {
+                    alert('브랜드 이름은 필수값 입니다.');
+                    return false;
+                }
+                return true;
+            }
+        };
+
+        const EventScope = {
+
+            init() {
+                this.clickEventListener();
+            },
+
+            clickEventListener() {
+
+                $('#btnSave').on('click', () => {
+                    if (!PageScope.invokeValidation()) return;
+
+                    if (confirm('저장하시겠습니까?')) {
+                        PageScope.uploadStarter.processQueue();
+                    }
+                });
+                $('#btnCancel').on('click', () => {
+                    CommonUtils.forwardPage('/brand_add');
+                });
+            }
+        };
+    </script>
+</th:block>
+</html>

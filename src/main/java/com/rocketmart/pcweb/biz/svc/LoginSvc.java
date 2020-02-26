@@ -27,20 +27,20 @@ public class LoginSvc implements UserDetailsService {
 	@Override
 
 	public UserDetails loadUserByUsername(String memId) throws UsernameNotFoundException {
-		TbMemMstRecord memberRecord = memberRepository.findOneForMemInfo(memId);
+		/*TbMemMstRecord memberRecord = memberRepository.findOneForMemInfo(memId);
 
-		List<GrantedAuthority> authorities = new ArrayList<>();
+			List<GrantedAuthority> authorities = new ArrayList<>();
 
-		if (memberRecord.getRole().contains("ADMIN")) {
-			authorities.add(new SimpleGrantedAuthority("ADMIN"));
-		}
-		if (memberRecord.getRole().contains("SELLER")) {
-			authorities.add(new SimpleGrantedAuthority("SELLER"));
-		}
-		if (memberRecord.getRole().contains("BUYER")) {
-			authorities.add(new SimpleGrantedAuthority("BUYER"));
-		}
+			if (memberRecord.getRole().contains("ADMIN")) {
+				authorities.add(new SimpleGrantedAuthority("ADMIN"));
+			}
+			if (memberRecord.getRole().contains("SELLER")) {
+				authorities.add(new SimpleGrantedAuthority("SELLER"));
+			}
+			if (memberRecord.getRole().contains("BUYER")) {
+				authorities.add(new SimpleGrantedAuthority("BUYER"));
+		}*/
 
-		return new User(memberRecord.getMemId(), memberRecord.getMemPw(), authorities);
+		return null;
 	}
 }
