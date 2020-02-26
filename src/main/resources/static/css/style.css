@@ -15498,6 +15498,7 @@ textarea.form-control {
 
 .navigation .navigation__left {
   max-width: 260px;
+  height:50px;
 }
 
 .navigation .navigation__right {
