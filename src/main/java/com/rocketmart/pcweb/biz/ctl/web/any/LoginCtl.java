@@ -17,33 +17,39 @@ public class LoginCtl {
 	private MemberSvc memberSvc;
 
 	// 로그인 페이지
-	@GetMapping("/login/signin")
-	public String dispLogin() {
-		return prefixPath.concat("/login/signin");
+	@GetMapping("/user/signin")
+	public String dispSignin() {
+		return prefixPath.concat("/user/signin");
+	}
+
+	// 회원가입 페이지
+	@GetMapping("/user/signup")
+	public String dispSignup() {
+		return prefixPath.concat("/user/signup");
 	}
 
 	// 로그인
-	@PostMapping("/any/login")
+	@PostMapping("/any/signin")
 	public String execLogin() {
 		return "redirect:/";
 	}
 
 	// 로그인 결과 페이지
-	@GetMapping("/any/login/result")
+	@GetMapping("/any/signin/result")
 	public String dispLoginResult() {
-		return prefixPath.concat("/login/loginSuccess");
+		return prefixPath.concat("/user/loginSuccess");
 	}
 
 	// 로그아웃 결과 페이지
 	@GetMapping("/any/logout")
 	public String dispLogout() {
-		return prefixPath.concat("/login/logout");
+		return prefixPath.concat("/user/logout");
 	}
 
 	// 접근 거부 페이지
 	@GetMapping("/any/denied")
 	public String dispDenied() {
-		return prefixPath.concat("/login/denied");
+		return prefixPath.concat("/user/denied");
 	}
 
 }
