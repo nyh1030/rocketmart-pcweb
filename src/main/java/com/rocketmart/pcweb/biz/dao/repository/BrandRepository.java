@@ -39,7 +39,7 @@ public class BrandRepository {
 				.columns(TbBrandMst.TB_BRAND_MST.BRAND_NM, TbBrandMst.TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ, TbBrandMst.TB_BRAND_MST.BRAND_OWNERSHIP,
 						TbBrandMst.TB_BRAND_MST.BRAND_HOMEPAGE_URL, TbBrandMst.TB_BRAND_MST.BRAND_YOUTUBE_URL, TbBrandMst.TB_BRAND_MST.BRAND_INSTAGRAM_URL,
 						TbBrandMst.TB_BRAND_MST.BRAND_CERIFY, TbBrandMst.TB_BRAND_MST.BRAND_INTRODUCTION, TbBrandMst.TB_BRAND_MST.REG_USR_ID, TbBrandMst.TB_BRAND_MST.UPD_USR_ID)
-				.values(brandDto.getBrandNm(), brandDto.getBrandFileSeq(), brandDto.getBrandOwnership(),
+				.values(brandDto.getBrandNm(), brandDto.getBrandLogoFileSeq(), brandDto.getBrandOwnership(),
 						brandDto.getBrandHomePageUrl(), brandDto.getBrandYouTubeUrl(), brandDto.getBrandInstagramUrl(),
 						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), "ADMIN", "ADMIN")
 				.execute();

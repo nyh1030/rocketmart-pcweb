@@ -6,14 +6,13 @@ import lombok.Data;
 public class BrandDto {
 
 	private String brandNm;
-	private String brandLogo;
+	private int brandLogoFileSeq;
 	private String brandOwnership;
 	private String brandHomePageUrl;
 	private String brandYouTubeUrl;
 	private String brandInstagramUrl;
 	private String brandCerify;
 	private String brandIntroduction;
-	private int brandFileSeq;
 	private String regUsrId;
 	private String updUsrId;
 }
