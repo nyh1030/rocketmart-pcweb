@@ -4,9 +4,12 @@
 package com.rocketmart.jooq;
 
 
+import com.rocketmart.jooq.tables.TbAdminContact;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,12 +35,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = -351443602;
+    private static final long serialVersionUID = -1128423457;
 
     /**
      * The reference instance of <code>rocketmart</code>
      */
     public static final Rocketmart ROCKETMART = new Rocketmart();
+
+    /**
+     * 관리자 문의
+     */
+    public final TbAdminContact TB_ADMIN_CONTACT = com.rocketmart.jooq.tables.TbAdminContact.TB_ADMIN_CONTACT;
 
     /**
      * 브랜드_정보
@@ -53,6 +61,16 @@ public class Rocketmart extends SchemaImpl {
      * 회원정보 마스터
      */
     public final TbMemMst TB_MEM_MST = com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
+
+    /**
+     * 상품 마스터
+     */
+    public final TbPrdMst TB_PRD_MST = com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+
+    /**
+     * 상품별 도매가격(FOB)
+     */
+    public final TbPrdWholesale TB_PRD_WHOLESALE = com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
     /**
      * No further instances allowed
@@ -76,8 +94,11 @@ public class Rocketmart extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            TbAdminContact.TB_ADMIN_CONTACT,
             TbBrandMst.TB_BRAND_MST,
             TbCmAfile.TB_CM_AFILE,
-            TbMemMst.TB_MEM_MST);
+            TbMemMst.TB_MEM_MST,
+            TbPrdMst.TB_PRD_MST,
+            TbPrdWholesale.TB_PRD_WHOLESALE);
     }
 }

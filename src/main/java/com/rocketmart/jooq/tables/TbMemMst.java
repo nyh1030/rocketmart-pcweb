@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbMemMst extends TableImpl<TbMemMstRecord> {
 
-    private static final long serialVersionUID = -643393207;
+    private static final long serialVersionUID = 729067017;
 
     /**
-     * The reference instance of <code>rocketmart.tb_mem_mst</code>
+     * The reference instance of <code>rocketmart.TB_MEM_MST</code>
      */
     public static final TbMemMst TB_MEM_MST = new TbMemMst();
 
@@ -59,121 +59,121 @@ public class TbMemMst extends TableImpl<TbMemMstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.MEM_SEQ</code>. 회원정보 일련번호
+     * The column <code>rocketmart.TB_MEM_MST.MEM_SEQ</code>. 회원정보 일련번호
      */
     public final TableField<TbMemMstRecord, Integer> MEM_SEQ = createField(DSL.name("MEM_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "회원정보 일련번호");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.ROLE</code>. 역할
+     * The column <code>rocketmart.TB_MEM_MST.ROLE</code>. 역할
      */
     public final TableField<TbMemMstRecord, String> ROLE = createField(DSL.name("ROLE"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "역할");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.MEM_ID</code>. 회원아이디(이메일)
+     * The column <code>rocketmart.TB_MEM_MST.MEM_ID</code>. 회원아이디(이메일)
      */
     public final TableField<TbMemMstRecord, String> MEM_ID = createField(DSL.name("MEM_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "회원아이디(이메일)");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.MEM_NM</code>. 회원명
+     * The column <code>rocketmart.TB_MEM_MST.MEM_NM</code>. 회원명
      */
     public final TableField<TbMemMstRecord, String> MEM_NM = createField(DSL.name("MEM_NM"), org.jooq.impl.SQLDataType.VARCHAR(80).nullable(false), this, "회원명");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.MEM_PW</code>. 비밀번호
+     * The column <code>rocketmart.TB_MEM_MST.MEM_PW</code>. 비밀번호
      */
     public final TableField<TbMemMstRecord, String> MEM_PW = createField(DSL.name("MEM_PW"), org.jooq.impl.SQLDataType.VARCHAR(1000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "비밀번호");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.APPROVAL_YN</code>. 승인여부
+     * The column <code>rocketmart.TB_MEM_MST.APPROVAL_YN</code>. 승인여부
      */
     public final TableField<TbMemMstRecord, String> APPROVAL_YN = createField(DSL.name("APPROVAL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "승인여부");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.TEL</code>. 전화번호
+     * The column <code>rocketmart.TB_MEM_MST.TEL</code>. 전화번호
      */
     public final TableField<TbMemMstRecord, String> TEL = createField(DSL.name("TEL"), org.jooq.impl.SQLDataType.VARCHAR(40).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "전화번호");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.COMPANY_NM</code>. 회사명
+     * The column <code>rocketmart.TB_MEM_MST.COMPANY_NM</code>. 회사명
      */
     public final TableField<TbMemMstRecord, String> COMPANY_NM = createField(DSL.name("COMPANY_NM"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "회사명");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.COMPANY_URL</code>. 회사URL
+     * The column <code>rocketmart.TB_MEM_MST.COMPANY_URL</code>. 회사URL
      */
     public final TableField<TbMemMstRecord, String> COMPANY_URL = createField(DSL.name("COMPANY_URL"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "회사URL");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.BSNS_TYPE</code>. 사업자유형
+     * The column <code>rocketmart.TB_MEM_MST.BSNS_TYPE</code>. 사업자유형
      */
     public final TableField<TbMemMstRecord, String> BSNS_TYPE = createField(DSL.name("BSNS_TYPE"), org.jooq.impl.SQLDataType.VARCHAR(20).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "사업자유형");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.OFFLINE_YN</code>. 바이어 오프라인여부
+     * The column <code>rocketmart.TB_MEM_MST.OFFLINE_YN</code>. 바이어 오프라인여부
      */
     public final TableField<TbMemMstRecord, String> OFFLINE_YN = createField(DSL.name("OFFLINE_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "바이어 오프라인여부");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.OFFLINE_TEXT</code>. 바이어 오프라인 비고
+     * The column <code>rocketmart.TB_MEM_MST.OFFLINE_TEXT</code>. 바이어 오프라인 비고
      */
     public final TableField<TbMemMstRecord, String> OFFLINE_TEXT = createField(DSL.name("OFFLINE_TEXT"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "바이어 오프라인 비고");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.ONLINE_YN</code>. 바이어 온라인여부
+     * The column <code>rocketmart.TB_MEM_MST.ONLINE_YN</code>. 바이어 온라인여부
      */
     public final TableField<TbMemMstRecord, String> ONLINE_YN = createField(DSL.name("ONLINE_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "바이어 온라인여부");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.ONLINE_TEXT</code>. 바이어 온라인 비고
+     * The column <code>rocketmart.TB_MEM_MST.ONLINE_TEXT</code>. 바이어 온라인 비고
      */
     public final TableField<TbMemMstRecord, String> ONLINE_TEXT = createField(DSL.name("ONLINE_TEXT"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "바이어 온라인 비고");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
+     * The column <code>rocketmart.TB_MEM_MST.BSNS_RGSTR_SEQ</code>. 사업자등록증 일련번호
      */
     public final TableField<TbMemMstRecord, Integer> BSNS_RGSTR_SEQ = createField(DSL.name("BSNS_RGSTR_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "사업자등록증 일련번호");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.USE_YN</code>. 사용여부
+     * The column <code>rocketmart.TB_MEM_MST.USE_YN</code>. 사용여부
      */
     public final TableField<TbMemMstRecord, String> USE_YN = createField(DSL.name("USE_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'Y'", org.jooq.impl.SQLDataType.CHAR)), this, "사용여부");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.REG_USR_ID</code>. 등록자 아이디
+     * The column <code>rocketmart.TB_MEM_MST.REG_USR_ID</code>. 등록자 아이디
      */
     public final TableField<TbMemMstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자 아이디");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.TB_MEM_MST.REG_TS</code>. 등록일시
      */
     public final TableField<TbMemMstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.UPD_USR_ID</code>. 수정자 아이디
+     * The column <code>rocketmart.TB_MEM_MST.UPD_USR_ID</code>. 수정자 아이디
      */
     public final TableField<TbMemMstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자 아이디");
 
     /**
-     * The column <code>rocketmart.tb_mem_mst.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.TB_MEM_MST.UPD_TS</code>. 수정일시
      */
     public final TableField<TbMemMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.tb_mem_mst</code> table reference
+     * Create a <code>rocketmart.TB_MEM_MST</code> table reference
      */
     public TbMemMst() {
-        this(DSL.name("tb_mem_mst"), null);
+        this(DSL.name("TB_MEM_MST"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.tb_mem_mst</code> table reference
+     * Create an aliased <code>rocketmart.TB_MEM_MST</code> table reference
      */
     public TbMemMst(String alias) {
         this(DSL.name(alias), TB_MEM_MST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.tb_mem_mst</code> table reference
+     * Create an aliased <code>rocketmart.TB_MEM_MST</code> table reference
      */
     public TbMemMst(Name alias) {
         this(alias, TB_MEM_MST);
