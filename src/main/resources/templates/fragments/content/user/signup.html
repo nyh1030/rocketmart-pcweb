@@ -6,40 +6,15 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a th:href="@{/}">Home</a></li>
-                    <li>My account</li>
+                    <li>Resister</li>
                 </ul>
             </div>
         </div>
         <div class="ps-my-account">
             <div class="container">
                 <div class="register ps-form--account ps-tab-root">
-                    <ul class="ps-tab-list">
-                        <li class="active"><a href="#sign-in">Login</a></li>
-                        <li><a href="#register">Register</a></li>
-                    </ul>
                     <div class="ps-tabs">
-                        <div class="ps-tab active" id="sign-in">
-                            <div class="ps-form__content">
-                                <form name="signin" action="/login/signin" method="post">
-                                    <h5>Log In Your Account</h5>
-                                    <div class="form-group">
-                                        <input class="form-control" id="username" name="username" type="text" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group form-forgot">
-                                        <input class="form-control" id="password" name="password" type="text" placeholder="Password"><a href="">Forgot?</a>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
-                                        </div>
-                                    </div>
-                                    <div class="form-group submtit">
-                                        <button type="submit" class="ps-btn ps-btn--fullwidth">Login</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="ps-tab" id="register">
+                        <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
                                 <form name="signup" th:action="@{/any/member/signup}" method="post">
                                     <div class="ps-form__decs">
@@ -165,21 +140,21 @@
             var value = $(this).val();
             if (value === 'SELLER') {
                 $('#registerText').text("계정을 등록해 주세요.");
-                $('label[for="memNm"]').text("담당자 이름(직급) ");
-                $('label[for="tel"]').text("연락처 ");
-                $('label[for="companyNm"]').text("회사명 ");
-                $('label[for="companyUrl"]').text("회사 또는 브랜드 홈페이지 주소 ");
-                $('label[for="bsnsRgstr"]').text("사업자 등록증 ");
+                $('label[for="memNm"]').html("담당자 이름(직급) <span class=\"required\">*</span>");
+                $('label[for="tel"]').html("연락처 <span class=\"required\">*</span>");
+                $('label[for="companyNm"]').html("회사명 <span class=\"required\">*</span>");
+                $('label[for="companyUrl"]').html("회사 또는 브랜드 홈페이지 주소 <span class=\"required\">*</span>");
+                $('label[for="bsnsRgstr"]').html("사업자 등록증 <span class=\"required\">*</span>");
 
                 $( '#buyerType' ).hide();
                 $( '#sellerType' ).show();
             } else {
                 $('#registerText').text("Register An Account");
-                $('label[for="memNm"]').text("Your Name ");
-                $('label[for="tel"]').text("Phone Number ");
-                $('label[for="companyNm"]').text("Company or Shop Name ");
-                $('label[for="companyUrl"]').text("Company or Shop URL ");
-                $('label[for="bsnsRgstr"]').text("Business Registration ");
+                $('label[for="memNm"]').html("Your Name <span class=\"required\">*</span>");
+                $('label[for="tel"]').html("Phone Number <span class=\"required\">*</span>");
+                $('label[for="companyNm"]').html("Company or Shop Name <span class=\"required\">*</span>");
+                $('label[for="companyUrl"]').html("Company or Shop URL <span class=\"required\">*</span>");
+                $('label[for="bsnsRgstr"]').html("Business Registration <span class=\"required\">*</span>");
 
                 $( '#buyerType' ).show();
                 $( '#sellerType' ).hide();

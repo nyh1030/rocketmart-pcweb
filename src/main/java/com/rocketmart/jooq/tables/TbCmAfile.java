@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCmAfile extends TableImpl<TbCmAfileRecord> {
 
-    private static final long serialVersionUID = -593369287;
+    private static final long serialVersionUID = -638739209;
 
     /**
      * The reference instance of <code>rocketmart.tb_cm_afile</code>
@@ -75,7 +75,7 @@ public class TbCmAfile extends TableImpl<TbCmAfileRecord> {
     /**
      * The column <code>rocketmart.tb_cm_afile.URL_PATH_CD</code>. URL 경로 코드
      */
-    public final TableField<TbCmAfileRecord, String> URL_PATH_CD = createField(DSL.name("URL_PATH_CD"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "URL 경로 코드");
+    public final TableField<TbCmAfileRecord, String> URL_PATH_CD = createField(DSL.name("URL_PATH_CD"), org.jooq.impl.SQLDataType.VARCHAR(2000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "URL 경로 코드");
 
     /**
      * The column <code>rocketmart.tb_cm_afile.AFILE_PATH</code>. 첨부파일 경로

@@ -7,8 +7,9 @@ package com.rocketmart.jooq;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbProductMst;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -36,6 +37,7 @@ public class Indexes {
     public static final Index TB_CM_AFILE_PRIMARY = Indexes0.TB_CM_AFILE_PRIMARY;
     public static final Index TB_MEM_MST_IDX_MEM_SEQ = Indexes0.TB_MEM_MST_IDX_MEM_SEQ;
     public static final Index TB_MEM_MST_PRIMARY = Indexes0.TB_MEM_MST_PRIMARY;
+    public static final Index TB_PRODUCT_MST_PRIMARY = Indexes0.TB_PRODUCT_MST_PRIMARY;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -46,5 +48,6 @@ public class Indexes {
         public static Index TB_CM_AFILE_PRIMARY = Internal.createIndex("PRIMARY", TbCmAfile.TB_CM_AFILE, new OrderField[] { TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO }, true);
         public static Index TB_MEM_MST_IDX_MEM_SEQ = Internal.createIndex("IDX_MEM_SEQ", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, false);
         public static Index TB_MEM_MST_PRIMARY = Internal.createIndex("PRIMARY", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, true);
+        public static Index TB_PRODUCT_MST_PRIMARY = Internal.createIndex("PRIMARY", TbProductMst.TB_PRODUCT_MST, new OrderField[] { TbProductMst.TB_PRODUCT_MST.PRODUCT_SEQ }, true);
     }
 }

@@ -7,8 +7,9 @@ package com.rocketmart.jooq;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbProductMst;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 
 /**
@@ -38,4 +39,9 @@ public class Tables {
      * 회원정보 마스터
      */
     public static final TbMemMst TB_MEM_MST = TbMemMst.TB_MEM_MST;
+
+    /**
+     * 상품 마스터
+     */
+    public static final TbProductMst TB_PRODUCT_MST = TbProductMst.TB_PRODUCT_MST;
 }

@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbBrandMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMstRecord extends UpdatableRecordImpl<TbBrandMstRecord> implements Record14<Integer, String, String, String, String, String, String, String, String, Integer, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -540235739;
+    private static final long serialVersionUID = -1366591946;
 
     /**
      * Setter for <code>rocketmart.tb_brand_mst.BRAND_SEQ</code>. 브랜드 일련번호

@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbCmAfile;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record15;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCmAfileRecord extends UpdatableRecordImpl<TbCmAfileRecord> implements Record15<Integer, Integer, String, String, String, String, String, Integer, String, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -1934959104;
+    private static final long serialVersionUID = 948868475;
 
     /**
      * Setter for <code>rocketmart.tb_cm_afile.AFILE_SEQ</code>. 첨부파일 일련번호

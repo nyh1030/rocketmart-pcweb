@@ -7,11 +7,13 @@ package com.rocketmart.jooq;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbProductMst;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbCmAfileRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
+import com.rocketmart.jooq.tables.records.TbProductMstRecord;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
@@ -38,6 +40,7 @@ public class Keys {
 
     public static final Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Identities0.IDENTITY_TB_BRAND_MST;
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
+    public static final Identity<TbProductMstRecord, Integer> IDENTITY_TB_PRODUCT_MST = Identities0.IDENTITY_TB_PRODUCT_MST;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -46,6 +49,7 @@ public class Keys {
     public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = UniqueKeys0.KEY_TB_BRAND_MST_PRIMARY;
     public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = UniqueKeys0.KEY_TB_CM_AFILE_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = UniqueKeys0.KEY_TB_MEM_MST_PRIMARY;
+    public static final UniqueKey<TbProductMstRecord> KEY_TB_PRODUCT_MST_PRIMARY = UniqueKeys0.KEY_TB_PRODUCT_MST_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -59,11 +63,13 @@ public class Keys {
     private static class Identities0 {
         public static Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Internal.createIdentity(TbBrandMst.TB_BRAND_MST, TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
+        public static Identity<TbProductMstRecord, Integer> IDENTITY_TB_PRODUCT_MST = Internal.createIdentity(TbProductMst.TB_PRODUCT_MST, TbProductMst.TB_PRODUCT_MST.PRODUCT_SEQ);
     }
 
     private static class UniqueKeys0 {
         public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = Internal.createUniqueKey(TbBrandMst.TB_BRAND_MST, "KEY_tb_brand_mst_PRIMARY", TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = Internal.createUniqueKey(TbCmAfile.TB_CM_AFILE, "KEY_tb_cm_afile_PRIMARY", TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_tb_mem_mst_PRIMARY", TbMemMst.TB_MEM_MST.MEM_SEQ);
+        public static final UniqueKey<TbProductMstRecord> KEY_TB_PRODUCT_MST_PRIMARY = Internal.createUniqueKey(TbProductMst.TB_PRODUCT_MST, "KEY_TB_PRODUCT_MST_PRIMARY", TbProductMst.TB_PRODUCT_MST.PRODUCT_SEQ);
     }
 }
