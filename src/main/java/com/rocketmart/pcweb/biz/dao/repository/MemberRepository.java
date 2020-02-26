@@ -21,10 +21,10 @@ public class MemberRepository {
      * @param memId
      * @return Map<String, Object>
      */
-    public MemberDto findOneForMemInfo(String memId) {
+    public Map<String, Object> findOneForMemInfo(String memId) {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.eq(memId))
-                .fetchAny().into(MemberDto.class);
+                .fetchOneMap();
     }
 
     public int saveOneForMemInfo(TbMemMstRecord memberRecord) {

@@ -1,13 +1,10 @@
 package com.rocketmart.pcweb.biz.ctl.web.any;
 
-import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Map;
 
 @Controller
 public class MainCtl {
@@ -26,17 +23,10 @@ public class MainCtl {
     @GetMapping("/company_info")
     public String company_info(Model model) {
 
-        MemberDto temp = null;
+        // 회사정보 조회
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("admin"));
 
-        temp = this.memberSvc.findOneForMemInfo("admin");
-
-        System.out.println(" :: " + temp.toString());
-        System.out.println(" :: " + temp.getMemId());
-
-
-        model.addAttribute("mmbr", temp);
-
-        return prefixPath.concat("/mypage/company_info");
+        return prefixPath.concat("/mypage/seller_detail");
     }
 
     // contact us > 조회
