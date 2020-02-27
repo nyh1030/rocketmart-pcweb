@@ -26,7 +26,7 @@
                         <div class="ps-block__content">
                             <div class="mb-5">
                                 <label for="txtBrandNm" class="bul-type">브랜드 이름 <span class="required">*</span></label>
-                                <input type="text" id="txtBrandNm" class="form-control" required>
+                                <input type="text" id="txtBrandNm" class="form-control" th:value="${brandInfo.BRAND_NM}" required>
                                 <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
                             </div>
                             <div class="mb-5">
@@ -40,39 +40,40 @@
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 오너십 <span class="required">*</span></label>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="rdoBrandOwnership" th:value="01" checked>
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="rdoBrandOwnership" th:value="A1">
                                     <label for="rdoBrandOwnership1">자사 브랜드 (직접 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="rdoBrandOwnership" th:value="02">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="rdoBrandOwnership" th:value="B1">
                                     <label for="rdoBrandOwnership2">자사 브랜드 (위탁 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="03">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="C1">
                                     <label for="rdoBrandOwnership3">타사 브랜드 (도소매 유통)</label>
                                 </div>
                                 <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
                             </div>
                             <div class="mb-5">
                                 <label for="txtHomepageUrl" class="bul-type">브랜드 홈페이지</label>
-                                <input type="text" class="form-control" id="txtHomepageUrl">
-                            </div>
-                            <div class="mb-5">
+                                <input type="text" class="form-control" id="txtHomepageUrl"
+                                       th:value="${brandInfo.BRAND_HOMEPAGE_URL}">
+
                                 <label for="txtYoutubeUrl" class="bul-type">유투브 채널</label>
-                                <input type="text" class="form-control" id="txtYoutubeUrl">
-                            </div>
-                            <div class="mb-5">
+                                <input type="text" class="form-control" id="txtYoutubeUrl"
+                                       th:value="${brandInfo.BRAND_YOUTUBE_URL}">
+
                                 <label for="txtInstagramUrl" class="bul-type">인스타그램</label>
-                                <input type="text" class="form-control" id="txtInstagramUrl">
+                                <input type="text" class="form-control" id="txtInstagramUrl"
+                                       th:value="${brandInfo.BRAND_INSTAGRAM_URL}">
                             </div>
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 인증 (중복체크 가능)</label>
                                 <div class="ps-checkbox mb-1">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" name="chkBrandCerify" th:value="01">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" th:value="A1">
                                     <label for="chkBrandCerify1">ISO 22716 / CGMP</label>
                                 </div>
                                 <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" name="chkBrandCerify" th:value="02">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" th:value="B1">
                                     <label for="chkBrandCerify2">ISO 9001</label>
                                 </div>
                             </div>
@@ -96,7 +97,7 @@
         <!-- //.container : E -->
     </div>
 
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
         $(() => {
             PageScope.init();
             EventScope.init();
@@ -107,11 +108,27 @@
             uploadStarter: null,
 
             init() {
-                $("#txtBrandIntroduction").summernote({
-                    placeholder: '브랜드를 소개해주세요.',
-                    height: 250
-                });
+                this.setUploadComponent();
+                this.setWebEditor();
+                this.bindFields(/*[[${brandInfo}]]*/ 'default');
+            },
 
+            bindFields(brandInfo) {
+                $(`[name='rdoBrandOwnership']`).filter(`[value='${brandInfo.BRAND_OWNERSHIP}']`).prop('checked', true);
+                $("#txtBrandIntroduction").summernote('code', brandInfo.BRAND_INTRODUCTION);
+
+                const brandCerify = brandInfo.BRAND_CERIFY;
+                if (brandCerify.indexOf(",") > 0) {
+                    const brandCerifyArry = brandCerify.split(',');
+                    $("#chkBrandCerify1").prop('checked', brandCerifyArry[0] === "A1");
+                    $("#chkBrandCerify2").prop('checked', brandCerifyArry[1] === "B1");
+                } else {
+                    $("#chkBrandCerify1").prop('checked', brandCerify === "A1");
+                    $("#chkBrandCerify2").prop('checked', brandCerify === "B1");
+                }
+            },
+
+            setUploadComponent() {
                 this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
                     method: 'post',
                     url: '/seller/brand/file/upload',
@@ -125,35 +142,46 @@
                     maxFilesize: 10,
                     clickable: '#btnUpload',
                     previewTemplate: `
-                    <div class="dz-preview dz-file-preview" >
-                      <div class="dz-image"><img data-dz-thumbnail /></div>
-                      <div class="dz-details">
-                          <div class="dz-size"><span data-dz-size></span></div>
-                          <div class="dz-filename"><span data-dz-name></span></div>
-                      </div>
-                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                      <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                      <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
-                    </div>`,
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img data-dz-thumbnail /></div>
+                              <div class="dz-details">
+                                  <div class="dz-size"><span data-dz-size></span></div>
+                                  <div class="dz-filename"><span data-dz-name></span></div>
+                              </div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                            </div>`,
                     init: function() {
+                        let _this;
                         this.on("addedfile", file =>{
+                            _this = this;
+
                             if (file.status === "queued") {
                                 $(".dz-success-mark").remove();
                             }
+                        });
+                        this.on("maxfilesexceeded", function (file) {
+                            _this.removeFile(file);
+                            alert('최대 업로드 파일 수는 1개 입니다.');
                         });
                     },
                     success: (response) => {
                         if (response.status === "success") {
                             PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
                         }
-                    },
+                    }
+                });
+            },
 
-
+            setWebEditor() {
+                $("#txtBrandIntroduction").summernote({
+                    placeholder: '브랜드를 소개해주세요.',
+                    height: 250
                 });
             },
 
             saveBrandInfo(objFileSeq) {
-                console.log(objFileSeq);
                 axios({
                     method: 'post',
                     url: '/seller/brand/info/save',
@@ -186,7 +214,11 @@
                 if (!$('#txtBrandNm').val().trim()) {
                     alert('브랜드 이름은 필수값 입니다.');
                     return false;
+                } else if (PageScope.uploadStarter.files.length <= 0) {
+                    alert("브랜드 로고는 필수 입니다.\nupload 버튼을 이용해 파일을 첨부해주세요.")
+                    return false;
                 }
+
                 return true;
             }
         };
@@ -198,7 +230,6 @@
             },
 
             clickEventListener() {
-
                 $('#btnSave').on('click', () => {
                     if (!PageScope.invokeValidation()) return;
 

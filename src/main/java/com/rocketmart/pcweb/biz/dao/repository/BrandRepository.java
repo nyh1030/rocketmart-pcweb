@@ -18,7 +18,8 @@ public class BrandRepository {
 	private DSLContext dslContext;
 
 	public List<Map<String, Object>> findAllForAfile() {
-		return this.dslContext.select(TbBrandMst.TB_BRAND_MST.BRAND_SEQ, TbCmAfile.TB_CM_AFILE.URL_PATH_CD)
+		return this.dslContext.select(
+				TbBrandMst.TB_BRAND_MST.BRAND_SEQ, TbCmAfile.TB_CM_AFILE.URL_PATH_CD)
 				.from(TbBrandMst.TB_BRAND_MST)
 				.join(TbCmAfile.TB_CM_AFILE)
 				.on(TbBrandMst.TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TbCmAfile.TB_CM_AFILE.AFILE_SEQ))
@@ -26,9 +27,10 @@ public class BrandRepository {
 	}
 
 	public Map<String, Object> findByBrandSeq(int brandSeq) {
-		return this.dslContext.select(TbBrandMst.TB_BRAND_MST.BRAND_SEQ, TbBrandMst.TB_BRAND_MST.BRAND_NM, TbBrandMst.TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ,
-				TbBrandMst.TB_BRAND_MST.BRAND_HOMEPAGE_URL, TbBrandMst.TB_BRAND_MST.BRAND_YOUTUBE_URL, TbBrandMst.TB_BRAND_MST.BRAND_INSTAGRAM_URL, TbBrandMst.TB_BRAND_MST.BRAND_OWNERSHIP,
-				TbBrandMst.TB_BRAND_MST.BRAND_CERIFY, TbBrandMst.TB_BRAND_MST.BRAND_INTRODUCTION)
+		return this.dslContext.select(
+				TbBrandMst.TB_BRAND_MST.BRAND_SEQ, TbBrandMst.TB_BRAND_MST.BRAND_NM, TbBrandMst.TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ,
+				TbBrandMst.TB_BRAND_MST.BRAND_HOMEPAGE_URL, TbBrandMst.TB_BRAND_MST.BRAND_YOUTUBE_URL, TbBrandMst.TB_BRAND_MST.BRAND_INSTAGRAM_URL,
+				TbBrandMst.TB_BRAND_MST.BRAND_OWNERSHIP, TbBrandMst.TB_BRAND_MST.BRAND_CERIFY, TbBrandMst.TB_BRAND_MST.BRAND_INTRODUCTION)
 				.from(TbBrandMst.TB_BRAND_MST)
 				.where(TbBrandMst.TB_BRAND_MST.BRAND_SEQ.equal(brandSeq))
 				.fetchOneMap();
