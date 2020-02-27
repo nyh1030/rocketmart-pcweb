@@ -1,4 +1,4 @@
-package com.rocketmart.pcweb.biz.ctl.web.any;
+package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import org.springframework.beans.factory.annotation.Autowired;
