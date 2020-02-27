@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @AllArgsConstructor
@@ -27,20 +28,20 @@ public class LoginSvc implements UserDetailsService {
 	@Override
 
 	public UserDetails loadUserByUsername(String memId) throws UsernameNotFoundException {
-		/*TbMemMstRecord memberRecord = memberRepository.findOneForMemInfo(memId);
+			Map<String, Object> memberInfo = memberRepository.findOneForMemInfo(memId);
 
 			List<GrantedAuthority> authorities = new ArrayList<>();
 
-			if (memberRecord.getRole().contains("ADMIN")) {
+			if ("ADMIN".equals(memberInfo.get("role"))) {
 				authorities.add(new SimpleGrantedAuthority("ADMIN"));
 			}
-			if (memberRecord.getRole().contains("SELLER")) {
+			if ("SELLER".equals(memberInfo.get("role"))) {
 				authorities.add(new SimpleGrantedAuthority("SELLER"));
 			}
-			if (memberRecord.getRole().contains("BUYER")) {
+			if ("BUYER".equals(memberInfo.get("role"))) {
 				authorities.add(new SimpleGrantedAuthority("BUYER"));
-		}*/
+		}
 
-		return null;
+		return new User(String.valueOf(memberInfo.get("memId")), String.valueOf(memberInfo.get("memPw")), authorities);
 	}
 }
