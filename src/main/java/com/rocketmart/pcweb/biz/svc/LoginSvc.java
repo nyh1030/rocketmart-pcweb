@@ -1,8 +1,6 @@
 package com.rocketmart.pcweb.biz.svc;
 
-import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.MemberRepository;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,16 +29,16 @@ public class LoginSvc implements UserDetailsService {
 
 			List<GrantedAuthority> authorities = new ArrayList<>();
 
-			if ("ADMIN".equals(memberInfo.get("role"))) {
+			if (String.valueOf(memberInfo.get("ROLE")).contains("ADMIN")) {
 				authorities.add(new SimpleGrantedAuthority("ADMIN"));
 			}
-			if ("SELLER".equals(memberInfo.get("role"))) {
+			if (String.valueOf(memberInfo.get("ROLE")).contains("SELLER")) {
 				authorities.add(new SimpleGrantedAuthority("SELLER"));
 			}
-			if ("BUYER".equals(memberInfo.get("role"))) {
+			if (String.valueOf(memberInfo.get("ROLE")).contains("BUYER")) {
 				authorities.add(new SimpleGrantedAuthority("BUYER"));
-		}
+			}
 
-		return new User(String.valueOf(memberInfo.get("memId")), String.valueOf(memberInfo.get("memPw")), authorities);
+		return new User(String.valueOf(memberInfo.get("MEM_ID")), String.valueOf(memberInfo.get("MEM_PW")), authorities);
 	}
 }
