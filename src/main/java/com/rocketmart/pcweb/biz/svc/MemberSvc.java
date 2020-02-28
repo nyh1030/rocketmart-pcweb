@@ -52,10 +52,51 @@ public class MemberSvc {
 
 	/**
 	 * 회원 정보 조회
-	 * @param memId
-	 * @return Map<String, Object>
+	 * @param mmbrId
+	 * @param roleNm
+	 * @return
 	 */
-	public Map<String, Object> findOneForMemInfo(String memId) {
-		return this.memberRepository.findOneForMemInfo(memId);
+	public Map<String, Object> findOneForMemInfo(String mmbrId, String roleNm) {
+
+		Map<String, Object> mmbrMap = null;		// 회원정보 Map
+		Object bsnsTyp = null;				// 사업자유형
+		String[] bsnsTypCdArr = null;		// 사업자유형 코드 Array
+		String[] bsnsTypNmArr = null;		//  사업자유형 코드명 Array
+		int indx = 0;
+
+		// 회원정보 조회
+		mmbrMap = this.memberRepository.findOneForMemInfo(mmbrId);
+
+		if(roleNm.equals("admin")) {	// 관리자
+
+		}else if(roleNm.equals("buyer")) {	// 구매자
+
+		}else if(roleNm.equals("seller")) {	// 판매자
+
+			bsnsTyp = mmbrMap.get("BSNS_TYPE");	// 사업자유형
+
+			if(bsnsTyp != null) {
+
+				bsnsTypCdArr = String.valueOf(bsnsTyp).split(",");
+				bsnsTypNmArr = new String[bsnsTypCdArr.length];
+
+				for(String typCd : bsnsTypCdArr) {
+
+					if (typCd.equals("10")) {
+						bsnsTypNmArr[indx] = "- 제조업";
+					} else if (typCd.equals("20")) {
+						bsnsTypNmArr[indx] = "- 책임판매업";
+					} else if (typCd.equals("30")) {
+						bsnsTypNmArr[indx] = "- 도매/소매 유통업자";
+					}
+
+					indx++;
+				}
+
+				mmbrMap.put("bsnsTyps", bsnsTypNmArr);	// 사업자유형 저장
+			}
+		}
+
+		return mmbrMap;
 	}
 }

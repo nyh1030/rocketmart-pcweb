@@ -20,11 +20,11 @@ public class MainCtl {
     }
 
     // 회사정보
-    @GetMapping("/company_info")
-    public String company_info(Model model) {
+    @GetMapping("/seller_info")
+    public String seller_info(Model model) {
 
         // 회사정보 조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("admin"));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("123123123@asd.com", "seller"));
 
         return prefixPath.concat("/mypage/seller_detail");
     }

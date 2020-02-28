@@ -21,13 +21,13 @@
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
                             <h3>회사 정보</h3>
-                            <span class="ab-r date">last updated: 2020-01-03  20:31:45</span>
+                            <span class="ab-r date">last updated: <span th:text="${mmbr.get('UPD_TS')}"></span></span>
                         </div>
                         <div class="ps-block__content">
                             <ul class="info-list">
                                 <li>
                                     <span class="tit-info bul-type">회사명 : </span>
-                                    <span class="txt-info" th:text="${mmbr.get('MEM_NM')}" />
+                                    <span class="txt-info" th:text="${mmbr.get('COMPANY_NM')}" />
                                 </li>
                                 <li>
                                     <span class="tit-info bul-type">회사 홈페이지 : </span>
@@ -36,18 +36,14 @@
                                 <li>
                                     <span class="tit-info bul-type">담당자 정보 : </span>
                                     <ul class="txt-info type-list">
-                                        <li>- 이름: 김선근</li>
-                                        <li>- 직급 : 대리(KEAN, General Manager)</li>
-                                        <li>- 전화번호: 010-8264-1918</li>
-                                        <li>- 이메일:  <a href="mailto:ssakkn88@naver.com">ssakkn88@naver.com</a></li>
-                                        <!--<li>- 비밀번호: </li>-->
+                                        <li>- 이름(직급) : <span th:text="${mmbr.get('MEM_NM')}"></span></li>
+                                        <li>- 전화번호 : <span th:text="${mmbr.get('TEL')}"></span></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="tit bul-type">사업자 유형</span>
-                                    <ul class="txt-info type-list">
-                                        <li>- 제조업</li>
-                                        <li>- 책임판매업</li>
+                                    <ul class="txt-info type-list" th:each="bsnsTyp : ${mmbr.get('bsnsTyps')}">
+                                        <li th:text="${bsnsTyp}" />
                                     </ul>
                                 </li>
                                 <li>
@@ -58,7 +54,8 @@
                                 </li>
                                 <li>
                                     <span class="tit bul-type">회원등급 : </span>
-                                    <span class="txt-info">준회원</span>
+                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('Y')}">정회원</span>
+                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('N')}">준회원</span>
                                 </li>
                             </ul>
                         </div>
