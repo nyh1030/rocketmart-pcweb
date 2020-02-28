@@ -43,6 +43,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
     compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
+    implementation 'org.jetbrains:annotations:15.0'
 }
 
 test {

@@ -18,8 +18,6 @@ public class MemberRepository {
 
     /**
      * 회원 정보 조회
-     * @param memId
-     * @return Map<String, Object>
      */
     public Map<String, Object> findOneForMemInfo(String memId) {
         return this.dslContext.selectFrom(TB_MEM_MST)
@@ -27,6 +25,19 @@ public class MemberRepository {
                 .fetchOneMap();
     }
 
+    /**
+     * 회원중복 체크
+     */
+    public boolean idOverLapChk(String memId) {
+        return this.dslContext.selectCount()
+                .from(TB_MEM_MST)
+                .where(TB_MEM_MST.MEM_ID.eq(memId))
+                .fetchOne().value1() > 0;
+    }
+
+    /**
+     * 회원 가입
+     */
     public int saveOneForMemInfo(TbMemMstRecord memberRecord) {
         return this.dslContext.insertInto(TB_MEM_MST)
                 .set(TB_MEM_MST.ROLE, memberRecord.getRole())

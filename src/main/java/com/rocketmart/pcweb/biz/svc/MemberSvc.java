@@ -20,7 +20,23 @@ public class MemberSvc {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	//회원가입
+
+	/**
+	 * 회원중복 체크
+	 * @param memId
+	 * @return int
+	 *
+	 * Y면 중복아이디 존재, N이면 중복아이디 없음(회원가입가능)
+	 */
+	public boolean idOverLapChk(String memId) {
+		return this.memberRepository.idOverLapChk(memId);
+	}
+
+	/**
+	 * 회원 가입
+	 * @param memberRecord
+	 * @return int
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord) {
 		// 비밀번호 암호화

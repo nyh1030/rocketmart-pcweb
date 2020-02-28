@@ -5,11 +5,11 @@ import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/any/member")
 public class MemberCtl {
 
     private String prefixPath = "fragments/content";
@@ -17,12 +17,19 @@ public class MemberCtl {
     @Autowired
     private MemberSvc memberSvc;
 
-    @PostMapping("/signup")
+    // 회원가입 페이지
+    @GetMapping("/user/signup")
+    public String dispSignup() {
+        return prefixPath.concat("/user/signup");
+    }
+
+    //회원가입 처리
+    @PostMapping("/any/member/signup")
     public String execSignup(TbMemMstRecord memberRecord) {
 
         memberSvc.saveOneForMemInfo(memberRecord);
 
-        return "redirect:/login/signin";
+        return "redirect:/user/signin";
     }
 
 

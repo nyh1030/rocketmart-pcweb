@@ -35,51 +35,39 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        /*http.csrf().disable().httpBasic()
-            .and()
-            .headers().frameOptions().disable()
-            .and()*/
         http.csrf().disable();
-/*
-        http
-            .formLogin()
-            .loginPage("/login.html")
-            .failureUrl("/login-error.html")
-          .and()
-            .logout()
-            .logoutSuccessUrl("/index.html");
-
-
         http.authorizeRequests()
             // 페이지 권한 설정
-*/
-/*            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/seller/**").hasRole("SELLER")
             .antMatchers("/buyer/**").hasRole("BUYER")
-            .antMatchers("/any/**").permitAll()*//*
-
             .antMatchers("/**").permitAll()
-*/
-/*            .and() // 로그인 설정
+            .and() // 로그인 설정
                 .formLogin()
-                .loginPage("/login/signin")
-                .defaultSuccessUrl("/any/login")
-                .permitAll()*//*
-
+                .loginPage("/user/signin")
+                .defaultSuccessUrl("/user/signin/result")
+                .permitAll()
             .and() // 로그아웃 설정
-            .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/")
-            .invalidateHttpSession(true)
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/signout/result"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
             .and()
             // 403 예외처리 핸들링
-            .exceptionHandling().accessDeniedPage("/login/denied");
-*/
+            .exceptionHandling().accessDeniedPage("/user/denied");
+
 
     }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(loginSvc).passwordEncoder(passwordEncoder());
+
+        /*auth.inMemoryAuthentication()
+                .withUser("admin").password("{noop}1").roles("ADMIN","SELLER","BUYER")
+            .and()
+                .withUser("seller").password("{noop}1").roles("SELLER")
+            .and()
+                .withUser("buyer").password("{noop}1").roles("BUYER");*/
     }
 }

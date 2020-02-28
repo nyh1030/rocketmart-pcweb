@@ -16,7 +16,7 @@
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
-                                <form name="signup" th:action="@{/any/member/signup}" method="post">
+                                <form id="signup" name="signup" th:action="@{/any/member/signup}" method="post">
                                     <div class="ps-form__decs form-group user-role">
                                         <div class="ps-radio mb-1">
                                             <input class="form-control" type="radio" id="buyer" name="role" value="BUYER" checked>
@@ -57,19 +57,19 @@
                                         <input class="form-control" type="text" id="companyUrl" name="companyUrl" required="required">
                                     </p>
 
-                                    <div id="buyerType" class="form-row form-group form-row-wide">
-                                        <label for="">Distribution Channel <span class="required">*</span> (multiple choice) </label>
+                                    <div id="buyerType" class="form-row form-group form-row-wide bsnsChannel" required="required">
+                                        <label for="channelLabel">Distribution Channel <span class="required">*</span> (multiple choice) </label>
                                         <div>
                                             <div class="chk-wrap">
                                                 <div class="ps-checkbox">
-                                                    <input class="form-control" type="checkbox" id="offlineYn" name="offlineYn" value="10">
+                                                    <input class="form-control" type="checkbox" id="offlineYn" name="offlineYn" value="Y">
                                                     <label for="offlineYn">Offline</label>
                                                 </div>
                                                 <input class="form-control type-inline" type="text" id="offlineText" name="offlineText" placeholder="ex.) drug store, pharmacy, door-to-door">
                                             </div>
                                             <div class="chk-wrap">
                                                 <div class="ps-checkbox">
-                                                    <input class="form-control" type="checkbox" id="onlineYn" name="onlineYn" value="20">
+                                                    <input class="form-control" type="checkbox" id="onlineYn" name="onlineYn" value="Y">
                                                     <label for="onlineYn">Online</label>
                                                 </div>
                                                 <input class="form-control type-inline" type="text" id="onlineText" name="onlineText" placeholder="ex.) facebook, own shopping mall, shopee">
@@ -77,8 +77,8 @@
                                         </div>
                                     </div>
 
-                                    <div id="sellerType" class="form-group form-row-wide" style="display: none">
-                                        <label for="">사업자유형 <span class="required">*</span> (중복체크가능) </label>
+                                    <div name="sellerType" class="form-group form-row-wide bsnsType" style="display: none" required="required">
+                                        <label for="bsnsLabel">사업자유형 <span class="required">*</span> (중복체크가능) </label>
                                         <div class="ps-checkbox">
                                             <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" value="10">
                                             <label for="bsnsType1">제조업자</label>
@@ -94,30 +94,27 @@
                                     </div>
 
                                     <div class="form-group form-row-wide">
-                                        <label for="bsnsRgstr"> Business Registration <span class="required">*</span></label>
+                                        <label for="bsnsRgstrNm"> Business Registration <span class="required">*</span></label>
                                         <div class="filebox">
-                                            <input class="form-control" id="bsnsRgstr" value="파일선택" disabled="disabled">
-                                            <label for="ex_filename" class="ps-btn type-black">첨부하기</label>
-                                            <input type="file" id="ex_filename" class="upload-hidden">
+                                            <input class="form-control" id="bsnsRgstrNm" value="" readonly >
+                                            <label for="bsnsRgstr" class="ps-btn type-black">File</label>
+                                            <input type="file" id="bsnsRgstr" class="upload-hidden" required="required">
                                         </div>
                                     </div>
 
-                                 <!--   <div class="form-group">
-                                        <label for="">사업자유형* (중복체크가능) </label>
-
-                                    </div>-->
-
-                                    <div class="ps-checkbox agreeContents type-line">
-                                        <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions">
-                                        <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
-                                    </div>
-                                    <div class="ps-checkbox agreeContents">
-                                        <input class="form-control" type="checkbox" id="privacy_policy" name="privacy_policy">
-                                        <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
+                                    <div name="sellerType" class="form-group form-row-wide agreeContents" style="display: none">
+                                        <div class="ps-checkbox type-line" >
+                                            <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions">
+                                            <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
+                                        </div>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="privacy_policy" name="privacy_policy">
+                                            <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group submit mt-5">
-                                        <button type="submit" id="btnRegister" class="ps-btn ps-btn--fullwidth">Register</button>
+                                    <div class="form-group mt-5">
+                                        <button type="submit" id="btnSignup" class="ps-btn ps-btn--fullwidth">Register</button>
                                     </div>
                                 </form>
                             </div>
@@ -134,20 +131,18 @@
 (function($) {
     var signup = {
         init: function() {
-            var form = $('form[name="signup"]');
-            $('.user-role input[type=radio]', form).on('change', this.showSellerForm);
-            $('.form-group input[type=password]', form).keyup(this.confirmPasswordForm);
-            $('#tel', form).keydown(this.ensurePhoneNumber);
             this.inputFileForm();
+            $('.user-role input[type=radio]').on('change', this.showSellerForm);
+            $('.form-group input[type=password]').on('keyup',this.confirmPasswordForm);
+            $('#tel').on('keydown',this.ensurePhoneNumber);
+            $('#signup').on('submit', this.validateForm);
         },
         confirmPasswordForm: function() {
             if('' !== $('#memPwChk').val()){
                 if($('#memPw').val() !== $('#memPwChk').val()){
                     $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');
-                    $("#btnRegister").attr("disabled", "disabled");
                 } else{
                     $('#chkNotice').html('<strong color="#199894b3">Passwords match</strong>');
-                    $("#btnRegister").removeAttr("disabled");
                 }
             }else{
                 $('#chkNotice').html('');
@@ -161,20 +156,20 @@
                 $('label[for="tel"]').html("연락처 <span class=\"required\">*</span>");
                 $('label[for="companyNm"]').html("회사명 <span class=\"required\">*</span>");
                 $('label[for="companyUrl"]').html("회사 또는 브랜드 홈페이지 주소 <span class=\"required\">*</span>");
-                $('label[for="bsnsRgstr"]').html("사업자 등록증 <span class=\"required\">*</span>");
+                $('label[for="bsnsRgstrNm"]').html("사업자 등록증 <span class=\"required\">*</span>");
 
                 $( '#buyerType' ).hide();
-                $( '#sellerType' ).show();
+                $( '[name="sellerType"]' ).show();
             } else {
                 $('#registerText').text("Register An Account");
                 $('label[for="memNm"]').html("Your Name <span class=\"required\">*</span>");
                 $('label[for="tel"]').html("Phone Number <span class=\"required\">*</span>");
                 $('label[for="companyNm"]').html("Company or Shop Name <span class=\"required\">*</span>");
                 $('label[for="companyUrl"]').html("Company or Shop URL <span class=\"required\">*</span>");
-                $('label[for="bsnsRgstr"]').html("Business Registration <span class=\"required\">*</span>");
+                $('label[for="bsnsRgstrNm"]').html("Business Registration <span class=\"required\">*</span>");
 
                 $( '#buyerType' ).show();
-                $( '#sellerType' ).hide();
+                $( '[name="sellerType"]' ).hide();
             }
         },
         ensurePhoneNumber: function(e) {
@@ -195,11 +190,98 @@
                 }
                 $(this).siblings('.form-control').val(fileName);
             });
+        },
+        validateForm: function() {
+                //1. 아이디 중복체크
+                if(!signup.idOverLapChk()){
+                    return false;
+                }
+                //2. 바이어일 경우 채널 등록, 셀러일 경우 사업자유형 등록
+                if(!signup.bsnsTypeChk()){
+                    return false;
+                }
+                //3. 셀러일 경우 이용약관 동의여부
+                if(!signup.sellerAgreeChk()){
+                    return false;
+                }
+
+            return true;
+        },
+        idOverLapChk: function() {
+            var rtn = true;
+            var memId =  $("#memId").val();
+            $.ajax({
+                async: false,
+                type : 'POST',
+                data : memId,
+                url : "/any/restMember/idOverLapChk",
+                dataType : "json",
+                contentType: "application/json; charset=UTF-8",
+                success : function(data) {
+                    if (data) {
+                        if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                            alert("아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.");
+                            $("#memId").focus();
+                        }else{
+                            alert("ID already exists");
+                            $("#memId").focus();
+                        }
+                        //아이디가 중복되었을 경우
+                        rtn = false;
+                    } else {
+                        //아이디가 중복되지않을 경우
+                        rtn = true;
+                    }
+                },
+                error : function(error) {
+                    alert("error : " + error);
+                }
+            });
+
+            return rtn;
+        },
+        bsnsTypeChk: function(){
+            var rtn = true;
+
+            if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                if(0 === $('.bsnsType input[type=checkbox]:checked').length){
+                    alert("사업자 유형을 선택해주세요.")
+                    rtn = false;
+                }
+            }else{
+                if(0 === $('.bsnsChannel input[type=checkbox]:checked').length){
+                    alert("Check Distribution Channel")
+                    rtn = false;
+                }
+            }
+
+            return rtn;
+        },
+        sellerAgreeChk: function() {
+            var rtn = true;
+
+            if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                if(!$('#terms_conditions').is(":checked")){
+                    alert("이용 약관의 내용에 동의하셔야 회원가입이 가능합니다.")
+                    rtn = false;
+                }else if(!$('#privacy_policy').is(":checked")){
+                    alert("개인정보 취급방침의 내용에 동의하셔야 회원가입이 가능합니다.")
+                    rtn = false;
+                }
+
+            }else{
+                rtn = true;
+            }
+
+            return rtn;
         }
     };
+
     $(function() {
         signup.init();
     });
 })(jQuery);
+
+
 </script>
 

@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 
 <header class="header header--market-place-3" data-sticky="true">
     <div class="header__top">
@@ -110,10 +110,9 @@
                             <!-- D : 로그인전 -->
                             <a th:href="@{/user/signin}">Login</a>
                             <a th:href="@{/user/signup}">Register</a>
-                            <!-- D : 로그인후
-                            <a href="my-signin.html">Logout</a>
-                            <a href="my-signin.html">Mypage</a>
-                            -->
+                            <!-- D : 로그인후 -->
+                            <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
+                            <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                         </div>
                     </div>
                 </div>
@@ -166,8 +165,12 @@
                 <div class="ps-block--user-header">
                     <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
-                        <a th:href="@{/user/signin}">Login</a>
-                        <a th:href="@{/user/signup}">Register</a>
+                        <!-- D : 로그인전 -->
+                        <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
+                        <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
+                        <!-- D : 로그인후 -->
+                        <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
+                        <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                     </div>
                 </div>
             </div>
