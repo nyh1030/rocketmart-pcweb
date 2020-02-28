@@ -114,7 +114,7 @@
                                     </div>
 
                                     <div class="form-group mt-5">
-                                        <button type="submit" id="btnSignup" class="ps-btn ps-btn--fullwidth">Register</button>
+                                        <button type="submit" id="btnSignup" class="ps-btn ps-btn--fullwidth" disabled>Register</button>
                                     </div>
                                 </form>
                             </div>
@@ -132,23 +132,26 @@
     var signup = {
         init: function() {
             this.inputFileForm();
-            $('.user-role input[type=radio]').on('change', this.showSellerForm);
+            $('.user-role input[type=radio]').on('change', this.changeMemberForm);
             $('.form-group input[type=password]').on('keyup',this.confirmPasswordForm);
             $('#tel').on('keydown',this.ensurePhoneNumber);
             $('#signup').on('submit', this.validateForm);
         },
+        //비밀번호 확인
         confirmPasswordForm: function() {
             if('' !== $('#memPwChk').val()){
                 if($('#memPw').val() !== $('#memPwChk').val()){
-                    $('#chkNotice').html('<strong color="#f82a2aa3">Passwords do not match</strong>');
+                    $('#chkNotice').html('<strong><font color="#f82a2aa3">Passwords do not match</font></strong>');
+                    $('#btnSignup').prop("disabled", true);
                 } else{
-                    $('#chkNotice').html('<strong color="#199894b3">Passwords match</strong>');
+                    $('#chkNotice').html('<strong><font color="#199894b3">Passwords match</font></strong>');
+                    $('#btnSignup').prop("disabled", false);
                 }
             }else{
                 $('#chkNotice').html('');
             }
         },
-        showSellerForm: function() {
+        changeMemberForm: function() {
             var value = $(this).val();
             if (value === 'SELLER') {
                 $('#registerText').text("계정을 등록해 주세요.");
@@ -203,6 +206,20 @@
                 //3. 셀러일 경우 이용약관 동의여부
                 if(!signup.sellerAgreeChk()){
                     return false;
+                }
+
+                if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                    if(confirm("회원가입을 하시겠습니까?")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }else{
+                    if(confirm("Would you like to Sign up?")){
+                        return true;
+                    }else{
+                        return false;
+                    }
                 }
 
             return true;

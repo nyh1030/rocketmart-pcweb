@@ -52,17 +52,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/user/signin")
                 .defaultSuccessUrl("/user/signin/result")
+                //.failureUrl("/user/signin?error=true")
+                //.failureHandler(authenticationFailureHandler())
                 .permitAll()
             .and() // 로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/signout/result"))
                 .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
             .and()
             // 403 예외처리 핸들링
             .exceptionHandling().accessDeniedPage("/user/denied");
-
-
     }
 
     @Override

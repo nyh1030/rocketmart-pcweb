@@ -24,7 +24,7 @@
                             <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
                             <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
                             <!-- D : 로그인후 -->
-                            <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
+                            <a sec:authorize="isAuthenticated()" th:href="@{/user/signout/result}">Logout</a>
                             <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                         </div>
                     </div>
@@ -85,20 +85,12 @@
                         <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
                         <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
                         <!-- D : 로그인후 -->
-                        <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
+                        <a sec:authorize="isAuthenticated()" th:href="@{/user/signout/result}">Logout</a>
                         <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ps-search--mobile">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
-            <div class="form-group--nest">
-                <input class="form-control" type="text" placeholder="Search something...">
-                <button><i class="icon-magnifier"></i></button>
-            </div>
-        </form>
     </div>
 </header>
 </html>

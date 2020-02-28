@@ -17458,12 +17458,13 @@ html .bg--parallax {
   content: "\5c";
 }
 
-.woocommerce #respond input#submit.disabled,.woocommerce #respond input#submit:disabled,.woocommerce #respond input#submit:disabled[disabled],.woocommerce a.button.disabled,.woocommerce a.button:disabled,.woocommerce a.button:disabled[disabled],.woocommerce button.button.disabled,.woocommerce button.button:disabled,.woocommerce button.button:disabled[disabled],.woocommerce input.button.disabled,.woocommerce input.button:disabled,.woocommerce input.button:disabled[disabled] {
+/*.disabled{
   color: inherit;
   cursor: not-allowed;
   opacity: .5;
   padding: .618em 1em;
-}
+}*/
+
 /* 추가 */
 ul,ol{padding:0;list-style:none;}
 input::placeholder{color:#b8b8b8!important;}

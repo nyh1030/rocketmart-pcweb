@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-
 @Controller
 public class LoginCtl {
 
@@ -37,19 +36,6 @@ public class LoginCtl {
 	// 로그인 처리
 	@GetMapping("/user/signin/result")
 	public String execLogin(Authentication authentication, Model model) {
-
-/*		// 회원정보 조회
-		Map<String, Object> memInfo = memberSvc.findOneForMemInfo(authentication.getName());
-
-		if(memInfo == null){
-			model.addAttribute("msg","login failed");
-		}else{
-			request.getSession().setAttribute("memInfo", memInfo);
-			request.getSession().setMaxInactiveInterval(60*60*6);
-
-			model.addAttribute("msg","login success");
-		}*/
-
 		return "redirect:/";
 	}
 
