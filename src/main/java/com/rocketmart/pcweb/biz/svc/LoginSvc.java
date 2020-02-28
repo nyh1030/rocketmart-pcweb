@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@AllArgsConstructor
 @Service
 public class LoginSvc implements UserDetailsService {
 
