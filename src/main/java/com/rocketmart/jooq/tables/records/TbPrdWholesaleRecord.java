@@ -6,7 +6,7 @@ package com.rocketmart.jooq.tables.records;
 
 import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdWholesaleRecord extends UpdatableRecordImpl<TbPrdWholesaleRecord> implements Record10<Integer, Integer, Long, Long, Long, Integer, String, String, String, String> {
 
-    private static final long serialVersionUID = -1105534793;
+    private static final long serialVersionUID = -624723056;
 
     /**
      * Setter for <code>rocketmart.TB_PRD_WHOLESALE.WHOLESALE_SEQ</code>. 도매가격(FOB) 일련번호

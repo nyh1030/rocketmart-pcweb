@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbAdminContact;
 
 import java.sql.Timestamp;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbAdminContactRecord extends UpdatableRecordImpl<TbAdminContactRecord> implements Record7<Integer, String, String, String, String, String, Timestamp> {
 
-    private static final long serialVersionUID = 1485496999;
+    private static final long serialVersionUID = -335773812;
 
     /**
      * Setter for <code>rocketmart.TB_ADMIN_CONTACT.CONTACT_SEQ</code>. 컨택 일련번호

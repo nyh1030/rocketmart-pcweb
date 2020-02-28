@@ -17,7 +17,7 @@ import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
@@ -55,6 +55,7 @@ public class Keys {
     public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = UniqueKeys0.KEY_TB_BRAND_MST_PRIMARY;
     public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = UniqueKeys0.KEY_TB_CM_AFILE_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = UniqueKeys0.KEY_TB_MEM_MST_PRIMARY;
+    public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = UniqueKeys0.KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
     public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = UniqueKeys0.KEY_TB_PRD_MST_PRIMARY;
     public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = UniqueKeys0.KEY_TB_PRD_WHOLESALE_PRIMARY;
 
@@ -79,6 +80,7 @@ public class Keys {
         public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = Internal.createUniqueKey(TbBrandMst.TB_BRAND_MST, "KEY_TB_BRAND_MST_PRIMARY", TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = Internal.createUniqueKey(TbCmAfile.TB_CM_AFILE, "KEY_TB_CM_AFILE_PRIMARY", TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_PRIMARY", TbMemMst.TB_MEM_MST.MEM_SEQ);
+        public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST.MEM_ID);
         public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = Internal.createUniqueKey(TbPrdMst.TB_PRD_MST, "KEY_TB_PRD_MST_PRIMARY", TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
         public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = Internal.createUniqueKey(TbPrdWholesale.TB_PRD_WHOLESALE, "KEY_TB_PRD_WHOLESALE_PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
     }

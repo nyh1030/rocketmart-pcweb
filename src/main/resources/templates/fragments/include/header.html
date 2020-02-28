@@ -108,8 +108,8 @@
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
-                            <a th:href="@{/user/signin}">Login</a>
-                            <a th:href="@{/user/signup}">Register</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
                             <!-- D : 로그인후 -->
                             <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
                             <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
