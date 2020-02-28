@@ -12,7 +12,7 @@ import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -41,7 +41,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdWholesale extends TableImpl<TbPrdWholesaleRecord> {
 
-    private static final long serialVersionUID = -611970577;
+    private static final long serialVersionUID = -1440236606;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_WHOLESALE</code>

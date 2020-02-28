@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbMemMst extends TableImpl<TbMemMstRecord> {
 
-    private static final long serialVersionUID = 729067017;
+    private static final long serialVersionUID = 1776869818;
 
     /**
      * The reference instance of <code>rocketmart.TB_MEM_MST</code>
@@ -198,7 +198,7 @@ public class TbMemMst extends TableImpl<TbMemMstRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.TB_MEM_MST_IDX_MEM_SEQ, Indexes.TB_MEM_MST_PRIMARY);
+        return Arrays.<Index>asList(Indexes.TB_MEM_MST_IDX_MEM_SEQ, Indexes.TB_MEM_MST_PRIMARY, Indexes.TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX);
     }
 
     @Override
@@ -213,7 +213,7 @@ public class TbMemMst extends TableImpl<TbMemMstRecord> {
 
     @Override
     public List<UniqueKey<TbMemMstRecord>> getKeys() {
-        return Arrays.<UniqueKey<TbMemMstRecord>>asList(Keys.KEY_TB_MEM_MST_PRIMARY);
+        return Arrays.<UniqueKey<TbMemMstRecord>>asList(Keys.KEY_TB_MEM_MST_PRIMARY, Keys.KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX);
     }
 
     @Override

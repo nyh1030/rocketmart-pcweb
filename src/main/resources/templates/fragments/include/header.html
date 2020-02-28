@@ -5,99 +5,12 @@
         <div class="container">
             <div class="header__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle"><span> Brands</span></div>
-                    <div class="menu__content">
-                        <ul class="menu--dropdown">
-                            <!--<li class="current-menu-item "><a href="#"><i class="icon-star"></i> Brands</a>
-                            </li>-->
-                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon-laundry"></i> Consumer Electronic</a>
-                                <div class="mega-menu">
-                                    <div class="mega-menu__column">
-                                        <h4>Electronic<span class="sub-toggle"></span></h4>
-                                        <ul class="mega-menu__list">
-                                            <li class="current-menu-item "><a href="#">Home Audio &amp; Theathers</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">TV &amp; Videos</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Camera, Photos &amp; Videos</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Cellphones &amp; Accessories</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Headphones</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Videosgames</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Wireless Speakers</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Office Electronic</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="mega-menu__column">
-                                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
-                                        <ul class="mega-menu__list">
-                                            <li class="current-menu-item "><a href="#">Digital Cables</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Batteries</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-shirt"></i> Clothing &amp; Apparel</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-lampshade"></i> Home, Garden &amp; Kitchen</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-heart-pulse"></i> Health &amp; Beauty</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-diamond2"></i> Yewelry &amp; Watches</a>
-                            </li>
-                            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#"><i class="icon-desktop"></i> Computer &amp; Technology</a>
-                                <div class="mega-menu">
-                                    <div class="mega-menu__column">
-                                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
-                                        <ul class="mega-menu__list">
-                                            <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Laptop</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Monitors</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Networking</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Computer Components</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Security &amp; Protection</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Gaming Laptop</a>
-                                            </li>
-                                            <li class="current-menu-item "><a href="#">Accessories</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-baby-bottle"></i> Babies &amp; Moms</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-baseball"></i> Sport &amp; Outdoor</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-smartphone"></i> Phones &amp; Accessories</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-book2"></i> Books &amp; Office</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-car-siren"></i> Cars &amp; Motocycles</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-wrench"></i> Home Improments</a>
-                            </li>
-                            <li class="current-menu-item "><a href="#"><i class="icon-tag"></i> Vouchers &amp; Services</a>
-                            </li>
-                        </ul>
+                    <div class="menu__toggle">
+                        <a href="#">Category</a>
+                        <a href="#">Brands</a>
                     </div>
-                </div><a class="ps-logo" href="index.html">rocket<span>mart</span></a>
+                </div>
+                <a class="ps-logo" href="index.html">rocket<span>mart</span></a>
             </div>
             <div class="header__center">
             </div>
@@ -108,8 +21,8 @@
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
-                            <a th:href="@{/user/signin}">Login</a>
-                            <a th:href="@{/user/signup}">Register</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
                             <!-- D : 로그인후 -->
                             <a sec:authorize="isAuthenticated()" th:href="@{/user/signout}">Logout</a>
                             <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
@@ -123,7 +36,10 @@
         <div class="container">
             <div class="navigation__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle active"><span> Brands</span></div>
+                    <div class="menu__toggle">
+                        <a href="#">Category</a>
+                        <a href="#">Brands</a>
+                    </div>
                     <div class="menu__content"></div>
                 </div>
             </div>

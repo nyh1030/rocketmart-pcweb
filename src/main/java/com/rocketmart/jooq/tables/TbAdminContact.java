@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbAdminContact extends TableImpl<TbAdminContactRecord> {
 
-    private static final long serialVersionUID = 2003530180;
+    private static final long serialVersionUID = 1468917137;
 
     /**
      * The reference instance of <code>rocketmart.TB_ADMIN_CONTACT</code>

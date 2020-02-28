@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
@@ -35,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = -1128423457;
+    private static final long serialVersionUID = -782384500;
 
     /**
      * The reference instance of <code>rocketmart</code>
