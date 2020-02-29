@@ -2,6 +2,7 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +25,18 @@ public class MemberRestCtl {
         return memberSvc.idOverLapChk(memId);
     }
 
+    /**
+     * 회원 승인 처리
+     * @return msg
+     */
+    @PostMapping("/any/restMember/execApproval")
+    public String execApproval(String mmbrId, String apprvlYn) {
+
+        String msg = "";
+
+        // 회원 승인 처리
+        msg = memberSvc.execApprovalMember(mmbrId, apprvlYn);
+
+        return msg;
+    }
 }

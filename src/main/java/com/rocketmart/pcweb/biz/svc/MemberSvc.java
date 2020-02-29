@@ -99,4 +99,35 @@ public class MemberSvc {
 
 		return mmbrMap;
 	}
+
+	/**
+	 * 회원 승인 처리
+	 * @param mmbrId
+	 * @param flag
+	 * @return retMsg
+	 */
+	public String execApprovalMember(String mmbrId, String flag) {
+
+		String retMsg = "";        // Return Message
+		int ret = 0;
+
+		try {
+
+			// 회원 승인 처리
+			ret = memberRepository.execApprovalMemInfo(mmbrId, flag);
+
+			System.out.println(" ::::: " + ret);
+
+			if(ret > 0) {
+				retMsg = "Success";
+			}else {
+				retMsg = "Failed";
+			}
+		}catch(Exception e) {
+
+			retMsg = "Error";
+		}
+
+		return retMsg;
+	}
 }
