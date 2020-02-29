@@ -24,6 +24,10 @@
                             <span class="ab-r date">last updated: <span th:text="${mmbr.get('UPD_TS')}"></span></span>
                         </div>
                         <div class="ps-block__content">
+                            <form id="sllrFrm" method="post" action="">
+                                <input type="hidden" name="mmbrId" class="mmbrId" th:value="${mmbr.get('MEM_ID')}" />
+                                <input type="hidden" name="apprvlYn" class="apprvlYn" value="" />
+                            </form>
                             <ul class="info-list">
                                 <li>
                                     <span class="tit-info bul-type">회사명 : </span>
@@ -60,7 +64,10 @@
                             </ul>
                         </div>
                         <div class="btns">
-                            <button type="button" id="btnTest" class="ps-btn type-black">승인</button>
+                            <button type="button" id="btnApprvl" class="ps-btn type-black"
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('N')}" th:value="Y">승인</button>
+                            <button type="button" id="btnApprvl" class="ps-btn type-black"
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('Y')}" th:value="N">승인취소</button>
                             <button type="button" id="btnSave" class="ps-btn type-black">수정하기</button>
                         </div>
                     </div>
@@ -70,5 +77,49 @@
         </div>
         <!-- //.container : E -->
     </div>
+
+    <script type="text/javascript">
+        (function(){
+            var form = null;    // form Obj
+            var apprvlYn = "";  // 승인여부
+            var btnText = "";   // 버튼 Text
+
+            var excApprvl = {
+               init : function() {
+                   this.clickEventListener();
+               },
+               clickEventListener : function() {
+                   $("#btnApprvl").click(function(){
+
+                       apprvlYn = this.value;
+                       btnText = this.innerText;
+                       form = $("#sllrFrm");
+                       form.find(".apprvlYn").val(apprvlYn);
+
+                       if(confirm(btnText +" 하시겠습니까?")) {
+                           $.ajax({
+                               type : 'POST',
+                               data : form.serialize(),
+                               url : "/any/restMember/execApproval",
+                               dataType : "text",
+                               success : function(data) {
+
+                                   if(data == "Success") {
+                                       alert(btnText + "되었습니다.");
+                                       location.reload();
+                                   }
+                               },
+                               error : function() {
+                                   alert("Error");
+                               }
+                           });
+                       }
+                   });
+               }
+           }
+
+           excApprvl.init();
+        }(jQuery));
+    </script>
 </th:block>
 </html>

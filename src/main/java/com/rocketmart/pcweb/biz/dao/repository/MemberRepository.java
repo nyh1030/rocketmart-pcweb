@@ -67,4 +67,17 @@ public class MemberRepository {
                 .set(TB_MEM_MST.UPD_USR_ID, "system")
                 .execute();
     }
+
+    /**
+     * 회원 승인 처리
+     * @param mmbrId
+     * @param flag
+     * @return
+     */
+    public int execApprovalMemInfo(String mmbrId, String flag) {
+        return this.dslContext.update(TB_MEM_MST)
+                .set(TB_MEM_MST.APPROVAL_YN, flag)
+                .where(TB_MEM_MST.MEM_ID.eq(mmbrId))
+                .execute();
+    }
 }

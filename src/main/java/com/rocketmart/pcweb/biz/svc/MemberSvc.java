@@ -30,7 +30,7 @@ public class MemberSvc {
 	 * Y면 중복아이디 존재, N이면 중복아이디 없음(회원가입가능)
 	 */
 	public boolean idOverLapChk(String memId) {
-		return memberRepository.idOverLapChk(memId);
+		return this.memberRepository.idOverLapChk(memId);
 	}
 
 	/**
@@ -39,12 +39,16 @@ public class MemberSvc {
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public int saveOneForMemInfo(TbMemMstRecord memberRecord) {
+	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord) {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
 
-		return memberRepository.saveOneForMemInfo(memberRecord);
+		int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
+		Map<String, Object> returnMap = new HashMap<>();
+		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
+		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");
+		return returnMap;
 	}
 
 	/**
@@ -97,18 +101,36 @@ public class MemberSvc {
 		return mmbrMap;
 	}
 
+	/**
+	 * 회원 승인 처리
+	 * @param mmbrId
+	 * @param flag
+	 * @return retMsg
+	 */
+	public String execApprovalMember(String mmbrId, String flag) {
 
+		String retMsg = "";        // Return Message
+		int ret = 0;
 
+		try {
 
+			// 회원 승인 처리
+			ret = memberRepository.execApprovalMemInfo(mmbrId, flag);
 
+			System.out.println(" ::::: " + ret);
 
+			if(ret > 0) {
+				retMsg = "Success";
+			}else {
+				retMsg = "Failed";
+			}
+		}catch(Exception e) {
 
+			retMsg = "Error";
+		}
 
-
-
-
-
-
+		return retMsg;
+	}
 
 	/**
 	 * 회원 목록 조회
