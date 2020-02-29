@@ -13754,8 +13754,12 @@ textarea.form-control {
   }
 }
 
+.ps-my-signin {
+  background-color: #f1f1f1;
+}
+
 .ps-my-account {
-  min-height: 100vh;
+  min-height: 91vh;
   background-color: #f1f1f1;
 }
 
@@ -16488,6 +16492,7 @@ textarea.form-control {
   -webkit-box-pack: justify;
           justify-content: space-between;
   padding-bottom: 35px;
+  padding-top: 35px;
 }
 
 .ps-footer__links {
