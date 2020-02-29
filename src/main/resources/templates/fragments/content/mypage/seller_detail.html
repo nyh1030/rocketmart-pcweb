@@ -68,7 +68,7 @@
                                     th:if="${mmbr.get('APPROVAL_YN').equals('N')}" th:value="Y">승인</button>
                             <button type="button" id="btnApprvl" class="ps-btn type-black"
                                     th:if="${mmbr.get('APPROVAL_YN').equals('Y')}" th:value="N">승인취소</button>
-                            <button type="button" id="btnSave" class="ps-btn type-black">수정하기</button>
+                            <button type="button" id="btnMdfy" class="ps-btn type-black">수정하기</button>
                         </div>
                     </div>
                 </div>
@@ -84,17 +84,20 @@
             var apprvlYn = "";  // 승인여부
             var btnText = "";   // 버튼 Text
 
-            var excApprvl = {
+            var exct = {
                init : function() {
+
+                   form = $("#sllrFrm");
                    this.clickEventListener();
                },
                clickEventListener : function() {
+
+                   // 승인버튼 클릭 Event
                    $("#btnApprvl").click(function(){
 
                        apprvlYn = this.value;
                        btnText = this.innerText;
-                       form = $("#sllrFrm");
-                       form.find(".apprvlYn").val(apprvlYn);
+                       form.find(".apprvlYn").val(apprvlYn);    // Button 값 hidden 저장
 
                        if(confirm(btnText +" 하시겠습니까?")) {
                            $.ajax({
@@ -115,10 +118,17 @@
                            });
                        }
                    });
+
+                   // 수정하기 버튼 클릭 Event
+                   $("#btnMdfy").click(function() {
+
+                       form.attr("action", "/seller/seller_modify");
+                       form.submit();
+                   });
                }
            }
 
-           excApprvl.init();
+            exct.init();
         }(jQuery));
     </script>
 </th:block>

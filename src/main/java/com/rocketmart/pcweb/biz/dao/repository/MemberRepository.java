@@ -69,6 +69,21 @@ public class MemberRepository {
     }
 
     /**
+     * 판매자 정보 수정
+     * @param mmbrRcrd
+     * @return
+     */
+    public int execModifySellerInfo(TbMemMstRecord mmbrRcrd) {
+        return this.dslContext.update(TB_MEM_MST)
+                .set(TB_MEM_MST.MEM_NM, mmbrRcrd.getMemNm())
+                .set(TB_MEM_MST.TEL, mmbrRcrd.getTel())
+                .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
+                .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
+                .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
+                .execute();
+    }
+
+    /**
      * 회원 승인 처리
      * @param mmbrId
      * @param flag

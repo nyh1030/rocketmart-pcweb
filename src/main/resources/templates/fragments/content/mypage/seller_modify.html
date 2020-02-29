@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-page--my-account">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li>Resister</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ps-my-account">
+            <div class="container">
+                <div class="register ps-form--account ps-tab-root">
+                    <div class="ps-tabs">
+                        <div class="ps-tab active" id="register">
+                            <div class="ps-form__content">
+                                <form id="sllrFrm" method="post" action="">
+                                    <h4 id="registerText">계정정보</h4>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" id="memId" name="memId"
+                                               required="required" th:value="${mmbr.get('MEM_ID')}" th:readonly="readonly" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" id="memPw" name="memPw" required="required">
+                                        <!--<span th:text="${mmbr.get('MEM_PW')}" />-->
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" id="memPwChk" name="memPwChk" required="required">
+                                        <small id="chkNotice"></small>
+                                    </div>
+
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="memNm">담당자 이름(직급) <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="memNm" name="memNm"
+                                               required="required" th:value="${mmbr.get('MEM_NM')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="tel">연락처 <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="tel" name="tel"
+                                               required="required" th:value="${mmbr.get('TEL')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyNm">회사명 <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyNm" name="companyNm"
+                                               required="required" th:value="${mmbr.get('COMPANY_NM')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyUrl">회사 또는 브랜드 홈페이지 주소 <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyUrl" name="companyUrl"
+                                               required="required" th:value="${mmbr.get('COMPANY_URL')}" />
+                                    </p>
+
+                                    <div name="sellerType" class="form-group form-row-wide bsnsType" style="display: none" required="required">
+                                        <label>사업자유형 <span class="required">*</span> (중복체크가능) </label>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" value="10">
+                                            <label for="bsnsType1">제조업자</label>
+                                        </div>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="bsnsType2" name="bsnsType" value="20">
+                                            <label for="bsnsType2">책임판매업자</label>
+                                        </div>
+                                        <div class="ps-checkbox">
+                                            <input class="form-control" type="checkbox" id="bsnsType3" name="bsnsType" value="30">
+                                            <label for="bsnsType3">도매/소매 유통업자</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-row-wide">
+                                        <label for="bsnsRgstrNm"> 사업자 등록증 <span class="required">*</span></label>
+                                        <div class="filebox">
+                                            <input class="form-control" id="bsnsRgstrNm" value="" readonly >
+                                            <label for="bsnsRgstr" class="ps-btn type-black">File</label>
+                                            <input type="file" id="bsnsRgstr" class="upload-hidden" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-5" style="text-align: center;">
+                                        <button type="button" id="btnMdfy" class="ps-btn ps-btn--fullwidth"
+                                                style="width: 48%;">수정</button>
+                                        <button type="button" id="btnCncl" class="ps-btn ps-btn--fullwidth"
+                                                style="width: 48%;">취소</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function(){
+            var form = null;    // form Obj
+
+            var exct = {
+                init : function() {
+                    form = $("#sllrFrm");
+                    this.clickEventListener();
+                },
+                clickEventListener : function() {
+
+                    // 수정 버튼 클릭 Event
+                    $("#btnMdfy").click(function(){
+
+                        if(confirm("수정하시겠습니까?")) {
+
+                            form.attr("action", "/seller/execSellerModify");
+                            form.submit();
+                        }
+                    });
+
+                    // 취소 버튼 클릭 Event
+                    $("#btnCncl").click(function() {
+                        alert("btnCncl");
+                    });
+                }
+            }
+
+            exct.init();
+        }(jQuery));
+    </script>
+</th:block>
+</html>

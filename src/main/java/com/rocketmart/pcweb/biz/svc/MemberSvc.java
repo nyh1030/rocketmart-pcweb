@@ -54,25 +54,26 @@ public class MemberSvc {
 	/**
 	 * 회원 정보 조회
 	 * @param mmbrId
-	 * @param roleNm
-	 * @return
+	 * @return mmbrMap
 	 */
-	public Map<String, Object> findOneForMemInfo(String mmbrId, String roleNm) {
+	public Map<String, Object> findOneForMemInfo(String mmbrId) {
 
 		Map<String, Object> mmbrMap = null;		// 회원정보 Map
 		Object bsnsTyp = null;				// 사업자유형
 		String[] bsnsTypCdArr = null;		// 사업자유형 코드 Array
 		String[] bsnsTypNmArr = null;		//  사업자유형 코드명 Array
+		String role = "";	// 역할
 		int indx = 0;
 
 		// 회원정보 조회
 		mmbrMap = this.memberRepository.findOneForMemInfo(mmbrId);
+		role = String.valueOf(mmbrMap.get("ROLE"));
 
-		if(roleNm.equals("admin")) {	// 관리자
+		if(role.equals("admin")) {	// 관리자
 
-		}else if(roleNm.equals("buyer")) {	// 구매자
+		}else if(role.equals("buyer")) {	// 구매자
 
-		}else if(roleNm.equals("seller")) {	// 판매자
+		}else if(role.equals("seller")) {	// 판매자
 
 			bsnsTyp = mmbrMap.get("BSNS_TYPE");	// 사업자유형
 
@@ -99,6 +100,15 @@ public class MemberSvc {
 		}
 
 		return mmbrMap;
+	}
+
+	/**
+	 * 판매자 정보 수정
+	 * @param mmbrRcrd
+	 * @return int
+	 */
+	public int execModifySellerInfo(TbMemMstRecord mmbrRcrd) {
+		return this.memberRepository.execModifySellerInfo(mmbrRcrd);
 	}
 
 	/**

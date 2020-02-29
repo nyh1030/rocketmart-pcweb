@@ -4,9 +4,6 @@ import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +19,7 @@ public class MemberCtl {
     private MemberSvc memberSvc;
 
     // 회원가입 페이지
-    @GetMapping("/any/signup")
+    @GetMapping("/user/signup")
     public String dispSignup() {
         return prefixPath.concat("/user/signup");
     }
@@ -33,17 +30,53 @@ public class MemberCtl {
 
         memberSvc.saveOneForMemInfo(memberRecord);
 
-        return "redirect:/any/signin";
+        return "redirect:/user/signin";
     }
 
-    //회원목록(어드민)
-    @PostMapping("/admin/member/list")
-    public String dispMemberList(Model model) {
+    /**
+     * 판매자 정보조회
+     * @param model
+     * @return String
+     */
+    @GetMapping("/seller/seller_detail")
+    public String seller_info(Model model) {
 
-        model.addAttribute("memList", memberSvc.findAllForMemInfo());
-
-        return prefixPath.concat("/mypage/member_list");
+        // 회사정보 조회
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("123123123@asd.com"));
+        return prefixPath.concat("/mypage/seller_detail");
     }
 
+    /**
+     * 판매자 수정화면
+     * @param model
+     * @param mmbrId
+     * @return String
+     */
+    @PostMapping("/seller/seller_modify")
+    public String seller_modify(Model model, String mmbrId) {
+
+
+        System.out.println(" ::: " + mmbrId);
+        // 회사정보 조회
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+
+        return prefixPath.concat("/mypage/seller_modify");
+    }
+
+    /**
+     * 판매자 정보수정
+     * @param mmbrRcrd
+     * @return String
+     */
+    @PostMapping("/seller/execSellerModify")
+    public String execSellerModify(TbMemMstRecord mmbrRcrd) {
+
+        int ret = 0;
+
+        // 판매자 정보수정
+        ret = memberSvc.execModifySellerInfo(mmbrRcrd);
+
+        return "redirect:/seller/seller_detail";
+    }
 }
 

@@ -19,16 +19,6 @@ public class MainCtl {
         return "/index";
     }
 
-    // 회사정보
-    @GetMapping("/seller_info")
-    public String seller_info(Model model) {
-
-        // 회사정보 조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("123123123@asd.com", "seller"));
-
-        return prefixPath.concat("/mypage/seller_detail");
-    }
-
     // contact us > 조회
     @GetMapping("/contact_list")
     public String contact_list() {
