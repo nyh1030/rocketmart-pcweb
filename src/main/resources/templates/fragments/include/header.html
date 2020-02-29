@@ -10,7 +10,7 @@
                         <a href="#">Brands</a>
                     </div>
                 </div>
-                <a class="ps-logo" href="index.html">rocket<span>mart</span></a>
+                <a class="ps-logo" th:href="@{/}">rocket<span>mart</span></a>
             </div>
             <div class="header__center">
             </div>
@@ -21,10 +21,10 @@
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
-                            <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
-                            <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">Register</a>
                             <!-- D : 로그인후 -->
-                            <a sec:authorize="isAuthenticated()" th:href="@{/user/signout/result}">Logout</a>
+                            <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                             <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                         </div>
                     </div>
@@ -82,10 +82,10 @@
                     <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
                         <!-- D : 로그인전 -->
-                        <a sec:authorize="isAnonymous()" th:href="@{/user/signin}">Login</a>
-                        <a sec:authorize="isAnonymous()" th:href="@{/user/signup}">Register</a>
+                        <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
+                        <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">Register</a>
                         <!-- D : 로그인후 -->
-                        <a sec:authorize="isAuthenticated()" th:href="@{/user/signout/result}">Logout</a>
+                        <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                         <a sec:authorize="isAuthenticated()" th:href="@{/member/mypage}">Mypage</a>
                     </div>
                 </div>

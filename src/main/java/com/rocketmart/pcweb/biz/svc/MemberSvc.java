@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -29,7 +30,7 @@ public class MemberSvc {
 	 * Y면 중복아이디 존재, N이면 중복아이디 없음(회원가입가능)
 	 */
 	public boolean idOverLapChk(String memId) {
-		return this.memberRepository.idOverLapChk(memId);
+		return memberRepository.idOverLapChk(memId);
 	}
 
 	/**
@@ -38,16 +39,12 @@ public class MemberSvc {
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord) {
+	public int saveOneForMemInfo(TbMemMstRecord memberRecord) {
 		// 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
 
-		int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
-		Map<String, Object> returnMap = new HashMap<>();
-		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
-		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");
-		return returnMap;
+		return memberRepository.saveOneForMemInfo(memberRecord);
 	}
 
 	/**
@@ -98,5 +95,28 @@ public class MemberSvc {
 		}
 
 		return mmbrMap;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * 회원 목록 조회
+	 * @param
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForMemInfo() {
+		return memberRepository.findAllForMemInfo();
+
 	}
 }

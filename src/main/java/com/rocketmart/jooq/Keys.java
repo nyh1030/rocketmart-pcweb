@@ -4,16 +4,16 @@
 package com.rocketmart.jooq;
 
 
-import com.rocketmart.jooq.tables.TbAdminContact;
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbOtherContactUs;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
-import com.rocketmart.jooq.tables.records.TbAdminContactRecord;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbCmAfileRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
+import com.rocketmart.jooq.tables.records.TbOtherContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
 
@@ -51,11 +51,11 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<TbAdminContactRecord> KEY_TB_ADMIN_CONTACT_PRIMARY = UniqueKeys0.KEY_TB_ADMIN_CONTACT_PRIMARY;
     public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = UniqueKeys0.KEY_TB_BRAND_MST_PRIMARY;
     public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = UniqueKeys0.KEY_TB_CM_AFILE_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = UniqueKeys0.KEY_TB_MEM_MST_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = UniqueKeys0.KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
+    public static final UniqueKey<TbOtherContactUsRecord> KEY_TB_OTHER_CONTACT_US_PRIMARY = UniqueKeys0.KEY_TB_OTHER_CONTACT_US_PRIMARY;
     public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = UniqueKeys0.KEY_TB_PRD_MST_PRIMARY;
     public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = UniqueKeys0.KEY_TB_PRD_WHOLESALE_PRIMARY;
 
@@ -76,11 +76,11 @@ public class Keys {
     }
 
     private static class UniqueKeys0 {
-        public static final UniqueKey<TbAdminContactRecord> KEY_TB_ADMIN_CONTACT_PRIMARY = Internal.createUniqueKey(TbAdminContact.TB_ADMIN_CONTACT, "KEY_TB_ADMIN_CONTACT_PRIMARY", TbAdminContact.TB_ADMIN_CONTACT.CONTACT_SEQ);
         public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = Internal.createUniqueKey(TbBrandMst.TB_BRAND_MST, "KEY_TB_BRAND_MST_PRIMARY", TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = Internal.createUniqueKey(TbCmAfile.TB_CM_AFILE, "KEY_TB_CM_AFILE_PRIMARY", TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_PRIMARY", TbMemMst.TB_MEM_MST.MEM_SEQ);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST.MEM_ID);
+        public static final UniqueKey<TbOtherContactUsRecord> KEY_TB_OTHER_CONTACT_US_PRIMARY = Internal.createUniqueKey(TbOtherContactUs.TB_OTHER_CONTACT_US, "KEY_TB_OTHER_CONTACT_US_PRIMARY", TbOtherContactUs.TB_OTHER_CONTACT_US.CONTACT_SEQ);
         public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = Internal.createUniqueKey(TbPrdMst.TB_PRD_MST, "KEY_TB_PRD_MST_PRIMARY", TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
         public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = Internal.createUniqueKey(TbPrdWholesale.TB_PRD_WHOLESALE, "KEY_TB_PRD_WHOLESALE_PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
     }

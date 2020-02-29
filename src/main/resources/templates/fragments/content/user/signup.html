@@ -114,7 +114,7 @@
                                     </div>
 
                                     <div class="form-group mt-5">
-                                        <button type="submit" id="btnSignup" class="ps-btn ps-btn--fullwidth" disabled>Register</button>
+                                        <button type="submit" id="btnSave" class="ps-btn ps-btn--fullwidth" disabled>Register</button>
                                     </div>
                                 </form>
                             </div>
@@ -142,10 +142,10 @@
             if('' !== $('#memPwChk').val()){
                 if($('#memPw').val() !== $('#memPwChk').val()){
                     $('#chkNotice').html('<strong><font color="#f82a2aa3">Passwords do not match</font></strong>');
-                    $('#btnSignup').prop("disabled", true);
+                    $('#btnSave').prop("disabled", true);
                 } else{
                     $('#chkNotice').html('<strong><font color="#199894b3">Passwords match</font></strong>');
-                    $('#btnSignup').prop("disabled", false);
+                    $('#btnSave').prop("disabled", false);
                 }
             }else{
                 $('#chkNotice').html('');

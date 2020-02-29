@@ -1,29 +1,19 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
-import com.rocketmart.pcweb.biz.svc.MemberSvc;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @Controller
 public class LoginCtl {
 
-	@Autowired
-	private MemberSvc memberSvc;
-
 	private String prefixPath = "fragments/content";
 
 	// 로그인 페이지
-	@GetMapping("/user/signin")
+	@GetMapping("/any/signin")
 	public String dispSignin(HttpServletRequest request) {
-		String returnUrl = "";
+		String returnUrl;
 		if(request.getSession().getAttribute("memInfo") != null){
 			returnUrl = "redirect:/";
 		}else{
@@ -34,13 +24,13 @@ public class LoginCtl {
 	}
 
 	// 로그인 처리
-	@GetMapping("/user/signin/result")
-	public String execLogin(Authentication authentication, Model model) {
+	@GetMapping("/any/signin/result")
+	public String execLogin() {
 		return "redirect:/";
 	}
 
 	// 로그아웃 처리
-	@GetMapping("/user/signout/result")
+	@GetMapping("/any/signout/result")
 	public String dispLogout() {
 		return "redirect:/";
 	}

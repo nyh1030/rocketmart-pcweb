@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a th:href="@{/mypage/member_list}" class="active">회원목록</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/mypage/inquiry_list}">Inquiry</a></li>
+                            <li><a th:href="@{/mypage/contact_list}">ContactUs</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    회원목록
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+</th:block>
+</html>
