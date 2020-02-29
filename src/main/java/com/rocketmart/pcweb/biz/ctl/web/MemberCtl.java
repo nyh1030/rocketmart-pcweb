@@ -76,6 +76,8 @@ public class MemberCtl {
         // 판매자 정보수정
         ret = memberSvc.execModifySellerInfo(mmbrRcrd);
 
+        System.out.print("TEST");
+
         return "redirect:/seller/seller_detail";
     }
 
