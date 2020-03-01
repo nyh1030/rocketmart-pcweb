@@ -24,6 +24,18 @@ public class MemberCtl {
         return prefixPath.concat("/user/signup");
     }
 
+    // 이용약관 페이지
+    @GetMapping("/any/privacyPolicy")
+    public String dispPrivacyPolicy() {
+        return prefixPath.concat("/user/privacyPolicy");
+    }
+
+    // 개인정보동의 페이지
+    @GetMapping("/any/termsConditions")
+    public String dispTermsConditions() {
+        return prefixPath.concat("/user/termsConditions");
+    }
+
     //회원가입 처리
     @PostMapping("/any/member/signup")
     public String execSignup(TbMemMstRecord memberRecord) {
