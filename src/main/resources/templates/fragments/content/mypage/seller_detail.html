@@ -46,8 +46,8 @@
                                 </li>
                                 <li>
                                     <span class="tit bul-type">사업자 유형</span>
-                                    <ul class="txt-info type-list" th:each="bsnsTyp : ${mmbr.get('bsnsTyps')}">
-                                        <li th:text="${bsnsTyp}" />
+                                    <ul class="txt-info type-list" th:each="bsnsType : ${mmbr.get('bsnsList')}">
+                                        <li th:if="${bsnsType.get('chckFlg') == true}" th:text="|- ${bsnsType.get('bsnsCdNm')}|" />
                                     </ul>
                                 </li>
                                 <li>

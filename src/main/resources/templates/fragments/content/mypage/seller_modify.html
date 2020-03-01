@@ -52,19 +52,14 @@
                                                required="required" th:value="${mmbr.get('COMPANY_URL')}" />
                                     </p>
 
-                                    <div name="sellerType" class="form-group form-row-wide bsnsType" style="display: none" required="required">
+                                    <div name="sellerType" class="form-group form-row-wide bsnsType" required="required">
                                         <label>사업자유형 <span class="required">*</span> (중복체크가능) </label>
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType1" name="bsnsType" value="10">
-                                            <label for="bsnsType1">제조업자</label>
-                                        </div>
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType2" name="bsnsType" value="20">
-                                            <label for="bsnsType2">책임판매업자</label>
-                                        </div>
-                                        <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="bsnsType3" name="bsnsType" value="30">
-                                            <label for="bsnsType3">도매/소매 유통업자</label>
+                                        <div th:each="bsnsType, index : ${mmbr.get('bsnsList')}">
+                                            <div class="ps-checkbox">
+                                                <input class="form-control" type="checkbox" th:id="|bsnsType${index.index + 1}|" name="bsnsType"
+                                                    th:value="${bsnsType.get('bsnsCd')}" th:checked="${bsnsType.get('chckFlg')}" />
+                                                <label for="bsnsType1" th:text="${bsnsType.get('bsnsCdNm')}" />
+                                            </div>
                                         </div>
                                     </div>
 
