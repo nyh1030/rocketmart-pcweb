@@ -3500,6 +3500,10 @@ textarea.form-control {
   background-color: #f1f1f1;
 }
 
+.ps-page--shop .ps-breadcrumb{
+  background:#fff;
+}
+
 .ps-breadcrumb .breadcrumb {
   display: inline-block;
   margin: 0;
@@ -14649,10 +14653,6 @@ textarea.form-control {
   font-weight: 700;
   color: #000;
   font-size: 24px;
-}
-
-#shop-sidebar .ps-layout--shop {
-  padding-top: 30px;
 }
 
 #contact-us .ps-breadcrumb {
