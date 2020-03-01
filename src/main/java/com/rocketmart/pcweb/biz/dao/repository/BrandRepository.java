@@ -38,6 +38,14 @@ public class BrandRepository {
 				.fetchOneMap();
 	}
 
+	public List<Map<String, Object>> findBrandByUsrId(String usrId) {
+		return this.dslContext.select(
+				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM)
+				.from(TB_BRAND_MST)
+				.where(TB_BRAND_MST.REG_USR_ID.equal(usrId))
+				.fetchMaps();
+	}
+
 	public int saveOneForBrandInfo(BrandDto brandDto) {
 		return this.dslContext.insertInto(TB_BRAND_MST)
 				.columns(TB_BRAND_MST.BRAND_NM, TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ, TB_BRAND_MST.BRAND_OWNERSHIP,
@@ -48,4 +56,5 @@ public class BrandRepository {
 						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), "ADMIN", "ADMIN")
 				.execute();
 	}
+
 }

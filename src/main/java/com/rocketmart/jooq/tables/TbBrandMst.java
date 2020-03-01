@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = -483410732;
+    private static final long serialVersionUID = 820626539;
 
     /**
      * The reference instance of <code>rocketmart.TB_BRAND_MST</code>
@@ -101,7 +101,12 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     /**
      * The column <code>rocketmart.TB_BRAND_MST.BRAND_INTRODUCTION</code>. 브랜드 소개
      */
-    public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.VARCHAR(2000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 소개");
+    public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 소개");
+
+    /**
+     * The column <code>rocketmart.TB_BRAND_MST.DEL_YN</code>. 삭제여부
+     */
+    public final TableField<TbBrandMstRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
      * The column <code>rocketmart.TB_BRAND_MST.REG_USR_ID</code>. 등록자 아이디
@@ -208,11 +213,11 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Integer, String, Integer, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<Integer, String, Integer, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }

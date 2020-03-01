@@ -34,14 +34,14 @@ public class FileUtils {
 	private String filePath;
 
 	public String uploadFile(MultipartFile file, String themaRelmCd, String regMenuPart) {
-		int afileSeq = this.fileRepository.findOneForMaxSeq(regMenuPart) + 1;
+		int afileSeq = this.fileRepository.findOneForMaxSeq() + 1;
 		boolean isSuccess = this.saveFile(file, afileSeq, 1, themaRelmCd, regMenuPart).equals(ApiBusiness.OK.getCode());
 		return isSuccess ? String.valueOf(afileSeq) : "0";
 	}
 
 	public String uploadFiles(MultipartFile[] files, String themaRelmCd, String regMenuPart) {
 		AtomicInteger afileNo = new AtomicInteger(1);
-		int afileSeq = this.fileRepository.findOneForMaxSeq(regMenuPart) + 1;
+		int afileSeq = this.fileRepository.findOneForMaxSeq() + 1;
 		Arrays.stream(files).forEach(file -> {
 			this.saveFile(file, afileSeq, afileNo.getAndAdd(1), themaRelmCd, regMenuPart);
 		});
@@ -50,7 +50,6 @@ public class FileUtils {
 
 	public String saveFile(MultipartFile file, int afileSeq, int afileNo, String themaRelmCd, String regMenuPart) {
 		int resultCnt = 0;
-		String requestUrl = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getRequestURI();
 		String fullFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 		String orgnFileNm = fullFileName.substring(0, fullFileName.indexOf("."));
 		String ext = fullFileName.substring(fullFileName.indexOf("."));

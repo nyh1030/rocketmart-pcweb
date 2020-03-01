@@ -21,4 +21,13 @@ public class ProductDto {
 	private String productCrt;
 	private String exportHst;
 	private String tradingConditions;
+	private String productFrontAfileSeq;
+	private String productBackAfileSeq;
+	private String productAspectAfileSeq;
+	private String productShape1AfileSeq;
+	private String productShape2AfileSeq;
+	private String productOutside1AfileSeq;
+	private String productOutside2AfileSeq;
+	private String productEtc1AfileSeq;
+	private String productEtc2AfileSeq;
 }

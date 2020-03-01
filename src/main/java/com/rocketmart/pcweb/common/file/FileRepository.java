@@ -15,10 +15,9 @@ public class FileRepository {
 	@Autowired
 	private DSLContext dslContext;
 
-	public int findOneForMaxSeq(String regMenuPart) {
+	public int findOneForMaxSeq() {
 		return this.dslContext.select(DSL.coalesce(DSL.max(TbCmAfile.TB_CM_AFILE.AFILE_SEQ), 0))
 				.from(TbCmAfile.TB_CM_AFILE)
-				.where(TbCmAfile.TB_CM_AFILE.REG_MENU_PART.eq(regMenuPart))
 				.fetchOne(Record1::value1);
 	}
 
@@ -26,7 +25,7 @@ public class FileRepository {
 		return this.dslContext.insertInto(TbCmAfile.TB_CM_AFILE)
 				.columns(TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO, TbCmAfile.TB_CM_AFILE.ORGN_FILE_NM, TbCmAfile.TB_CM_AFILE.URL_PATH_CD,
 						TbCmAfile.TB_CM_AFILE.AFILE_PATH, TbCmAfile.TB_CM_AFILE.REG_FILE_NM, TbCmAfile.TB_CM_AFILE.EXT, TbCmAfile.TB_CM_AFILE.AFILE_SIZE, TbCmAfile.TB_CM_AFILE.THEMA_RELM_CD, TbCmAfile.TB_CM_AFILE.REG_MENU_PART,
-						TbCmAfile.TB_CM_AFILE.DEL_YN, TbCmAfile.TB_CM_AFILE.REG_USR_ID, TbCmAfile.TB_CM_AFILE.REG_USR_ID)
+						TbCmAfile.TB_CM_AFILE.DEL_YN, TbCmAfile.TB_CM_AFILE.REG_USR_ID, TbCmAfile.TB_CM_AFILE.UPD_USR_ID)
 				.values(afileSeq, afileNo, orgnFileNm, urlPathCd, afilePath, regFileNm, ext, afileSize, themaRelmCd, regMenuPart, "N", "ADMIN", "ADMIN")
 				.execute();
 	}

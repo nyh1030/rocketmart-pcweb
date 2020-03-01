@@ -36,9 +36,7 @@
                                     </div>
                                     <div class="mb-5">
                                         <label for="sltBrandSeq" class="bul-type">브랜드 <span class="required">*</span></label>
-                                        <select id="sltBrandSeq" class="ps-select">
-                                            <option value="30">Milk Touch</option>
-                                        </select>
+                                        <select id="sltBrandSeq" class="ps-select"></select>
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">제품 카테고리 <span class="required">*</span></label>
@@ -271,35 +269,35 @@
                                             <span class="txt">제품 정면</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductBack" class="prd-photo"></div>
                                             <span class="txt">제품 후면</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductAspect" class="prd-photo"></div>
                                             <span class="txt">제품 측면</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductShape1" class="prd-photo"></div>
                                             <span class="txt">제형1</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductShape2" class="prd-photo"></div>
                                             <span class="txt">제형2</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductOutside1" class="prd-photo"></div>
                                             <span class="txt">외부패키지1</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductOutside2" class="prd-photo"></div>
                                             <span class="txt">외부패키지2</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductEtc1" class="prd-photo"></div>
                                             <span class="txt">기타1</span>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa fa-plus"></i></a>
+                                            <div id="dvProductEtc2" class="prd-photo"></div>
                                             <span class="txt">기타2</span>
                                         </li>
                                     </ul>
@@ -325,7 +323,7 @@
         <!-- //.container : E -->
     </div>
 
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
         $(() => {
             PageScope.init();
             EventScope.init();
@@ -339,29 +337,39 @@
             $tab3: $('#tab-3'),
             $tab4: $('#tab-4'),
             
-            uploadStarter: null,
+            objFrontUploader: null,
+            objBackUploader: null,
+            objAspectUploader: null,
+            objShape1Uploader: null,
+            objShape2Uploader: null,
+            objOutside1Uploader: null,
+            objOutside2Uploader: null,
+            objEtc1Uploader: null,
+            objEtc2Uploader: null,
+
+            strFrontAfileSeq: null,
+            strBackAfileSeq: null,
+            strAspectAfileSeq: null,
+            strShape1AfileSeq: null,
+            strShape2AfileSeq: null,
+            strOutside1AfileSeq: null,
+            strOutside2AfileSeq: null,
+            strEtc1AfileSeq: null,
+            strEtc2AfileSeq: null,
 
             init() {
+                this.bindCombo();
                 this.setWebEditor();
                 this.setDataTables();
                 this.setUploadComponent();
             },
 
-            saveProductInfo() {
-                console.log(this.getParameters());
-                axios({
-                    method: 'post',
-                    url: '/seller/product/info/save',
-                    params: this.getParameters()
-                }).then(response => {
-                    if (response.data === 200) {
-                        alert('상품 정보가 저장되었습니다.');
-                        //CommonUtils.forwardPage('product_detail');
-                    }
-                })
-                    .catch(error => {
-                        console.log(error);
-                    });
+            bindCombo() {
+                const brandInfo = /*[[${brandInfo}]]*/ 'default' || [];
+                const $brandSeq = $("#sltBrandSeq");
+                brandInfo.forEach(item => {
+                    $brandSeq.append(`<option value="${item.BRAND_SEQ}">${item.BRAND_NM}</option>`);
+                });
             },
 
             setWebEditor() {
@@ -385,22 +393,33 @@
             setUploadComponent() {
                 Dropzone.autoDiscover = false;
 
-                this.uploadStarter = new Dropzone('#dvProductFront' ,{
-                    method: 'post',
-                    url: '/seller/brand/file/upload',
-                    params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
-                    acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
-                    addRemoveLinks: false,
-                    autoProcessQueue: false,
-                    thumbnailWidth: 200,
-                    thumbnailHeight: 200,
-                    maxFiles: 1,
-                    maxFilesize: 10,
-                    clickable: false,
-                    language : {
-                        dictDefaultMessage: "Drag And Drop",
-                    },
-                    previewTemplate: `
+                this.objFrontUploader = this.newDropzone('#dvProductFront', (response) => { if (response.status === "success") this.strFrontAfileSeq = response.xhr.response; });
+                this.objBackUploader = this.newDropzone('#dvProductBack', (response) => { if (response.status === "success") this.strBackAfileSeq = response.xhr.response; });
+                this.objAspectUploader = this.newDropzone('#dvProductAspect', (response) => { if (response.status === "success") this.strAspectAfileSeq = response.xhr.response; });
+                this.objShape1Uploader = this.newDropzone('#dvProductShape1', (response) => { if (response.status === "success") this.strShape1AfileSeq = response.xhr.response; });
+                this.objShape2Uploader = this.newDropzone('#dvProductShape2', (response) => { if (response.status === "success") this.strShape2AfileSeq = response.xhr.response; });
+                this.objOutside1Uploader = this.newDropzone('#dvProductOutside1', (response) => { if (response.status === "success") this.strOutside1AfileSeq = response.xhr.response; });
+                this.objOutside2Uploader = this.newDropzone('#dvProductOutside2', (response) => { if (response.status === "success") this.strOutside2AfileSeq = response.xhr.response; });
+                this.objEtc1Uploader = this.newDropzone('#dvProductEtc1', (response) => { if (response.status === "success") this.strEtc1AfileSeq = response.xhr.response; });
+                this.objEtc2Uploader = this.newDropzone('#dvProductEtc2', (response) => { if (response.status === "success") this.strEtc2AfileSeq = response.xhr.response; });
+            },
+
+            newDropzone(targetId, fnSuccess) {
+              return new Dropzone(targetId ,{
+                  method: 'post',
+                  url: '/seller/product/file/upload',
+                  params: {themaRelmCd: "product", regMenuPart: "/seller/product_add"},
+                  acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                  addRemoveLinks: false,
+                  autoProcessQueue: true,
+                  thumbnailWidth: 120,
+                  thumbnailHeight: 120,
+                  maxFiles: 1,
+                  maxFilesize: 10,
+                  clickable: true,
+                  dictDefaultMessage: "Drop files here to upload",
+                  dictFileSizeUnits: { tb: "TB", gb: "GB", mb: "MB", kb: "KB", b: "b" },
+                  previewTemplate: `
                             <div class="dz-preview dz-file-preview" >
                               <div class="dz-image"><img data-dz-thumbnail /></div>
                               <div class="dz-details">
@@ -411,26 +430,39 @@
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
                               <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
-                    init: function() {
-                        let _this;
-                        this.on("addedfile", file =>{
-                            _this = this;
+                  init: function() {
+                      let _this;
+                      this.on("addedfile", file =>{
+                          _this = this;
 
-                            if (file.status === "queued") {
-                                $(".dz-success-mark").remove();
-                            }
-                        });
-                        this.on("maxfilesexceeded", function (file) {
-                            _this.removeFile(file);
-                            alert('최대 업로드 파일 수는 1개 입니다.');
-                        });
-                    },
-                    success: (response) => {
-                        if (response.status === "success") {
-                            PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
-                        }
+                          if (file.status === "queued") {
+                              $(".dz-success-mark").remove();
+                          }
+                      });
+                      this.on("maxfilesexceeded", function (file) {
+                          _this.removeFile(file);
+                          alert('최대 업로드 파일 수는 1개 입니다.');
+                      });
+                  },
+                  success: fnSuccess
+              });
+            },
+
+            saveProductInfo() {
+                console.log(this.getParameters());
+                axios({
+                    method: 'post',
+                    url: '/seller/product/info/save',
+                    params: this.getParameters()
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('상품 정보가 저장되었습니다.');
+                        //CommonUtils.forwardPage('product_detail');
                     }
-                });
+                })
+                        .catch(error => {
+                            console.log(error);
+                        });
             },
 
             getParameters() {
@@ -450,7 +482,15 @@
                     productAtrbt: CommonUtils.getCheckValToCommaString($('[name="productAtrbt"]')),
                     productCrt: CommonUtils.getCheckValToCommaString($('[name="productCrt"]')),
                     exportHst: CommonUtils.getCheckValToCommaString($('[name="exportHst"]')),
-                    tradingConditions: CommonUtils.getCheckValToCommaString($('[name="tradingConditions"]'))
+                    productFrontAfileSeq: this.strFrontAfileSeq,
+                    productBackAfileSeq: this.strBackAfileSeq,
+                    productAspectAfileSeq: this.strAspectAfileSeq,
+                    productShape1AfileSeq: this.strShape1AfileSeq,
+                    productShape2AfileSeq: this.strShape2AfileSeq,
+                    productOutside1AfileSeq: this.strOutside1AfileSeq,
+                    productOutside2AfileSeq: this.strOutside2AfileSeq,
+                    productEtc1AfileSeq: this.strEtc1AfileSeq,
+                    productEtc2AfileSeq: this.strEtc2AfileSeq
                 }
             },
 
@@ -478,10 +518,6 @@
                 this.clickEventListener();
             },
 
-            next(el) {
-                console.log(el.href);
-            },
-
             clickEventListener() {
 
                 $('#btnSave').on('click', () => {
@@ -489,7 +525,6 @@
 
                     if (confirm('저장하시겠습니까?')) {
                         PageScope.saveProductInfo();
-                        //PageScope.uploadStarter.processQueue();
                     }
                 });
 
@@ -499,7 +534,6 @@
 
                 $('#btnPrev').on('click', () => {
                     $(document).scrollTop(0);
-
                     if (PageScope.tabId === 'tab-2') {
                         PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
                         PageScope.tabId = 'tab-1';
@@ -515,7 +549,6 @@
                 });
                 $('#btnNext').on('click', () => {
                     $(document).scrollTop(0);
-
                     if (PageScope.tabId === 'tab-1') {
                         PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
                         PageScope.tabId = 'tab-2';
