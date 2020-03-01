@@ -78,13 +78,14 @@ label .required{color:red;font-weight:700;}
 .ps-product--detail .photo-upload li{width:200px;display:inline-block;text-align:center;margin:0 15px 25px;}
 .ps-product--detail .photo-upload li .prd-photo{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
 .ps-product--detail .photo-upload li .txt{display:block;margin-top:5px;font-weight:600;}
-.ps-product--detail .table_wrap{padding-bottom:50px;}
-.ps-product--detail .table_wrap table{width:100%;}
+.ps-product--detail .table_wrap{position:relative;padding-bottom:50px;margin-top:20px;}
+.ps-product--detail .table_wrap .dataTables_wrapper{height:335px;overflow-y:auto;margin-bottom:30px;}
+.ps-product--detail .table_wrap table{width:100%!important;}
 .ps-product--detail .table_wrap table thead th,
 .ps-product--detail .table_wrap table tbody td{border:1px solid #ededed;text-align:center;padding:10px 0;font-size:13px;}
 .ps-product--detail .table_wrap table thead th{font-weight:700;background:#f6f6f6;}
 .ps-product--detail .table_wrap table .last{background:#f5fbff;}
-.ps-product--detail .table_wrap .ps-btn{float:right;margin-top:10px;padding:10px 20px;font-size:13px;}
+.ps-product--detail .table_wrap .ps-btn{position:absolute;right:0;bottom:0;padding:10px 20px;font-size:13px;}
 .register{padding-bottom:50px;}
 .register .form-group .form-control.type-inline{width:290px;display:inline-block;height:30px;padding:0 10px;font-size:13px;}
 .register .form-group .chk-wrap{margin-bottom:5px;}
