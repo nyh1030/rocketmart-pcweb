@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbInquiryDtl;
 
 import java.sql.Timestamp;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> implements Record7<Integer, Integer, Integer, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = 1829085774;
+    private static final long serialVersionUID = 305973211;
 
     /**
      * Setter for <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ</code>. 상품문의 상세 일련번호

@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbPrdMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
@@ -27,7 +27,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 917131325;
+    private static final long serialVersionUID = -771875944;
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SEQ</code>. 상품 일련번호

@@ -13,7 +13,7 @@ import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Index;
 import org.jooq.OrderField;

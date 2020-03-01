@@ -8,7 +8,7 @@ import com.rocketmart.jooq.tables.TbInquiryMst;
 
 import java.sql.Timestamp;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.Record1;
@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryMstRecord extends UpdatableRecordImpl<TbInquiryMstRecord> implements Record6<Integer, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = 1969317381;
+    private static final long serialVersionUID = -760711564;
 
     /**
      * Setter for <code>rocketmart.TB_INQUIRY_MST.INQUIRY_SEQ</code>. 상품문의 일련번호
