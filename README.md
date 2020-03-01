@@ -40,8 +40,8 @@
 #### 템플릿 URL
 php 버전이 더 많은 내용을 가지고 있음
 
- - html5 - https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-with-dashboard/23954976
- - php - http://demo2.drfuri.com/martfury/
+ - [html5](https://themeforest.net/item/martfury-multipurpose-marketplace-html5-template-with-dashboard/23954976)
+ - [php](http://demo2.drfuri.com/martfury/)
 
 ### 설치 URL
 
