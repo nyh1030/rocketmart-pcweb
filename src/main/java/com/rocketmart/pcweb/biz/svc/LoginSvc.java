@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,10 @@ public class LoginSvc implements UserDetailsService {
 			if (String.valueOf(memberInfo.get("ROLE")).contains("BUYER")) {
 				authorities.add(new SimpleGrantedAuthority("BUYER"));
 			}
+
+		Iterator<? extends GrantedAuthority> iter = authorities.iterator();
+		while (iter.hasNext()) { GrantedAuthority auth = iter.next(); System.out.println("hasRole: " + auth.getAuthority()); }
+
 
 		return new User(String.valueOf(memberInfo.get("MEM_ID")), String.valueOf(memberInfo.get("MEM_PW")), authorities);
 	}

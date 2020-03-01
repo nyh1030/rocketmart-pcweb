@@ -17,7 +17,7 @@ public class OtherRestCtl {
 	@Autowired
 	private OtherSvc otherSvc;
 
-	@PostMapping("/any/other/contactus-info")
+	@PostMapping("/any/contactus/info/save")
 	public ResponseEntity<String> saveContactUsInfo(TbOtherContactUsRecord contactUsRecord) {
 		return new ResponseEntity<>(otherSvc.saveOneForContactUsInfo(contactUsRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}

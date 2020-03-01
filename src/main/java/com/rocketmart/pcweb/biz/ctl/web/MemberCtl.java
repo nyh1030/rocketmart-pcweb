@@ -82,11 +82,20 @@ public class MemberCtl {
     }
 
     //회원목록(어드민)
-    @PostMapping("/admin/member/list")
+    @GetMapping("/admin/member/list")
     public String dispMemberList(Model model) {
 
         model.addAttribute("memList", memberSvc.findAllForMemInfo());
 
         return prefixPath.concat("/mypage/member_list");
+    }
+
+    //inquiry 목록(어드민)
+    @GetMapping("/admin/inquiry/list")
+    public String dispInquiryList(Model model) {
+
+       // model.addAttribute("inquiryList", memberSvc.findAllForMemInfo());
+
+        return prefixPath.concat("/mypage/inquiry_list");
     }
 }

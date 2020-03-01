@@ -21,7 +21,7 @@
                 <div class="ps-section__right">
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
-                            <h3>Contact Us</h3>
+                            <h3>회원목록</h3>
                         </div>
                         <div class="ps-block__content">
                             <div class="search-box">
@@ -48,25 +48,23 @@
                                     <thead>
                                     <tr>
                                         <th>순번</th>
-                                        <th>MEM_ID</th>
-                                        <th>MEM_NM</th>
-                                        <th>APPROVAL_YN</th>
-                                        <th>TEL</th>
-                                        <th>COMPANY_NM</th>
-                                        <th>COMPANY_URL</th>
-                                        <th>REG_TS</th>
+                                        <th>아이디</th>
+                                        <th>회원명</th>
+                                        <th>회원등급</th>
+                                        <th>연락처</th>
+                                        <th>회사명</th>
+                                        <th>회사URL</th>
+                                        <th>등록일시</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr th:if="${memList.empty}">
+                                        <td colspan="8">등록된 회원 정보가 없습니다.</td>
+                                    </tr>
+                                    <tr th:each="memList : ${memList}">
+
+
+
                                     </tr>
                                     </tbody>
                                 </table>
