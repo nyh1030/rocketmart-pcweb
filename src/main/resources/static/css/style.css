@@ -11024,7 +11024,7 @@ textarea.form-control {
 }
 
 .ps-table--vendor thead tr th {
-  padding: 10px 16px;
+  padding: 8px;
   font-size: 14px;
   font-weight: 600;
   color: #000;
@@ -11032,13 +11032,12 @@ textarea.form-control {
 }
 
 .ps-table--vendor tbody tr td {
-  padding: 8px 16px;
+  padding: 8px;
   color: #000;
 }
 
 .ps-table--vendor tbody tr td a {
   color: #000;
-  color: #0066cc;
 }
 
 .ps-table--vendor tbody tr td a:hover {
