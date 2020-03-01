@@ -3,6 +3,7 @@ package com.rocketmart.pcweb.biz.ctl.web;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,15 +79,26 @@ public class MemberCtl {
     /**
      * 판매자 정보수정
      * @param mmbrRcrd
+     * @param nwPw
      * @return String
      */
     @PostMapping("/seller/execSellerModify")
-    public String execSellerModify(TbMemMstRecord mmbrRcrd) {
+    public String execSellerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
 
         int ret = 0;
 
+        System.out.println(" :::: " + mmbrRcrd.getMemId());
+        System.out.println(" :::: " + mmbrRcrd.getMemPw());
+        System.out.println(" :::: " + nwPw);
+
+        if(nwPw.isEmpty()) {
+            System.out.println("PW Empty");
+        }else {
+            System.out.println("PW Not Empty");
+        }
+
         // 판매자 정보수정
-        ret = memberSvc.execModifySellerInfo(mmbrRcrd);
+        ret = memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
 
         System.out.print("TEST");
 

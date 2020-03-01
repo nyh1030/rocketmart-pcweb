@@ -76,6 +76,7 @@ public class MemberRepository {
     public int execModifySellerInfo(TbMemMstRecord mmbrRcrd) {
         return this.dslContext.update(TB_MEM_MST)
                 .set(TB_MEM_MST.MEM_NM, mmbrRcrd.getMemNm())
+                .set(TB_MEM_MST.MEM_PW, mmbrRcrd.getMemPw())
                 .set(TB_MEM_MST.TEL, mmbrRcrd.getTel())
                 .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
