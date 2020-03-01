@@ -33,8 +33,8 @@ label .required{color:red;font-weight:700;}
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
 .ps-block__header .date{margin-top:12px;color:#555;font-size:12px;}
-.ps-block__content .upload_box .img_logo{display:inline-flex;width:250px;height:200px;border:1px solid #ddd;justify-content: center;align-items: center;overflow: hidden;}
-.ps-block__content .upload_box .img_logo img{width:100%;height:100%;object-fit: cover}
+.ps-block__content .upload_box .img_logo{display:inline-flex;width:250px;height:200px;border:1px solid #ddd;justify-content:center;align-items:center;overflow:hidden;}
+.ps-block__content .upload_box .img_logo img{width:100%;height:100%;object-fit:cover}
 .ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
 .ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
 .ps-block__content .info-list > li{margin-bottom:10px;}
