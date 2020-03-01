@@ -104,12 +104,12 @@
 
                                     <div name="sellerType" class="form-group form-row-wide agreeContents" style="display: none">
                                         <div class="ps-checkbox type-line" >
-                                            <input class="form-control" type="checkbox" id="terms_conditions" name="terms_conditions">
-                                            <label for="terms_conditions">이용 약관의 내용에 동의합니다.</label>
+                                            <input class="form-control" type="checkbox" id="termsConditions" name="termsConditions">
+                                            <label for="termsConditions">이용 약관의 내용에 동의합니다.</label>
                                         </div>
                                         <div class="ps-checkbox">
-                                            <input class="form-control" type="checkbox" id="privacy_policy" name="privacy_policy">
-                                            <label for="privacy_policy">개인정보 취급방침의 내용에 동의합니다.</label>
+                                            <input class="form-control" type="checkbox" id="privacyPolicy" name="privacyPolicy">
+                                            <label for="privacyPolicy">개인정보 취급방침의 내용에 동의합니다.</label>
                                         </div>
                                     </div>
 
@@ -136,6 +136,7 @@
             $('.form-group input[type=password]').on('keyup',this.confirmPasswordForm);
             $('#tel').on('keydown',this.ensurePhoneNumber);
             $('#signup').on('submit', this.validateForm);
+            $('.agreeContents input[type=checkbox]').on('click',this.openPopup);
         },
         //비밀번호 확인
         confirmPasswordForm: function() {
@@ -194,36 +195,6 @@
                 $(this).siblings('.form-control').val(fileName);
             });
         },
-        validateForm: function() {
-                //1. 아이디 중복체크
-                if(!signup.idOverLapChk()){
-                    return false;
-                }
-                //2. 바이어일 경우 채널 등록, 셀러일 경우 사업자유형 등록
-                if(!signup.bsnsTypeChk()){
-                    return false;
-                }
-                //3. 셀러일 경우 이용약관 동의여부
-                if(!signup.sellerAgreeChk()){
-                    return false;
-                }
-
-                if("SELLER" === $('.user-role input[type=radio]:checked').val()){
-                    if(confirm("회원가입을 하시겠습니까?")){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }else{
-                    if(confirm("Would you like to Sign up?")){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }
-
-            return true;
-        },
         idOverLapChk: function() {
             var rtn = true;
             var memId =  $("#memId").val();
@@ -278,10 +249,10 @@
             var rtn = true;
 
             if("SELLER" === $('.user-role input[type=radio]:checked').val()){
-                if(!$('#terms_conditions').is(":checked")){
+                if(!$('#termsConditions').is(":checked")){
                     alert("이용 약관의 내용에 동의하셔야 회원가입이 가능합니다.")
                     rtn = false;
-                }else if(!$('#privacy_policy').is(":checked")){
+                }else if(!$('#privacyPolicy').is(":checked")){
                     alert("개인정보 취급방침의 내용에 동의하셔야 회원가입이 가능합니다.")
                     rtn = false;
                 }
@@ -291,7 +262,48 @@
             }
 
             return rtn;
+        },
+        validateForm: function() {
+                //1. 아이디 중복체크
+                if(!signup.idOverLapChk()){
+                    return false;
+                }
+                //2. 바이어일 경우 채널 등록, 셀러일 경우 사업자유형 등록
+                if(!signup.bsnsTypeChk()){
+                    return false;
+                }
+                //3. 셀러일 경우 이용약관 동의여부
+                if(!signup.sellerAgreeChk()){
+                    return false;
+                }
+
+                if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                    if(confirm("회원가입을 하시겠습니까?")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }else{
+                    if(confirm("Would you like to Sign up?")){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+
+            return true;
+        },
+        openPopup: function () {
+            this.blur();
+
+            $.modalPopup({
+                url: '/any/'+$(this).attr('id'),
+                close: function(result) {
+                    console.log(result);
+                }
+            });
         }
+
     };
 
     $(function() {
