@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/* common */
 .ps-store-list .btn-box{position:relative;text-align:center;}
 .ps-store-list .btn-box .ps-btn{margin:40px 0 20px;}
 .no_data{text-align:center;color:#666;font-size:15px;margin:20px 0;border:1px solid #ededed;padding:30px 0;}
@@ -29,6 +29,7 @@ label .required{color:red;font-weight:700;}
 .btn-box.txt-left .ab-r{top:75px;}
 .txt-left{text-align:left!important;}
 .txt-right{text-align:right!important;}
+/* contents */
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
 .ps-block__header .date{margin-top:12px;color:#555;font-size:12px;}
@@ -87,6 +88,17 @@ label .required{color:red;font-weight:700;}
 #homepage-5{padding-top:0;}
 #homepage-5 .ps-home-banner .ps-section__center{max-width:100%;}
 #homepage-5 .ps-home-banner .ps-section__center .visual{width:100%;height:375px;}
+/* popup */
+.jquery-modal.blocker{z-index:10;}
+.modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}
+.modal_popup .pop-content{overflow-y:auto;overflow-x:hidden;height:100%;padding-right:20px;}
+.modal_popup .pop-content .tit{font-size:18px;}
+.modal_popup .pop-content .depth-1 > li{font-size:15px;font-weight:600;margin-bottom:10px;}
+.modal_popup .pop-content .depth-2 > li{font-size:14px;margin-bottom:4px;}
+.modal_popup .pop-content .depth-3{padding-left:15px;}
+.modal_popup .pop-content .depth-3 > li{font-size:13px;line-height:20px;}
+.modal_popup .pop-content p{font-size:14px;margin-bottom:4px;color:#000;}
+.modal_popup .btn-box{padding:40px 0;text-align:center;}
 
 @media (max-width:414px){
     .register .form-group .form-control.type-inline{width:100%;padding:0 20px;}
