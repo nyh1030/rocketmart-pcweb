@@ -7032,11 +7032,16 @@ textarea.form-control {
 }
 
 .widget_shop .widget-title {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   font-size: 18px;
   text-transform: uppercase;
   font-weight: 600;
   color: #000;
+}
+
+.widget_shop .widget-title.type-line{
+  border-top: 1px solid #e2e1e1;
+  padding-top: 30px;
 }
 
 .widget_shop .ps-checkbox {
@@ -7156,13 +7161,6 @@ textarea.form-control {
 
 .widget_shop .ps-filter__btn:hover {
   background-color: #222222;
-}
-
-.widget_shop figure {
-  margin-top: 15px;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  border-bottom: 1px solid #ccc;
 }
 
 .widget_shop figure:last-child {
@@ -12676,13 +12674,17 @@ textarea.form-control {
 
 .ps-layout--shop .ps-layout__left {
   width: 100%;
-  min-width: 320px;
-  max-width: 310px;
+  min-width: 290px;
+  max-width: 280px;
   padding-right: 30px;
 }
 
+.ps-layout--shop .ps-layout__left .ps-list--categories{
+  margin-bottom:50px;
+}
+
 .ps-layout--shop .ps-layout__right {
-  max-width: calc(100% - 320px);
+  max-width: calc(100% - 290px);
 }
 
 .ps-layout--shop .ps-layout__right .owl-slider {
@@ -15285,8 +15287,7 @@ textarea.form-control {
 }
 
 .menu--product-categories .menu__toggle a:hover{
-    color:#000;
-    border-bottom:1px solid #000;
+    color:#fff;
 }
 
 .menu--product-categories .menu__toggle i {
