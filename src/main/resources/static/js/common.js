@@ -6,9 +6,12 @@ const CommonUtils = {
     forwardPage(targetPage) {
         location.replace(targetPage);
     },
+    backwardPage(targetPage) {
+        history.back();
+    },
     getCheckValToCommaString(objTarget) {
         let returnArray = [];
-        objTarget.each(function (idx, val) {
+        objTarget.each(function () {
             if ($(this).prop('checked')) returnArray.push($(this).val());
         });
         return returnArray.join(",");

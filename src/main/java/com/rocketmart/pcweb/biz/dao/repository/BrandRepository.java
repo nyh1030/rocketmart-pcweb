@@ -38,6 +38,14 @@ public class BrandRepository {
 				.fetchOneMap();
 	}
 
+	public List<Map<String, Object>> findBrandByUsrId(String usrId) {
+		return this.dslContext.select(
+				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM)
+				.from(TB_BRAND_MST)
+				.where(TB_BRAND_MST.REG_USR_ID.equal(usrId))
+				.fetchMaps();
+	}
+
 	public int saveOneForBrandInfo(BrandDto brandDto) {
 		return this.dslContext.insertInto(TB_BRAND_MST)
 				.columns(TB_BRAND_MST.BRAND_NM, TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ, TB_BRAND_MST.BRAND_OWNERSHIP,
@@ -46,6 +54,21 @@ public class BrandRepository {
 				.values(brandDto.getBrandNm(), brandDto.getBrandLogoFileSeq(), brandDto.getBrandOwnership(),
 						brandDto.getBrandHomePageUrl(), brandDto.getBrandYouTubeUrl(), brandDto.getBrandInstagramUrl(),
 						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), "ADMIN", "ADMIN")
+				.execute();
+	}
+
+	public int updateOneForBrandInfo(BrandDto brandDto) {
+		return this.dslContext.update(TB_BRAND_MST)
+				.set(TB_BRAND_MST.BRAND_NM, brandDto.getBrandNm())
+				.set(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ, brandDto.getBrandLogoFileSeq())
+				.set(TB_BRAND_MST.BRAND_OWNERSHIP, brandDto.getBrandOwnership())
+				.set(TB_BRAND_MST.BRAND_HOMEPAGE_URL, brandDto.getBrandHomePageUrl())
+				.set(TB_BRAND_MST.BRAND_YOUTUBE_URL, brandDto.getBrandYouTubeUrl())
+				.set(TB_BRAND_MST.BRAND_INSTAGRAM_URL, brandDto.getBrandInstagramUrl())
+				.set(TB_BRAND_MST.BRAND_CERIFY, brandDto.getBrandCerify())
+				.set(TB_BRAND_MST.BRAND_INTRODUCTION, brandDto.getBrandIntroduction())
+				.set(TB_BRAND_MST.UPD_USR_ID, "ADMIN")
+				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandDto.getBrandSeq()))
 				.execute();
 	}
 }

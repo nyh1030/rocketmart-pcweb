@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 1357348156;
+    private static final long serialVersionUID = 796965288;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_MST</code>
@@ -146,6 +146,51 @@ public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
      * The column <code>rocketmart.TB_PRD_MST.TRADING_CONDITIONS</code>. 가능한거래조건
      */
     public final TableField<TbPrdMstRecord, String> TRADING_CONDITIONS = createField(DSL.name("TRADING_CONDITIONS"), org.jooq.impl.SQLDataType.VARCHAR(500).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "가능한거래조건");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_FRONT_AFILE_SEQ = createField(DSL.name("PRODUCT_FRONT_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 제품정면");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_BACK_AFILE_SEQ = createField(DSL.name("PRODUCT_BACK_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 제품후면");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_ASPECT_AFILE_SEQ = createField(DSL.name("PRODUCT_ASPECT_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 제품측면");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_SHAPE1_AFILE_SEQ = createField(DSL.name("PRODUCT_SHAPE1_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 제품제형1");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_SHAPE2_AFILE_SEQ = createField(DSL.name("PRODUCT_SHAPE2_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 제품제형2");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_OUTSIDE1_AFILE_SEQ = createField(DSL.name("PRODUCT_OUTSIDE1_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 외부패키지1");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_OUTSIDE2_AFILE_SEQ = createField(DSL.name("PRODUCT_OUTSIDE2_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 외부패키지2");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_ETC1_AFILE_SEQ = createField(DSL.name("PRODUCT_ETC1_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 기타1");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
+     */
+    public final TableField<TbPrdMstRecord, Integer> PRODUCT_ETC2_AFILE_SEQ = createField(DSL.name("PRODUCT_ETC2_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "파일첨부 기타2");
 
     /**
      * The column <code>rocketmart.TB_PRD_MST.DEL_YN</code>. 삭제여부

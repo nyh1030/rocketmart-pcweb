@@ -27,7 +27,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = -771875944;
+    private static final long serialVersionUID = 416528018;
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SEQ</code>. 상품 일련번호
@@ -282,73 +282,199 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
     }
 
     /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
+     */
+    public void setProductFrontAfileSeq(Integer value) {
+        set(18, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
+     */
+    public Integer getProductFrontAfileSeq() {
+        return (Integer) get(18);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
+     */
+    public void setProductBackAfileSeq(Integer value) {
+        set(19, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
+     */
+    public Integer getProductBackAfileSeq() {
+        return (Integer) get(19);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
+     */
+    public void setProductAspectAfileSeq(Integer value) {
+        set(20, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
+     */
+    public Integer getProductAspectAfileSeq() {
+        return (Integer) get(20);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
+     */
+    public void setProductShape1AfileSeq(Integer value) {
+        set(21, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
+     */
+    public Integer getProductShape1AfileSeq() {
+        return (Integer) get(21);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
+     */
+    public void setProductShape2AfileSeq(Integer value) {
+        set(22, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
+     */
+    public Integer getProductShape2AfileSeq() {
+        return (Integer) get(22);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
+     */
+    public void setProductOutside1AfileSeq(Integer value) {
+        set(23, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
+     */
+    public Integer getProductOutside1AfileSeq() {
+        return (Integer) get(23);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
+     */
+    public void setProductOutside2AfileSeq(Integer value) {
+        set(24, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
+     */
+    public Integer getProductOutside2AfileSeq() {
+        return (Integer) get(24);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
+     */
+    public void setProductEtc1AfileSeq(Integer value) {
+        set(25, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
+     */
+    public Integer getProductEtc1AfileSeq() {
+        return (Integer) get(25);
+    }
+
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
+     */
+    public void setProductEtc2AfileSeq(Integer value) {
+        set(26, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
+     */
+    public Integer getProductEtc2AfileSeq() {
+        return (Integer) get(26);
+    }
+
+    /**
      * Setter for <code>rocketmart.TB_PRD_MST.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
-        set(18, value);
+        set(27, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
-        return (String) get(18);
+        return (String) get(27);
     }
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.REG_USR_ID</code>. 등록자ID
      */
     public void setRegUsrId(String value) {
-        set(19, value);
+        set(28, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.REG_USR_ID</code>. 등록자ID
      */
     public String getRegUsrId() {
-        return (String) get(19);
+        return (String) get(28);
     }
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
-        set(20, value);
+        set(29, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
-        return (Timestamp) get(20);
+        return (Timestamp) get(29);
     }
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.UPD_USR_ID</code>. 수정자ID
      */
     public void setUpdUsrId(String value) {
-        set(21, value);
+        set(30, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.UPD_USR_ID</code>. 수정자ID
      */
     public String getUpdUsrId() {
-        return (String) get(21);
+        return (String) get(30);
     }
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
-        set(22, value);
+        set(31, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
-        return (Timestamp) get(22);
+        return (Timestamp) get(31);
     }
 
     // -------------------------------------------------------------------------
@@ -374,7 +500,7 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
     /**
      * Create a detached, initialised TbPrdMstRecord
      */
-    public TbPrdMstRecord(Integer productSeq, Integer brandSeq, String productNm, String cate1Cd, String cate2Cd, String cate3Cd, String productUrl, String productCapacity, String productLineup, String sellerNote, String productContent, Integer retailPrice, Integer wholesaleSeq, String giveSampleYn, String productAtrbt, String productCrt, String exportHst, String tradingConditions, String delYn, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
+    public TbPrdMstRecord(Integer productSeq, Integer brandSeq, String productNm, String cate1Cd, String cate2Cd, String cate3Cd, String productUrl, String productCapacity, String productLineup, String sellerNote, String productContent, Integer retailPrice, Integer wholesaleSeq, String giveSampleYn, String productAtrbt, String productCrt, String exportHst, String tradingConditions, Integer productFrontAfileSeq, Integer productBackAfileSeq, Integer productAspectAfileSeq, Integer productShape1AfileSeq, Integer productShape2AfileSeq, Integer productOutside1AfileSeq, Integer productOutside2AfileSeq, Integer productEtc1AfileSeq, Integer productEtc2AfileSeq, String delYn, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
         super(TbPrdMst.TB_PRD_MST);
 
         set(0, productSeq);
@@ -395,10 +521,19 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
         set(15, productCrt);
         set(16, exportHst);
         set(17, tradingConditions);
-        set(18, delYn);
-        set(19, regUsrId);
-        set(20, regTs);
-        set(21, updUsrId);
-        set(22, updTs);
+        set(18, productFrontAfileSeq);
+        set(19, productBackAfileSeq);
+        set(20, productAspectAfileSeq);
+        set(21, productShape1AfileSeq);
+        set(22, productShape2AfileSeq);
+        set(23, productOutside1AfileSeq);
+        set(24, productOutside2AfileSeq);
+        set(25, productEtc1AfileSeq);
+        set(26, productEtc2AfileSeq);
+        set(27, delYn);
+        set(28, regUsrId);
+        set(29, regTs);
+        set(30, updUsrId);
+        set(31, updTs);
     }
 }

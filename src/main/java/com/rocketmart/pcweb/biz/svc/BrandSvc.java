@@ -30,6 +30,10 @@ public class BrandSvc {
 		return brandRepository.findByBrandSeq(brandSeq);
 	}
 
+	public List<Map<String, Object>> findBrandByUsrId() {
+		return brandRepository.findBrandByUsrId("ADMIN");
+	}
+
 	@Transactional(rollbackFor = Exception.class)
 	public String saveBrandUpload(MultipartFile file, String themaRelmCd, String regMenuPart) {
 		return fileUtils.uploadFile(file, themaRelmCd, regMenuPart);
@@ -38,5 +42,10 @@ public class BrandSvc {
 	@Transactional(rollbackFor = Exception.class)
 	public int saveOneForBrandInfo(BrandDto brandDto) {
 		return brandRepository.saveOneForBrandInfo(brandDto);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int updateOneForBrandInfo(BrandDto brandDto) {
+		return brandRepository.updateOneForBrandInfo(brandDto);
 	}
 }

@@ -21,11 +21,17 @@ public class ProductRepository {
 						TB_PRD_MST.PRODUCT_URL, TB_PRD_MST.PRODUCT_CAPACITY, TB_PRD_MST.PRODUCT_LINEUP, TB_PRD_MST.SELLER_NOTE,
 						TB_PRD_MST.PRODUCT_CONTENT, TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.WHOLESALE_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN,
 						TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT, TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS,
+						TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ, TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ,
+						TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ, TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ,
+						TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ,
 						TB_BRAND_MST.REG_USR_ID, TB_BRAND_MST.UPD_USR_ID)
 				.values(productDto.getBrandSeq(), productDto.getProductNm(), productDto.getCate1Cd(), productDto.getCate2Cd(), productDto.getCate3Cd(),
 						productDto.getProductUrl(), productDto.getProductCapacity(), productDto.getProductLineup(), productDto.getSellerNote(),
 						productDto.getProductContent(), productDto.getRetailPrice(), 1, productDto.getGiveSampleYn(),
 						productDto.getProductAtrbt(), productDto.getProductCrt(), productDto.getExportHst(), productDto.getTradingConditions(),
+						productDto.getProductFrontAfileSeq(), productDto.getProductBackAfileSeq(), productDto.getProductAspectAfileSeq(),
+						productDto.getProductShape1AfileSeq(), productDto.getProductShape2AfileSeq(), productDto.getProductOutside1AfileSeq(),
+						productDto.getProductOutside2AfileSeq(), productDto.getProductEtc1AfileSeq(), productDto.getProductEtc2AfileSeq(),
 						"ADMIN", "ADMIN")
 				.execute();
 	}

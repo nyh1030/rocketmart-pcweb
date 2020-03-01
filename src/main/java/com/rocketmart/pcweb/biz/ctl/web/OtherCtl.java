@@ -13,10 +13,10 @@ public class OtherCtl {
     @Autowired
     private OtherSvc otherSvc;
 
-    // contactUs 페이지
-    @GetMapping("/any/contactUs_list")
+    // contactUs 등록 페이지
+    @GetMapping("/any/contactus/register")
     public String dispContactUs() {
-        return prefixPath.concat("/other/contactUs_list");
+        return prefixPath.concat("/other/contactUs_register");
     }
 
 }

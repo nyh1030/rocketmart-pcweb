@@ -84,9 +84,8 @@
                             </div>
                         </div>
                         <div class="btns">
-                            <button type="button" id="btnPreView" class="ps-btn type-green">미리보기</button>
                             <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
-                            <button type="button" id="btnCancel" class="ps-btn type-gray ab-r">취소하기</button>
+                            <button type="button" id="btnBack" class="ps-btn type-gray ab-r">뒤로가기</button>
                         </div>
                     </div>
                 </div>
@@ -208,7 +207,6 @@
             },
 
             clickEventListener() {
-
                 $('#btnSave').on('click', () => {
                     if (!PageScope.invokeValidation()) return;
 
@@ -216,8 +214,8 @@
                         PageScope.uploadStarter.processQueue();
                     }
                 });
-                $('#btnCancel').on('click', () => {
-                    CommonUtils.forwardPage('/seller/brand_add');
+                $('#btnBack').on('click', () => {
+                    CommonUtils.backwardPage();
                 });
             }
         };
