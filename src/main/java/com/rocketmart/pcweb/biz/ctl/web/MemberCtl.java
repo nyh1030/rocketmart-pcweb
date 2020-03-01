@@ -19,7 +19,7 @@ public class MemberCtl {
     private MemberSvc memberSvc;
 
     // 회원가입 페이지
-    @GetMapping("/user/signup")
+    @GetMapping("/any/signup")
     public String dispSignup() {
         return prefixPath.concat("/user/signup");
     }

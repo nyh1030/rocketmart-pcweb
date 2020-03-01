@@ -58,7 +58,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:if="${memList.empty}">
+                                    <tr th:if="${memList != }">
                                         <td colspan="8">등록된 회원 정보가 없습니다.</td>
                                     </tr>
                                     <tr th:each="memList : ${memList}">
