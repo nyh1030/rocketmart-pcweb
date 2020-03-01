@@ -1,10 +1,12 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
+import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +30,22 @@ public class MemberRepository {
     /**
      * 회원 목록 조회
      */
-    public List<Map<String, Object>> findAllForMemInfo() {
+    public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
+        List<Condition> conditions = new ArrayList<Condition>();
+
+            conditions.add(TB_MEM_MST.MEM_ID.notEqual("admin"));
+        if(null != tbMemMstRecord.getMemNm() && !tbMemMstRecord.getMemNm().isEmpty()) {
+            conditions.add(TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getMemNm()));
+        }
+        if(null != tbMemMstRecord.getApprovalYn() && !tbMemMstRecord.getApprovalYn().isEmpty()) {
+            conditions.add(TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn()));
+        }
+        if(null != tbMemMstRecord.getCompanyNm() && !tbMemMstRecord.getCompanyNm().isEmpty()) {
+            conditions.add(TB_MEM_MST.COMPANY_NM.eq(tbMemMstRecord.getCompanyNm()));
+        }
+
         return this.dslContext.selectFrom(TB_MEM_MST)
-                .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
+                .where(conditions)
                 .orderBy(TB_MEM_MST.MEM_SEQ.desc())
                 .fetchMaps();
     }

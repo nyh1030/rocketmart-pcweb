@@ -48,9 +48,11 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Identities0.IDENTITY_TB_BRAND_MST;
+    public static final Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Identities0.IDENTITY_TB_CONTACT_US;
     public static final Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Identities0.IDENTITY_TB_INQUIRY_MST;
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
     public static final Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Identities0.IDENTITY_TB_PRD_MST;
+    public static final Identity<TbPrdWholesaleRecord, Integer> IDENTITY_TB_PRD_WHOLESALE = Identities0.IDENTITY_TB_PRD_WHOLESALE;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -82,9 +84,11 @@ public class Keys {
 
     private static class Identities0 {
         public static Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Internal.createIdentity(TbBrandMst.TB_BRAND_MST, TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
+        public static Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Internal.createIdentity(TbContactUs.TB_CONTACT_US, TbContactUs.TB_CONTACT_US.CONTACT_SEQ);
         public static Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Internal.createIdentity(TbInquiryMst.TB_INQUIRY_MST, TbInquiryMst.TB_INQUIRY_MST.INQUIRY_SEQ);
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
         public static Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Internal.createIdentity(TbPrdMst.TB_PRD_MST, TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
+        public static Identity<TbPrdWholesaleRecord, Integer> IDENTITY_TB_PRD_WHOLESALE = Internal.createIdentity(TbPrdWholesale.TB_PRD_WHOLESALE, TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
     }
 
     private static class UniqueKeys0 {

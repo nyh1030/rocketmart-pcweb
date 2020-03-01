@@ -17,6 +17,7 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -42,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbContactUs extends TableImpl<TbContactUsRecord> {
 
-    private static final long serialVersionUID = 1303504639;
+    private static final long serialVersionUID = 2136451004;
 
     /**
      * The reference instance of <code>rocketmart.TB_CONTACT_US</code>
@@ -60,7 +61,7 @@ public class TbContactUs extends TableImpl<TbContactUsRecord> {
     /**
      * The column <code>rocketmart.TB_CONTACT_US.CONTACT_SEQ</code>. 컨택 일련번호
      */
-    public final TableField<TbContactUsRecord, Integer> CONTACT_SEQ = createField(DSL.name("CONTACT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "컨택 일련번호");
+    public final TableField<TbContactUsRecord, Integer> CONTACT_SEQ = createField(DSL.name("CONTACT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "컨택 일련번호");
 
     /**
      * The column <code>rocketmart.TB_CONTACT_US.USR_NM</code>. 문의자명
@@ -80,7 +81,7 @@ public class TbContactUs extends TableImpl<TbContactUsRecord> {
     /**
      * The column <code>rocketmart.TB_CONTACT_US.SUBJECT</code>. 문의 제목
      */
-    public final TableField<TbContactUsRecord, String> SUBJECT = createField(DSL.name("SUBJECT"), org.jooq.impl.SQLDataType.VARCHAR(1000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "문의 제목");
+    public final TableField<TbContactUsRecord, String> SUBJECT = createField(DSL.name("SUBJECT"), org.jooq.impl.SQLDataType.VARCHAR(500).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "문의 제목");
 
     /**
      * The column <code>rocketmart.TB_CONTACT_US.MESSAGE</code>. 문의 본문
@@ -133,6 +134,11 @@ public class TbContactUs extends TableImpl<TbContactUsRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.TB_CONTACT_US_PRIMARY);
+    }
+
+    @Override
+    public Identity<TbContactUsRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_TB_CONTACT_US;
     }
 
     @Override

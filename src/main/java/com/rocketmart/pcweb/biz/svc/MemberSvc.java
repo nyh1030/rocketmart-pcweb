@@ -175,8 +175,8 @@ public class MemberSvc {
 	 * @param
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForMemInfo() {
-		return memberRepository.findAllForMemInfo();
+	public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
+		return memberRepository.findAllForMemInfo(tbMemMstRecord);
 
 	}
 }

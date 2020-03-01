@@ -16,6 +16,7 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -41,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdWholesale extends TableImpl<TbPrdWholesaleRecord> {
 
-    private static final long serialVersionUID = -611970577;
+    private static final long serialVersionUID = 78104250;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_WHOLESALE</code>
@@ -59,7 +60,7 @@ public class TbPrdWholesale extends TableImpl<TbPrdWholesaleRecord> {
     /**
      * The column <code>rocketmart.TB_PRD_WHOLESALE.WHOLESALE_SEQ</code>. 도매가격(FOB) 일련번호
      */
-    public final TableField<TbPrdWholesaleRecord, Integer> WHOLESALE_SEQ = createField(DSL.name("WHOLESALE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "도매가격(FOB) 일련번호");
+    public final TableField<TbPrdWholesaleRecord, Integer> WHOLESALE_SEQ = createField(DSL.name("WHOLESALE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "도매가격(FOB) 일련번호");
 
     /**
      * The column <code>rocketmart.TB_PRD_WHOLESALE.PRODUCT_SEQ</code>. 상품 일련번호
@@ -147,6 +148,11 @@ public class TbPrdWholesale extends TableImpl<TbPrdWholesaleRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.TB_PRD_WHOLESALE_PRIMARY, Indexes.TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1);
+    }
+
+    @Override
+    public Identity<TbPrdWholesaleRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_TB_PRD_WHOLESALE;
     }
 
     @Override

@@ -109,10 +109,13 @@ public class MemberCtl {
     }
 
     //회원목록(어드민)
-    @GetMapping("/admin/member/list")
-    public String dispMemberList(Model model) {
+    @RequestMapping("/admin/member/list")
+    public String dispMemberList(TbMemMstRecord tbMemMstRecord, Model model) {
 
-        model.addAttribute("memList", memberSvc.findAllForMemInfo());
+        model.addAttribute("memList", memberSvc.findAllForMemInfo(tbMemMstRecord));
+        model.addAttribute("memNm", tbMemMstRecord.getMemNm());
+        model.addAttribute("approvalYn", tbMemMstRecord.getApprovalYn());
+        model.addAttribute("companyNm", tbMemMstRecord.getCompanyNm());
 
         return prefixPath.concat("/mypage/member_list");
     }
