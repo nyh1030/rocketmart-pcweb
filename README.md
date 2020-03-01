@@ -45,7 +45,7 @@ php 버전이 더 많은 내용을 가지고 있음
 
 ### 설치 URL
 
- - MariaDB 10.4.12(https://mariadb.com/download-confirmation/?group-name=MariaDB%20Community%20Server&release-notes-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fmariadb-10412-release-notes%2F&documentation-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fwhat-is-mariadb-104%2F&download-uri=https%3A%2F%2Fdownloads.mariadb.com%2FMariaDB%2Fmariadb-10.4.12%2Fwinx64-packages%2Fmariadb-10.4.12-winx64.msi&product-name=MariaDB%2520Server&download-size=54.23%20MB)
+ - MariaDB 10.4.12(*https://mariadb.com/download-confirmation/?group-name=MariaDB%20Community%20Server&release-notes-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fmariadb-10412-release-notes%2F&documentation-uri=https%3A%2F%2Fmariadb.com%2Fkb%2Fen%2Fwhat-is-mariadb-104%2F&download-uri=https%3A%2F%2Fdownloads.mariadb.com%2FMariaDB%2Fmariadb-10.4.12%2Fwinx64-packages%2Fmariadb-10.4.12-winx64.msi&product-name=MariaDB%2520Server&download-size=54.23%20MB)
  - Gradle 6.0.1(https://gradle.org/next-steps/?version=6.0.1&format=all)
 
 ## Project Naming rule
