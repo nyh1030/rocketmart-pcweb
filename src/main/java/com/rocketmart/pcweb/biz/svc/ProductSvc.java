@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class ProductSvc {
 
@@ -24,6 +28,29 @@ public class ProductSvc {
 
 	@Transactional(rollbackFor = Exception.class)
 	public int saveOneForProductInfo(ProductDto productDto) {
-		return productRepository.saveOneForProductInfo(productDto);
+		int wholeSaleSaveCnt = 0;
+		int productSaveCnt = productRepository.saveOneForProductInfo(productDto);
+		if (productSaveCnt > 0) {
+			int productSeq = productRepository.findOneForMaxProductSeq();
+
+			String[] rangeStart = productDto.getRangeStart().split(",", -1);
+			String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
+			String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
+			String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+
+			int length = rangeStart.length;
+			for (int idx = 0; idx < length; idx++) {
+				Map<String, Object> paramMap = new HashMap<>();
+				paramMap.put("productSeq", productSeq);
+				paramMap.put("rangeStart", rangeStart[idx]);
+				paramMap.put("rangeEnd", rangeEnd[idx]);
+				paramMap.put("tradingPrice", tradingPrice[idx]);
+				paramMap.put("supplyRate", supplyRate[idx]);
+
+				wholeSaleSaveCnt += productRepository.saveOneForWholeSaleInfo(paramMap);
+			}
+		}
+
+		return wholeSaleSaveCnt;
 	}
 }

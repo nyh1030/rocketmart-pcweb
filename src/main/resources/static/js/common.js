@@ -6,7 +6,7 @@ const CommonUtils = {
     forwardPage(targetPage) {
         location.replace(targetPage);
     },
-    backwardPage(targetPage) {
+    backwardPage() {
         history.back();
     },
     getCheckValToCommaString(objTarget) {
@@ -16,6 +16,13 @@ const CommonUtils = {
         });
         return returnArray.join(",");
     },
+    getDataToCommaString(objTarget) {
+        let returnArray = [];
+        objTarget.each(function () {
+            returnArray.push($(this).val());
+        });
+        return returnArray.join(",");
+    }
 };
 
 Object.assign(Element.prototype, {

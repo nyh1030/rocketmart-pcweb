@@ -30,4 +30,8 @@ public class ProductDto {
 	private String productOutside2AfileSeq;
 	private String productEtc1AfileSeq;
 	private String productEtc2AfileSeq;
+	private String rangeStart;
+	private String rangeEnd;
+	private String tradingPrice;
+	private String supplyRate;
 }

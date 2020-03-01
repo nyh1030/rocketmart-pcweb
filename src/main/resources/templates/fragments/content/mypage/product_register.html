@@ -487,7 +487,11 @@
                     productOutside1AfileSeq: this.strOutside1AfileSeq,
                     productOutside2AfileSeq: this.strOutside2AfileSeq,
                     productEtc1AfileSeq: this.strEtc1AfileSeq,
-                    productEtc2AfileSeq: this.strEtc2AfileSeq
+                    productEtc2AfileSeq: this.strEtc2AfileSeq,
+                    rangeStart: CommonUtils.getDataToCommaString($('[name="rangeStart"]')),
+                    rangeEnd: CommonUtils.getDataToCommaString($('[name="rangeEnd"]')),
+                    tradingPrice: CommonUtils.getDataToCommaString($('[name="tradingPrice"]')),
+                    supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]'))
                 }
             },
 
@@ -529,14 +533,12 @@
                 });
 
                 $("#btnAddWholeSale").on('click', () => {
-                    let counter = 0;
                     PageScope.objDataTables.row.add([
-                        `<td><input type="text" id="txtRangeStart_${counter}" style="text-align: right" value="0" /></td>`,
-                        `<td><input type="text" id="txtRangeEnd_${counter}" style="text-align: right" value="0" /></td>`,
-                        `<td><input type="text" id="txtTradingPrice_${counter}" style="text-align: right" value="0" /></td>`,
-                        `<td class="last"><input type="text" id="txtSupplyRate_${counter}" style="text-align: right" value="0" /></td>`,
+                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" /></td>`,
+                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" /></td>`,
+                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" /></td>`,
                     ]).draw( false );
-                   counter++;
                 });
 
                 $('#btnPrev').on('click', () => {

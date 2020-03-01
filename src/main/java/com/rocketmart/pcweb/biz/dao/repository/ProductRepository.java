@@ -1,19 +1,31 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import org.jooq.DSLContext;
+import org.jooq.Record1;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+import static com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
 @Repository
 public class ProductRepository {
 
 	@Autowired
 	private DSLContext dslContext;
+
+	public int findOneForMaxProductSeq() {
+		return this.dslContext.select(DSL.coalesce(DSL.max(TB_PRD_MST.PRODUCT_SEQ), 0))
+				.from(TB_PRD_MST)
+				.fetchOne(Record1::value1);
+	}
 
 	public int saveOneForProductInfo(ProductDto productDto) {
 		return this.dslContext.insertInto(TB_PRD_MST)
@@ -33,6 +45,15 @@ public class ProductRepository {
 						productDto.getProductShape1AfileSeq(), productDto.getProductShape2AfileSeq(), productDto.getProductOutside1AfileSeq(),
 						productDto.getProductOutside2AfileSeq(), productDto.getProductEtc1AfileSeq(), productDto.getProductEtc2AfileSeq(),
 						"ADMIN", "ADMIN")
+				.execute();
+	}
+
+	public int saveOneForWholeSaleInfo(Map<String, Object> paramMap) {
+		return this.dslContext.insertInto(TB_PRD_WHOLESALE)
+				.columns(TB_PRD_WHOLESALE.PRODUCT_SEQ, TB_PRD_WHOLESALE.RANGE_START, TB_PRD_WHOLESALE.RANGE_END,
+						TB_PRD_WHOLESALE.TRADING_PRICE, TB_PRD_WHOLESALE.SUPPLY_RATE)
+				.values(Integer.parseInt(paramMap.get("productSeq").toString()), Long.parseLong(paramMap.get("rangeStart").toString()), Long.parseLong(paramMap.get("rangeEnd").toString()),
+						Long.parseLong(paramMap.get("tradingPrice").toString()), Integer.parseInt(paramMap.get("supplyRate").toString()))
 				.execute();
 	}
 }
