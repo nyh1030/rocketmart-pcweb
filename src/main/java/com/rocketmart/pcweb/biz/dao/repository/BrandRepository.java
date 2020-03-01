@@ -57,4 +57,18 @@ public class BrandRepository {
 				.execute();
 	}
 
+	public int updateOneForBrandInfo(BrandDto brandDto) {
+		return this.dslContext.update(TB_BRAND_MST)
+				.set(TB_BRAND_MST.BRAND_NM, brandDto.getBrandNm())
+				.set(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ, brandDto.getBrandLogoFileSeq())
+				.set(TB_BRAND_MST.BRAND_OWNERSHIP, brandDto.getBrandOwnership())
+				.set(TB_BRAND_MST.BRAND_HOMEPAGE_URL, brandDto.getBrandHomePageUrl())
+				.set(TB_BRAND_MST.BRAND_YOUTUBE_URL, brandDto.getBrandYouTubeUrl())
+				.set(TB_BRAND_MST.BRAND_INSTAGRAM_URL, brandDto.getBrandInstagramUrl())
+				.set(TB_BRAND_MST.BRAND_CERIFY, brandDto.getBrandCerify())
+				.set(TB_BRAND_MST.BRAND_INTRODUCTION, brandDto.getBrandIntroduction())
+				.set(TB_BRAND_MST.UPD_USR_ID, "ADMIN")
+				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandDto.getBrandSeq()))
+				.execute();
+	}
 }

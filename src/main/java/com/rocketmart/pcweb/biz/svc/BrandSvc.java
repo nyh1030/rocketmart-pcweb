@@ -43,4 +43,9 @@ public class BrandSvc {
 	public int saveOneForBrandInfo(BrandDto brandDto) {
 		return brandRepository.saveOneForBrandInfo(brandDto);
 	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int updateOneForBrandInfo(BrandDto brandDto) {
+		return brandRepository.updateOneForBrandInfo(brandDto);
+	}
 }

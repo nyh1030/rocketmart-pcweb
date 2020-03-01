@@ -40,40 +40,37 @@
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 오너십 <span class="required">*</span></label>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="rdoBrandOwnership" th:value="10">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="brandOwnership" th:value="10">
                                     <label for="rdoBrandOwnership1">자사 브랜드 (직접 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="rdoBrandOwnership" th:value="20">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="brandOwnership" th:value="20">
                                     <label for="rdoBrandOwnership2">자사 브랜드 (위탁 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="30">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="brandOwnership" th:value="30">
                                     <label for="rdoBrandOwnership3">타사 브랜드 (도소매 유통)</label>
                                 </div>
                                 <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
                             </div>
                             <div class="mb-5">
                                 <label for="txtHomepageUrl" class="bul-type">브랜드 홈페이지</label>
-                                <input type="text" class="form-control" id="txtHomepageUrl"
-                                       th:value="${brandInfo.BRAND_HOMEPAGE_URL}">
+                                <input type="text" class="form-control" id="txtHomepageUrl" th:value="${brandInfo.BRAND_HOMEPAGE_URL}">
 
                                 <label for="txtYoutubeUrl" class="bul-type">유투브 채널</label>
-                                <input type="text" class="form-control" id="txtYoutubeUrl"
-                                       th:value="${brandInfo.BRAND_YOUTUBE_URL}">
+                                <input type="text" class="form-control" id="txtYoutubeUrl" th:value="${brandInfo.BRAND_YOUTUBE_URL}">
 
                                 <label for="txtInstagramUrl" class="bul-type">인스타그램</label>
-                                <input type="text" class="form-control" id="txtInstagramUrl"
-                                       th:value="${brandInfo.BRAND_INSTAGRAM_URL}">
+                                <input type="text" class="form-control" id="txtInstagramUrl" th:value="${brandInfo.BRAND_INSTAGRAM_URL}">
                             </div>
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 인증 (중복체크 가능)</label>
                                 <div class="ps-checkbox mb-1">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" th:value="10">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" name="brandCerify" th:value="10">
                                     <label for="chkBrandCerify1">ISO 22716 / CGMP</label>
                                 </div>
                                 <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" th:value="20">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" name="brandCerify" th:value="20">
                                     <label for="chkBrandCerify2">ISO 9001</label>
                                 </div>
                             </div>
@@ -105,7 +102,9 @@
 
         const PageScope = {
 
-            uploadStarter: null,
+            objBrandInfo: null,
+            objLogoUploader: null,
+            isFileChange: false,
 
             init() {
                 this.setUploadComponent();
@@ -114,16 +113,23 @@
             },
 
             bindFields(brandInfo) {
+                this.objBrandInfo = brandInfo;
+                this.numBrandLogoFileSeq = brandInfo.BRAND_LOGO_AFILE_SEQ;
+
                 const template = `
                             <div class="dz-preview dz-file-preview" >
                               <div class="dz-image"><img  data-dz-thumbnail src="${brandInfo.URL_PATH_CD}" /></div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
                             </div>`;
-
                 $("#dvBrandLogo").html(template);
 
-                $(`[name='rdoBrandOwnership']`).filter(`[value='${brandInfo.BRAND_OWNERSHIP}']`).prop('checked', true);
+                $('[name="brandOwnership"]').each(function () {
+                    if ($(this).val() === brandInfo.BRAND_OWNERSHIP) {
+                        $(this).prop('checked', true);
+                    }
+                });
+
                 $("#txtBrandIntroduction").summernote('code', brandInfo.BRAND_INTRODUCTION);
 
                 const brandCerify = brandInfo.BRAND_CERIFY;
@@ -138,7 +144,7 @@
             },
 
             setUploadComponent() {
-                this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
+                this.objLogoUploader = new Dropzone('#dvBrandLogo' ,{
                     method: 'post',
                     url: '/seller/brand/file/upload',
                     params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
@@ -160,6 +166,8 @@
                         let _this;
                         this.on("addedfile", file =>{
                             _this = this;
+                            PageScope.isFileChange = true;
+
                             $("#dvBrandLogo > .dz-preview:first").remove();
                             if (file.status === "queued") {
                                 $(".dz-success-mark").remove();
@@ -172,7 +180,7 @@
                     },
                     success: (response) => {
                         if (response.status === "success") {
-                            PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
                         }
                     }
                 });
@@ -187,9 +195,9 @@
 
             saveBrandInfo(objFileSeq) {
                 axios({
-                    method: 'post',
-                    url: '/seller/brand/info/save',
-                    params: Object.assign(this.getParams(), objFileSeq)
+                    method: 'put',
+                    url: '/seller/brand/info/update',
+                    params: Object.assign(this.getParameters(), objFileSeq)
                 }).then(response => {
                     if (response.data === 200) {
                         alert('브랜드 정보가 저장되었습니다.');
@@ -200,15 +208,15 @@
                 });
             },
 
-            getParams() {
+            getParameters() {
                 return {
+                    brandSeq: this.objBrandInfo.BRAND_SEQ,
                     brandNm: $('#txtBrandNm').val(),
-                    brandLogo: $('#txtBrandNm').val(),
-                    brandOwnership: $('#rdoBrandOwnership1').val(),
+                    brandOwnership: CommonUtils.getCheckValToCommaString($('[name="brandOwnership"]')),
                     brandHomePageUrl: $('#txtHomepageUrl').val(),
                     brandYouTubeUrl: $('#txtYoutubeUrl').val(),
                     brandInstagramUrl: $('#txtInstagramUrl').val(),
-                    brandCerify: $('#chkBrandCerify1').val(),
+                    brandCerify: CommonUtils.getCheckValToCommaString($('[name="brandCerify"]')),
                     brandIntroduction: $('#txtBrandIntroduction').summernote('code')
                 }
             },
@@ -216,9 +224,6 @@
             invokeValidation() {
                 if (!$('#txtBrandNm').val().trim()) {
                     alert('브랜드 이름은 필수값 입니다.');
-                    return false;
-                } else if (PageScope.uploadStarter.files.length <= 0) {
-                    alert("브랜드 로고는 필수 입니다.\nupload 버튼을 이용해 파일을 첨부해주세요.")
                     return false;
                 }
 
@@ -237,7 +242,12 @@
                     if (!PageScope.invokeValidation()) return;
 
                     if (confirm('저장하시겠습니까?')) {
-                        PageScope.uploadStarter.processQueue();
+                        if (PageScope.isFileChange) {
+                            PageScope.objLogoUploader.processQueue();
+                        } else {
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: PageScope.objBrandInfo.BRAND_LOGO_AFILE_SEQ });
+                        }
+
                     }
                 });
                 $('#btnCancel').on('click', () => {

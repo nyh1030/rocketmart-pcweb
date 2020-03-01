@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class BrandDto {
 
+	private int brandSeq;
 	private String brandNm;
 	private int brandLogoFileSeq;
 	private String brandOwnership;
