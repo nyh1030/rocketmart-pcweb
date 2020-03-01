@@ -1,11 +1,8 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
-import com.rocketmart.jooq.tables.TbBrandMst;
-import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

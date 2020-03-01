@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = 1089384531;
+    private static final long serialVersionUID = -483410732;
 
     /**
      * The reference instance of <code>rocketmart.TB_BRAND_MST</code>

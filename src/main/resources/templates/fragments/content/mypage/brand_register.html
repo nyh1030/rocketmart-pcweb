@@ -40,15 +40,15 @@
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 오너십 <span class="required">*</span></label>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="rdoBrandOwnership" th:value="01" checked>
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="brandOwnership" th:value="01" checked>
                                     <label for="rdoBrandOwnership1">자사 브랜드 (직접 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="rdoBrandOwnership" th:value="02">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="brandOwnership" th:value="02">
                                     <label for="rdoBrandOwnership2">자사 브랜드 (위탁 제조)</label>
                                 </div>
                                 <div class="ps-radio mb-1">
-                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="rdoBrandOwnership" th:value="03">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="brandOwnership" th:value="03">
                                     <label for="rdoBrandOwnership3">타사 브랜드 (도소매 유통)</label>
                                 </div>
                                 <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
@@ -68,11 +68,11 @@
                             <div class="mb-5">
                                 <label class="bul-type">브랜드 인증 (중복체크 가능)</label>
                                 <div class="ps-checkbox mb-1">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" name="chkBrandCerify" th:value="01">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" name="brandCerify" th:value="01">
                                     <label for="chkBrandCerify1">ISO 22716 / CGMP</label>
                                 </div>
                                 <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" name="chkBrandCerify" th:value="02">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" name="brandCerify" th:value="02">
                                     <label for="chkBrandCerify2">ISO 9001</label>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                     },
                     success: (response) => {
                         if (response.status === "success") {
-                            PageScope.saveBrandInfo({ brandFileSeq: response.xhr.response });
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
                         }
                     }
                 });
@@ -168,6 +168,7 @@
                 axios({
                     method: 'post',
                     url: '/seller/brand/info/save',
+                    params: Object.assign(this.getParameters(), objFileSeq)
                 }).then(response => {
                     if (response.data === 200) {
                         alert('브랜드 정보가 저장되었습니다.');
@@ -175,19 +176,18 @@
                     }
                 })
                 .catch(error => {
-                    params: Object.assign(this.getParams(), objFileSeq)
                     console.log(error);
                 });
             },
 
-            getParams() {
+            getParameters() {
                 return {
                     brandNm: $('#txtBrandNm').val(),
-                    brandOwnership: $('#rdoBrandOwnership1').val(),
+                    brandOwnership: CommonUtils.getCheckValToCommaString($('[name="brandOwnership"]')),
                     brandHomePageUrl: $('#txtHomepageUrl').val(),
                     brandYouTubeUrl: $('#txtYoutubeUrl').val(),
                     brandInstagramUrl: $('#txtInstagramUrl').val(),
-                    brandCerify: $('#chkBrandCerify1').val(),
+                    brandCerify: CommonUtils.getCheckValToCommaString($('[name="brandCerify"]')),
                     brandIntroduction: $('#txtBrandIntroduction').summernote('code')
                 }
             },
