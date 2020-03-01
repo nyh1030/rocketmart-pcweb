@@ -22,7 +22,7 @@ public class FileRepository {
 				.fetchOne(Record1::value1);
 	}
 
-	public int saveInfoForBrandFile(int afileSeq, int afileNo, String orgnFileNm, String urlPathCd, String afilePath, String regFileNm, String ext, int afileSize, String themaRelmCd, String regMenuPart) {
+	public int saveInfoForFile(int afileSeq, int afileNo, String orgnFileNm, String urlPathCd, String afilePath, String regFileNm, String ext, int afileSize, String themaRelmCd, String regMenuPart) {
 		return this.dslContext.insertInto(TbCmAfile.TB_CM_AFILE)
 				.columns(TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO, TbCmAfile.TB_CM_AFILE.ORGN_FILE_NM, TbCmAfile.TB_CM_AFILE.URL_PATH_CD,
 						TbCmAfile.TB_CM_AFILE.AFILE_PATH, TbCmAfile.TB_CM_AFILE.REG_FILE_NM, TbCmAfile.TB_CM_AFILE.EXT, TbCmAfile.TB_CM_AFILE.AFILE_SIZE, TbCmAfile.TB_CM_AFILE.THEMA_RELM_CD, TbCmAfile.TB_CM_AFILE.REG_MENU_PART,

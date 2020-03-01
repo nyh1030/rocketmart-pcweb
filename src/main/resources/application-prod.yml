@@ -1,0 +1,36 @@
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: rocket2019!
+    url: jdbc:mariadb://49.50.167.112:3306/rocketmart
+    hikari:
+      maximum-pool-size: 10
+
+  jooq:
+    sql-dialect: mariadb
+
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+attach-file:
+  path: ./fileUpload
+
+logging:
+  level:
+    org.jooq.tools.LoggerListener: debug

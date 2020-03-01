@@ -2,14 +2,12 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.jooq.tables.records.TbOtherContactUsRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
-import com.rocketmart.pcweb.common.response.ApiResponse;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j

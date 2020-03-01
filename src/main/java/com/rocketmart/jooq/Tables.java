@@ -11,7 +11,7 @@ import com.rocketmart.jooq.tables.TbOtherContactUs;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 
 /**

@@ -17,7 +17,7 @@ import com.rocketmart.jooq.tables.records.TbOtherContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.ForeignKey;
 import org.jooq.Identity;

@@ -3,7 +3,7 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.common.file.FileUtils;
-import com.rocketmart.pcweb.common.response.ApiResponse;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Slf4j
 @RestController
 public class BrandRestCtl {
@@ -22,12 +20,9 @@ public class BrandRestCtl {
 	@Autowired
 	private BrandSvc brandSvc;
 
-	@Autowired
-	private FileUtils fileUtils;
-
 	@PostMapping("/seller/brand/file/upload")
-	public ResponseEntity<String> saveBrandFile(MultipartFile file, HttpServletRequest request, @RequestParam(value = "themaRelmCd") String themaRelmCd, @RequestParam(value = "regMenuPart") String regMenuPart) {
-		return new ResponseEntity<>(fileUtils.uploadFile(file, request, themaRelmCd, regMenuPart), HttpStatus.OK);
+	public ResponseEntity<String> saveBrandFile(MultipartFile file, @RequestParam(value = "themaRelmCd") String themaRelmCd, @RequestParam(value = "regMenuPart") String regMenuPart) {
+		return new ResponseEntity<>(brandSvc.saveBrandUpload(file, themaRelmCd, regMenuPart), HttpStatus.OK);
 	}
 
 	@PostMapping("/seller/brand/info/save")
