@@ -6,8 +6,12 @@ package com.rocketmart.jooq;
 
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
+import com.rocketmart.jooq.tables.TbContactUs;
+import com.rocketmart.jooq.tables.TbInquiryDtl;
+import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
-import com.rocketmart.jooq.tables.TbOtherContactUs;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +37,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = 608566565;
+    private static final long serialVersionUID = -471480844;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -51,14 +55,34 @@ public class Rocketmart extends SchemaImpl {
     public final TbCmAfile TB_CM_AFILE = com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 
     /**
+     * 관리자 문의
+     */
+    public final TbContactUs TB_CONTACT_US = com.rocketmart.jooq.tables.TbContactUs.TB_CONTACT_US;
+
+    /**
+     * 상품 문의내역 상세
+     */
+    public final TbInquiryDtl TB_INQUIRY_DTL = com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
+
+    /**
+     * 상품 문의내역
+     */
+    public final TbInquiryMst TB_INQUIRY_MST = com.rocketmart.jooq.tables.TbInquiryMst.TB_INQUIRY_MST;
+
+    /**
      * 회원정보 마스터
      */
     public final TbMemMst TB_MEM_MST = com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 
     /**
-     * 관리자 문의
+     * 상품 마스터
      */
-    public final TbOtherContactUs TB_OTHER_CONTACT_US = com.rocketmart.jooq.tables.TbOtherContactUs.TB_OTHER_CONTACT_US;
+    public final TbPrdMst TB_PRD_MST = com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+
+    /**
+     * 상품별 도매가격(FOB)
+     */
+    public final TbPrdWholesale TB_PRD_WHOLESALE = com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
     /**
      * No further instances allowed
@@ -84,7 +108,11 @@ public class Rocketmart extends SchemaImpl {
         return Arrays.<Table<?>>asList(
             TbBrandMst.TB_BRAND_MST,
             TbCmAfile.TB_CM_AFILE,
+            TbContactUs.TB_CONTACT_US,
+            TbInquiryDtl.TB_INQUIRY_DTL,
+            TbInquiryMst.TB_INQUIRY_MST,
             TbMemMst.TB_MEM_MST,
-            TbOtherContactUs.TB_OTHER_CONTACT_US);
+            TbPrdMst.TB_PRD_MST,
+            TbPrdWholesale.TB_PRD_WHOLESALE);
     }
 }
