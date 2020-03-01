@@ -6,8 +6,10 @@ package com.rocketmart.jooq;
 
 import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
+import com.rocketmart.jooq.tables.TbContactUs;
+import com.rocketmart.jooq.tables.TbInquiryDtl;
+import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
-import com.rocketmart.jooq.tables.TbOtherContactUs;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
 
@@ -38,14 +40,24 @@ public class Tables {
     public static final TbCmAfile TB_CM_AFILE = TbCmAfile.TB_CM_AFILE;
 
     /**
+     * 관리자 문의
+     */
+    public static final TbContactUs TB_CONTACT_US = TbContactUs.TB_CONTACT_US;
+
+    /**
+     * 상품 문의내역 상세
+     */
+    public static final TbInquiryDtl TB_INQUIRY_DTL = TbInquiryDtl.TB_INQUIRY_DTL;
+
+    /**
+     * 상품 문의내역
+     */
+    public static final TbInquiryMst TB_INQUIRY_MST = TbInquiryMst.TB_INQUIRY_MST;
+
+    /**
      * 회원정보 마스터
      */
     public static final TbMemMst TB_MEM_MST = TbMemMst.TB_MEM_MST;
-
-    /**
-     * 관리자 문의
-     */
-    public static final TbOtherContactUs TB_OTHER_CONTACT_US = TbOtherContactUs.TB_OTHER_CONTACT_US;
 
     /**
      * 상품 마스터

@@ -1,6 +1,6 @@
 package com.rocketmart.pcweb.biz.svc;
 
-import com.rocketmart.jooq.tables.records.TbOtherContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.pcweb.biz.dao.repository.OtherRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class OtherSvc {
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public int saveOneForContactUsInfo(TbOtherContactUsRecord contactUsRecord) {
+	public int saveOneForContactUsInfo(TbContactUsRecord contactUsRecord) {
 		return otherRepository.saveOneForContactUsInfo(contactUsRecord);
 	}
 
