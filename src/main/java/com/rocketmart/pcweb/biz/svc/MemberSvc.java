@@ -58,6 +58,7 @@ public class MemberSvc {
 	 */
 	public Map<String, Object> findOneForMemInfo(String mmbrId) {
 
+
 		Map<String, Object> mmbrMap = null;		// 회원정보 Map
 		Object bsnsTyp = null;				// 사업자유형
 		String[] bsnsTypCdArr = null;		// 사업자유형 코드 Array
@@ -105,9 +106,19 @@ public class MemberSvc {
 	/**
 	 * 판매자 정보 수정
 	 * @param mmbrRcrd
+	 * @param nwPw
 	 * @return int
 	 */
-	public int execModifySellerInfo(TbMemMstRecord mmbrRcrd) {
+	public int execModifySellerInfo(TbMemMstRecord mmbrRcrd, String nwPw) {
+
+		BCryptPasswordEncoder passwordEncoder = null;	// 암호화
+
+		// 비밀번호 입력값 있을경우
+		if(!nwPw.isEmpty()) {
+			passwordEncoder = new BCryptPasswordEncoder();
+			mmbrRcrd.setMemPw(passwordEncoder.encode(nwPw));
+		}
+
 		return this.memberRepository.execModifySellerInfo(mmbrRcrd);
 	}
 

@@ -23,12 +23,12 @@
                                                required="required" th:value="${mmbr.get('MEM_ID')}" th:readonly="readonly" />
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" id="memPw" name="memPw" required="required">
-                                        <!--<span th:text="${mmbr.get('MEM_PW')}" />-->
+                                        <input type="hidden" name="memPw" th:value="${mmbr.get('MEM_PW')}" />
+                                        <input class="form-control pwChck" type="password" id="nwPw" name="nwPw" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" id="memPwChk" name="memPwChk" required="required">
-                                        <small id="chkNotice"></small>
+                                        <input class="form-control pwChck" type="password" id="nwPwChck" name="nwPwChck" required="required">
+                                        <small id="chckNtc"></small>
                                     </div>
 
                                     <p class="form-row form-group form-row-wide">
@@ -94,12 +94,45 @@
 
     <script type="text/javascript">
         (function(){
-            var form = null;    // form Obj
 
-            var exct = {
+            var form = null;    // form Obj
+            var nwPw = null;    // 비밀번호 input Obj
+            var nwPwChck = null;    // 비밀번호 확인 input Obj
+            var btnMdfy = null;     // 수정 Button Obj
+            var chckNtc = null;     // 알림 Obj
+
+            var modify = {
+
                 init : function() {
+
                     form = $("#sllrFrm");
+                    nwPw = form.find("#nwPw")
+                    nwPwChck = form.find("#nwPwChck");
+                    chckNtc = form.find("#chckNtc");
+                    btnMdfy = form.find("#btnMdfy");
+
                     this.clickEventListener();
+                    this.confirmPasswordForm();
+                },
+                confirmPasswordForm : function() {  // 비밀번호 입력 유효성검사
+
+                    form.find(".pwChck").keyup(function(){
+
+                        if(nwPw.val() == "" && nwPwChck.val() == "") {
+
+                            chckNtc.html("");
+                            btnMdfy.prop("disabled", false);
+                        }else {
+
+                            if(nwPw.val() == nwPwChck.val()) {
+                                chckNtc.html("<strong style='color=\"#199894b3\"'>Passwords match</strong>");
+                                btnMdfy.prop("disabled", false);
+                            }else {
+                                chckNtc.html("<strong style='color=\"#f82a2aa3\"'>Passwords do not match</strong>");
+                                btnMdfy.prop("disabled", true);
+                            }
+                        }
+                    });
                 },
                 clickEventListener : function() {
 
@@ -120,7 +153,7 @@
                 }
             }
 
-            exct.init();
+            modify.init();
         }(jQuery));
     </script>
 </th:block>
