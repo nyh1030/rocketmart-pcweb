@@ -29,5 +29,4 @@ public class BrandRestCtl {
 	public ResponseEntity<String> saveBrandInfo(BrandDto brandDto) {
 		return new ResponseEntity<>(brandSvc.saveOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
-
 }

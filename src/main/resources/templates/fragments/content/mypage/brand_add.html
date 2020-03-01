@@ -23,15 +23,15 @@
                         <p class="date ab-r">last updated: 2020-01-03  20:31:45</p>
                     </div>
                     <ul class="brand-list">
-                        <div th:if="${#lists.isEmpty(brandList)}">
+                        <th:block th:if="${#lists.isEmpty(brandList)}">
                             <div class="no_data"><i class="fa fa-exclamation-circle"></i>등록되어 있는 제품이 없습니다.</div>
-                        </div>
-                        <div th:if="${not #lists.isEmpty(brandList)}">
+                        </th:block>
+                        <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
                                 <div class="img-box"><img th:src="${brand.URL_PATH_CD}"></div>
                                 <button type="button" class="ps-btn type-green" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|">수정하기</button>
                             </li>
-                        </div>
+                        </th:block>
                     </ul>
                     <div class="btn-box">
                         <button type="button" id="" class="ps-btn type-black">Milk Touch 제품 추가하기</button>

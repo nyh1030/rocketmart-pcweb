@@ -28,7 +28,9 @@ spring:
       max-file-size: 5MB
       max-request-size: 5MB
 
-afile-path: "C:\\rocketmart-pcweb\\src\\main\\resources\\static\\afiles\\"
+afile:
+  host: "http://localhost:8080"
+  path: "C:\\rocketmart-pcweb\\src\\main\\resources\\static\\afiles\\"
 
 logging:
   level:

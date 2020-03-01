@@ -30,11 +30,5 @@ public class MainCtl {
     public String contact_register() {
         return prefixPath.concat("/admin/contact_register");
     }
-
-    // contact us > 등록
-    @GetMapping("/product_register")
-    public String product_register() {
-        return prefixPath.concat("/mypage/product_register");
-    }
 }
 

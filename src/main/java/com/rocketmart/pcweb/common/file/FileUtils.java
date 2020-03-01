@@ -28,20 +28,22 @@ public class FileUtils {
 	@Autowired
 	private FileRepository fileRepository;
 
-	@Value("${afile-path}")
+	@Value("${afile.host}")
+	private String host;
+	@Value("${afile.path}")
 	private String filePath;
 
 	public String uploadFile(MultipartFile file, String themaRelmCd, String regMenuPart) {
-		AtomicInteger afileNo = new AtomicInteger(0);
 		int afileSeq = this.fileRepository.findOneForMaxSeq(regMenuPart) + 1;
-		return this.saveFile(file, afileSeq,afileNo.incrementAndGet(), themaRelmCd, regMenuPart).equals(ApiBusiness.OK.getCode()) ? String.valueOf(afileSeq) : ApiBusiness.FAIL.getCode();
+		boolean isSuccess = this.saveFile(file, afileSeq, 1, themaRelmCd, regMenuPart).equals(ApiBusiness.OK.getCode());
+		return isSuccess ? String.valueOf(afileSeq) : "0";
 	}
 
 	public String uploadFiles(MultipartFile[] files, String themaRelmCd, String regMenuPart) {
-		AtomicInteger afileNo = new AtomicInteger(0);
+		AtomicInteger afileNo = new AtomicInteger(1);
 		int afileSeq = this.fileRepository.findOneForMaxSeq(regMenuPart) + 1;
 		Arrays.stream(files).forEach(file -> {
-			this.saveFile(file, afileSeq, afileNo.incrementAndGet(), themaRelmCd, regMenuPart);
+			this.saveFile(file, afileSeq, afileNo.getAndAdd(1), themaRelmCd, regMenuPart);
 		});
 		return String.valueOf(afileSeq);
 	}
@@ -52,11 +54,11 @@ public class FileUtils {
 		String fullFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 		String orgnFileNm = fullFileName.substring(0, fullFileName.indexOf("."));
 		String ext = fullFileName.substring(fullFileName.indexOf("."));
-		String regFileNm = CommonUtils.getFileId(orgnFileNm);
-		Path targetLocation = Paths.get(filePath).toAbsolutePath().normalize().resolve(regFileNm.concat(ext));
+		String regFileNm = CommonUtils.getFileId();
+		Path targetLocation = Paths.get(filePath.concat(themaRelmCd).concat("/")).toAbsolutePath().normalize().resolve(regFileNm.concat(ext));
 		try {
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
-			String urlPathCd = requestUrl.concat("/afiles/").concat(themaRelmCd).concat("/").concat(regFileNm).concat(ext);
+			String urlPathCd = host.concat("/afiles/").concat(themaRelmCd).concat("/").concat(regFileNm).concat(ext);
 			resultCnt = this.fileRepository.saveInfoForFile(afileSeq, afileNo, orgnFileNm, urlPathCd, targetLocation.toString(), regFileNm, ext, (int) file.getSize(), themaRelmCd, regMenuPart);
 		} catch (IOException e) {
 			e.printStackTrace();

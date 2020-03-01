@@ -8,8 +8,10 @@ import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbOtherContactUs;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 
 /**
@@ -44,4 +46,14 @@ public class Tables {
      * 관리자 문의
      */
     public static final TbOtherContactUs TB_OTHER_CONTACT_US = TbOtherContactUs.TB_OTHER_CONTACT_US;
+
+    /**
+     * 상품 마스터
+     */
+    public static final TbPrdMst TB_PRD_MST = TbPrdMst.TB_PRD_MST;
+
+    /**
+     * 상품별 도매가격(FOB)
+     */
+    public static final TbPrdWholesale TB_PRD_WHOLESALE = TbPrdWholesale.TB_PRD_WHOLESALE;
 }

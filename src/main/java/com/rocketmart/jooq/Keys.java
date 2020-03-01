@@ -8,13 +8,18 @@ import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbOtherContactUs;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbCmAfileRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.jooq.tables.records.TbOtherContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
+import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
+import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
@@ -40,6 +45,7 @@ public class Keys {
 
     public static final Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Identities0.IDENTITY_TB_BRAND_MST;
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
+    public static final Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Identities0.IDENTITY_TB_PRD_MST;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -50,11 +56,15 @@ public class Keys {
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = UniqueKeys0.KEY_TB_MEM_MST_PRIMARY;
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = UniqueKeys0.KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
     public static final UniqueKey<TbOtherContactUsRecord> KEY_TB_OTHER_CONTACT_US_PRIMARY = UniqueKeys0.KEY_TB_OTHER_CONTACT_US_PRIMARY;
+    public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = UniqueKeys0.KEY_TB_PRD_MST_PRIMARY;
+    public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = UniqueKeys0.KEY_TB_PRD_WHOLESALE_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<TbPrdMstRecord, TbBrandMstRecord> TB_PRD_MST_FK1 = ForeignKeys0.TB_PRD_MST_FK1;
+    public static final ForeignKey<TbPrdWholesaleRecord, TbPrdMstRecord> TB_PRD_WHOLESALE_FK1 = ForeignKeys0.TB_PRD_WHOLESALE_FK1;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -63,6 +73,7 @@ public class Keys {
     private static class Identities0 {
         public static Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Internal.createIdentity(TbBrandMst.TB_BRAND_MST, TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
+        public static Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Internal.createIdentity(TbPrdMst.TB_PRD_MST, TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
     }
 
     private static class UniqueKeys0 {
@@ -71,5 +82,12 @@ public class Keys {
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_PRIMARY = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_PRIMARY", TbMemMst.TB_MEM_MST.MEM_SEQ);
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST.MEM_ID);
         public static final UniqueKey<TbOtherContactUsRecord> KEY_TB_OTHER_CONTACT_US_PRIMARY = Internal.createUniqueKey(TbOtherContactUs.TB_OTHER_CONTACT_US, "KEY_TB_OTHER_CONTACT_US_PRIMARY", TbOtherContactUs.TB_OTHER_CONTACT_US.CONTACT_SEQ);
+        public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = Internal.createUniqueKey(TbPrdMst.TB_PRD_MST, "KEY_TB_PRD_MST_PRIMARY", TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
+        public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = Internal.createUniqueKey(TbPrdWholesale.TB_PRD_WHOLESALE, "KEY_TB_PRD_WHOLESALE_PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
+    }
+
+    private static class ForeignKeys0 {
+        public static final ForeignKey<TbPrdMstRecord, TbBrandMstRecord> TB_PRD_MST_FK1 = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_BRAND_MST_PRIMARY, TbPrdMst.TB_PRD_MST, "TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST.BRAND_SEQ);
+        public static final ForeignKey<TbPrdWholesaleRecord, TbPrdMstRecord> TB_PRD_WHOLESALE_FK1 = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbPrdWholesale.TB_PRD_WHOLESALE, "TB_PRD_WHOLESALE_fk1", TbPrdWholesale.TB_PRD_WHOLESALE.PRODUCT_SEQ);
     }
 }

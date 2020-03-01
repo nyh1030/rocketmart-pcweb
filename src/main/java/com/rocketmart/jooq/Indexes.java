@@ -8,8 +8,10 @@ import com.rocketmart.jooq.tables.TbBrandMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbOtherContactUs;
+import com.rocketmart.jooq.tables.TbPrdMst;
+import com.rocketmart.jooq.tables.TbPrdWholesale;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 import org.jooq.Index;
 import org.jooq.OrderField;
@@ -39,6 +41,10 @@ public class Indexes {
     public static final Index TB_MEM_MST_PRIMARY = Indexes0.TB_MEM_MST_PRIMARY;
     public static final Index TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Indexes0.TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
     public static final Index TB_OTHER_CONTACT_US_PRIMARY = Indexes0.TB_OTHER_CONTACT_US_PRIMARY;
+    public static final Index TB_PRD_MST_PRIMARY = Indexes0.TB_PRD_MST_PRIMARY;
+    public static final Index TB_PRD_MST_TB_PRD_MST_FK1 = Indexes0.TB_PRD_MST_TB_PRD_MST_FK1;
+    public static final Index TB_PRD_WHOLESALE_PRIMARY = Indexes0.TB_PRD_WHOLESALE_PRIMARY;
+    public static final Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Indexes0.TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -51,5 +57,9 @@ public class Indexes {
         public static Index TB_MEM_MST_PRIMARY = Internal.createIndex("PRIMARY", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, true);
         public static Index TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createIndex("TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_ID }, true);
         public static Index TB_OTHER_CONTACT_US_PRIMARY = Internal.createIndex("PRIMARY", TbOtherContactUs.TB_OTHER_CONTACT_US, new OrderField[] { TbOtherContactUs.TB_OTHER_CONTACT_US.CONTACT_SEQ }, true);
+        public static Index TB_PRD_MST_PRIMARY = Internal.createIndex("PRIMARY", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.PRODUCT_SEQ }, true);
+        public static Index TB_PRD_MST_TB_PRD_MST_FK1 = Internal.createIndex("TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.BRAND_SEQ }, false);
+        public static Index TB_PRD_WHOLESALE_PRIMARY = Internal.createIndex("PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ }, true);
+        public static Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Internal.createIndex("TB_PRD_WHOLESALE_fk1", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.PRODUCT_SEQ }, false);
     }
 }

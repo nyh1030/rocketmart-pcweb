@@ -56,10 +56,10 @@ label .required{color:red;font-weight:700;}
 .ps-block__content .search-box .ps-btn,
 .ps-layout--shop .search-box .ps-btn{padding:0 20px;height:40px;vertical-align:middle;}
 .ps-block--vendor-dashboard .ps-table tbody > tr > td .txt-msg{text-align:left;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;line-height:20px;height:40px;color:#000;}
-.ps-section__right .brand-list{padding:40px 0;border-top:1px solid #e1e1e1}
-.ps-section__right .brand-list li{display:inline-block;width:calc((100% / 4) - 4px);text-align:center;}
-.ps-section__right .brand-list li .img-box{width:150px;height:80px;margin:0 auto 20px;border:1px solid #ededed;}
-.ps-section__right .brand-list li .img-box img{max-width:100%;height:100%;}
+.ps-section__right .brand-list{border-top:1px solid #e1e1e1}
+.ps-section__right .brand-list li{display:inline-block;width:calc((100% / 5) - 2px);text-align:center;margin-top:30px}
+.ps-section__right .brand-list li .img-box{width:150px;height:150px;margin:0 auto 20px;border:1px solid #ededed;}
+.ps-section__right .brand-list li .img-box img{max-width:100%;height:100%;object-fit: cover;}
 .ps-section__right .brand-list li .ps-btn{padding:10px 25px;font-size:15px;}
 .select2-container--default .select2-selection--single{border-color:#ddd;}
 .ps-product--detail > .ps-product__content{padding-top:0;border-bottom:1px solid #e1e1e1;padding-bottom:50px;}
@@ -74,9 +74,7 @@ label .required{color:red;font-weight:700;}
 .ps-product--detail .txt-impt{color:#f14705;font-weight:600;}
 .ps-product--detail .photo-upload{text-align:center;}
 .ps-product--detail .photo-upload li{width:200px;display:inline-block;text-align:center;margin:0 15px 25px;}
-.ps-product--detail .photo-upload li a{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
-.ps-product--detail .photo-upload li a .img-box{width:100%;height:100%;}
-.ps-product--detail .photo-upload li a .fa{font-size:40px;}
+.ps-product--detail .photo-upload li .prd-photo{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
 .ps-product--detail .photo-upload li .txt{display:block;margin-top:5px;font-weight:600;}
 .ps-product--detail .table_wrap{padding-bottom:50px;}
 .ps-product--detail .table_wrap table{width:100%;}

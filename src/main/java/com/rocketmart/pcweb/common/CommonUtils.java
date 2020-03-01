@@ -4,6 +4,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class CommonUtils {
 
@@ -11,7 +12,7 @@ public class CommonUtils {
 		return new String(Base64.encodeBase64(targetValue.getBytes()));
 	}
 
-	public static String getFileId(String fileName) {
-		return String.format("%s_%s", DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.now()), CommonUtils.convertDataToBase64(fileName));
+	public static String getFileId() {
+		return String.format("%s_%s", DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.now()), UUID.randomUUID());
 	}
 }

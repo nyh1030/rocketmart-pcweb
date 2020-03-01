@@ -5,7 +5,14 @@ const CommonUtils = {
     },
     forwardPage(targetPage) {
         location.replace(targetPage);
-    }
+    },
+    getCheckValToCommaString(objTarget) {
+        let returnArray = [];
+        objTarget.each(function (idx, val) {
+            if ($(this).prop('checked')) returnArray.push($(this).val());
+        });
+        return returnArray.join(",");
+    },
 };
 
 Object.assign(Element.prototype, {
