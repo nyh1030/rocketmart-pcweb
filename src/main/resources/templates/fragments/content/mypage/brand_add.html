@@ -34,7 +34,7 @@
                         </th:block>
                     </ul>
                     <div class="btn-box">
-                        <button type="button" id="" class="ps-btn type-black">Milk Touch 제품 추가하기</button>
+                        <button type="button" id="btnAddProduct" class="ps-btn type-black">제품 추가하기</button>
                     </div>
 
                     <!-- D : 등록된 브랜드 없을 경우
@@ -68,6 +68,9 @@
             clickEventListener() {
                 $("#btnBrandAdd").on("click", () => {
                     CommonUtils.redirectPage("/seller/brand_register");
+                });
+                $("#btnAddProduct").on("click", () => {
+                    CommonUtils.redirectPage("/seller/product_register");
                 });
             }
         };

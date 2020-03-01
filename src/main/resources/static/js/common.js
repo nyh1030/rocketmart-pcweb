@@ -6,6 +6,9 @@ const CommonUtils = {
     forwardPage(targetPage) {
         location.replace(targetPage);
     },
+    backwardPage(targetPage) {
+        history.back();
+    },
     getCheckValToCommaString(objTarget) {
         let returnArray = [];
         objTarget.each(function () {

@@ -82,9 +82,8 @@
                             </div>
                         </div>
                         <div class="btns">
-                            <button type="button" id="btnPreView" class="ps-btn type-green">미리보기</button>
                             <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
-                            <button type="button" id="btnCancel" class="ps-btn type-gray ab-r">취소하기</button>
+                            <button type="button" id="btnBack" class="ps-btn type-gray ab-r">뒤로가기</button>
                         </div>
                     </div>
                 </div>
@@ -114,7 +113,6 @@
 
             bindFields(brandInfo) {
                 this.objBrandInfo = brandInfo;
-                this.numBrandLogoFileSeq = brandInfo.BRAND_LOGO_AFILE_SEQ;
 
                 const template = `
                             <div class="dz-preview dz-file-preview" >
@@ -151,9 +149,8 @@
                     acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
                     addRemoveLinks: false,
                     autoProcessQueue: false,
-                    thumbnailWidth: 200,
+                    thumbnailWidth: 250,
                     thumbnailHeight: 200,
-                    //maxFiles: 1,
                     maxFilesize: 10,
                     clickable: '#btnUpload',
                     previewTemplate: `
@@ -172,10 +169,6 @@
                             if (file.status === "queued") {
                                 $(".dz-success-mark").remove();
                             }
-                        });
-                        this.on("maxfilesexceeded", function (file) {
-                            //_this.removeFile(file);
-                            //alert('최대 업로드 파일 수는 1개 입니다.');
                         });
                     },
                     success: (response) => {
@@ -250,8 +243,8 @@
 
                     }
                 });
-                $('#btnCancel').on('click', () => {
-                    CommonUtils.forwardPage('/brand_add');
+                $('#btnBack').on('click', () => {
+                    CommonUtils.backwardPage();
                 });
             }
         };
