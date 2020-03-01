@@ -80,6 +80,7 @@ public class MemberRepository {
                 .set(TB_MEM_MST.TEL, mmbrRcrd.getTel())
                 .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
+                .set(TB_MEM_MST.BSNS_TYPE, mmbrRcrd.getBsnsType())
                 .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
                 .execute();
     }
