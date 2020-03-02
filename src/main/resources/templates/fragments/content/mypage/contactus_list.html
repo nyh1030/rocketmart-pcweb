@@ -26,9 +26,9 @@
                         <div class="ps-block__content">
                             <form id="contactusFrm" name="contactusFrm" th:action="@{/admin/contactus/list}" method="post">
                             <div class="search-box">
-                                <input type="text" class="form-control" id="usrNm" name="usrNm" th:value="${usrNm}" placeholder="NAME" style="width:30%">
-                                <input type="text" class="form-control" id="companyNm" name="companyNm" th:value="${companyNm}" placeholder="COMPANY" style="width:30%">
-                                <input type="text" class="form-control" id="subject" name="subject" th:value="${subject}" placeholder="COMPANY" style="width:30%">
+                                <input type="text" class="form-control" id="usrNm" name="usrNm" th:value="${usrNm}" placeholder="NAME" style="width:20%">
+                                <input type="text" class="form-control" id="companyNm" name="companyNm" th:value="${companyNm}" placeholder="COMPANY" style="width:20%">
+                                <input type="text" class="form-control" id="subject" name="subject" th:value="${subject}" placeholder="COMPANY" style="width:20%">
                                 <button type="submit" id="btnSave" class="ps-btn type-black">Search</button>
                             </div>
                             </form>
@@ -67,7 +67,7 @@
                                             <td th:text="${contactus.get('USR_NM')}"></td>
                                             <td th:text="${contactus.get('EMAIL')}"></td>
                                             <td th:text="${contactus.get('COMPANY_NM')}"></td>
-                                            <td><a th:href="@{'/admin/contactus/detail/' + ${contactus.get('CONTACT_SEQ')}}" th:text="${contactus.get('SUBJECT')}"></a></td>
+                                            <td class="link-type"><a th:href="@{'/admin/contactus/detail/' + ${contactus.get('CONTACT_SEQ')}}" th:text="${contactus.get('SUBJECT')}"></a></td>
                                             <td th:text="${#strings.substring(contactus.get('REG_TS'),0,19)}"></td>
                                             <td><a href="#" class="txt-msg" th:title="${contactus.get('MESSAGE')}" th:text="${contactus.get('MESSAGE')}"></a></td>
                                         </tr>
