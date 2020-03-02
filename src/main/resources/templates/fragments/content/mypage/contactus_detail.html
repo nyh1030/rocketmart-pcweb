@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-vendor-dashboard">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-block--vendor-dashboard">
+                <div class="ps-block__header">
+                    <h3>Contact Us</h3>
+                </div>
+                <div class="ps-block__content contact-box">
+                    <div class="mb-5">
+                        <label for="usrNm" class="bul-type">NAME <span class="required">*</span></label>
+                        <input type="text" id="usrNm" name="usrNm" class="form-control">
+                    </div>
+                    <div class="mb-5">
+                        <label for="email" class="bul-type">EMAIL <span class="required">*</span></label>
+                        <input type="text" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="mb-5">
+                        <label for="companyNm" class="bul-type">COMPANY <span class="required">*</span></label>
+                        <input type="text" id="companyNm" name="companyNm" class="form-control">
+                    </div>
+                    <div class="mb-5">
+                        <label for="subject" class="bul-type">SUBJECT <span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" class="form-control">
+                    </div>
+                    <div class="mb-5">
+                        <label for="message" class="bul-type">MESSAGE</label>
+                        <textarea id="message" name="message" maxlength="4000" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button type="button" id="btnList" class="ps-btn type-black">목록</button>
+                </div>
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+<script type="text/javascript">
+    $(() => {
+        PageScope.init();
+        EventScope.init();
+    });
+
+    const PageScope = {
+
+        init() {
+
+        },
+
+
+    };
+
+    const EventScope = {
+
+        init() {
+            this.clickEventListener();
+        },
+
+        clickEventListener() {
+
+            $('#btnList').on('click', () => {
+                if (!PageScope.invokeValidation()) return;
+
+            });
+        }
+    };
+</script>
+
+</th:block>
+</html>
