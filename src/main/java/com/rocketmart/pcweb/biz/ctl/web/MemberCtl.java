@@ -124,9 +124,7 @@ public class MemberCtl {
     //inquiry 목록(어드민)
     @GetMapping("/admin/inquiry/list")
     public String dispInquiryList(Model model) {
-
        // model.addAttribute("inquiryList", memberSvc.findAllForMemInfo());
-
         return prefixPath.concat("/mypage/inquiry_list");
     }
 }
