@@ -12,7 +12,7 @@
         </div>
         <div class="ps-my-signin">
             <div class="container">
-                <p class="txt-fail">Login failed</p>
+                <p class="txt-fail" display="none">Login failed</p>
                 <div class="register ps-form--account ps-tab-root">
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="sign-in">
@@ -20,10 +20,10 @@
                                 <form name="signin" th:action="@{/any/signin}" method="post">
                                     <h5>Log In Your Account</h5>
                                     <div class="form-group">
-                                        <input class="form-control" id="username" name="username" type="text" placeholder="Email address">
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="Email address" required>
                                     </div>
                                     <div class="form-group form-forgot">
-                                        <input class="form-control" id="password" name="password" type="text" placeholder="Password"><!--<a href="">Forgot?</a>-->
+                                        <input class="form-control" id="password" name="password" type="text" placeholder="Password" required><!--<a href="">Forgot?</a>-->
                                     </div>
                                     <div class="form-group">
                                         <div class="ps-checkbox">
@@ -49,7 +49,9 @@
     var signin = {
         init: function() {
             if ("?error" == $(location).attr('search')){
-                console("로그인실패");
+                $('.txt-fail').show();
+            }else{
+                $('.txt-fail').hide();
             }
         }
     };

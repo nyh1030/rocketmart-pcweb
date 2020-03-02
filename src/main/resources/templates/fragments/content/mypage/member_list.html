@@ -10,9 +10,9 @@
                     <aside class="widget widget--vendor">
                         <h3 class="widget-title">Mypage</h3>
                         <ul class="ps-list--arrow">
-                            <li><a th:href="@{/admin/member/list}" class="active">회원목록</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/admin/member/list}" class="active">Member List</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
                             <li><a th:href="@{/admin/inquiry/list}">Inquiry</a></li>
-                            <li><a th:href="@{/admin/contactus/list}">ContactUs</a></li>
+                            <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="ps-section__right">
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
-                            <h3>회원목록</h3>
+                            <h3>Member List</h3>
                         </div>
                         <div class="ps-block__content">
                             <form id="memberFrm" name="memberFrm" th:action="@{/admin/member/list}" method="post">
@@ -41,23 +41,25 @@
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
                                         <col style="width:6%">
+                                        <col style="width:7%">
                                         <col style="width:10%">
                                         <col style="width:10%">
                                         <col style="width:12%">
                                         <col style="width:12%">
                                         <col style="width:15%">
-                                        <col style="width:15%">
+                                        <!--<col style="width:15%">-->
                                         <col>
                                     </colgroup>
                                     <thead>
                                     <tr>
                                         <th>순번</th>
+                                        <th>구분</th>
                                         <th>아이디</th>
                                         <th>회원명</th>
                                         <th>회원등급</th>
                                         <th>연락처</th>
                                         <th>회사명</th>
-                                        <th>회사URL</th>
+                                        <!--<th>회사URL</th>-->
                                         <th>등록일시</th>
                                     </tr>
                                     </thead>
@@ -70,13 +72,15 @@
                                     <th:block th:if="${not #lists.isEmpty(memList)}">
                                         <tr th:each="member : ${memList}">
                                             <td th:text="${memberStat.size - memberStat.index}"></td>
+                                            <td th:if="${member.get('ROLE').equals('BUYER')}">Buyer</td>
+                                            <td th:if="${member.get('ROLE').equals('SELLER')}">Seller</td>
                                             <td th:text="${member.get('MEM_ID')}"></td>
                                             <td th:text="${member.get('MEM_NM')}"></td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('N')}">준회원</td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('Y')}">정회원</td>
                                             <td th:text="${member.get('TEL')}"></td>
                                             <td th:text="${member.get('COMPANY_NM')}"></td>
-                                            <td th:text="${member.get('COMPANY_URL')}"></td>
+                                            <!--<td th:text="${member.get('COMPANY_URL')}">--></td>
                                             <td th:text="${#strings.substring(member.get('REG_TS'),0,19)}"></td>
                                         </tr>
                                     </th:block>
