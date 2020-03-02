@@ -22,11 +22,4 @@ public class OtherRestCtl {
 		return new ResponseEntity<>(otherSvc.saveOneForContactUsInfo(contactUsRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
-/*	@GetMapping("/any/other/contactus-info")
-	public ResponseEntity<String> saveContactUsInfo(TbContactUsRecord contactUsRecord) {
-		return new ResponseEntity<>(otherSvc.saveOneForContactUsInfo(contactUsRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
-	}*/
-
-
-
 }

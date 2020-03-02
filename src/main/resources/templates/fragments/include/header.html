@@ -6,9 +6,9 @@
             <div class="header__left">
                 <div class="menu--product-categories">
                     <div class="menu__toggle">
-                        <a href="#">Category</a>
-                        <a href="#">Brands</a>
-                        <a th:href="@{/any/contactUs_list}">Contact Us</a>
+                        <a th:href="@{/any/category/list}">Category</a>
+                        <a th:href="@{/any/brand/list}">Brands</a>
+                        <a th:href="@{/any/contactus/register}">Contact Us</a>
                     </div>
                 </div>
                 <a class="ps-logo" th:href="@{/}">rocket<span>mart</span></a>
@@ -51,35 +51,8 @@
     </nav>
 </header>
 <header class="header header--mobile" data-sticky="true">
-    <!--    <div class="header__top">
-            <div class="header__left">
-                <p>Welcome to Martfury Online Shopping Store !</p>
-            </div>
-            <div class="header__right">
-                <ul class="navigation__extra">
-                    <li><a href="#">Sell on Martfury</a></li>
-                    <li><a href="#">Tract your order</a></li>
-                    <li>
-                        <div class="ps-dropdown"><a href="#">US Dollar</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a href="#">Us Dollar</a></li>
-                                <li><a href="#">Euro</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="">English</a>
-                            <ul class="ps-dropdown-menu">
-                                <li><a href="#"><img src="img/flag/germany.png" alt=""> Germany</a></li>
-                                <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>-->
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html">rocket<span>mart</span></a></div>
+        <div class="navigation__left"><a class="ps-logo" th:href="@{/}">rocket<span>mart</span></a></div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-block--user-header">

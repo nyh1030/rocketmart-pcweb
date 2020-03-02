@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
+import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.MemberDto;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
@@ -123,9 +124,7 @@ public class MemberCtl {
     //inquiry 목록(어드민)
     @GetMapping("/admin/inquiry/list")
     public String dispInquiryList(Model model) {
-
        // model.addAttribute("inquiryList", memberSvc.findAllForMemInfo());
-
         return prefixPath.concat("/mypage/inquiry_list");
     }
 }

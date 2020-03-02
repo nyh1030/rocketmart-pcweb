@@ -34,8 +34,16 @@ public class OtherSvc {
 	 * @param
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForContactUsInfo() {
-		return otherRepository.findAllForContactUsInfo();
+	public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord) {
+		return otherRepository.findAllForContactUsInfo(tbContactUsRecord);
+	}
 
+	/**
+	 * ContactUs 상세정보 조회
+	 * @param contactSeq
+	 * @return mmbrMap
+	 */
+	public Map<String, Object> findOneForContactUsInfo(int contactSeq) {
+		return otherRepository.findOneForContactUsInfo(contactSeq);
 	}
 }

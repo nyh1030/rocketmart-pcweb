@@ -1,9 +1,14 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
+import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class OtherCtl {
@@ -13,10 +18,42 @@ public class OtherCtl {
     @Autowired
     private OtherSvc otherSvc;
 
-    // contactUs 등록 페이지
+    /**
+     * ContactUs 등록 페이지
+     * @return String
+     */
     @GetMapping("/any/contactus/register")
     public String dispContactUs() {
-        return prefixPath.concat("/other/contactUs_register");
+        return prefixPath.concat("/other/contactus_register");
+    }
+
+    /**
+     * ContactUs 목록(어드민)
+     * @param tbContactUsRecord, model
+     * @return String
+     */
+    @RequestMapping("/admin/contactus/list")
+    public String dispContactusList(TbContactUsRecord tbContactUsRecord, Model model) {
+
+        model.addAttribute("contactusList", otherSvc.findAllForContactUsInfo(tbContactUsRecord));
+        model.addAttribute("usrNm", tbContactUsRecord.getUsrNm());
+        model.addAttribute("companyNm", tbContactUsRecord.getCompanyNm());
+        model.addAttribute("subject", tbContactUsRecord.getSubject());
+
+        return prefixPath.concat("/mypage/contactus_list");
+    }
+
+    /**
+     * ContactUs 상세정보 조회
+     * @param model
+     * @return String
+     */
+    @GetMapping("/admin/contactus/detail/{contactSeq}")
+    public String dispContactusDetail(@PathVariable("contactSeq") int contactSeq, Model model) {
+
+        // ContactUs 상세정보 조회
+        model.addAttribute("contactusInfo", this.otherSvc.findOneForContactUsInfo(contactSeq));
+        return prefixPath.concat("/mypage/contactus_detail");
     }
 
 }
