@@ -47,7 +47,9 @@
 (function($) {
     var signin = {
         init: function() {
-
+            if ("?error" == $(location).attr('search')){
+                console("로그인실패");
+            }
         }
     };
     $(function() {

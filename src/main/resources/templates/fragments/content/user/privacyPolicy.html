@@ -1,4 +1,4 @@
-<div id="test_page" class="pop-content">
+<div id="modal_content" class="pop-content">
     <h3 class="tit">[개인정보 처리방침 안내]</h3>
     <ol class="depth-1">
         <li>제1조 총칙
@@ -49,7 +49,7 @@
 </div>
 
 <script>
-    var base = $('#test_page').parents('.modal_popup');
+    var base = $('#modal_content').parents('.modal_popup');
 
     $('#close_btn', base).on('click', function() {
         // 창 닫을때 부모창으로 값 넘기기
