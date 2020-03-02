@@ -22,6 +22,10 @@ const CommonUtils = {
             returnArray.push($(this).val());
         });
         return returnArray.join(",");
+    },
+    keyEventOnlyNumber(obj, blnComma) {
+        if (blnComma) obj.value = obj.value.replace(/[^0-9\.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        else obj.value = obj.value.replace(/[^0-9\.]/g,'');
     }
 };
 

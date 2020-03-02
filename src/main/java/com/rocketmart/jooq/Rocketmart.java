@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCateMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
@@ -37,7 +38,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = 420578035;
+    private static final long serialVersionUID = 1116754807;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -48,6 +49,11 @@ public class Rocketmart extends SchemaImpl {
      * 브랜드_정보
      */
     public final TbBrandMst TB_BRAND_MST = com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 카테고리_정보
+     */
+    public final TbCateMst TB_CATE_MST = com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 
     /**
      * 첨부파일
@@ -107,6 +113,7 @@ public class Rocketmart extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             TbBrandMst.TB_BRAND_MST,
+            TbCateMst.TB_CATE_MST,
             TbCmAfile.TB_CM_AFILE,
             TbContactUs.TB_CONTACT_US,
             TbInquiryDtl.TB_INQUIRY_DTL,

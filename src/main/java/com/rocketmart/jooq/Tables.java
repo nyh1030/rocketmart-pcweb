@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCateMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
@@ -33,6 +34,11 @@ public class Tables {
      * 브랜드_정보
      */
     public static final TbBrandMst TB_BRAND_MST = TbBrandMst.TB_BRAND_MST;
+
+    /**
+     * 카테고리_정보
+     */
+    public static final TbCateMst TB_CATE_MST = TbCateMst.TB_CATE_MST;
 
     /**
      * 첨부파일

@@ -42,19 +42,13 @@
                                         <label class="bul-type">제품 카테고리 <span class="required">*</span></label>
                                         <div class="select-col3">
                                             <select id="sltCate1Cd" class="ps-select type-first">
-                                                <option value="aa">aa</option>
-                                                <option value="bb">bb</option>
-                                                <option value="cc">cc</option>
+                                                <option value="">(선택)</option>
                                             </select>
                                             <select id="sltCate2Cd" class="ps-select">
-                                                <option value="aa">aa</option>
-                                                <option value="bb">bb</option>
-                                                <option value="cc">cc</option>
+                                                <option value="">(선택)</option>
                                             </select>
                                             <select id="sltCate3Cd" class="ps-select">
-                                                <option value="aa">aa</option>
-                                                <option value="bb">bb</option>
-                                                <option value="cc">cc</option>
+                                                <option value="">(선택)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -64,7 +58,7 @@
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductCapacity" class="bul-type">제품 용량 <span class="required">*</span></label>
-                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml">
+                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="10">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductLineup" class="bul-type">색상/라인업</label>
@@ -77,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="mb-5">
-                                        <label for="txtProductContent" class="bul-type">제품 상세 설명 (이미지 첨부 가능)</label>
+                                        <label for="txtProductContent" class="bul-type">제품 상세 설명</label>
                                         <div class="edit_wrap">
                                             <div id="txtProductContent"></div>
                                         </div>
@@ -87,7 +81,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only">
+                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
@@ -313,7 +307,7 @@
         </div>
         <!-- //.container : E -->
     </div>
-
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script type="text/javascript" th:inline="javascript">
         $(() => {
             PageScope.init();
@@ -352,28 +346,81 @@
 
             init() {
                 this.bindBrandCombo();
+                this.bindCate1Combo();
                 this.setWebEditor();
                 this.setDataTables();
                 this.setUploadComponent();
             },
 
             bindBrandCombo() {
-                const brandInfo = /*[[${brandInfo}]]*/ 'default' || [];
+                const brandList = /*[[${brandList}]]*/ 'default' || [];
                 const $brandSeq = $("#sltBrandSeq");
-                brandInfo.forEach(item => {
+                brandList.forEach(item => {
                     $brandSeq.append(`<option value="${item.BRAND_SEQ}">${item.BRAND_NM}</option>`);
+                });
+            },
+
+            bindCate1Combo() {
+                const cate1List = /*[[${cate1List}]]*/ 'default' || [];
+                const $cate1Cd = $("#sltCate1Cd");
+                $cate1Cd.html(`<option value="">(선택)</option>`);
+                cate1List.forEach(item => {
+                    $cate1Cd.append(`<option value="${item.CATE1_CD}">${item.CATE1_NM}</option>`);
+                });
+            },
+
+            bindCate2Combo(parentCd) {
+                const cate2List = /*[[${cate2List}]]*/ 'default' || [];
+                const $cate2Cd = $("#sltCate2Cd");
+                const $cate3Cd = $("#sltCate3Cd");
+                $cate2Cd.html(`<option value="">(선택)</option>`);
+                $cate3Cd.html(`<option value="">(선택)</option>`);
+                cate2List.filter(item => {
+                    return item.CATE1_CD == parentCd;
+                }).forEach(item => {
+                    $cate2Cd.append(`<option value="${item.CATE2_CD}">${item.CATE2_NM}</option>`);
+                });
+            },
+
+            bindCate3Combo(parentCd) {
+                const cate3List = /*[[${cate3List}]]*/ 'default' || [];
+                const $cate3Cd = $("#sltCate3Cd");
+                cate3List.filter(item => {
+                    return item.CATE2_CD == parentCd;
+                }).forEach(item => {
+                    $cate3Cd.append(`<option value="${item.CATE3_CD}">${item.CATE3_NM}</option>`);
                 });
             },
 
             setWebEditor() {
                 $("#txtSellerNote").summernote({
                     placeholder: '셀러노트를 입력해주세요.',
-                    height: 250
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
                 });
 
                 $("#txtProductContent").summernote({
                     placeholder: '제품을 설명해주세요.',
-                    height: 250
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
                 });
             },
             setDataTables() {
@@ -381,6 +428,7 @@
                     paging: false,
                     searching: false,
                     ordering:  false,
+                    select: true,
                     columnDefs: [{
                         orderable: false
                     }]
@@ -410,8 +458,8 @@
                   acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
                   addRemoveLinks: false,
                   autoProcessQueue: true,
-                  thumbnailWidth: 120,
-                  thumbnailHeight: 120,
+                  thumbnailWidth: 150,
+                  thumbnailHeight: 150,
                   maxFiles: 1,
                   maxFilesize: 10,
                   clickable: true,
@@ -457,9 +505,9 @@
                         //CommonUtils.forwardPage('product_detail');
                     }
                 })
-                        .catch(error => {
-                            console.log(error);
-                        });
+                .catch(error => {
+                    console.log(error);
+                });
             },
 
             getParameters() {
@@ -498,15 +546,26 @@
             invokeValidation() {
                 if (!$('#txtProductNm').val().trim()) {
                     alert('제품명은 필수값 입니다.');
+                    $('#txtProductNm').focus();
                     return false;
                 } else if (!$('#sltBrandSeq').val().trim()) {
                     alert('브랜드 선택은 필수입니다.');
+                    $('#sltBrandSeq').focus();
+                    return false;
+                } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
+                    alert('카테고리 선택은 필수입니다.');
+                    $('#sltCate1Cd').focus();
                     return false;
                 } else if (!$('#txtProductCapacity').val().trim()) {
-                    alert('제품용량은 필수값 입니다.');
+                    alert('제품 용량은 필수값 입니다.');
+                    $('#txtProductCapacity').focus();
                     return false;
                 } else if (!$('#txtRetailPrice').val().trim()) {
                     alert('소비자 가격 (USD)은 필수값 입니다.');
+                    $('#txtRetailPrice').focus();
+                    return false;
+                } else if (PageScope.objFrontUploader.files.length <= 0) {
+                    alert('대표 이미지 첨부는 필수 입니다.');
                     return false;
                 }
                 return true;
@@ -521,6 +580,17 @@
             },
 
             clickEventListener() {
+                $("#sltCate1Cd").on('change', function() {
+                    const cate1Cd = $(this).val();
+                    if (cate1Cd) PageScope.bindCate2Combo(cate1Cd);
+                    else $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                });
+                $("#sltCate2Cd").on('change', function() {
+                    const cate2Cd = $(this).val();
+                    if (cate2Cd) PageScope.bindCate3Combo(cate2Cd);
+                    else $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                });
+
                 $('#btnSave').on('click', () => {
                     if (!PageScope.invokeValidation()) return;
 
@@ -534,11 +604,11 @@
 
                 $("#btnAddWholeSale").on('click', () => {
                     PageScope.objDataTables.row.add([
-                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" /></td>`,
-                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" /></td>`,
-                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" /></td>`,
-                    ]).draw( false );
+                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    ]).draw(false);
                 });
 
                 $('#btnPrev').on('click', () => {
