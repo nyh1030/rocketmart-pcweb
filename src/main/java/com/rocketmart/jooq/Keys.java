@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCateMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
@@ -13,6 +14,7 @@ import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
+import com.rocketmart.jooq.tables.records.TbCateMstRecord;
 import com.rocketmart.jooq.tables.records.TbCmAfileRecord;
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
@@ -48,6 +50,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Identities0.IDENTITY_TB_BRAND_MST;
+    public static final Identity<TbCateMstRecord, Integer> IDENTITY_TB_CATE_MST = Identities0.IDENTITY_TB_CATE_MST;
     public static final Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Identities0.IDENTITY_TB_CONTACT_US;
     public static final Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Identities0.IDENTITY_TB_INQUIRY_MST;
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
@@ -59,6 +62,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = UniqueKeys0.KEY_TB_BRAND_MST_PRIMARY;
+    public static final UniqueKey<TbCateMstRecord> KEY_TB_CATE_MST_PRIMARY = UniqueKeys0.KEY_TB_CATE_MST_PRIMARY;
     public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = UniqueKeys0.KEY_TB_CM_AFILE_PRIMARY;
     public static final UniqueKey<TbContactUsRecord> KEY_TB_CONTACT_US_PRIMARY = UniqueKeys0.KEY_TB_CONTACT_US_PRIMARY;
     public static final UniqueKey<TbInquiryDtlRecord> KEY_TB_INQUIRY_DTL_PRIMARY = UniqueKeys0.KEY_TB_INQUIRY_DTL_PRIMARY;
@@ -84,6 +88,7 @@ public class Keys {
 
     private static class Identities0 {
         public static Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Internal.createIdentity(TbBrandMst.TB_BRAND_MST, TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
+        public static Identity<TbCateMstRecord, Integer> IDENTITY_TB_CATE_MST = Internal.createIdentity(TbCateMst.TB_CATE_MST, TbCateMst.TB_CATE_MST.CATE_SEQ);
         public static Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Internal.createIdentity(TbContactUs.TB_CONTACT_US, TbContactUs.TB_CONTACT_US.CONTACT_SEQ);
         public static Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Internal.createIdentity(TbInquiryMst.TB_INQUIRY_MST, TbInquiryMst.TB_INQUIRY_MST.INQUIRY_SEQ);
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
@@ -93,6 +98,7 @@ public class Keys {
 
     private static class UniqueKeys0 {
         public static final UniqueKey<TbBrandMstRecord> KEY_TB_BRAND_MST_PRIMARY = Internal.createUniqueKey(TbBrandMst.TB_BRAND_MST, "KEY_TB_BRAND_MST_PRIMARY", TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
+        public static final UniqueKey<TbCateMstRecord> KEY_TB_CATE_MST_PRIMARY = Internal.createUniqueKey(TbCateMst.TB_CATE_MST, "KEY_TB_CATE_MST_PRIMARY", TbCateMst.TB_CATE_MST.CATE_SEQ);
         public static final UniqueKey<TbCmAfileRecord> KEY_TB_CM_AFILE_PRIMARY = Internal.createUniqueKey(TbCmAfile.TB_CM_AFILE, "KEY_TB_CM_AFILE_PRIMARY", TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO);
         public static final UniqueKey<TbContactUsRecord> KEY_TB_CONTACT_US_PRIMARY = Internal.createUniqueKey(TbContactUs.TB_CONTACT_US, "KEY_TB_CONTACT_US_PRIMARY", TbContactUs.TB_CONTACT_US.CONTACT_SEQ);
         public static final UniqueKey<TbInquiryDtlRecord> KEY_TB_INQUIRY_DTL_PRIMARY = Internal.createUniqueKey(TbInquiryDtl.TB_INQUIRY_DTL, "KEY_TB_INQUIRY_DTL_PRIMARY", TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ);

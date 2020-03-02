@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,6 +21,18 @@ public class ProductSvc {
 
 	@Autowired
 	private FileUtils fileUtils;
+
+	public List<Map<String, Object>> findListForCate1() {
+		return productRepository.findListForCate1();
+	}
+
+	public List<Map<String, Object>> findListForCate2() {
+		return productRepository.findListForCate2();
+	}
+
+	public List<Map<String, Object>> findListForCate3() {
+		return productRepository.findListForCate3();
+	}
 
 	@Transactional(rollbackFor = Exception.class)
 	public String saveProductUpload(MultipartFile file, String themaRelmCd, String regMenuPart) {

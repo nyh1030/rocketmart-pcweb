@@ -5,6 +5,7 @@ package com.rocketmart.jooq;
 
 
 import com.rocketmart.jooq.tables.TbBrandMst;
+import com.rocketmart.jooq.tables.TbCateMst;
 import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
@@ -38,6 +39,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index TB_BRAND_MST_PRIMARY = Indexes0.TB_BRAND_MST_PRIMARY;
+    public static final Index TB_CATE_MST_PRIMARY = Indexes0.TB_CATE_MST_PRIMARY;
     public static final Index TB_CM_AFILE_PRIMARY = Indexes0.TB_CM_AFILE_PRIMARY;
     public static final Index TB_CONTACT_US_PRIMARY = Indexes0.TB_CONTACT_US_PRIMARY;
     public static final Index TB_INQUIRY_DTL_PRIMARY = Indexes0.TB_INQUIRY_DTL_PRIMARY;
@@ -59,6 +61,7 @@ public class Indexes {
 
     private static class Indexes0 {
         public static Index TB_BRAND_MST_PRIMARY = Internal.createIndex("PRIMARY", TbBrandMst.TB_BRAND_MST, new OrderField[] { TbBrandMst.TB_BRAND_MST.BRAND_SEQ }, true);
+        public static Index TB_CATE_MST_PRIMARY = Internal.createIndex("PRIMARY", TbCateMst.TB_CATE_MST, new OrderField[] { TbCateMst.TB_CATE_MST.CATE_SEQ }, true);
         public static Index TB_CM_AFILE_PRIMARY = Internal.createIndex("PRIMARY", TbCmAfile.TB_CM_AFILE, new OrderField[] { TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO }, true);
         public static Index TB_CONTACT_US_PRIMARY = Internal.createIndex("PRIMARY", TbContactUs.TB_CONTACT_US, new OrderField[] { TbContactUs.TB_CONTACT_US.CONTACT_SEQ }, true);
         public static Index TB_INQUIRY_DTL_PRIMARY = Internal.createIndex("PRIMARY", TbInquiryDtl.TB_INQUIRY_DTL, new OrderField[] { TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ }, true);

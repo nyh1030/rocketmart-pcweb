@@ -9,9 +9,11 @@ import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
+import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
@@ -25,6 +27,30 @@ public class ProductRepository {
 		return this.dslContext.select(DSL.coalesce(DSL.max(TB_PRD_MST.PRODUCT_SEQ), 0))
 				.from(TB_PRD_MST)
 				.fetchOne(Record1::value1);
+	}
+
+	public List<Map<String, Object>> findListForCate1() {
+		return this.dslContext.select(
+				TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE1_NM)
+				.from(TB_CATE_MST)
+				.groupBy(TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE1_NM)
+				.fetchMaps();
+	}
+
+	public List<Map<String, Object>> findListForCate2() {
+		return this.dslContext.select(
+				TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE2_NM)
+				.from(TB_CATE_MST)
+				.groupBy(TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE2_NM)
+				.fetchMaps();
+	}
+
+	public List<Map<String, Object>> findListForCate3() {
+		return this.dslContext.select(
+				TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE3_CD, TB_CATE_MST.CATE3_NM)
+				.from(TB_CATE_MST)
+				.groupBy(TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE3_CD, TB_CATE_MST.CATE3_NM)
+				.fetchMaps();
 	}
 
 	public int saveOneForProductInfo(ProductDto productDto) {
