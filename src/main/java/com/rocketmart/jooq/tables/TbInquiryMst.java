@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row6;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryMst extends TableImpl<TbInquiryMstRecord> {
 
-    private static final long serialVersionUID = -536014705;
+    private static final long serialVersionUID = 1109935096;
 
     /**
      * The reference instance of <code>rocketmart.TB_INQUIRY_MST</code>
@@ -87,6 +87,11 @@ public class TbInquiryMst extends TableImpl<TbInquiryMstRecord> {
      * The column <code>rocketmart.TB_INQUIRY_MST.UPD_TS</code>. 수정일시
      */
     public final TableField<TbInquiryMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
+
+    /**
+     * The column <code>rocketmart.TB_INQUIRY_MST.asdasd</code>.
+     */
+    public final TableField<TbInquiryMstRecord, Integer> ASDASD = createField(DSL.name("asdasd"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
      * Create a <code>rocketmart.TB_INQUIRY_MST</code> table reference
@@ -173,11 +178,11 @@ public class TbInquiryMst extends TableImpl<TbInquiryMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row6 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row6<Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row6) super.fieldsRow();
+    public Row7<Integer, String, String, Timestamp, String, Timestamp, Integer> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 }

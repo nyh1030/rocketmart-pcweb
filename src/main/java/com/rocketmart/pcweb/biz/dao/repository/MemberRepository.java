@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
+import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 
 @Repository
 public class MemberRepository {
@@ -31,7 +32,7 @@ public class MemberRepository {
      * 회원 목록 조회
      */
     public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
-        List<Condition> conditions = new ArrayList<Condition>();
+        /*List<Condition> conditions = new ArrayList<Condition>();
 
             conditions.add(TB_MEM_MST.MEM_ID.notEqual("admin"));
         if(null != tbMemMstRecord.getMemNm() && !tbMemMstRecord.getMemNm().isEmpty()) {
@@ -42,10 +43,13 @@ public class MemberRepository {
         }
         if(null != tbMemMstRecord.getCompanyNm() && !tbMemMstRecord.getCompanyNm().isEmpty()) {
             conditions.add(TB_MEM_MST.COMPANY_NM.eq(tbMemMstRecord.getCompanyNm()));
-        }
+        }*/
 
         return this.dslContext.selectFrom(TB_MEM_MST)
-                .where(conditions)
+                .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
+                .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getMemNm())))
+                .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
+                .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.eq(tbMemMstRecord.getCompanyNm())))
                 .orderBy(TB_MEM_MST.MEM_SEQ.desc())
                 .fetchMaps();
     }

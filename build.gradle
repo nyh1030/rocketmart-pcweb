@@ -76,3 +76,9 @@ jooq {
 
     }
 }
+
+generateRocketmartJooqSchemaSource.enabled = 'generateRocketmartJooqSchemaSource' == project.gradle.startParameter.taskNames[0]
+
+if(generateRocketmartJooqSchemaSource.enabled) {
+    delete 'src/main/java/com/rocketmart/jooq'
+}
