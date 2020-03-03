@@ -6,16 +6,22 @@ import com.rocketmart.pcweb.common.api.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ProductRestCtl {
 
 	@Autowired
 	private ProductSvc productSvc;
+
+	@GetMapping("/seller/product/list/{brandSeq}")
+	public ResponseEntity<List<Map<String, Object>>> getProductForBrand(@PathVariable(value = "brandSeq") int brandSeq) {
+		return new ResponseEntity<>(productSvc.findProductForBrand(brandSeq), HttpStatus.OK);
+	}
 
 	@PostMapping("/seller/product/file/upload")
 	public ResponseEntity<String> saveProductFile(MultipartFile file, @RequestParam(value = "themaRelmCd") String themaRelmCd, @RequestParam(value = "regMenuPart") String regMenuPart) {

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
+import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
@@ -27,6 +28,17 @@ public class ProductRepository {
 		return this.dslContext.select(DSL.coalesce(DSL.max(TB_PRD_MST.PRODUCT_SEQ), 0))
 				.from(TB_PRD_MST)
 				.fetchOne(Record1::value1);
+	}
+
+	public List<Map<String, Object>> findProductForBrand(int brandSeq) {
+		return this.dslContext.select(
+				TB_PRD_MST.PRODUCT_NM, TB_PRD_MST.PRODUCT_CAPACITY,
+				TB_PRD_MST.RETAIL_PRICE, TB_CM_AFILE.URL_PATH_CD)
+				.from(TB_PRD_MST)
+				.innerJoin(TB_CM_AFILE)
+				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq))
+				.fetchMaps();
 	}
 
 	public List<Map<String, Object>> findListForCate1() {
