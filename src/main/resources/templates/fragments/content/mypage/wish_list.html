@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-vendor-dashboard">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-block--vendor-dashboard">
+                <div class="ps-block__header mt-50">
+                    <h3>Wishlist</h3>
+                    <button type="button" id="" class="ab-r ps-btn type-yellow">ASK ALL</button>
+                </div>
+                <div class="ps-block__content">
+                    <div class="table-responsive">
+                        <table class="table ps-table ps-table--vendor">
+                            <colgroup>
+                                <col style="width:6%">
+                                <col style="width:45%">
+                                <col style="width:15%">
+                                <col style="width:15%">
+                                <col>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>PRODUCT</th>
+                                <th>RETAIL PRICE</th>
+                                <th>FOB PRICE</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <button type="button" class="ps-btn type-red delete"><i class="fa fa-close"></i></button>
+                                </td>
+                                <td class="txt-left">
+                                    <div class="prd-box">
+                                        <div class="img-box"><img src="" alt=""></div>
+                                        <span class="name">Product name1</span>
+                                    </div>
+                                </td>
+                                <td>$10</td>
+                                <td>Login needed</td>
+                                <td>
+                                    <div class="btns type">
+                                        <button type="button" class="ps-btn type-yellow">Ask This</button>
+                                        <button type="button" class="ps-btn type-black">Details</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="no_data">No products added to the wishlist</td> <!-- D : 데이터 없을 경우 -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+</th:block>
+</html>
