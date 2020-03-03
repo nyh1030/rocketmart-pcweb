@@ -13,6 +13,7 @@ import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
+import com.rocketmart.jooq.tables.TbWishMst;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbCateMstRecord;
 import com.rocketmart.jooq.tables.records.TbCmAfileRecord;
@@ -22,6 +23,7 @@ import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdWholesaleRecord;
+import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 
 import javax.annotation.Generated;
 
@@ -56,6 +58,7 @@ public class Keys {
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
     public static final Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Identities0.IDENTITY_TB_PRD_MST;
     public static final Identity<TbPrdWholesaleRecord, Integer> IDENTITY_TB_PRD_WHOLESALE = Identities0.IDENTITY_TB_PRD_WHOLESALE;
+    public static final Identity<TbWishMstRecord, Integer> IDENTITY_TB_WISH_MST = Identities0.IDENTITY_TB_WISH_MST;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -72,6 +75,7 @@ public class Keys {
     public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = UniqueKeys0.KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
     public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = UniqueKeys0.KEY_TB_PRD_MST_PRIMARY;
     public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = UniqueKeys0.KEY_TB_PRD_WHOLESALE_PRIMARY;
+    public static final UniqueKey<TbWishMstRecord> KEY_TB_WISH_MST_PRIMARY = UniqueKeys0.KEY_TB_WISH_MST_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
@@ -81,6 +85,7 @@ public class Keys {
     public static final ForeignKey<TbInquiryDtlRecord, TbPrdMstRecord> TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = ForeignKeys0.TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final ForeignKey<TbPrdMstRecord, TbBrandMstRecord> TB_PRD_MST_FK1 = ForeignKeys0.TB_PRD_MST_FK1;
     public static final ForeignKey<TbPrdWholesaleRecord, TbPrdMstRecord> TB_PRD_WHOLESALE_FK1 = ForeignKeys0.TB_PRD_WHOLESALE_FK1;
+    public static final ForeignKey<TbWishMstRecord, TbPrdMstRecord> TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = ForeignKeys0.TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -94,6 +99,7 @@ public class Keys {
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
         public static Identity<TbPrdMstRecord, Integer> IDENTITY_TB_PRD_MST = Internal.createIdentity(TbPrdMst.TB_PRD_MST, TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
         public static Identity<TbPrdWholesaleRecord, Integer> IDENTITY_TB_PRD_WHOLESALE = Internal.createIdentity(TbPrdWholesale.TB_PRD_WHOLESALE, TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
+        public static Identity<TbWishMstRecord, Integer> IDENTITY_TB_WISH_MST = Internal.createIdentity(TbWishMst.TB_WISH_MST, TbWishMst.TB_WISH_MST.WISH_SEQ);
     }
 
     private static class UniqueKeys0 {
@@ -108,6 +114,7 @@ public class Keys {
         public static final UniqueKey<TbMemMstRecord> KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createUniqueKey(TbMemMst.TB_MEM_MST, "KEY_TB_MEM_MST_TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST.MEM_ID);
         public static final UniqueKey<TbPrdMstRecord> KEY_TB_PRD_MST_PRIMARY = Internal.createUniqueKey(TbPrdMst.TB_PRD_MST, "KEY_TB_PRD_MST_PRIMARY", TbPrdMst.TB_PRD_MST.PRODUCT_SEQ);
         public static final UniqueKey<TbPrdWholesaleRecord> KEY_TB_PRD_WHOLESALE_PRIMARY = Internal.createUniqueKey(TbPrdWholesale.TB_PRD_WHOLESALE, "KEY_TB_PRD_WHOLESALE_PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ);
+        public static final UniqueKey<TbWishMstRecord> KEY_TB_WISH_MST_PRIMARY = Internal.createUniqueKey(TbWishMst.TB_WISH_MST, "KEY_TB_WISH_MST_PRIMARY", TbWishMst.TB_WISH_MST.WISH_SEQ);
     }
 
     private static class ForeignKeys0 {
@@ -115,5 +122,6 @@ public class Keys {
         public static final ForeignKey<TbInquiryDtlRecord, TbPrdMstRecord> TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbInquiryDtl.TB_INQUIRY_DTL, "TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_fk", TbInquiryDtl.TB_INQUIRY_DTL.PRODUCT_SEQ);
         public static final ForeignKey<TbPrdMstRecord, TbBrandMstRecord> TB_PRD_MST_FK1 = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_BRAND_MST_PRIMARY, TbPrdMst.TB_PRD_MST, "TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST.BRAND_SEQ);
         public static final ForeignKey<TbPrdWholesaleRecord, TbPrdMstRecord> TB_PRD_WHOLESALE_FK1 = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbPrdWholesale.TB_PRD_WHOLESALE, "TB_PRD_WHOLESALE_fk1", TbPrdWholesale.TB_PRD_WHOLESALE.PRODUCT_SEQ);
+        public static final ForeignKey<TbWishMstRecord, TbPrdMstRecord> TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbWishMst.TB_WISH_MST, "TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_fk", TbWishMst.TB_WISH_MST.PRODUCT_SEQ);
     }
 }

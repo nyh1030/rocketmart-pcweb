@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,11 @@ public class OtherRestCtl {
 	@PostMapping("/any/contactus/info/save")
 	public ResponseEntity<String> saveContactUsInfo(TbContactUsRecord contactUsRecord) {
 		return new ResponseEntity<>(otherSvc.saveOneForContactUsInfo(contactUsRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	@PostMapping("/any/wishlist/info/save")
+	public ResponseEntity<String> saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord) {
+		return new ResponseEntity<>(otherSvc.saveOneForWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }

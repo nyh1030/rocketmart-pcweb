@@ -13,6 +13,7 @@ import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
+import com.rocketmart.jooq.tables.TbWishMst;
 
 import javax.annotation.Generated;
 
@@ -54,6 +55,8 @@ public class Indexes {
     public static final Index TB_PRD_MST_TB_PRD_MST_FK1 = Indexes0.TB_PRD_MST_TB_PRD_MST_FK1;
     public static final Index TB_PRD_WHOLESALE_PRIMARY = Indexes0.TB_PRD_WHOLESALE_PRIMARY;
     public static final Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Indexes0.TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1;
+    public static final Index TB_WISH_MST_PRIMARY = Indexes0.TB_WISH_MST_PRIMARY;
+    public static final Index TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -76,5 +79,7 @@ public class Indexes {
         public static Index TB_PRD_MST_TB_PRD_MST_FK1 = Internal.createIndex("TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.BRAND_SEQ }, false);
         public static Index TB_PRD_WHOLESALE_PRIMARY = Internal.createIndex("PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ }, true);
         public static Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Internal.createIndex("TB_PRD_WHOLESALE_fk1", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.PRODUCT_SEQ }, false);
+        public static Index TB_WISH_MST_PRIMARY = Internal.createIndex("PRIMARY", TbWishMst.TB_WISH_MST, new OrderField[] { TbWishMst.TB_WISH_MST.WISH_SEQ }, true);
+        public static Index TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_fk", TbWishMst.TB_WISH_MST, new OrderField[] { TbWishMst.TB_WISH_MST.PRODUCT_SEQ }, false);
     }
 }
