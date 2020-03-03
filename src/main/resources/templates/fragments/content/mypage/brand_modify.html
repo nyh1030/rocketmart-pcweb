@@ -149,8 +149,8 @@
                     acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
                     addRemoveLinks: false,
                     autoProcessQueue: false,
-                    thumbnailWidth: 250,
-                    thumbnailHeight: 200,
+                    thumbnailWidth: 300,
+                    thumbnailHeight: 300,
                     maxFilesize: 10,
                     clickable: '#btnUpload',
                     previewTemplate: `
@@ -182,7 +182,17 @@
             setWebEditor() {
                 $("#txtBrandIntroduction").summernote({
                     placeholder: '브랜드를 소개해주세요.',
-                    height: 250
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
                 });
             },
 

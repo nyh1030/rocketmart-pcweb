@@ -20,7 +20,7 @@
                 <div class="ps-section__right">
                     <div class="btn-box txt-left">
                         <button type="button" id="btnBrandAdd" class="ps-btn">+ 브랜드 추가</button>
-                        <p class="date ab-r">last updated: 2020-01-03  20:31:45</p>
+                        <p class="date ab-r">last updated: <span th:text="${#dates.format(updateDateTime, 'yyyy-MM-dd hh:mm:ss')}"></span></p>
                     </div>
                     <ul class="brand-list">
                         <th:block th:if="${#lists.isEmpty(brandList)}">
@@ -36,13 +36,6 @@
                     <div class="btn-box">
                         <button type="button" id="btnAddProduct" class="ps-btn type-black">제품 추가하기</button>
                     </div>
-
-                    <!-- D : 등록된 브랜드 없을 경우
-                    <div class="btn-box">
-                        <button type="button" id="btnBrandAdd" class="ps-btn">+ 브랜드 추가</button>
-                    </div>
-                    <div class="no_data">등록된 브랜드가 없습니다.  브랜드를  먼저 추가해주세요.</div>
-                    -->
                 </div>
                 <!-- //.ps-section__right : E -->
             </div>

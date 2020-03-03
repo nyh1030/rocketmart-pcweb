@@ -107,6 +107,7 @@
                                             </table>
                                             <button type="button" id="btnAddWholeSale" class="ps-btn"><i class="fa fa-plus"></i> 구간 추가하기</button>
                                         </div>
+                                        <button type="button" id="btnRemoveWholeSale" class="ps-btn"><i class="fa fa-plus"></i> 구간 삭제하기</button>
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">공짜 샘플 제공 여부 <span class="required">*</span></label>
@@ -502,7 +503,7 @@
                 }).then(response => {
                     if (response.data === 200) {
                         alert('상품 정보가 저장되었습니다.');
-                        //CommonUtils.forwardPage('product_detail');
+                        CommonUtils.forwardPage('/seller/brand_add');
                     }
                 })
                 .catch(error => {
@@ -522,7 +523,7 @@
                     productLineup: $('#txtProductLineup').val(),
                     sellerNote: $('#txtSellerNote').summernote('code'),
                     productContent: $('#txtProductContent').summernote('code'),
-                    retailPrice: $('#txtRetailPrice').val(),
+                    retailPrice: CommonUtils.removeComma($('#txtRetailPrice').val()),
                     giveSampleYn: $('[name="giveSampleYn"]:checked').val(),
                     productAtrbt: CommonUtils.getCheckValToCommaString($('[name="productAtrbt"]')),
                     productCrt: CommonUtils.getCheckValToCommaString($('[name="productCrt"]')),
@@ -602,13 +603,22 @@
                     CommonUtils.backwardPage();
                 });
 
-                $("#btnAddWholeSale").on('click', () => {
+                $('#btnAddWholeSale').on('click', () => {
                     PageScope.objDataTables.row.add([
                         `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     ]).draw(false);
+                });
+                $('#btnRemoveWholeSale').on('click', () => {
+                    const $tblWholeSaleTr = $("#tblWholeSale tbody").find("tr");
+                    if ($tblWholeSaleTr.length <= 0) {
+                        alert('더 이상 제거할 구간이 없습니다.');
+                        return;
+                    }
+
+                    PageScope.objDataTables.row($tblWholeSaleTr.last().remove()).remove();
                 });
 
                 $('#btnPrev').on('click', () => {

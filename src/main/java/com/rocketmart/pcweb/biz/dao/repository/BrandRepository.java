@@ -2,9 +2,12 @@ package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
+import org.jooq.Record1;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +47,12 @@ public class BrandRepository {
 				.from(TB_BRAND_MST)
 				.where(TB_BRAND_MST.REG_USR_ID.equal(usrId))
 				.fetchMaps();
+	}
+
+	public Timestamp findLastUpdatedDateTime() {
+		return this.dslContext.select(DSL.max(TB_BRAND_MST.UPD_TS))
+				.from(TB_BRAND_MST)
+				.fetchOne(Record1::value1);
 	}
 
 	public int saveOneForBrandInfo(BrandDto brandDto) {

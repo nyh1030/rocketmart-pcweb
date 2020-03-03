@@ -18,6 +18,7 @@ public class BrandCtl {
 	@GetMapping("/seller/brand_add")
 	public String brand_add(Model model) {
 		model.addAttribute("brandList", brandSvc.findAllForAfile());
+		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime());
 		return prefixPath.concat("/mypage/brand_add");
 	}
 

@@ -2,14 +2,13 @@ package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.dao.repository.BrandRepository;
-import com.rocketmart.pcweb.common.file.FileRepository;
 import com.rocketmart.pcweb.common.file.FileUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +31,10 @@ public class BrandSvc {
 
 	public List<Map<String, Object>> findBrandByUsrId() {
 		return brandRepository.findBrandByUsrId("ADMIN");
+	}
+
+	public Timestamp findLastUpdatedDateTime() {
+		return brandRepository.findLastUpdatedDateTime();
 	}
 
 	@Transactional(rollbackFor = Exception.class)

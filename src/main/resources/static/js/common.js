@@ -11,17 +11,21 @@ const CommonUtils = {
     },
     getCheckValToCommaString(objTarget) {
         let returnArray = [];
-        objTarget.each(function () {
+        objTarget.each(function() {
             if ($(this).prop('checked')) returnArray.push($(this).val());
         });
         return returnArray.join(",");
     },
     getDataToCommaString(objTarget) {
+        const _this = this;
         let returnArray = [];
-        objTarget.each(function () {
-            returnArray.push($(this).val());
+        objTarget.each(function() {
+            returnArray.push(_this.removeComma($(this).val()));
         });
         return returnArray.join(",");
+    },
+    removeComma(targetValue) {
+        return parseInt(targetValue.replace(/,/g,""));
     },
     keyEventOnlyNumber(obj, blnComma) {
         if (blnComma) obj.value = obj.value.replace(/[^0-9\.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
