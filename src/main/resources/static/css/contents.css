@@ -18,10 +18,15 @@
 .ps-btn.type-black{background:#000;color:#fff;}
 .ps-btn.type-gray{background:#f5f5f5;color:#000;}
 .ps-btn.type-gray:hover{background:#c0c0c0;color:#000;}
+.ps-btn.type-gray02{background:#b5b5b5;}
 .ps-btn.type-orange{background:#f05025;padding:0 16px;height:34px;border-radius:5px;color:#fff;}
+.ps-btn.type-red{background:#f14705;}
 label .required{color:red;font-weight:700;}
 table tbody tr td.link-type a,
 table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:underline;font-weight:500;}
+table tbody tr td .img-box{width:80px;height:80px;margin:0 auto;}
+table tbody tr td .btns .ps-btn{width:60px;height:35px;line-height:35px;color:#fff;padding:0;}
+table tbody tr td .btns .ps-btn .fa{font-size:21px;}
 .form-control:disabled, .form-control[readonly]{background:#f5f5f5;}
 .btns{min-height:50px;position:relative;text-align:center;margin:50px 0;}
 .btns .ab-r{position:absolute;right:0;top:0;}
@@ -32,6 +37,8 @@ table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:unde
 .btn-box.txt-left .ab-r{top:75px;}
 .txt-left{text-align:left!important;}
 .txt-right{text-align:right!important;}
+.total{color:#000;}
+.total em{font-style:normal;font-weight:600;}
 /* contents */
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
@@ -49,8 +56,6 @@ table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:unde
 .ps-block__content .info-list > li .btn-file .fa{margin-right:3px;}
 .ps-block__content textarea.form-control{height:250px;}
 .ps-block__content.contact-box{width:50%;margin:0 auto;}
-.ps-block__content .total{color:#000;}
-.ps-block__content .total em{font-style:normal;font-weight:600;}
 .ps-block__content .search-box,
 .ps-layout--shop .search-box{margin-bottom:30px}
 .ps-block__content .search-box .form-control,
@@ -65,8 +70,12 @@ table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:unde
 .ps-section__right .brand-list{border-top:1px solid #e1e1e1}
 .ps-section__right .brand-list li{display:inline-block;width:calc((100% / 5) - 2px);text-align:center;margin-top:30px}
 .ps-section__right .brand-list li .img-box{width:150px;height:150px;margin:0 auto 20px;border:1px solid #ededed;}
+.ps-section__right .brand-list li .img-box a{position:relative;display:block;width:150px;height:150px;}
+.ps-section__right .brand-list li .img-box a:before{content:'';position:absolute;left:0;top:0;display:block;width:100%;height:100%;}
+.ps-section__right .brand-list li .img-box a:hover:before{border:2px solid #ea5830;}
 .ps-section__right .brand-list li .img-box img{max-width:100%;height:100%;object-fit: cover;}
-.ps-section__right .brand-list li .ps-btn{padding:10px 25px;font-size:15px;}
+.ps-section__right .brand-list li .ps-btn{padding:10px 25px;font-size:15px;line-height:16px;}
+.ps-section__right .brand-list li .ps-btn.type-orange:hover{background:#f05025}
 .select2-container--default .select2-selection--single{border-color:#ddd;}
 .ps-product--detail > .ps-product__content{padding-top:0;border-bottom:1px solid #e1e1e1;padding-bottom:50px;}
 .ps-product--detail .logo-box{margin-bottom:20px;}
@@ -82,14 +91,15 @@ table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:unde
 .ps-product--detail .photo-upload li{width:200px;display:inline-block;text-align:center;margin:0 15px 25px;}
 .ps-product--detail .photo-upload li .prd-photo{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
 .ps-product--detail .photo-upload li .txt{display:block;margin-top:5px;font-weight:600;}
-.ps-product--detail .table_wrap{position:relative;padding-bottom:50px;margin-top:20px;}
+.ps-product--detail .table_wrap{position:relative;height:380px;overflow-y:auto;padding-bottom:50px;margin-top:20px;}
 .ps-product--detail .table_wrap .dataTables_wrapper{height:335px;overflow-y:auto;margin-bottom:30px;}
 .ps-product--detail .table_wrap table{width:100%!important;}
 .ps-product--detail .table_wrap table thead th,
 .ps-product--detail .table_wrap table tbody td{border:1px solid #ededed;text-align:center;padding:10px 0;font-size:13px;}
 .ps-product--detail .table_wrap table thead th{font-weight:700;background:#f6f6f6;}
 .ps-product--detail .table_wrap table .last{background:#f5fbff;}
-.ps-product--detail .table_wrap .ps-btn{position:absolute;right:0;bottom:0;padding:10px 20px;font-size:13px;}
+.ps-product--detail .table_wrap .btns{position:absolute;right:0;bottom:0;margin:0;}
+.ps-product--detail .table_wrap .ps-btn{padding:10px 20px;font-size:13px;}
 .register{padding-bottom:50px;}
 .register .form-group .form-control.type-inline{width:290px;display:inline-block;height:30px;padding:0 10px;font-size:13px;}
 .register .form-group .chk-wrap{margin-bottom:5px;}
