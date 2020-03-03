@@ -23,25 +23,38 @@ public class MemberCtl {
     @Autowired
     private MemberSvc memberSvc;
 
-    // 회원가입 페이지
+    /**
+     * 회원가입 페이지
+     * @return String
+     */
     @GetMapping("/any/signup")
     public String dispSignup() {
         return prefixPath.concat("/user/signup");
     }
 
-    // 이용약관 페이지
+    /**
+     * 이용약관 페이지
+     * @return String
+     */
     @GetMapping("/any/privacyPolicy")
     public String dispPrivacyPolicy() {
         return prefixPath.concat("/user/privacyPolicy");
     }
 
-    // 개인정보동의 페이지
+    /**
+     * 개인정보동의 페이지
+     * @return String
+     */
     @GetMapping("/any/termsConditions")
     public String dispTermsConditions() {
         return prefixPath.concat("/user/termsConditions");
     }
 
-    //회원가입 처리
+    /**
+     * 회원가입 처리
+     * @param memberRecord
+     * @return String
+     */
     @PostMapping("/any/member/signup")
     public String execSignup(TbMemMstRecord memberRecord) {
 
@@ -109,7 +122,12 @@ public class MemberCtl {
         return "redirect:/seller/seller_detail";
     }
 
-    //회원목록(어드민)
+    /**
+     * 회원 목록 조회(어드민)
+     * @param tbMemMstRecord
+     * @param model
+     * @return String
+     */
     @RequestMapping("/admin/member/list")
     public String dispMemberList(TbMemMstRecord tbMemMstRecord, Model model) {
 
@@ -121,10 +139,4 @@ public class MemberCtl {
         return prefixPath.concat("/mypage/member_list");
     }
 
-    //inquiry 목록(어드민)
-    @GetMapping("/admin/inquiry/list")
-    public String dispInquiryList(Model model) {
-       // model.addAttribute("inquiryList", memberSvc.findAllForMemInfo());
-        return prefixPath.concat("/mypage/inquiry_list");
-    }
 }

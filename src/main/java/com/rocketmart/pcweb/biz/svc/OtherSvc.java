@@ -1,12 +1,14 @@
 package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.OtherRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,7 @@ public class OtherSvc {
 
 	/**
 	 * ContactUs 등록
-	 * @param
+	 * @param contactUsRecord
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
@@ -31,7 +33,7 @@ public class OtherSvc {
 
 	/**
 	 * ContactUs 목록 조회
-	 * @param
+	 * @param tbContactUsRecord
 	 * @return List<Map<String, Object>>
 	 */
 	public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord) {
@@ -41,9 +43,28 @@ public class OtherSvc {
 	/**
 	 * ContactUs 상세정보 조회
 	 * @param contactSeq
-	 * @return mmbrMap
+	 * @return Map<String, Object>
 	 */
 	public Map<String, Object> findOneForContactUsInfo(int contactSeq) {
 		return otherRepository.findOneForContactUsInfo(contactSeq);
+	}
+
+	/**
+	 * WishList 등록
+	 * @param tbWishMstRecord
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord) {
+		return otherRepository.saveOneForWishListInfo(tbWishMstRecord);
+	}
+
+	/**
+	 * WishList 목록 조회
+	 * @param tbWishMstRecord
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord) {
+		return otherRepository.findAllForWishInfo(tbWishMstRecord);
 	}
 }

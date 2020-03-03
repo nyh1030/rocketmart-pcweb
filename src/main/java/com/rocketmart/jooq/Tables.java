@@ -13,6 +13,7 @@ import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
+import com.rocketmart.jooq.tables.TbWishMst;
 
 import javax.annotation.Generated;
 
@@ -74,4 +75,9 @@ public class Tables {
      * 상품별 도매가격(FOB)
      */
     public static final TbPrdWholesale TB_PRD_WHOLESALE = TbPrdWholesale.TB_PRD_WHOLESALE;
+
+    /**
+     * WISH LIST 마스터
+     */
+    public static final TbWishMst TB_WISH_MST = TbWishMst.TB_WISH_MST;
 }

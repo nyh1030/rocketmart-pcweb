@@ -13,6 +13,7 @@ import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.TbPrdMst;
 import com.rocketmart.jooq.tables.TbPrdWholesale;
+import com.rocketmart.jooq.tables.TbWishMst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +39,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = 1116754807;
+    private static final long serialVersionUID = 1751735140;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -91,6 +92,11 @@ public class Rocketmart extends SchemaImpl {
     public final TbPrdWholesale TB_PRD_WHOLESALE = com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
     /**
+     * WISH LIST 마스터
+     */
+    public final TbWishMst TB_WISH_MST = com.rocketmart.jooq.tables.TbWishMst.TB_WISH_MST;
+
+    /**
      * No further instances allowed
      */
     private Rocketmart() {
@@ -120,6 +126,7 @@ public class Rocketmart extends SchemaImpl {
             TbInquiryMst.TB_INQUIRY_MST,
             TbMemMst.TB_MEM_MST,
             TbPrdMst.TB_PRD_MST,
-            TbPrdWholesale.TB_PRD_WHOLESALE);
+            TbPrdWholesale.TB_PRD_WHOLESALE,
+            TbWishMst.TB_WISH_MST);
     }
 }
