@@ -46,7 +46,7 @@
                                         <col style="width:6%">
                                         <col style="width:7%">
                                         <col style="width:12%">
-                                        <col style="width:8%">
+                                        <col style="width:12%">
                                         <col style="width:12%">
                                         <col style="width:12%">
                                         <col style="width:15%">
@@ -79,7 +79,7 @@
                                             <td th:if="${member.get('ROLE').equals('SELLER')}">Seller</td>
                                             <td th:text="${member.get('MEM_ID')}"></td>
                                             <!--<td th:text="${member.get('MEM_NM')}"></td>-->
-                                            <td>
+                                            <td class="link-type">
                                                 <a th:if="${member.get('ROLE').equals('BUYER')}" th:text="${member.get('MEM_NM')}"
                                                    th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
                                                    style="cursor: pointer;"></a>
@@ -126,9 +126,9 @@
             },
             detail : function(flag, id) {
 
-                if(flag == "SELLER") {
+                if(flag === "SELLER") {
                     form.attr("action", "/seller/seller_detail");
-                }else if(flag == "BUYER") {
+                }else if(flag === "BUYER") {
                     form.attr("action", "/buyer/buyer_detail");
                 }
                 form.find(".mmbrId").val(id);
