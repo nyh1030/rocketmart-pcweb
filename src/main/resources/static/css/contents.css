@@ -89,7 +89,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-section__right .brand-list li .ps-btn.type-orange{border:1px solid #f05025;color:#f05025;background:#fff;}
 .select2-container--default .select2-selection--single{border-color:#ddd;}
 .ps-product--detail > .ps-product__content{padding-top:0;border-bottom:1px solid #e1e1e1;padding-bottom:50px;}
-.ps-product--detail .logo-box{margin-bottom:20px;}
+.ps-product--detail .logo-box{width:30%;margin-bottom:50px;}
 .ps-product--detail .select2{width:100%!important;}
 .ps-product--detail .select-col3{overflow:hidden;}
 .ps-product--detail .select-col3 .select2{float:left;width:calc((100% / 3) - 3px)!important;margin-left:4px;}
