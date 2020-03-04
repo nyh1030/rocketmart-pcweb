@@ -69,11 +69,30 @@ public class MemberCtl {
      * @return String
      */
     @GetMapping("/seller/seller_detail")
-    public String seller_info(Model model) {
+    public String getSellerDetail(Model model, String mmbrId) {
 
-        // 회사정보 조회
+        mmbrId = "123123123@asd.com";
+
+        // 회원 정보조회
         model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("123123123@asd.com"));
+
         return prefixPath.concat("/mypage/seller_detail");
+    }
+
+    /**
+     * 구매자 정보조회
+     * @param model
+     * @return String
+     */
+    @GetMapping("/buyer/buyer_detail")
+    public String getBuyerDetail(Model model, String mmbrId) {
+
+        mmbrId = "123123123@asd.com";
+
+        // 회원 정보조회
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("buyer@buyer.com"));
+
+        return prefixPath.concat("/mypage/buyer_detail");
     }
 
     /**
@@ -83,18 +102,31 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/seller/seller_modify")
-    public String seller_modify(Model model, String mmbrId) {
+    public String modifySellerInfo(Model model, String mmbrId) {
 
-
-        System.out.println(" ::: " + mmbrId);
-        // 회사정보 조회
+        // 회원 정보조회
         model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
 
         return prefixPath.concat("/mypage/seller_modify");
     }
 
     /**
-     * 판매자 정보수정
+     * 구매자 수정화면
+     * @param model
+     * @param mmbrId
+     * @return String
+     */
+    @PostMapping("/buyer/buyer_modify")
+    public String modifyBuyerInfo(Model model, String mmbrId) {
+
+        // 회원 정보조회
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+
+        return prefixPath.concat("/mypage/buyer_modify");
+    }
+
+    /**
+     * 판매자 정보수정 처리
      * @param mmbrRcrd
      * @param nwPw
      * @return String
@@ -102,24 +134,25 @@ public class MemberCtl {
     @PostMapping("/seller/execSellerModify")
     public String execSellerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
 
-        int ret = 0;
-
-        System.out.println(" :::: " + mmbrRcrd.getMemId());
-        System.out.println(" :::: " + mmbrRcrd.getMemPw());
-        System.out.println(" :::: " + nwPw);
-
-        if(nwPw.isEmpty()) {
-            System.out.println("PW Empty");
-        }else {
-            System.out.println("PW Not Empty");
-        }
-
         // 판매자 정보수정
-        ret = memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
-
-        System.out.print("TEST");
+        memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
 
         return "redirect:/seller/seller_detail";
+    }
+
+    /**
+     * 구매자 정보수정 처리
+     * @param mmbrRcrd
+     * @param nwPw
+     * @return String
+     */
+    @PostMapping("/buyer/execBuyerModify")
+    public String execBuyerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
+
+        // 판매자 정보수정
+        memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
+
+        return "redirect:/buyer/buyer_detail";
     }
 
     /**
@@ -138,5 +171,4 @@ public class MemberCtl {
 
         return prefixPath.concat("/mypage/member_list");
     }
-
 }
