@@ -20,7 +20,7 @@
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
                             <h3>Member Info</h3>
-                            <span class="ab-r date">last updated: <span th:text="${mmbr.get('UPD_TS')}"></span></span>
+                            <span class="ab-r date">last updated: <span th:text="${#strings.substring(mmbr.get('UPD_TS'),0,19)}"></span></span>
                         </div>
                         <div class="ps-block__content">
                             <form id="byrFrm" method="post" action="">

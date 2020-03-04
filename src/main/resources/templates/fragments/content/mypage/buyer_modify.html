@@ -17,7 +17,7 @@
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
                                 <form id="byrFrm" method="post" action="">
-                                    <h4 id="registerText">Register Info</h4>
+                                    <h4 id="registerText">My Info</h4>
                                     <div class="form-group">
                                         <input class="form-control" type="email" id="memId" name="memId"
                                                required="required" th:value="${mmbr.get('MEM_ID')}" th:readonly="readonly" />
@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="form-group form-row-wide">
-                                        <label for="bsnsRgstrNm"> 사업자 등록증 <span class="required">*</span></label>
+                                        <label for="bsnsRgstrNm">Business Registration <span class="required">*</span></label>
                                         <div class="filebox">
                                             <input class="form-control" id="bsnsRgstrNm" value="" readonly >
                                             <label for="bsnsRgstr" class="ps-btn type-black">File</label>
@@ -89,9 +89,9 @@
 
                                     <div class="form-group mt-5" style="text-align: center;">
                                         <button type="button" id="btnMdfy" class="ps-btn ps-btn--fullwidth"
-                                                style="width: 48%;">수정</button>
+                                                style="width: 48%;">Save</button>
                                         <button type="button" id="btnCncl" class="ps-btn ps-btn--fullwidth"
-                                                style="width: 48%;">취소</button>
+                                                style="width: 48%;">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -111,12 +111,12 @@
             var btnMdfy = null;     // 수정 Button Obj
             var chckNtc = null;     // 알림 Obj
 
-            var modify = {
+            const modify = {
 
-                init : function() {
+                init: function () {
 
                     form = $("#byrFrm");
-                    nwPw = form.find("#nwPw")
+                    nwPw = form.find("#nwPw");
                     nwPwChck = form.find("#nwPwChck");
                     chckNtc = form.find("#chckNtc");
                     btnMdfy = form.find("#btnMdfy");
@@ -124,32 +124,43 @@
                     this.clickEventListener();
                     this.confirmPasswordForm();
                 },
-                confirmPasswordForm : function() {  // 비밀번호 입력 유효성검사
+                confirmPasswordForm: function () {  // 비밀번호 입력 유효성검사
 
-                    form.find(".pwChck").keyup(function(){
+                    form.find(".pwChck").keyup(function () {
 
-                        if(nwPw.val() == "" && nwPwChck.val() == "") {
+                        if (nwPw.val() === "" && nwPwChck.val() === "") {
 
                             chckNtc.html("");
                             btnMdfy.prop("disabled", false);
-                        }else {
+                        } else {
 
-                            if(nwPw.val() == nwPwChck.val()) {
+                            if (nwPw.val() === nwPwChck.val()) {
                                 chckNtc.html("<strong style='color=\"#199894b3\"'>Passwords match</strong>");
                                 btnMdfy.prop("disabled", false);
-                            }else {
+                            } else {
                                 chckNtc.html("<strong style='color=\"#f82a2aa3\"'>Passwords do not match</strong>");
                                 btnMdfy.prop("disabled", true);
                             }
                         }
                     });
                 },
-                clickEventListener : function() {
+                channelChk: function(){
+                    var rtn = true;
+
+                    if(0 === $('.bsnsChannel input[type=checkbox]:checked').length){
+                        alert("Check Distribution Channel");
+                        rtn = false;
+                    }
+
+                    return rtn;
+                },
+                clickEventListener: function () {
 
                     // 수정 버튼 클릭 Event
-                    $("#btnMdfy").click(function(){
+                    $("#btnMdfy").click(function () {
+                        if (!modify.channelChk()) return;
 
-                        if(confirm("수정하시겠습니까?")) {
+                        if (confirm("Do you want to save?")) {
 
                             form.attr("action", "/buyer/execBuyerModify");
                             form.submit();
@@ -157,11 +168,11 @@
                     });
 
                     // 취소 버튼 클릭 Event
-                    $("#btnCncl").click(function() {
+                    $("#btnCncl").click(function () {
                         alert("btnCncl");
                     });
                 }
-            }
+            };
 
             modify.init();
         }(jQuery));

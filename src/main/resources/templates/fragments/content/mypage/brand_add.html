@@ -29,12 +29,12 @@
                             <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
                                 <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
-                                <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|">수정하기</button>
+                                <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정하기</button>
                             </li>
                         </th:block>
                     </ul>
                     <div class="btn-box">
-                        <button type="button" id="btnAddProduct" class="ps-btn type-green">제품 추가하기</button>
+                        <button type="button" id="btnAddProduct" class="ps-btn type-black">제품 추가하기</button>
                     </div>
                     <p class="total mt-80">총 <em id="totalCount" class="num">0</em>개 제품이 등록되어 있습니다.</p>
                     <div class="table-responsive">
@@ -102,9 +102,9 @@
                                                 <td>${item.RETAIL_PRICE}</td>
                                                 <td>
                                                     <div class="btns">
-                                                        <button type="button" class="ps-btn type-gray02" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정</button>
-                                                        <button type="button" class="ps-btn type-black" onclick="EventScope.excuteProductCopy(${item.PRODUCT_SEQ})">복사</button>
-                                                        <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${item.PRODUCT_SEQ})"><i class="fa fa-trash-o"></i></button>
+                                                        <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
+                                                        <button type="button" class="ps-btn" onclick="EventScope.excuteProductCopy(${item.PRODUCT_SEQ})">복사 <i class="fa fa-copy"></i></button>
+                                                        <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${item.PRODUCT_SEQ})">삭제 <i class="fa fa-trash-o"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>`);

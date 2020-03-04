@@ -1,17 +1,17 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
-import org.jooq.Condition;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
+import static org.jooq.impl.DSL.currentTimestamp;
 
 @Repository
 public class MemberRepository {
@@ -75,6 +75,28 @@ public class MemberRepository {
     }
 
     /**
+     * 구매자 정보 수정
+     * @param mmbrRcrd
+     * @return
+     */
+    public int execModifyBuyerInfo(TbMemMstRecord mmbrRcrd) {
+        return this.dslContext.update(TB_MEM_MST)
+                .set(TB_MEM_MST.MEM_NM, mmbrRcrd.getMemNm())
+                .set(TB_MEM_MST.MEM_PW, mmbrRcrd.getMemPw())
+                .set(TB_MEM_MST.TEL, mmbrRcrd.getTel())
+                .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
+                .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
+                .set(TB_MEM_MST.OFFLINE_YN, DSL.nvl(mmbrRcrd.getOfflineYn(),"N"))
+                .set(TB_MEM_MST.OFFLINE_TEXT, mmbrRcrd.getOfflineText())
+                .set(TB_MEM_MST.ONLINE_YN, DSL.nvl(mmbrRcrd.getOnlineYn(),"N"))
+                .set(TB_MEM_MST.ONLINE_TEXT, mmbrRcrd.getOnlineText())
+                .set(TB_MEM_MST.UPD_USR_ID, mmbrRcrd.getUpdUsrId())
+                .set(TB_MEM_MST.UPD_TS, currentTimestamp())
+                .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
+                .execute();
+    }
+
+    /**
      * 판매자 정보 수정
      * @param mmbrRcrd
      * @return
@@ -87,10 +109,8 @@ public class MemberRepository {
                 .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
                 .set(TB_MEM_MST.BSNS_TYPE, mmbrRcrd.getBsnsType())
-                .set(TB_MEM_MST.OFFLINE_YN, mmbrRcrd.getOfflineYn())
-                .set(TB_MEM_MST.OFFLINE_TEXT, mmbrRcrd.getOfflineText())
-                .set(TB_MEM_MST.ONLINE_YN, mmbrRcrd.getOnlineYn())
-                .set(TB_MEM_MST.ONLINE_TEXT, mmbrRcrd.getOnlineText())
+                .set(TB_MEM_MST.UPD_USR_ID, mmbrRcrd.getUpdUsrId())
+                .set(TB_MEM_MST.UPD_TS, currentTimestamp())
                 .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
                 .execute();
     }

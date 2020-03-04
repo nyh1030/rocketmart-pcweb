@@ -121,6 +121,25 @@ public class MemberSvc {
 	}
 
 	/**
+	 * 구매자 정보 수정
+	 * @param mmbrRcrd
+	 * @param nwPw
+	 * @return int
+	 */
+	public int execModifyBuyerInfo(TbMemMstRecord mmbrRcrd, String nwPw) {
+
+		BCryptPasswordEncoder passwordEncoder = null;	// 암호화
+
+		// 비밀번호 입력값 있을경우
+		if(!nwPw.isEmpty()) {
+			passwordEncoder = new BCryptPasswordEncoder();
+			mmbrRcrd.setMemPw(passwordEncoder.encode(nwPw));
+		}
+
+		return this.memberRepository.execModifyBuyerInfo(mmbrRcrd);
+	}
+
+	/**
 	 * 판매자 정보 수정
 	 * @param mmbrRcrd
 	 * @param nwPw
