@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -132,8 +133,8 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/seller/execSellerModify")
-    public String execSellerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
-
+    public String execSellerModify(TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+        mmbrRcrd.setUpdUsrId(principal.getName());
         // 판매자 정보수정
         memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
 
@@ -147,8 +148,8 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/buyer/execBuyerModify")
-    public String execBuyerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
-
+    public String execBuyerModify(TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+        mmbrRcrd.setUpdUsrId(principal.getName());
         // 구매자 정보수정
         memberSvc.execModifyBuyerInfo(mmbrRcrd, nwPw);
 

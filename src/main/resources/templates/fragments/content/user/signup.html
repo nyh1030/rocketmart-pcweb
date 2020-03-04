@@ -233,12 +233,12 @@
 
             if("SELLER" === $('.user-role input[type=radio]:checked').val()){
                 if(0 === $('.bsnsType input[type=checkbox]:checked').length){
-                    alert("사업자 유형을 선택해주세요.")
+                    alert("사업자 유형을 선택해주세요.");
                     rtn = false;
                 }
             }else{
                 if(0 === $('.bsnsChannel input[type=checkbox]:checked').length){
-                    alert("Check Distribution Channel")
+                    alert("Check Distribution Channel");
                     rtn = false;
                 }
             }
@@ -250,10 +250,10 @@
 
             if("SELLER" === $('.user-role input[type=radio]:checked').val()){
                 if(!$('#termsConditions').is(":checked")){
-                    alert("이용 약관의 내용에 동의하셔야 회원가입이 가능합니다.")
+                    alert("이용 약관의 내용에 동의하셔야 회원가입이 가능합니다.");
                     rtn = false;
                 }else if(!$('#privacyPolicy').is(":checked")){
-                    alert("개인정보 취급방침의 내용에 동의하셔야 회원가입이 가능합니다.")
+                    alert("개인정보 취급방침의 내용에 동의하셔야 회원가입이 가능합니다.");
                     rtn = false;
                 }
 
