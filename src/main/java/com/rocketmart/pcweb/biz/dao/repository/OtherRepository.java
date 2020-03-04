@@ -82,6 +82,7 @@ public class OtherRepository {
                         ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_PRD_MST.RETAIL_PRICE
                         ,TB_WISH_MST.ASK_YN
+                        ,TB_MEM_MST.APPROVAL_YN
                         ,TB_WISH_MST.REG_USR_ID
                         ,TB_WISH_MST.REG_TS
                         ,TB_WISH_MST.UPD_USR_ID
@@ -92,6 +93,9 @@ public class OtherRepository {
                 .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .join(TB_PRD_MST)
                 .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .join(TB_PRD_MST)
+                .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .where(TB_WISH_MST.ASK_YN.eq("N"))
                 .orderBy(TB_WISH_MST.REG_TS.desc())
                 .fetchMaps();
     }
