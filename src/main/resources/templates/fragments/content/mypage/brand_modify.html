@@ -107,7 +107,7 @@
             init() {
                 this.setUploadComponent();
                 this.setWebEditor();
-                this.bindFields(/*[[${brandInfo}]]*/ 'default');
+                this.bindFields(/*[[${brandInfo}]]*/ 'default' || []);
             },
 
             bindFields(brandInfo) {
@@ -122,9 +122,7 @@
                 $("#dvBrandLogo").html(template);
 
                 $('[name="brandOwnership"]').each(function () {
-                    if ($(this).val() === brandInfo.BRAND_OWNERSHIP) {
-                        $(this).prop('checked', true);
-                    }
+                    if ($(this).val() === brandInfo.BRAND_OWNERSHIP) $(this).prop('checked', true);
                 });
 
                 $("#txtBrandIntroduction").summernote('code', brandInfo.BRAND_INTRODUCTION);

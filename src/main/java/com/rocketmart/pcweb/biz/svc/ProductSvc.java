@@ -2,13 +2,13 @@ package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import com.rocketmart.pcweb.biz.dao.repository.ProductRepository;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import com.rocketmart.pcweb.common.file.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +24,50 @@ public class ProductSvc {
 
 	public List<Map<String, Object>> findProductForBrand(int brandSeq) {
 		return productRepository.findProductForBrand(brandSeq);
+	}
+
+	public Map<String, Object> findByProductSeq(int productSeq) {
+		return productRepository.findByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findWholesaleByProductSeq(int productSeq) {
+		return productRepository.findWholesaleByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findFrontAfileByProductSeq(int productSeq) {
+		return productRepository.findFrontAfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findBackAfileByProductSeq(int productSeq) {
+		return productRepository.findBackAfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findAspectAfileByProductSeq(int productSeq) {
+		return productRepository.findAspectAfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findShape1AfileByProductSeq(int productSeq) {
+		return productRepository.findShape1AfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findShape2AfileByProductSeq(int productSeq) {
+		return productRepository.findShape2AfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findOutside1AfileByProductSeq(int productSeq) {
+		return productRepository.findOutside1AfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findOutside2AfileByProductSeq(int productSeq) {
+		return productRepository.findOutside2AfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findEtc1AfileByProductSeq(int productSeq) {
+		return productRepository.findEtc1AfileByProductSeq(productSeq);
+	}
+
+	public List<Map<String, Object>> findEtc2AfileByProductSeq(int productSeq) {
+		return productRepository.findEtc2AfileByProductSeq(productSeq);
 	}
 
 	public List<Map<String, Object>> findListForCate1() {
@@ -69,5 +113,15 @@ public class ProductSvc {
 		}
 
 		return wholeSaleSaveCnt;
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public String copyProduct(int productSeq) {
+		return productRepository.copyProduct(productSeq);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public String deleteProduct(int productSeq) {
+		return productRepository.deleteProduct(productSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
 }

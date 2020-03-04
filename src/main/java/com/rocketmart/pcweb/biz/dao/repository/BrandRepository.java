@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
+import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 
 @Repository
 public class BrandRepository {
@@ -21,10 +22,11 @@ public class BrandRepository {
 	private DSLContext dslContext;
 
 	public List<Map<String, Object>> findAllForAfile() {
-		return this.dslContext.select(TB_BRAND_MST.BRAND_SEQ, TB_CM_AFILE.URL_PATH_CD)
+		return this.dslContext.select(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_BRAND_MST)
 				.join(TB_CM_AFILE)
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+				.where(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchMaps();
 	}
 
@@ -37,7 +39,7 @@ public class BrandRepository {
 				.from(TB_BRAND_MST)
 				.leftOuterJoin(TB_CM_AFILE)
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq))
+				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq)).and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchOneMap();
 	}
 
@@ -45,13 +47,14 @@ public class BrandRepository {
 		return this.dslContext.select(
 				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM)
 				.from(TB_BRAND_MST)
-				.where(TB_BRAND_MST.REG_USR_ID.equal(usrId))
+				.where(TB_BRAND_MST.REG_USR_ID.equal(usrId)).and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchMaps();
 	}
 
 	public Timestamp findLastUpdatedDateTime() {
 		return this.dslContext.select(DSL.max(TB_BRAND_MST.UPD_TS))
 				.from(TB_BRAND_MST)
+				.where(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchOne(Record1::value1);
 	}
 

@@ -26,9 +26,9 @@
                         <th:block th:if="${#lists.isEmpty(brandList)}">
                             <div class="no_data"><i class="fa fa-exclamation-circle"></i>등록되어 있는 제품이 없습니다.</div>
                         </th:block>
-                        <th:block th:if="${not #lists.isEmpty(brandList)}">
+                            <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
-                                <div class="img-box"><a href="javascript:;" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}')|"><img th:src="${brand.URL_PATH_CD}"></a></div>
+                                <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
                                 <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|">수정하기</button>
                             </li>
                         </th:block>
@@ -73,7 +73,8 @@
 
         const PageScope = {
 
-            objDataTables: null,
+            currentBrandSeq: "",
+            currentBrandNm: "",
 
             init() {
                 this.setDataTables();
@@ -101,19 +102,45 @@
                                                 <td>${item.RETAIL_PRICE}</td>
                                                 <td>
                                                     <div class="btns">
-                                                        <button type="button" class="ps-btn type-gray02">수정</button>
-                                                        <button type="button" class="ps-btn type-black">복사</button>
-                                                        <button type="button" class="ps-btn type-red"><i class="fa fa-trash-o"></i></button>
+                                                        <button type="button" class="ps-btn type-gray02" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정</button>
+                                                        <button type="button" class="ps-btn type-black" onclick="EventScope.excuteProductCopy(${item.PRODUCT_SEQ})">복사</button>
+                                                        <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${item.PRODUCT_SEQ})"><i class="fa fa-trash-o"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>`);
                             });
+                            $("#btnAddProduct").text(`${PageScope.currentBrandNm} 제품 추가하기`);
                         } else {
                             alert('등록된 제품이 존재하지 않습니다.\n제품을 추가해주세요.');
+                            $("#btnAddProduct").text(`제품 추가하기`);
                         }
 
                         // 총 개수
                         $("#totalCount").text(data.length);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
+            copyProduct(productSeq) {
+                axios({
+                    method: 'post',
+                    url: `/seller/product/copy/${productSeq}`
+                }).then(response => {
+
+                }).catch(error => {
+
+                });
+            },
+            deleteProduct(productSeq) {
+                axios({
+                    method: 'delete',
+                    url: `/seller/product/${productSeq}`
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('정상적으로 삭제되었습니다.');
+                        PageScope.getProductListForBrand(PageScope.currentBrandSeq);
                     }
                 }).catch(error => {
                     console.log(error);
@@ -128,10 +155,15 @@
             },
 
             updateOnclickListener(brandSeq) {
-                CommonUtils.redirectPage("/seller/brand_modify/".concat(brandSeq));
+                CommonUtils.redirectPage(`/seller/brand_modify/${brandSeq}`);
             },
 
-            choiceBrandLogoImage(brandSeq) {
+            choiceBrandLogoImage(brandSeq, brandNm, _this) {
+                $('.brand-list').find('li').removeClass('on');
+                $(_this).closest('li').addClass('on');
+
+                PageScope.currentBrandSeq = brandSeq;
+                PageScope.currentBrandNm = brandNm;
                 PageScope.getProductListForBrand(brandSeq);
             },
 
@@ -140,8 +172,25 @@
                     CommonUtils.redirectPage("/seller/brand_register");
                 });
                 $("#btnAddProduct").on("click", () => {
-                    CommonUtils.redirectPage("/seller/product_register");
+                    const brandSeq = PageScope.currentBrandSeq;
+                    if (_.isEmpty(brandSeq)) {
+                        alert('브랜드 로고를 선택 후 제품을 추가해주세요.');
+                        return;
+                    }
+
+                    CommonUtils.redirectPage(`/seller/product_register/${brandSeq}`);
                 });
+            },
+            redirectProductModify(productSeq) {
+                CommonUtils.redirectPage(`/seller/product_modify/${productSeq}`);
+            },
+            excuteProductCopy(productSeq) {
+                PageScope.copyProduct(productSeq);
+            },
+            deleteProductRow(productSeq) {
+                if (confirm('정말 이 제품을 삭제하시겠습니까?')) {
+                    PageScope.deleteProduct(productSeq);
+                }
             }
         };
     </script>

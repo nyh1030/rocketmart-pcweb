@@ -19,7 +19,7 @@ public class ProductRestCtl {
 	private ProductSvc productSvc;
 
 	@GetMapping("/seller/product/list/{brandSeq}")
-	public ResponseEntity<List<Map<String, Object>>> getProductForBrand(@PathVariable(value = "brandSeq") int brandSeq) {
+	public ResponseEntity<List<Map<String, Object>>> findProductForBrand(@PathVariable(value = "brandSeq") int brandSeq) {
 		return new ResponseEntity<>(productSvc.findProductForBrand(brandSeq), HttpStatus.OK);
 	}
 
@@ -31,5 +31,15 @@ public class ProductRestCtl {
 	@PostMapping("/seller/product/info/save")
 	public ResponseEntity<String> saveProductInfo(ProductDto productDto) {
 		return new ResponseEntity<>(productSvc.saveOneForProductInfo(productDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	@PostMapping("/seller/product/copy/{productSeq}")
+	public ResponseEntity<String> product_copy(@PathVariable(value = "productSeq") int productSeq) {
+		return new ResponseEntity<>(productSvc.copyProduct(productSeq), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/seller/product/{productSeq}")
+	public ResponseEntity<String> deleteProduct(@PathVariable(value = "productSeq") int productSeq) {
+		return new ResponseEntity<>(productSvc.deleteProduct(productSeq), HttpStatus.OK);
 	}
 }

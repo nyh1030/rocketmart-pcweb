@@ -20,7 +20,7 @@
                 <div class="ps-section__right">
                     <div class="ps-product--detail">
                         <div class="ps-product__content">
-                            <div class="logo-box">로고이미지 들어가는자리</div>
+                            <div class="logo-box"><img th:src="${productInfo.URL_PATH_CD}"></div>
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#" data-id="tab-1" onclick="EventScope.clickTabControl(this);">기본정보</a></li>
                                 <li><a href="#" data-id="tab-2" onclick="EventScope.clickTabControl(this);">가격정보</a></li>
@@ -32,11 +32,11 @@
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="mb-5">
                                         <label for="txtProductNm" class="bul-type">제품명<span class="required">*</span></label>
-                                        <input type="text" id="txtProductNm" class="form-control" required>
+                                        <input type="text" id="txtProductNm" class="form-control" th:value="${productInfo.PRODUCT_NM}" required>
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtBrandNm" class="bul-type">브랜드 <span class="required">*</span></label>
-                                        <input type="text" id="txtBrandNm" class="form-control" th:data-brand-seq="${brandInfo.BRAND_SEQ}" th:value="${brandInfo.BRAND_NM}" readonly="readonly" required>
+                                        <input type="text" id="txtBrandNm" class="form-control" th:data-brand-seq="${productInfo.BRAND_SEQ}" th:value="${productInfo.BRAND_NM}" readonly="readonly" required>
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">제품 카테고리 <span class="required">*</span></label>
@@ -54,15 +54,15 @@
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductUrl" class="bul-type">제품 소개 영상</label>
-                                        <input type="text" id="txtProductUrl" class="form-control" placeholder="url">
+                                        <input type="text" id="txtProductUrl" class="form-control" th:value="${productInfo.PRODUCT_URL}" placeholder="url">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductCapacity" class="bul-type">제품 용량 <span class="required">*</span></label>
-                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="10">
+                                        <input type="text" id="txtProductCapacity" class="form-control" th:value="${productInfo.PRODUCT_CAPACITY}" required placeholder="ex) 28 oz, 100 ml" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="10">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductLineup" class="bul-type">색상/라인업</label>
-                                        <input type="text" id="txtProductLineup" class="form-control" placeholder="Ex) Color #13(rose), #15(dark rabbit),">
+                                        <input type="text" id="txtProductLineup" class="form-control" th:value="${productInfo.PRODUCT_LINEUP}" placeholder="Ex) Color #13(rose), #15(dark rabbit),">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtSellerNote" class="bul-type">셀러노트</label>
@@ -81,7 +81,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${productInfo.RETAIL_PRICE}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
@@ -310,7 +310,7 @@
         </div>
         <!-- //.container : E -->
     </div>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+
     <script type="text/javascript" th:inline="javascript">
         $(() => {
             PageScope.init();
@@ -318,6 +318,8 @@
         });
 
         const PageScope = {
+
+            objProductInfo: null,
 
             tabId: 'tab-1',
             $tab1: $('#tab-1'),
@@ -347,11 +349,68 @@
             strEtc1AfileSeq: null,
             strEtc2AfileSeq: null,
 
+            isCate1First: true,
+            isCate2First: true,
+            isCate3First: true,
+
             init() {
-                this.bindCate1Combo();
                 this.setWebEditor();
-                this.setDataTables();
+                this.setDataTables(/*[[${wholesaleList}]]*/ 'default' || []);
                 this.setUploadComponent();
+                this.bindFields(/*[[${productInfo}]]*/ 'default' || {});
+                this.bindCate1Combo();
+            },
+
+            bindFields(productInfo) {
+                this.objProductInfo = productInfo;
+
+                $('#txtSellerNote').summernote('code', productInfo.SELLER_NOTE);
+                $('#txtProductContent').summernote('code', productInfo.PRODUCT_CONTENT);
+
+                const productAtrbt = productInfo.PRODUCT_ATRBT;
+                const productCrt = productInfo.PRODUCT_CRT;
+                const exportHst = productInfo.EXPORT_HST;
+                const tradingConditions = productInfo.TRADING_CONDITIONS;
+
+                if (productAtrbt) {
+                    productAtrbt.split(',').forEach(item => {
+                        $('[name="productAtrbt"]').each(function () {
+                            if (item === $(this).val()) $(this).prop('checked', true);
+                        });
+                    });
+                }
+                if (productCrt) {
+                    productCrt.split(',').forEach(item => {
+                        $('[name="productCrt"]').each(function () {
+                            if (item === $(this).val()) $(this).prop('checked', true);
+                        });
+                    });
+                }
+                if (exportHst) {
+                    exportHst.split(',').forEach(item => {
+                        $('[name="exportHst"]').each(function () {
+                            if (item === $(this).val()) $(this).prop('checked', true);
+                        });
+                    });
+                }
+                if (tradingConditions) {
+                    tradingConditions.split(',').forEach(item => {
+                        $('[name="tradingConditions"]').each(function () {
+                            if (item === $(this).val()) $(this).prop('checked', true);
+                        });
+                    });
+                }
+
+
+                const productFrontAfile = /*[[${productFrontAfile}]]*/ 'default';
+
+                const frontAfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                $('#dvProductFront').html(productFrontAfile);
             },
 
             bindCate1Combo() {
@@ -361,6 +420,13 @@
                 cate1List.forEach(item => {
                     $cate1Cd.append(`<option value="${item.CATE1_CD}">${item.CATE1_NM}</option>`);
                 });
+
+                if (PageScope.isCate1First) {
+                    const cate1CdVal = PageScope.objProductInfo.CATE1_CD;
+                    $cate1Cd.val(cate1CdVal);
+                    this.bindCate2Combo(cate1CdVal);
+                    PageScope.isCate1First = false;
+                }
             },
 
             bindCate2Combo(parentCd) {
@@ -374,6 +440,13 @@
                 }).forEach(item => {
                     $cate2Cd.append(`<option value="${item.CATE2_CD}">${item.CATE2_NM}</option>`);
                 });
+
+                if (PageScope.isCate2First) {
+                    const cate2CdVal = PageScope.objProductInfo.CATE2_CD;
+                    $cate2Cd.val(cate2CdVal);
+                    this.bindCate3Combo(cate2CdVal);
+                    PageScope.isCate2First = false;
+                }
             },
 
             bindCate3Combo(parentCd) {
@@ -384,6 +457,12 @@
                 }).forEach(item => {
                     $cate3Cd.append(`<option value="${item.CATE3_CD}">${item.CATE3_NM}</option>`);
                 });
+
+                if (PageScope.isCate3First) {
+                    const cate3CdVal = PageScope.objProductInfo.CATE3_CD;
+                    $cate3Cd.val(cate3CdVal);
+                    PageScope.isCate3First = false;
+                }
             },
 
             setWebEditor() {
@@ -417,7 +496,7 @@
                     ]
                 });
             },
-            setDataTables() {
+            setDataTables(wholesaleList) {
                 this.objDataTables = $("#tblWholeSale").DataTable({
                     paging: false,
                     searching: false,
@@ -426,6 +505,16 @@
                     columnDefs: [{
                         orderable: false
                     }]
+                });
+
+                const _this = this;
+                wholesaleList.forEach(item => {
+                    _this.objDataTables.row.add([
+                        `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="${item.TRADING_PRICE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    ]).draw(false);
                 });
 
                 $(".dataTables_info").remove();
@@ -507,7 +596,7 @@
             getParameters() {
                 return {
                     productNm: $('#txtProductNm').val(),
-                    brandSeq: $('#txtBrandNm').data('brandSeq'),
+                    brandSeq: $('#txtBrandSeq').val(),
                     cate1Cd: $('#sltCate1Cd').val(),
                     cate2Cd: $('#sltCate2Cd').val(),
                     cate3Cd: $('#sltCate3Cd').val(),
@@ -542,9 +631,9 @@
                     alert('제품명은 필수값 입니다.');
                     $('#txtProductNm').focus();
                     return false;
-                } else if (!$('#txtBrandNm').val().trim()) {
+                } else if (!$('#txtBrandSeq').val().trim()) {
                     alert('브랜드 선택은 필수입니다.');
-                    $('#txtBrandNm').focus();
+                    $('#txtBrandSeq').focus();
                     return false;
                 } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
                     alert('카테고리 선택은 필수입니다.');
@@ -570,19 +659,25 @@
 
             init() {
                 this.clickEventListener();
-                $("#btnAddWholeSale").trigger('click');
             },
 
             clickEventListener() {
                 $("#sltCate1Cd").on('change', function() {
                     const cate1Cd = $(this).val();
-                    if (cate1Cd) PageScope.bindCate2Combo(cate1Cd);
-                    else $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                    if (cate1Cd) {
+                        PageScope.bindCate2Combo(cate1Cd);
+                    } else {
+                        $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    }
                 });
                 $("#sltCate2Cd").on('change', function() {
                     const cate2Cd = $(this).val();
-                    if (cate2Cd) PageScope.bindCate3Combo(cate2Cd);
-                    else $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    if (cate2Cd) {
+                        PageScope.bindCate3Combo(cate2Cd);
+                    } else {
+                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    }
                 });
 
                 $('#btnSave').on('click', () => {
