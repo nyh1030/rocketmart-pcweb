@@ -403,6 +403,14 @@
 
 
                 const productFrontAfile = /*[[${productFrontAfile}]]*/ 'default';
+                const productBackAfile = /*[[${productBackAfile}]]*/ 'default';
+                const productAspectAfile = /*[[${productAspectAfile}]]*/ 'default';
+                const productShape1Afile = /*[[${productShape1Afile}]]*/ 'default';
+                const productShape2Afile = /*[[${productShape2Afile}]]*/ 'default';
+                const productOutside1Afile = /*[[${productOutside1Afile}]]*/ 'default';
+                const productOutside2Afile = /*[[${productOutside2Afile}]]*/ 'default';
+                const productEtc1Afile = /*[[${productEtc1Afile}]]*/ 'default';
+                const productEtc2Afile = /*[[${productEtc2Afile}]]*/ 'default';
 
                 const frontAfileTemplate = `
                             <div class="dz-preview dz-file-preview" >
@@ -410,7 +418,65 @@
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
                             </div>`;
-                $('#dvProductFront').html(productFrontAfile);
+                const backAfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const aspectAfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const shape1AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const shape2AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const outside1AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const outside2AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const etc1AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                const etc2AfileTemplate = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+
+
+                $('#dvProductFront').html(frontAfileTemplate);
+                $('#dvProductBack').html(backAfileTemplate);
+                $('#dvProductBack').html(aspectAfileTemplate);
+                $('#dvProductBack').html(shape1AfileTemplate);
+                $('#dvProductBack').html(shape2AfileTemplate);
+                $('#dvProductBack').html(outside1AfileTemplate);
+                $('#dvProductBack').html(outside2AfileTemplate);
+                $('#dvProductBack').html(etc1AfileTemplate);
+                $('#dvProductBack').html(etc2AfileTemplate);
             },
 
             bindCate1Combo() {

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">Member Info</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-dashboard">
+                        <div class="ps-block__header">
+                            <h3>Member Info</h3>
+                            <span class="ab-r date">last updated: <span th:text="${mmbr.get('UPD_TS')}"></span></span>
+                        </div>
+                        <div class="ps-block__content">
+                            <form id="byrFrm" method="post" action="">
+                                <input type="hidden" name="mmbrId" class="mmbrId" th:value="${mmbr.get('MEM_ID')}" />
+                                <input type="hidden" name="apprvlYn" class="apprvlYn" value="" />
+                            </form>
+                            <ul class="info-list">
+                                <li>
+                                    <span class="tit-info bul-type">Name : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('MEM_NM')}" />
+                                </li>
+                                <li>
+                                    <span class="tit-info bul-type">Phone Number : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('TEL')}" />
+                                </li>
+                                <li>
+                                    <span class="tit-info bul-type">Company or Shop Name : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('COMPANY_NM')}" />
+                                </li>
+                                <li>
+                                    <span class="tit-info bul-type">Company or Shop URL : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('COMPANY_URL')}" />
+                                </li>
+                                <li th:if="${mmbr.get('OFFLINE_YN').equals('Y')}">
+                                    <span class="tit-info bul-type">OFFLINE Channel : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('OFFLINE_TEXT')}" />
+                                </li>
+                                <li th:if="${mmbr.get('ONLINE_YN').equals('Y')}">
+                                    <span class="tit-info bul-type">OFFLINE Channel : </span>
+                                    <span class="txt-info" th:text="${mmbr.get('ONLINE_TEXT')}" />
+                                </li>
+                                <li>
+                                    <span class="tit bul-type">Business Registration : </span>
+                                    <span class="txt">
+                                        <a href="#" class="btn-file"><i class="fa fa-file-text-o"></i>Business Registration.pdf</a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="tit bul-type">Member Grade : </span>
+                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('Y')}">Regular</span>
+                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('N')}">Associate</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btns">
+                            <button type="button" id="btnApprvl" class="ps-btn type-black"
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('N')}" th:value="Y">승인</button>
+                            <button type="button" id="btnApprvl" class="ps-btn type-black"
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('Y')}" th:value="N">승인취소</button>
+                            <button type="button" id="btnMdfy" class="ps-btn type-black">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript">
+        (function(){
+
+            var form = null;    // form Obj
+            var apprvlYn = "";  // 승인여부
+            var btnText = "";   // 버튼 Text
+
+            var exct = {
+                init : function() {
+
+                    form = $("#byrFrm");
+                    this.clickEventListener();
+                },
+                clickEventListener : function() {
+
+                    // 승인버튼 클릭 Event
+                    $("#btnApprvl").click(function(){
+
+                        apprvlYn = this.value;
+                        btnText = this.innerText;
+                        form.find(".apprvlYn").val(apprvlYn);    // Button 값 hidden 저장
+
+                        if(confirm(btnText +" 하시겠습니까?")) {
+                            $.ajax({
+                                type : 'POST',
+                                data : form.serialize(),
+                                url : "/any/rest/member/execApproval",
+                                dataType : "text",
+                                success : function(data) {
+
+                                    if(data == "Success") {
+                                        alert(btnText + "되었습니다.");
+                                        location.reload();
+                                    }
+                                },
+                                error : function() {
+                                    alert("Error");
+                                }
+                            });
+                        }
+                    });
+
+                    // 수정하기 버튼 클릭 Event
+                    $("#btnMdfy").click(function() {
+
+                        form.attr("action", "/buyer/buyer_modify");
+                        form.submit();
+                    });
+                }
+            }
+
+            exct.init();
+        }(jQuery));
+    </script>
+</th:block>
+</html>

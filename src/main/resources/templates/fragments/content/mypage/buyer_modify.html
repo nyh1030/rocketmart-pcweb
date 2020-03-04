@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-page--my-account">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li>Resister</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ps-my-account">
+            <div class="container">
+                <div class="register ps-form--account ps-tab-root">
+                    <div class="ps-tabs">
+                        <div class="ps-tab active" id="register">
+                            <div class="ps-form__content">
+                                <form id="byrFrm" method="post" action="">
+                                    <h4 id="registerText">Register Info</h4>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" id="memId" name="memId"
+                                               required="required" th:value="${mmbr.get('MEM_ID')}" th:readonly="readonly" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="memPw" th:value="${mmbr.get('MEM_PW')}" />
+                                        <input class="form-control pwChck" type="password" id="nwPw" name="nwPw" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control pwChck" type="password" id="nwPwChck" name="nwPwChck" required="required">
+                                        <small id="chckNtc"></small>
+                                    </div>
+
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="memNm">Your Name <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="memNm" name="memNm"
+                                               required="required" th:value="${mmbr.get('MEM_NM')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="tel">Phone Number <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="tel" name="tel"
+                                               required="required" th:value="${mmbr.get('TEL')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyNm">Company or Shop Name <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyNm" name="companyNm"
+                                               required="required" th:value="${mmbr.get('COMPANY_NM')}" />
+                                    </p>
+                                    <p class="form-row form-group form-row-wide">
+                                        <label for="companyUrl">Company or Shop URL <span class="required">*</span></label>
+                                        <input class="form-control" type="text" id="companyUrl" name="companyUrl"
+                                               required="required" th:value="${mmbr.get('COMPANY_URL')}" />
+                                    </p>
+
+                                    <div id="buyerType" class="form-row form-group form-row-wide bsnsChannel" required="required">
+                                        <label>Distribution Channel <span class="required">*</span> (multiple choice) </label>
+                                        <div>
+                                            <div class="chk-wrap">
+                                                <div class="ps-checkbox">
+                                                    <input class="form-control" type="checkbox" id="offlineYn" name="offlineYn" value="Y"
+                                                           th:checked="${mmbr.get('OFFLINE_YN').equals('Y')}" />
+                                                    <label for="offlineYn">Offline</label>
+                                                </div>
+                                                <input class="form-control type-inline" type="text" id="offlineText" name="offlineText"
+                                                       th:value="${mmbr.get('OFFLINE_TEXT')}"
+                                                       placeholder="ex.) drug store, pharmacy, door-to-door" />
+                                            </div>
+                                            <div class="chk-wrap">
+                                                <div class="ps-checkbox">
+                                                    <input class="form-control" type="checkbox" id="onlineYn" name="onlineYn" value="Y"
+                                                           th:checked="${mmbr.get('ONLINE_YN').equals('Y')}" />
+                                                    <label for="onlineYn">Online</label>
+                                                </div>
+                                                <input class="form-control type-inline" type="text" id="onlineText" name="onlineText"
+                                                       th:value="${mmbr.get('ONLINE_TEXT')}"
+                                                       placeholder="ex.) facebook, own shopping mall, shopee" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-row-wide">
+                                        <label for="bsnsRgstrNm"> 사업자 등록증 <span class="required">*</span></label>
+                                        <div class="filebox">
+                                            <input class="form-control" id="bsnsRgstrNm" value="" readonly >
+                                            <label for="bsnsRgstr" class="ps-btn type-black">File</label>
+                                            <input type="file" id="bsnsRgstr" class="upload-hidden" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-5" style="text-align: center;">
+                                        <button type="button" id="btnMdfy" class="ps-btn ps-btn--fullwidth"
+                                                style="width: 48%;">수정</button>
+                                        <button type="button" id="btnCncl" class="ps-btn ps-btn--fullwidth"
+                                                style="width: 48%;">취소</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function(){
+
+            var form = null;    // form Obj
+            var nwPw = null;    // 비밀번호 input Obj
+            var nwPwChck = null;    // 비밀번호 확인 input Obj
+            var btnMdfy = null;     // 수정 Button Obj
+            var chckNtc = null;     // 알림 Obj
+
+            var modify = {
+
+                init : function() {
+
+                    form = $("#byrFrm");
+                    nwPw = form.find("#nwPw")
+                    nwPwChck = form.find("#nwPwChck");
+                    chckNtc = form.find("#chckNtc");
+                    btnMdfy = form.find("#btnMdfy");
+
+                    this.clickEventListener();
+                    this.confirmPasswordForm();
+                },
+                confirmPasswordForm : function() {  // 비밀번호 입력 유효성검사
+
+                    form.find(".pwChck").keyup(function(){
+
+                        if(nwPw.val() == "" && nwPwChck.val() == "") {
+
+                            chckNtc.html("");
+                            btnMdfy.prop("disabled", false);
+                        }else {
+
+                            if(nwPw.val() == nwPwChck.val()) {
+                                chckNtc.html("<strong style='color=\"#199894b3\"'>Passwords match</strong>");
+                                btnMdfy.prop("disabled", false);
+                            }else {
+                                chckNtc.html("<strong style='color=\"#f82a2aa3\"'>Passwords do not match</strong>");
+                                btnMdfy.prop("disabled", true);
+                            }
+                        }
+                    });
+                },
+                clickEventListener : function() {
+
+                    // 수정 버튼 클릭 Event
+                    $("#btnMdfy").click(function(){
+
+                        if(confirm("수정하시겠습니까?")) {
+
+                            form.attr("action", "/buyer/execBuyerModify");
+                            form.submit();
+                        }
+                    });
+
+                    // 취소 버튼 클릭 Event
+                    $("#btnCncl").click(function() {
+                        alert("btnCncl");
+                    });
+                }
+            }
+
+            modify.init();
+        }(jQuery));
+    </script>
+</th:block>
+</html>

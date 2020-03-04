@@ -87,6 +87,10 @@ public class MemberRepository {
                 .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
                 .set(TB_MEM_MST.BSNS_TYPE, mmbrRcrd.getBsnsType())
+                .set(TB_MEM_MST.OFFLINE_YN, mmbrRcrd.getOfflineYn())
+                .set(TB_MEM_MST.OFFLINE_TEXT, mmbrRcrd.getOfflineText())
+                .set(TB_MEM_MST.ONLINE_YN, mmbrRcrd.getOnlineYn())
+                .set(TB_MEM_MST.ONLINE_TEXT, mmbrRcrd.getOnlineText())
                 .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
                 .execute();
     }

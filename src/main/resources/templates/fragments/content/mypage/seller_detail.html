@@ -11,7 +11,7 @@
                         <h3 class="widget-title">Mypage</h3>
                         <ul class="ps-list--arrow">
                             <li><a href="#">제품정보</a></li>
-                            <li><a href="#" class="active">회사정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a href="#" class="active">회원정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
                         </ul>
                     </aside>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="ps-section__right">
                     <div class="ps-block--vendor-dashboard">
                         <div class="ps-block__header">
-                            <h3>회사 정보</h3>
+                            <h3>회원 정보</h3>
                             <span class="ab-r date">last updated: <span th:text="${mmbr.get('UPD_TS')}"></span></span>
                         </div>
                         <div class="ps-block__content">
@@ -80,6 +80,7 @@
 
     <script type="text/javascript">
         (function(){
+
             var form = null;    // form Obj
             var apprvlYn = "";  // 승인여부
             var btnText = "";   // 버튼 Text
