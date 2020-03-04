@@ -66,12 +66,17 @@ public class MemberCtl {
     /**
      * 판매자 정보조회
      * @param model
+     * @param mmbrId
      * @return String
      */
-    @GetMapping("/seller/seller_detail")
+    @PostMapping("/seller/seller_detail")
     public String getSellerDetail(Model model, String mmbrId) {
 
-        mmbrId = "123123123@asd.com";
+        if(mmbrId.isEmpty()) {
+            mmbrId = "123123123@asd.com";
+        }
+
+        System.out.println(" ::: " + mmbrId);
 
         // 회원 정보조회
         model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("123123123@asd.com"));
@@ -82,15 +87,20 @@ public class MemberCtl {
     /**
      * 구매자 정보조회
      * @param model
+     * @param mmbrId
      * @return String
      */
-    @GetMapping("/buyer/buyer_detail")
+    @PostMapping("/buyer/buyer_detail")
     public String getBuyerDetail(Model model, String mmbrId) {
 
-        mmbrId = "123123123@asd.com";
+        if(mmbrId.isEmpty()) {
+            mmbrId = "buyer@buyer.com";
+        }
+
+        System.out.println(" ::: " + mmbrId);
 
         // 회원 정보조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo("buyer@buyer.com"));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
 
         return prefixPath.concat("/mypage/buyer_detail");
     }

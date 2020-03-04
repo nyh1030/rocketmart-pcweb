@@ -38,6 +38,9 @@
                             </form>
                             <p class="total">Total : <em class="num" th:text="${#lists.size(memList)}"></em> result</p>
                             <div class="table-responsive">
+                                <form id="detailFrm" action="" method="post">
+                                    <input type="hidden" class="mmbrId" name="mmbrId" />
+                                </form>
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
                                         <col style="width:6%">
@@ -75,7 +78,15 @@
                                             <td th:if="${member.get('ROLE').equals('BUYER')}">Buyer</td>
                                             <td th:if="${member.get('ROLE').equals('SELLER')}">Seller</td>
                                             <td th:text="${member.get('MEM_ID')}"></td>
-                                            <td th:text="${member.get('MEM_NM')}"></td>
+                                            <!--<td th:text="${member.get('MEM_NM')}"></td>-->
+                                            <td>
+                                                <a th:if="${member.get('ROLE').equals('BUYER')}" th:text="${member.get('MEM_NM')}"
+                                                   th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
+                                                   style="cursor: pointer;"></a>
+                                                <a th:if="${member.get('ROLE').equals('SELLER')}" th:text="${member.get('MEM_NM')}"
+                                                   th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
+                                                   style="cursor: pointer;"></a>
+                                            </td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('N')}">준회원</td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('Y')}">정회원</td>
                                             <td th:text="${member.get('TEL')}"></td>
@@ -106,6 +117,26 @@
 
     <script type="text/javascript">
 
+        var form = null;
+
+        var link = {
+
+            init : function() {
+               form = $("#detailFrm");
+            },
+            detail : function(flag, id) {
+
+                if(flag == "SELLER") {
+                    form.attr("action", "/seller/seller_detail");
+                }else if(flag == "BUYER") {
+                    form.attr("action", "/buyer/buyer_detail");
+                }
+                form.find(".mmbrId").val(id);
+                form.submit();
+            }
+        }
+
+        link.init();
     </script>
 </th:block>
 </html>
