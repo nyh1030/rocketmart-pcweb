@@ -149,8 +149,8 @@ public class MemberCtl {
     @PostMapping("/buyer/execBuyerModify")
     public String execBuyerModify(TbMemMstRecord mmbrRcrd, String nwPw) {
 
-        // 판매자 정보수정
-        memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
+        // 구매자 정보수정
+        memberSvc.execModifyBuyerInfo(mmbrRcrd, nwPw);
 
         return "redirect:/buyer/buyer_detail";
     }
