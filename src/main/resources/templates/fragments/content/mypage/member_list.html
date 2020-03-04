@@ -84,7 +84,7 @@
                                                    th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
                                                    style="cursor: pointer;"></a>
                                                 <a th:if="${member.get('ROLE').equals('SELLER')}" th:text="${member.get('MEM_NM')}"
-                                                   th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
+                                                   th:href="|javascript:link.detail('SELLER', '${member.get('MEM_ID')}');|"
                                                    style="cursor: pointer;"></a>
                                             </td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('N')}">준회원</td>
