@@ -97,8 +97,8 @@
                                         <label for="bsnsRgstrNm"> Business Registration <span class="required">*</span></label>
                                         <div class="filebox">
                                             <input class="form-control" id="bsnsRgstrNm" value="" readonly >
-                                            <label for="bsnsRgstr" class="ps-btn type-black">File</label>
-                                            <input type="file" id="bsnsRgstr" class="upload-hidden" required="required">
+                                            <label for="btnBsnsRgstr" class="ps-btn type-black">File</label>
+                                            <input type="file" id="btnBsnsRgstr" class="upload-hidden" required="required">
                                         </div>
                                     </div>
 
@@ -130,8 +130,12 @@
 <script>
 (function($) {
     var signup = {
+
+        uploadStarter: null,
+
         init: function() {
             this.inputFileForm();
+            this.setUploadComponent();
             $('.user-role input[type=radio]').on('change', this.changeMemberForm);
             $('.form-group input[type=password]').on('keyup',this.confirmPasswordForm);
             $('#tel').on('keydown',this.ensurePhoneNumber);
@@ -263,36 +267,6 @@
 
             return rtn;
         },
-        validateForm: function() {
-                //1. 아이디 중복체크
-                if(!signup.idOverLapChk()){
-                    return false;
-                }
-                //2. 바이어일 경우 채널 등록, 셀러일 경우 사업자유형 등록
-                if(!signup.bsnsTypeChk()){
-                    return false;
-                }
-                //3. 셀러일 경우 이용약관 동의여부
-                if(!signup.sellerAgreeChk()){
-                    return false;
-                }
-
-                if("SELLER" === $('.user-role input[type=radio]:checked').val()){
-                    if(confirm("회원가입을 하시겠습니까?")){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }else{
-                    if(confirm("Would you like to Sign up?")){
-                        return true;
-                    }else{
-                        return false;
-                    }
-                }
-
-            return true;
-        },
         openPopup: function () {
             this.blur();
 
@@ -302,8 +276,73 @@
                     console.log(result);
                 }
             });
-        }
+        },
+        setUploadComponent() {
+            this.uploadStarter = new Dropzone('#bsnsRgstrNm' ,{
+                method: 'post',
+                url: '/any/rest/member/bsnsRgstr/file/upload',
+                params: {themaRelmCd: "member", regMenuPart: "/any/signup"},
+                addRemoveLinks: false,
+                autoProcessQueue: true,
+                maxFiles: 1,
+                maxFilesize: 20,
 
+                init: function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('The maximum upload file is one');
+                    });
+                },
+                success: (response) => {
+                    if (response.status === "success") {
+                        alert("aaa");
+                    }else{
+                        alert("bbb");
+                    }
+                }
+            });
+        },
+        validateForm: function() {
+            //1. 아이디 중복체크
+            if(!signup.idOverLapChk()){
+                return false;
+            }
+            //2. 바이어일 경우 채널 등록, 셀러일 경우 사업자유형 등록
+            if(!signup.bsnsTypeChk()){
+                return false;
+            }
+            //3. 셀러일 경우 이용약관 동의여부
+            if(!signup.sellerAgreeChk()){
+                return false;
+            }
+            signup.uploadStarter.processQueue();
+            alert("aaaaaaa");
+            return false;
+
+            if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+                if(confirm("회원가입을 하시겠습니까?")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                if(confirm("Would you like to Sign up?")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            return true;
+        }
     };
 
     $(function() {

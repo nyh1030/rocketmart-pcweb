@@ -2,12 +2,14 @@ package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.MemberRepository;
+import com.rocketmart.pcweb.common.file.FileUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +24,9 @@ public class MemberSvc {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Autowired
+	private FileUtils fileUtils;
+
 
 	/**
 	 * 회원중복 체크
@@ -32,6 +37,18 @@ public class MemberSvc {
 	 */
 	public boolean idOverLapChk(String memId) {
 		return this.memberRepository.idOverLapChk(memId);
+	}
+
+	/**
+	 * 사업자 등록증 등록처리
+	 * @param file
+	 * @param themaRelmCd
+	 * @param regMenuPart
+	 * @return String
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public String saveBsnsRgstrUpload(MultipartFile file, String themaRelmCd, String regMenuPart) {
+		return fileUtils.uploadFile(file, themaRelmCd, regMenuPart);
 	}
 
 	/**
