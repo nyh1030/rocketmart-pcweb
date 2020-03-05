@@ -103,7 +103,6 @@
                                                 <td>
                                                     <div class="btns">
                                                         <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
-                                                        <button type="button" class="ps-btn" onclick="EventScope.excuteProductCopy(${item.PRODUCT_SEQ})">복사 <i class="fa fa-copy"></i></button>
                                                         <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${item.PRODUCT_SEQ})">삭제 <i class="fa fa-trash-o"></i></button>
                                                     </div>
                                                 </td>
@@ -123,16 +122,6 @@
                 });
             },
 
-            copyProduct(productSeq) {
-                axios({
-                    method: 'post',
-                    url: `/seller/product/copy/${productSeq}`
-                }).then(response => {
-
-                }).catch(error => {
-
-                });
-            },
             deleteProduct(productSeq) {
                 axios({
                     method: 'delete',
@@ -181,12 +170,11 @@
                     CommonUtils.redirectPage(`/seller/product_register/${brandSeq}`);
                 });
             },
+
             redirectProductModify(productSeq) {
                 CommonUtils.redirectPage(`/seller/product_modify/${productSeq}`);
             },
-            excuteProductCopy(productSeq) {
-                PageScope.copyProduct(productSeq);
-            },
+
             deleteProductRow(productSeq) {
                 if (confirm('정말 이 제품을 삭제하시겠습니까?')) {
                     PageScope.deleteProduct(productSeq);

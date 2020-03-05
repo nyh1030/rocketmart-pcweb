@@ -34,39 +34,39 @@ public class ProductSvc {
 		return productRepository.findFobByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findFrontAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findFrontAfileByProductSeq(int productSeq) {
 		return productRepository.findFrontAfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findBackAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findBackAfileByProductSeq(int productSeq) {
 		return productRepository.findBackAfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findAspectAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findAspectAfileByProductSeq(int productSeq) {
 		return productRepository.findAspectAfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findShape1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findShape1AfileByProductSeq(int productSeq) {
 		return productRepository.findShape1AfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findShape2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findShape2AfileByProductSeq(int productSeq) {
 		return productRepository.findShape2AfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findOutside1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findOutside1AfileByProductSeq(int productSeq) {
 		return productRepository.findOutside1AfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findOutside2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findOutside2AfileByProductSeq(int productSeq) {
 		return productRepository.findOutside2AfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findEtc1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findEtc1AfileByProductSeq(int productSeq) {
 		return productRepository.findEtc1AfileByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findEtc2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findEtc2AfileByProductSeq(int productSeq) {
 		return productRepository.findEtc2AfileByProductSeq(productSeq);
 	}
 
@@ -88,7 +88,7 @@ public class ProductSvc {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public int saveOneForProductInfo(ProductDto productDto) {
+	public String saveOneForProductInfo(ProductDto productDto) {
 		int fobSaveCnt = 0;
 		int productSaveCnt = productRepository.saveOneForProductInfo(productDto);
 		if (productSaveCnt > 0) {
@@ -112,12 +112,35 @@ public class ProductSvc {
 			}
 		}
 
-		return fobSaveCnt;
+		return fobSaveCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public String copyProduct(int productSeq) {
-		return productRepository.copyProduct(productSeq);
+	public String updateOneForProductInfo(ProductDto productDto) {
+		int fobSaveCnt = 0;
+		int productSaveCnt = productRepository.updateOneForProductInfo(productDto);
+		if (productSaveCnt > 0) {
+			String[] fobSeq = productDto.getFobSeq().split(",", -1);
+			String[] rangeStart = productDto.getRangeStart().split(",", -1);
+			String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
+			String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
+			String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+
+			int length = rangeStart.length;
+			for (int idx = 0; idx < length; idx++) {
+				Map<String, Object> paramMap = new HashMap<>();
+				paramMap.put("fobSeq", Integer.parseInt(fobSeq[idx]));
+				paramMap.put("productSeq", productDto.getProductSeq());
+				paramMap.put("rangeStart", rangeStart[idx]);
+				paramMap.put("rangeEnd", rangeEnd[idx]);
+				paramMap.put("tradingPrice", tradingPrice[idx]);
+				paramMap.put("supplyRate", supplyRate[idx]);
+
+				fobSaveCnt += productRepository.updateOneForFobInfo(paramMap);
+			}
+		}
+
+		return fobSaveCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
 
 	@Transactional(rollbackFor = Exception.class)

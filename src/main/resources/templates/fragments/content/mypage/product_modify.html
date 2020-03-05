@@ -328,7 +328,8 @@
             $tab4: $('#tab-4'),
 
             objDataTables: null,
-            
+            strFobSeq: null,
+
             objFrontUploader: null,
             objBackUploader: null,
             objAspectUploader: null,
@@ -352,6 +353,16 @@
             isCate1First: true,
             isCate2First: true,
             isCate3First: true,
+
+            isFrontFileChange: false,
+            isBackFileChange: false,
+            isAspectFileChange: false,
+            isShape1FileChange: false,
+            isShape2FileChange: false,
+            isOutside1FileChange: false,
+            isOutside2FileChange: false,
+            isEtc1FileChange: false,
+            isEtc2FileChange: false,
 
             init() {
                 this.setWebEditor();
@@ -401,7 +412,6 @@
                     });
                 }
 
-
                 const productFrontAfile = /*[[${productFrontAfile}]]*/ 'default';
                 const productBackAfile = /*[[${productBackAfile}]]*/ 'default';
                 const productAspectAfile = /*[[${productAspectAfile}]]*/ 'default';
@@ -412,71 +422,70 @@
                 const productEtc1Afile = /*[[${productEtc1Afile}]]*/ 'default';
                 const productEtc2Afile = /*[[${productEtc2Afile}]]*/ 'default';
 
-                const frontAfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const backAfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const aspectAfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const shape1AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const shape2AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const outside1AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const outside2AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const etc1AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
-                const etc2AfileTemplate = `
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile.URL_PATH_CD}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`;
+                this.strFrontAfileSeq = productFrontAfile ? productFrontAfile.AFILE_SEQ : null;
+                this.strBackAfileSeq = productBackAfile ? productBackAfile.AFILE_SEQ : null;
+                this.strAspectAfileSeq = productAspectAfile ? productAspectAfile.AFILE_SEQ : null;
+                this.strShape1AfileSeq = productShape1Afile ? productShape1Afile.AFILE_SEQ : null;
+                this.strShape2AfileSeq = productShape2Afile ? productShape2Afile.AFILE_SEQ : null;
+                this.strOutside1AfileSeq = productOutside1Afile ? productOutside1Afile.AFILE_SEQ : null;
+                this.strOutside2AfileSeq = productOutside2Afile ? productOutside2Afile.AFILE_SEQ : null;
+                this.strEtc1AfileSeq = productEtc1Afile ? productEtc1Afile.AFILE_SEQ : null;
+                this.strEtc2AfileSeq = productEtc2Afile ? productEtc2Afile.AFILE_SEQ : null;
 
-
-                $('#dvProductFront').html(frontAfileTemplate);
-                $('#dvProductBack').html(backAfileTemplate);
-                $('#dvProductBack').html(aspectAfileTemplate);
-                $('#dvProductBack').html(shape1AfileTemplate);
-                $('#dvProductBack').html(shape2AfileTemplate);
-                $('#dvProductBack').html(outside1AfileTemplate);
-                $('#dvProductBack').html(outside2AfileTemplate);
-                $('#dvProductBack').html(etc1AfileTemplate);
-                $('#dvProductBack').html(etc2AfileTemplate);
+                $('#dvProductFront').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductBack').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile ? productBackAfile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductAspect').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile ? productAspectAfile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductShape1').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile ? productShape1Afile.URL_PATH_CD : ''} : '" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductShape2').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile ? productShape2Afile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductOutside1').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile ? productOutside1Afile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductOutside2').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile ? productOutside2Afile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductEtc1').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile ? productEtc1Afile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
+                $('#dvProductEtc2').html(`
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile ? productEtc2Afile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`);
             },
 
             bindCate1Combo() {
@@ -563,6 +572,10 @@
                 });
             },
             setDataTables(fobList) {
+                this.strFobSeq = fobList.map(fob => {
+                    return fob.FOB_SEQ;
+                }).join(',');
+
                 this.objDataTables = $("#tblFob").DataTable({
                     paging: false,
                     searching: false,
@@ -588,18 +601,136 @@
             setUploadComponent() {
                 Dropzone.autoDiscover = false;
 
-                this.objFrontUploader = this.newDropzone('#dvProductFront', (response) => { if (response.status === "success") this.strFrontAfileSeq = response.xhr.response; });
-                this.objBackUploader = this.newDropzone('#dvProductBack', (response) => { if (response.status === "success") this.strBackAfileSeq = response.xhr.response; });
-                this.objAspectUploader = this.newDropzone('#dvProductAspect', (response) => { if (response.status === "success") this.strAspectAfileSeq = response.xhr.response; });
-                this.objShape1Uploader = this.newDropzone('#dvProductShape1', (response) => { if (response.status === "success") this.strShape1AfileSeq = response.xhr.response; });
-                this.objShape2Uploader = this.newDropzone('#dvProductShape2', (response) => { if (response.status === "success") this.strShape2AfileSeq = response.xhr.response; });
-                this.objOutside1Uploader = this.newDropzone('#dvProductOutside1', (response) => { if (response.status === "success") this.strOutside1AfileSeq = response.xhr.response; });
-                this.objOutside2Uploader = this.newDropzone('#dvProductOutside2', (response) => { if (response.status === "success") this.strOutside2AfileSeq = response.xhr.response; });
-                this.objEtc1Uploader = this.newDropzone('#dvProductEtc1', (response) => { if (response.status === "success") this.strEtc1AfileSeq = response.xhr.response; });
-                this.objEtc2Uploader = this.newDropzone('#dvProductEtc2', (response) => { if (response.status === "success") this.strEtc2AfileSeq = response.xhr.response; });
+                const fnFrontInit = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isFrontFileChange = true;
+
+                        $("#dvProductFront > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnBackInit = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isBackFileChange = true;
+
+                        $("#dvProductBack > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnAspectInit = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isAspectFileChange = true;
+
+                        $("#dvProductAspect > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnShape1Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isShape1FileChange = true;
+
+                        $("#dvProductShape1 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnShape2Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isShape2FileChange = true;
+
+                        $("#dvProductShape2 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnOutside1Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isOutside1FileChange = true;
+
+                        $("#dvProductOutside1 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnOutside2Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isOutside2FileChange = true;
+
+                        $("#dvProductOutside2 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnEtc1Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isEtc1FileChange = true;
+
+                        $("#dvProductEtc1 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+                const fnEtc2Init = function() {
+                    let _this;
+                    this.on("addedfile", file =>{
+                        _this = this;
+
+                        PageScope.isEtc2FileChange = true;
+
+                        $("#dvProductEtc2 > .dz-preview:first").remove();
+                        if (file.status === "queued") {
+                            $(".dz-success-mark").remove();
+                        }
+                    });
+                };
+
+                this.objFrontUploader = this.newDropzone('#dvProductFront', fnFrontInit, (response) => {if (response.status === "success") this.strFrontAfileSeq = response.xhr.response;});
+                this.objBackUploader = this.newDropzone('#dvProductBack', fnBackInit, (response) => { if (response.status === "success") this.strBackAfileSeq = response.xhr.response; });
+                this.objAspectUploader = this.newDropzone('#dvProductAspect', fnAspectInit, (response) => { if (response.status === "success") this.strAspectAfileSeq = response.xhr.response; });
+                this.objShape1Uploader = this.newDropzone('#dvProductShape1',fnShape1Init, (response) => { if (response.status === "success") this.strShape1AfileSeq = response.xhr.response; });
+                this.objShape2Uploader = this.newDropzone('#dvProductShape2', fnShape2Init, (response) => { if (response.status === "success") this.strShape2AfileSeq = response.xhr.response; });
+                this.objOutside1Uploader = this.newDropzone('#dvProductOutside1', fnOutside1Init, (response) => { if (response.status === "success") this.strOutside1AfileSeq = response.xhr.response; });
+                this.objOutside2Uploader = this.newDropzone('#dvProductOutside2', fnOutside2Init, (response) => { if (response.status === "success") this.strOutside2AfileSeq = response.xhr.response; });
+                this.objEtc1Uploader = this.newDropzone('#dvProductEtc1', fnEtc1Init, (response) => { if (response.status === "success") this.strEtc1AfileSeq = response.xhr.response; });
+                this.objEtc2Uploader = this.newDropzone('#dvProductEtc2', fnEtc2Init, (response) => { if (response.status === "success") this.strEtc2AfileSeq = response.xhr.response; });
             },
 
-            newDropzone(targetId, fnSuccess) {
+            newDropzone(targetId, fnInit, fnSuccess) {
               return new Dropzone(targetId ,{
                   method: 'post',
                   url: '/seller/product/file/upload',
@@ -625,28 +756,15 @@
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
                               <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
-                  init: function() {
-                      let _this;
-                      this.on("addedfile", file =>{
-                          _this = this;
-
-                          if (file.status === "queued") {
-                              $(".dz-success-mark").remove();
-                          }
-                      });
-                      this.on("maxfilesexceeded", function (file) {
-                          _this.removeFile(file);
-                          alert('최대 업로드 파일 수는 1개 입니다.');
-                      });
-                  },
+                  init: fnInit,
                   success: fnSuccess
               });
             },
 
             saveProductInfo() {
                 axios({
-                    method: 'post',
-                    url: '/seller/product/info/save',
+                    method: 'put',
+                    url: '/seller/product/info/update',
                     params: this.getParameters()
                 }).then(response => {
                     if (response.data === 200) {
@@ -661,6 +779,7 @@
 
             getParameters() {
                 return {
+                    productSeq: this.objProductInfo.PRODUCT_SEQ,
                     productNm: $('#txtProductNm').val(),
                     brandSeq: $('#txtBrandSeq').val(),
                     cate1Cd: $('#sltCate1Cd').val(),
@@ -672,10 +791,12 @@
                     sellerNote: $('#txtSellerNote').summernote('code'),
                     productContent: $('#txtProductContent').summernote('code'),
                     retailPrice: CommonUtils.removeComma($('#txtRetailPrice').val()),
+                    fobSeq: this.strFobSeq,
                     giveSampleYn: $('[name="giveSampleYn"]:checked').val(),
                     productAtrbt: CommonUtils.getCheckValToCommaString($('[name="productAtrbt"]')),
                     productCrt: CommonUtils.getCheckValToCommaString($('[name="productCrt"]')),
                     exportHst: CommonUtils.getCheckValToCommaString($('[name="exportHst"]')),
+                    tradingConditions: CommonUtils.getCheckValToCommaString($('[name="tradingConditions"]')),
                     productFrontAfileSeq: this.strFrontAfileSeq,
                     productBackAfileSeq: this.strBackAfileSeq,
                     productAspectAfileSeq: this.strAspectAfileSeq,
@@ -697,10 +818,6 @@
                     alert('제품명은 필수값 입니다.');
                     $('#txtProductNm').focus();
                     return false;
-                } else if (!$('#txtBrandSeq').val().trim()) {
-                    alert('브랜드 선택은 필수입니다.');
-                    $('#txtBrandSeq').focus();
-                    return false;
                 } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
                     alert('카테고리 선택은 필수입니다.');
                     $('#sltCate1Cd').focus();
@@ -713,7 +830,7 @@
                     alert('소비자 가격 (USD)은 필수값 입니다.');
                     $('#txtRetailPrice').focus();
                     return false;
-                } else if (PageScope.objFrontUploader.files.length <= 0) {
+                } else if (!PageScope.strFrontAfileSeq) {
                     alert('대표 이미지 첨부는 필수 입니다.');
                     return false;
                 }
