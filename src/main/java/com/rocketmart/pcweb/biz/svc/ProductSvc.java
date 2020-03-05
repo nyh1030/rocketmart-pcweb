@@ -30,8 +30,8 @@ public class ProductSvc {
 		return productRepository.findByProductSeq(productSeq);
 	}
 
-	public List<Map<String, Object>> findWholesaleByProductSeq(int productSeq) {
-		return productRepository.findWholesaleByProductSeq(productSeq);
+	public List<Map<String, Object>> findFobByProductSeq(int productSeq) {
+		return productRepository.findFobByProductSeq(productSeq);
 	}
 
 	public List<Map<String, Object>> findFrontAfileByProductSeq(int productSeq) {
@@ -89,7 +89,7 @@ public class ProductSvc {
 
 	@Transactional(rollbackFor = Exception.class)
 	public int saveOneForProductInfo(ProductDto productDto) {
-		int wholeSaleSaveCnt = 0;
+		int fobSaveCnt = 0;
 		int productSaveCnt = productRepository.saveOneForProductInfo(productDto);
 		if (productSaveCnt > 0) {
 			int productSeq = productRepository.findOneForMaxProductSeq();
@@ -108,11 +108,11 @@ public class ProductSvc {
 				paramMap.put("tradingPrice", tradingPrice[idx]);
 				paramMap.put("supplyRate", supplyRate[idx]);
 
-				wholeSaleSaveCnt += productRepository.saveOneForWholeSaleInfo(paramMap);
+				fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
 			}
 		}
 
-		return wholeSaleSaveCnt;
+		return fobSaveCnt;
 	}
 
 	@Transactional(rollbackFor = Exception.class)

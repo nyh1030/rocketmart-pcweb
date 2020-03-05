@@ -86,7 +86,7 @@
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
                                         <div class="table_wrap">
-                                            <table id="tblWholeSale">
+                                            <table id="tblFob">
                                                 <colgroup>
                                                     <col style="width:25%;">
                                                     <col style="width:25%;">
@@ -106,8 +106,8 @@
                                                 </thead>
                                             </table>
                                             <div class="btns">
-                                                <button type="button" id="btnAddWholeSale" class="ps-btn"><i class="fa fa-plus"></i> 구간 추가하기</button>
-                                                <button type="button" id="btnRemoveWholeSale" class="ps-btn"><i class="fa fa-trash"></i> 구간 삭제하기</button>
+                                                <button type="button" id="btnAddFob" class="ps-btn"><i class="fa fa-plus"></i> 구간 추가하기</button>
+                                                <button type="button" id="btnRemoveFob" class="ps-btn"><i class="fa fa-trash"></i> 구간 삭제하기</button>
                                             </div>
                                         </div>
                                     </div>
@@ -355,7 +355,7 @@
 
             init() {
                 this.setWebEditor();
-                this.setDataTables(/*[[${wholesaleList}]]*/ 'default' || []);
+                this.setDataTables(/*[[${fobList}]]*/ 'default' || []);
                 this.setUploadComponent();
                 this.bindFields(/*[[${productInfo}]]*/ 'default' || {});
                 this.bindCate1Combo();
@@ -562,8 +562,8 @@
                     ]
                 });
             },
-            setDataTables(wholesaleList) {
-                this.objDataTables = $("#tblWholeSale").DataTable({
+            setDataTables(fobList) {
+                this.objDataTables = $("#tblFob").DataTable({
                     paging: false,
                     searching: false,
                     ordering:  false,
@@ -574,7 +574,7 @@
                 });
 
                 const _this = this;
-                wholesaleList.forEach(item => {
+                fobList.forEach(item => {
                     _this.objDataTables.row.add([
                         `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
@@ -757,7 +757,7 @@
                     CommonUtils.backwardPage();
                 });
 
-                $('#btnAddWholeSale').on('click', () => {
+                $('#btnAddFob').on('click', () => {
                     PageScope.objDataTables.row.add([
                         `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
@@ -765,14 +765,14 @@
                         `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     ]).draw(false);
                 });
-                $('#btnRemoveWholeSale').on('click', () => {
-                    const $tblWholeSaleTr = $("#tblWholeSale tbody").find("tr");
-                    if ($tblWholeSaleTr.length <= 0) {
+                $('#btnRemoveFob').on('click', () => {
+                    const $tblFobTr = $("#tblFob tbody").find("tr");
+                    if ($tblFobTr.length <= 0) {
                         alert('더 이상 제거할 구간이 없습니다.');
                         return;
                     }
 
-                    PageScope.objDataTables.row($tblWholeSaleTr.last().remove()).remove();
+                    PageScope.objDataTables.row($tblFobTr.last().remove()).remove();
                 });
 
                 $('#btnPrev').on('click', () => {

@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainCtl {
 
-    @Autowired
-    private MemberSvc memberSvc;
-
     private String prefixPath = "fragments/content";
 
     @GetMapping("/")
@@ -19,16 +16,32 @@ public class MainCtl {
         return "/index";
     }
 
-    // contact us > 조회
-    @GetMapping("/contact_list")
-    public String contact_list() {
-        return prefixPath.concat("/admin/contact_list");
+
+    /**
+     * 메인 > Category 목록 페이지
+     * @return String
+     */
+    @GetMapping("/any/category/list")
+    public String dispBrandList() {
+        return prefixPath.concat("/brand/brand_list");
     }
 
-    // contact us > 등록
-    @GetMapping("/contact_register")
-    public String contact_register() {
-        return prefixPath.concat("/admin/contact_register");
+    /**
+     * 메인 > Brand 목록 페이지
+     * @return String
+     */
+    @GetMapping("/any/brand/list")
+    public String dispCategoryList() {
+        return prefixPath.concat("/category/category_list");
+    }
+
+    /**
+     * 메인 > ContactUs 등록 페이지
+     * @return String
+     */
+    @GetMapping("/any/contactus/register")
+    public String dispContactUs() {
+        return prefixPath.concat("/other/contactus_register");
     }
 }
 

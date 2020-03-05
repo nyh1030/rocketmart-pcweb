@@ -53,7 +53,7 @@
         saveContactUsInfo() {
             axios({
                 method: 'post',
-                url: '/any/contactus/info/save',
+                url: '/any/rest/contactus/info/save',
                 params: Object.assign(this.getParameters())
             }).then(response => {
                 if (response.data === 200) {

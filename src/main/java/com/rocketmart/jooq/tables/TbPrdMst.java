@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 796965288;
+    private static final long serialVersionUID = 1321828953;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_MST</code>
@@ -118,9 +118,9 @@ public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
     public final TableField<TbPrdMstRecord, Integer> RETAIL_PRICE = createField(DSL.name("RETAIL_PRICE"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "소비자가격(USD)");
 
     /**
-     * The column <code>rocketmart.TB_PRD_MST.WHOLESALE_SEQ</code>. 도매가격(FOB) 일련번호
+     * The column <code>rocketmart.TB_PRD_MST.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
-    public final TableField<TbPrdMstRecord, Integer> WHOLESALE_SEQ = createField(DSL.name("WHOLESALE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "도매가격(FOB) 일련번호");
+    public final TableField<TbPrdMstRecord, Integer> FOB_SEQ = createField(DSL.name("FOB_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "도매가격(FOB) 일련번호");
 
     /**
      * The column <code>rocketmart.TB_PRD_MST.GIVE_SAMPLE_YN</code>. 무료 샘플 제공 여부

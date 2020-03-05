@@ -16,7 +16,7 @@ import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
-import static com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
+import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
 
 @Repository
 public class ProductRepository {
@@ -45,7 +45,7 @@ public class ProductRepository {
 		return this.dslContext.select(
 				TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM,TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM,TB_PRD_MST.CATE1_CD, TB_PRD_MST.CATE2_CD, TB_PRD_MST.CATE3_CD,
 				TB_PRD_MST.PRODUCT_CAPACITY, TB_PRD_MST.PRODUCT_URL, TB_PRD_MST.PRODUCT_LINEUP, TB_PRD_MST.SELLER_NOTE, TB_PRD_MST.PRODUCT_CONTENT,
-				TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.WHOLESALE_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN, TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT,
+				TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.FOB_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN, TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT,
 				TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_BRAND_MST)
@@ -56,12 +56,12 @@ public class ProductRepository {
 				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findWholesaleByProductSeq(int productSeq) {
+	public List<Map<String, Object>> findFobByProductSeq(int productSeq) {
 		return this.dslContext.select(
-				TB_PRD_WHOLESALE.WHOLESALE_SEQ, TB_PRD_WHOLESALE.PRODUCT_SEQ, TB_PRD_WHOLESALE.RANGE_START, TB_PRD_WHOLESALE.RANGE_END,
-				TB_PRD_WHOLESALE.TRADING_PRICE, TB_PRD_WHOLESALE.SUPPLY_RATE)
-				.from(TB_PRD_WHOLESALE)
-				.where(TB_PRD_WHOLESALE.PRODUCT_SEQ.equal(productSeq)).and(TB_PRD_WHOLESALE.DEL_YN.equal("N"))
+				TB_PRD_FOB.FOB_SEQ, TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
+				TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE)
+				.from(TB_PRD_FOB)
+				.where(TB_PRD_FOB.PRODUCT_SEQ.equal(productSeq)).and(TB_PRD_FOB.DEL_YN.equal("N"))
 				.fetchMaps();
 	}
 
@@ -183,7 +183,7 @@ public class ProductRepository {
 		return this.dslContext.insertInto(TB_PRD_MST)
 				.columns(TB_PRD_MST.BRAND_SEQ, TB_PRD_MST.PRODUCT_NM, TB_PRD_MST.CATE1_CD, TB_PRD_MST.CATE2_CD, TB_PRD_MST.CATE3_CD,
 						TB_PRD_MST.PRODUCT_URL, TB_PRD_MST.PRODUCT_CAPACITY, TB_PRD_MST.PRODUCT_LINEUP, TB_PRD_MST.SELLER_NOTE,
-						TB_PRD_MST.PRODUCT_CONTENT, TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.WHOLESALE_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN,
+						TB_PRD_MST.PRODUCT_CONTENT, TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.FOB_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN,
 						TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT, TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS,
 						TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ, TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ,
 						TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ, TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ,
@@ -200,10 +200,10 @@ public class ProductRepository {
 				.execute();
 	}
 
-	public int saveOneForWholeSaleInfo(Map<String, Object> paramMap) {
-		return this.dslContext.insertInto(TB_PRD_WHOLESALE)
-				.columns(TB_PRD_WHOLESALE.PRODUCT_SEQ, TB_PRD_WHOLESALE.RANGE_START, TB_PRD_WHOLESALE.RANGE_END,
-						TB_PRD_WHOLESALE.TRADING_PRICE, TB_PRD_WHOLESALE.SUPPLY_RATE)
+	public int saveOneForFobInfo(Map<String, Object> paramMap) {
+		return this.dslContext.insertInto(TB_PRD_FOB)
+				.columns(TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
+						TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE)
 				.values(Integer.parseInt(paramMap.get("productSeq").toString()), Long.parseLong(paramMap.get("rangeStart").toString()), Long.parseLong(paramMap.get("rangeEnd").toString()),
 						Long.parseLong(paramMap.get("tradingPrice").toString()), Integer.parseInt(paramMap.get("supplyRate").toString()))
 				.execute();

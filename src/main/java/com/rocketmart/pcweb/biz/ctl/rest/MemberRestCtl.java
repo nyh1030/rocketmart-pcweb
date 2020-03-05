@@ -16,7 +16,7 @@ public class MemberRestCtl {
     /**
      * 회원중복 체크
      * @param memId
-     * @return int
+     * @return boolean
      *
      * Y면 중복아이디 존재, N이면 중복아이디 없음(회원가입가능)
      */
@@ -27,7 +27,9 @@ public class MemberRestCtl {
 
     /**
      * 회원 승인 처리
-     * @return msg
+     * @param mmbrId
+     * @param apprvlYn
+     * @return String
      */
     @PostMapping("/any/rest/member/execApproval")
     public String execApproval(String mmbrId, String apprvlYn) {

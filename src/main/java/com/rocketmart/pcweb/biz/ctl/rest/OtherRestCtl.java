@@ -18,12 +18,22 @@ public class OtherRestCtl {
 	@Autowired
 	private OtherSvc otherSvc;
 
-	@PostMapping("/any/contactus/info/save")
+	/**
+	 * Contactus 등록
+	 * @param contactUsRecord
+	 * @return ResponseEntity<String>
+	 */
+	@PostMapping("/any/rest/contactus/info/save")
 	public ResponseEntity<String> saveContactUsInfo(TbContactUsRecord contactUsRecord) {
 		return new ResponseEntity<>(otherSvc.saveOneForContactUsInfo(contactUsRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
-	@PostMapping("/any/wishlist/info/save")
+	/**
+	 * wishlist 등록
+	 * @param tbWishMstRecord
+	 * @return ResponseEntity<String>
+	 */
+	@PostMapping("/any/rest/wishlist/info/save")
 	public ResponseEntity<String> saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord) {
 		return new ResponseEntity<>(otherSvc.saveOneForWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}

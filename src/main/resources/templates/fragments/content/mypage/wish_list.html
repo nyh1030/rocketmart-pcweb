@@ -85,101 +85,33 @@
 
     const PageScope = {
 
-        uploadStarter: null,
-
         init() {
-            this.setUploadComponent();
-            this.setWebEditor();
+
         },
+/* 전시 상품 상세에 추가할 내용
 
-        setUploadComponent() {
-            this.uploadStarter = new Dropzone('#dvBrandLogo' ,{
-                method: 'post',
-                url: '/seller/brand/file/upload',
-                params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
-                acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
-                addRemoveLinks: false,
-                autoProcessQueue: false,
-                thumbnailWidth: 200,
-                thumbnailHeight: 200,
-                maxFiles: 1,
-                maxFilesize: 10,
-                clickable: '#btnUpload',
-                previewTemplate: `
-                        <div class="dz-preview dz-file-preview" >
-                          <div class="dz-image"><img data-dz-thumbnail /></div>
-                          <div class="dz-details">
-                              <div class="dz-size"><span data-dz-size></span></div>
-                              <div class="dz-filename"><span data-dz-name></span></div>
-                          </div>
-                          <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                          <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                          <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
-                        </div>`,
-                init: function() {
-                    let _this;
-                    this.on("addedfile", file =>{
-                        _this = this;
-
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
-                    });
-                    this.on("maxfilesexceeded", function (file) {
-                        _this.removeFile(file);
-                        alert('최대 업로드 파일 수는 1개 입니다.');
-                    });
-                },
-                success: (response) => {
-                    if (response.status === "success") {
-                        PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
-                    }
-                }
-            });
-        },
-
-        setWebEditor() {
-            $("#txtBrandIntroduction").summernote({
-                placeholder: '브랜드를 소개해주세요.',
-                height: 250,
-                disableDragAndDrop: true,
-                toolbar: [
-                    ['style', ['style']],
-                    ['font', ['bold', 'italic', 'underline', 'clear']],
-                    ['fontname', ['fontname']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']],
-                    ['table', ['table']]
-                ]
-            });
-        },
-
-        saveBrandInfo(objFileSeq) {
+        saveWishInfo(productSeq) {
             axios({
                 method: 'post',
-                url: '/seller/brand/info/save',
-                params: Object.assign(this.getParameters(), objFileSeq)
+                url: '/any/rest/wishlist/info/save',
+                params: Object.assign(this.getParameters(), productSeq)
             }).then(response => {
                 if (response.data === 200) {
-                    alert('브랜드 정보가 저장되었습니다.');
-                    CommonUtils.forwardPage('/seller/brand_add');
+                    alert('Added to wishlist');
                 }
             })
                 .catch(error => {
                     console.log(error);
                 });
         },
+*/
 
         getParameters() {
             return {
                 brandNm: $('#txtBrandNm').val(),
-                brandOwnership: CommonUtils.getCheckValToCommaString($('[name="brandOwnership"]')),
                 brandHomePageUrl: $('#txtHomepageUrl').val(),
                 brandYouTubeUrl: $('#txtYoutubeUrl').val(),
                 brandInstagramUrl: $('#txtInstagramUrl').val(),
-                brandCerify: CommonUtils.getCheckValToCommaString($('[name="brandCerify"]')),
-                brandIntroduction: $('#txtBrandIntroduction').summernote('code')
             }
         },
 

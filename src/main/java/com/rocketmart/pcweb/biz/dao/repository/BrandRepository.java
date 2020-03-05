@@ -13,7 +13,6 @@ import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
-import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 
 @Repository
 public class BrandRepository {

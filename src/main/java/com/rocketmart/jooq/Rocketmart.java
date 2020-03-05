@@ -11,8 +11,9 @@ import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbPrdFob;
+import com.rocketmart.jooq.tables.TbPrdFobHst;
 import com.rocketmart.jooq.tables.TbPrdMst;
-import com.rocketmart.jooq.tables.TbPrdWholesale;
 import com.rocketmart.jooq.tables.TbWishMst;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Rocketmart extends SchemaImpl {
 
-    private static final long serialVersionUID = 1751735140;
+    private static final long serialVersionUID = -1324572547;
 
     /**
      * The reference instance of <code>rocketmart</code>
@@ -82,14 +83,19 @@ public class Rocketmart extends SchemaImpl {
     public final TbMemMst TB_MEM_MST = com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 
     /**
+     * 상품별 도매가격(FOB)
+     */
+    public final TbPrdFob TB_PRD_FOB = com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
+
+    /**
+     * 사용자 FOB 가격 조회 이력
+     */
+    public final TbPrdFobHst TB_PRD_FOB_HST = com.rocketmart.jooq.tables.TbPrdFobHst.TB_PRD_FOB_HST;
+
+    /**
      * 상품 마스터
      */
     public final TbPrdMst TB_PRD_MST = com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
-
-    /**
-     * 상품별 도매가격(FOB)
-     */
-    public final TbPrdWholesale TB_PRD_WHOLESALE = com.rocketmart.jooq.tables.TbPrdWholesale.TB_PRD_WHOLESALE;
 
     /**
      * WISH LIST 마스터
@@ -125,8 +131,9 @@ public class Rocketmart extends SchemaImpl {
             TbInquiryDtl.TB_INQUIRY_DTL,
             TbInquiryMst.TB_INQUIRY_MST,
             TbMemMst.TB_MEM_MST,
+            TbPrdFob.TB_PRD_FOB,
+            TbPrdFobHst.TB_PRD_FOB_HST,
             TbPrdMst.TB_PRD_MST,
-            TbPrdWholesale.TB_PRD_WHOLESALE,
             TbWishMst.TB_WISH_MST);
     }
 }

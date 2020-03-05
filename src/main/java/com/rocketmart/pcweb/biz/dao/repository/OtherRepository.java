@@ -95,7 +95,8 @@ public class OtherRepository {
                 .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .join(TB_PRD_MST)
                 .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .where(TB_WISH_MST.ASK_YN.eq("N"))
+                .where(TB_WISH_MST.ASK_YN.eq("N")
+                        .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())))
                 .orderBy(TB_WISH_MST.REG_TS.desc())
                 .fetchMaps();
     }

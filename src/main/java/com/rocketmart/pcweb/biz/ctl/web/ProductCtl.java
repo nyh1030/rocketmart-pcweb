@@ -31,7 +31,7 @@ public class ProductCtl {
 	@GetMapping("/seller/product_modify/{productSeq}")
 	public String product_modify(Model model, @PathVariable(value = "productSeq") int productSeq) {
 		model.addAttribute("productInfo", productSvc.findByProductSeq(productSeq));
-		model.addAttribute("wholesaleList", productSvc.findWholesaleByProductSeq(productSeq));
+		model.addAttribute("fobList", productSvc.findFobByProductSeq(productSeq));
 		model.addAttribute("productFrontAfile", productSvc.findFrontAfileByProductSeq(productSeq));
 		model.addAttribute("productBackAfile", productSvc.findBackAfileByProductSeq(productSeq));
 		model.addAttribute("productAspectAfile", productSvc.findAspectAfileByProductSeq(productSeq));

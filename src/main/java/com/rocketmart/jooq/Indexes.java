@@ -11,8 +11,9 @@ import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbPrdFob;
+import com.rocketmart.jooq.tables.TbPrdFobHst;
 import com.rocketmart.jooq.tables.TbPrdMst;
-import com.rocketmart.jooq.tables.TbPrdWholesale;
 import com.rocketmart.jooq.tables.TbWishMst;
 
 import javax.annotation.Generated;
@@ -51,10 +52,13 @@ public class Indexes {
     public static final Index TB_MEM_MST_IDX_MEM_SEQ = Indexes0.TB_MEM_MST_IDX_MEM_SEQ;
     public static final Index TB_MEM_MST_PRIMARY = Indexes0.TB_MEM_MST_PRIMARY;
     public static final Index TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Indexes0.TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX;
+    public static final Index TB_PRD_FOB_PRIMARY = Indexes0.TB_PRD_FOB_PRIMARY;
+    public static final Index TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK;
+    public static final Index TB_PRD_FOB_HST_PRIMARY = Indexes0.TB_PRD_FOB_HST_PRIMARY;
+    public static final Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK = Indexes0.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK;
+    public static final Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final Index TB_PRD_MST_PRIMARY = Indexes0.TB_PRD_MST_PRIMARY;
     public static final Index TB_PRD_MST_TB_PRD_MST_FK1 = Indexes0.TB_PRD_MST_TB_PRD_MST_FK1;
-    public static final Index TB_PRD_WHOLESALE_PRIMARY = Indexes0.TB_PRD_WHOLESALE_PRIMARY;
-    public static final Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Indexes0.TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1;
     public static final Index TB_WISH_MST_PRIMARY = Indexes0.TB_WISH_MST_PRIMARY;
     public static final Index TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK;
 
@@ -75,10 +79,13 @@ public class Indexes {
         public static Index TB_MEM_MST_IDX_MEM_SEQ = Internal.createIndex("IDX_MEM_SEQ", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, false);
         public static Index TB_MEM_MST_PRIMARY = Internal.createIndex("PRIMARY", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_SEQ }, true);
         public static Index TB_MEM_MST_TB_MEM_MST_MEM_ID_UINDEX = Internal.createIndex("TB_MEM_MST_MEM_ID_uindex", TbMemMst.TB_MEM_MST, new OrderField[] { TbMemMst.TB_MEM_MST.MEM_ID }, true);
+        public static Index TB_PRD_FOB_PRIMARY = Internal.createIndex("PRIMARY", TbPrdFob.TB_PRD_FOB, new OrderField[] { TbPrdFob.TB_PRD_FOB.FOB_SEQ }, true);
+        public static Index TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFob.TB_PRD_FOB, new OrderField[] { TbPrdFob.TB_PRD_FOB.PRODUCT_SEQ }, false);
+        public static Index TB_PRD_FOB_HST_PRIMARY = Internal.createIndex("PRIMARY", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.FOB_HST_SEQ }, true);
+        public static Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK = Internal.createIndex("TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_fk", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.FOB_SEQ }, false);
+        public static Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.PRODUCT_SEQ }, false);
         public static Index TB_PRD_MST_PRIMARY = Internal.createIndex("PRIMARY", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.PRODUCT_SEQ }, true);
         public static Index TB_PRD_MST_TB_PRD_MST_FK1 = Internal.createIndex("TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.BRAND_SEQ }, false);
-        public static Index TB_PRD_WHOLESALE_PRIMARY = Internal.createIndex("PRIMARY", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.WHOLESALE_SEQ }, true);
-        public static Index TB_PRD_WHOLESALE_TB_PRD_WHOLESALE_FK1 = Internal.createIndex("TB_PRD_WHOLESALE_fk1", TbPrdWholesale.TB_PRD_WHOLESALE, new OrderField[] { TbPrdWholesale.TB_PRD_WHOLESALE.PRODUCT_SEQ }, false);
         public static Index TB_WISH_MST_PRIMARY = Internal.createIndex("PRIMARY", TbWishMst.TB_WISH_MST, new OrderField[] { TbWishMst.TB_WISH_MST.WISH_SEQ }, true);
         public static Index TB_WISH_MST_TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_WISHLIST_TB_PRD_MST_PRODUCT_SEQ_fk", TbWishMst.TB_WISH_MST, new OrderField[] { TbWishMst.TB_WISH_MST.PRODUCT_SEQ }, false);
     }

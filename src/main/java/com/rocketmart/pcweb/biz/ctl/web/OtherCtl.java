@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+
 @Controller
 public class OtherCtl {
 
@@ -17,15 +19,6 @@ public class OtherCtl {
 
     @Autowired
     private OtherSvc otherSvc;
-
-    /**
-     * ContactUs 등록 페이지
-     * @return String
-     */
-    @GetMapping("/any/contactus/register")
-    public String dispContactUs() {
-        return prefixPath.concat("/other/contactus_register");
-    }
 
     /**
      * ContactUs 목록(어드민)
@@ -65,7 +58,8 @@ public class OtherCtl {
      * @return String
      */
     @GetMapping("/any/wishlist/list")
-    public String dispWishList(TbWishMstRecord tbWishMstRecord, Model model) {
+    public String dispWishList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
+        tbWishMstRecord.setRegUsrId(principal.getName());
 
         model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
 

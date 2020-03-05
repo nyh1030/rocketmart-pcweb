@@ -11,8 +11,9 @@ import com.rocketmart.jooq.tables.TbContactUs;
 import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbMemMst;
+import com.rocketmart.jooq.tables.TbPrdFob;
+import com.rocketmart.jooq.tables.TbPrdFobHst;
 import com.rocketmart.jooq.tables.TbPrdMst;
-import com.rocketmart.jooq.tables.TbPrdWholesale;
 import com.rocketmart.jooq.tables.TbWishMst;
 
 import javax.annotation.Generated;
@@ -67,14 +68,19 @@ public class Tables {
     public static final TbMemMst TB_MEM_MST = TbMemMst.TB_MEM_MST;
 
     /**
+     * 상품별 도매가격(FOB)
+     */
+    public static final TbPrdFob TB_PRD_FOB = TbPrdFob.TB_PRD_FOB;
+
+    /**
+     * 사용자 FOB 가격 조회 이력
+     */
+    public static final TbPrdFobHst TB_PRD_FOB_HST = TbPrdFobHst.TB_PRD_FOB_HST;
+
+    /**
      * 상품 마스터
      */
     public static final TbPrdMst TB_PRD_MST = TbPrdMst.TB_PRD_MST;
-
-    /**
-     * 상품별 도매가격(FOB)
-     */
-    public static final TbPrdWholesale TB_PRD_WHOLESALE = TbPrdWholesale.TB_PRD_WHOLESALE;
 
     /**
      * WISH LIST 마스터
