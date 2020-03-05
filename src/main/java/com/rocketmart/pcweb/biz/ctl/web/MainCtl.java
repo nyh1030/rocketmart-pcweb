@@ -25,5 +25,14 @@ public class MainCtl {
     public String dispContactUs() {
         return prefixPath.concat("/other/contactus_register");
     }
+
+    /**
+     * 메인 > 상품상세페이지
+     * @return String
+     */
+    @GetMapping("/any/product/detail")
+    public String dispProductDetail() {
+        return prefixPath.concat("/product_detail");
+    }
 }
 

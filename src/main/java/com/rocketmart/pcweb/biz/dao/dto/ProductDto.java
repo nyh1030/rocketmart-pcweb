@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ProductDto {
 
+	private int productSeq;
 	private String productNm;
 	private int brandSeq;
 	private String cate1Cd;
@@ -16,20 +17,21 @@ public class ProductDto {
 	private String sellerNote;
 	private String productContent;
 	private int retailPrice;
+	private String fobSeq;
 	private String giveSampleYn;
 	private String productAtrbt;
 	private String productCrt;
 	private String exportHst;
 	private String tradingConditions;
-	private String productFrontAfileSeq;
-	private String productBackAfileSeq;
-	private String productAspectAfileSeq;
-	private String productShape1AfileSeq;
-	private String productShape2AfileSeq;
-	private String productOutside1AfileSeq;
-	private String productOutside2AfileSeq;
-	private String productEtc1AfileSeq;
-	private String productEtc2AfileSeq;
+	private int productFrontAfileSeq;
+	private int productBackAfileSeq;
+	private int productAspectAfileSeq;
+	private int productShape1AfileSeq;
+	private int productShape2AfileSeq;
+	private int productOutside1AfileSeq;
+	private int productOutside2AfileSeq;
+	private int productEtc1AfileSeq;
+	private int productEtc2AfileSeq;
 	private String rangeStart;
 	private String rangeEnd;
 	private String tradingPrice;

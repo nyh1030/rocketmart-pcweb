@@ -521,6 +521,7 @@
                     productAtrbt: CommonUtils.getCheckValToCommaString($('[name="productAtrbt"]')),
                     productCrt: CommonUtils.getCheckValToCommaString($('[name="productCrt"]')),
                     exportHst: CommonUtils.getCheckValToCommaString($('[name="exportHst"]')),
+                    tradingConditions: CommonUtils.getCheckValToCommaString($('[name="tradingConditions"]')),
                     productFrontAfileSeq: this.strFrontAfileSeq,
                     productBackAfileSeq: this.strBackAfileSeq,
                     productAspectAfileSeq: this.strAspectAfileSeq,
@@ -541,10 +542,6 @@
                 if (!$('#txtProductNm').val().trim()) {
                     alert('제품명은 필수값 입니다.');
                     $('#txtProductNm').focus();
-                    return false;
-                } else if (!$('#txtBrandNm').val().trim()) {
-                    alert('브랜드 선택은 필수입니다.');
-                    $('#txtBrandNm').focus();
                     return false;
                 } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
                     alert('카테고리 선택은 필수입니다.');

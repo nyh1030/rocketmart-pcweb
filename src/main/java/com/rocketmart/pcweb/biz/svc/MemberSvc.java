@@ -57,12 +57,32 @@ public class MemberSvc {
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord) {
-		// 비밀번호 암호화
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
+	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord, MultipartFile multipartFile) {
 
-		int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
+		Map<String, Object> fileMap = null;
+		String flag = "";
+
+		// 비밀번호 암호화
+		//BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		//memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
+
+		//int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
+
+		// 첨부파일 테스트
+
+		int resultCnt = 0;
+
+		if(resultCnt > 0) {
+
+			System.out.println(" ::: " + multipartFile);
+
+			// File Upload
+			// themaRelmCd : "member", regMenuPart : "/any/member/signup"
+			flag = fileUtils.uploadFile(multipartFile, "member", "/any/member/signup");
+
+			System.out.println(flag);
+		}
+
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
 		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");

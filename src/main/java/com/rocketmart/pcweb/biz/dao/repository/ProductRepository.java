@@ -65,94 +65,94 @@ public class ProductRepository {
 				.fetchMaps();
 	}
 
-	public List<Map<String, Object>> findFrontAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findFrontAfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findBackAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findBackAfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findAspectAfileByProductSeq(int productSeq) {
+	public Map<String, Object> findAspectAfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findShape1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findShape1AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findShape2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findShape2AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findOutside1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findOutside1AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findOutside2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findOutside2AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findEtc1AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findEtc1AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
-	public List<Map<String, Object>> findEtc2AfileByProductSeq(int productSeq) {
+	public Map<String, Object> findEtc2AfileByProductSeq(int productSeq) {
 		return this.dslContext.select(TB_CM_AFILE.AFILE_SEQ, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.and(TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
-				.fetchMaps();
+				.fetchOneMap();
 	}
 
 	public List<Map<String, Object>> findListForCate1() {
@@ -209,8 +209,45 @@ public class ProductRepository {
 				.execute();
 	}
 
-	public String copyProduct(int productSeq) {
-		return "";
+	public int updateOneForFobInfo(Map<String, Object> paramMap) {
+		return this.dslContext.update(TB_PRD_FOB)
+				.set(TB_PRD_FOB.RANGE_START, Long.parseLong(paramMap.get("rangeStart").toString()))
+				.set(TB_PRD_FOB.RANGE_END, Long.parseLong(paramMap.get("rangeEnd").toString()))
+				.set(TB_PRD_FOB.TRADING_PRICE, Long.parseLong(paramMap.get("tradingPrice").toString()))
+				.set(TB_PRD_FOB.SUPPLY_RATE, Integer.parseInt(paramMap.get("supplyRate").toString()))
+				.where(TB_PRD_FOB.FOB_SEQ.equal((int) paramMap.get("fobSeq")))
+				.and(TB_PRD_FOB.PRODUCT_SEQ.equal((int) paramMap.get("productSeq")))
+				.execute();
+	}
+
+	public int updateOneForProductInfo(ProductDto productDto) {
+		return this.dslContext.update(TB_PRD_MST)
+				.set(TB_PRD_MST.PRODUCT_NM, productDto.getProductNm())
+				.set(TB_PRD_MST.CATE1_CD, productDto.getCate1Cd())
+				.set(TB_PRD_MST.CATE2_CD, productDto.getCate2Cd())
+				.set(TB_PRD_MST.CATE3_CD, productDto.getCate3Cd())
+				.set(TB_PRD_MST.PRODUCT_URL, productDto.getProductUrl())
+				.set(TB_PRD_MST.PRODUCT_CAPACITY, productDto.getProductCapacity())
+				.set(TB_PRD_MST.PRODUCT_LINEUP, productDto.getProductLineup())
+				.set(TB_PRD_MST.SELLER_NOTE, productDto.getSellerNote())
+				.set(TB_PRD_MST.PRODUCT_CONTENT, productDto.getProductContent())
+				.set(TB_PRD_MST.RETAIL_PRICE, productDto.getRetailPrice())
+				.set(TB_PRD_MST.GIVE_SAMPLE_YN, productDto.getGiveSampleYn())
+				.set(TB_PRD_MST.PRODUCT_ATRBT, productDto.getProductAtrbt())
+				.set(TB_PRD_MST.PRODUCT_CRT, productDto.getProductCrt())
+				.set(TB_PRD_MST.EXPORT_HST, productDto.getExportHst())
+				.set(TB_PRD_MST.TRADING_CONDITIONS, productDto.getTradingConditions())
+				.set(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ, productDto.getProductFrontAfileSeq())
+				.set(TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, productDto.getProductFrontAfileSeq())
+				.set(TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ, productDto.getProductAspectAfileSeq())
+				.set(TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ, productDto.getProductShape1AfileSeq())
+				.set(TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ, productDto.getProductShape2AfileSeq())
+				.set(TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ, productDto.getProductOutside1AfileSeq())
+				.set(TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ, productDto.getProductOutside2AfileSeq())
+				.set(TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ, productDto.getProductEtc1AfileSeq())
+				.set(TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ, productDto.getProductEtc2AfileSeq())
+				.where(TB_PRD_MST.PRODUCT_SEQ.equal(productDto.getProductSeq()))
+				.execute();
 	}
 
 	public int deleteProduct(int productSeq) {
