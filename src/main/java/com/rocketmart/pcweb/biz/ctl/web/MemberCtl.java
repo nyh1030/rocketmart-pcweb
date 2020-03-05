@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.Map;
@@ -57,9 +58,11 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/any/member/signup")
-    public String execSignup(TbMemMstRecord memberRecord) {
+    public String execSignup(TbMemMstRecord memberRecord, MultipartFile file) {
 
-        memberSvc.saveOneForMemInfo(memberRecord);
+        System.out.println(" ::: " + file);
+
+        memberSvc.saveOneForMemInfo(memberRecord, file);
 
         return "redirect:/user/signin";
     }
