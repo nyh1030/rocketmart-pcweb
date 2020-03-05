@@ -2,7 +2,6 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
-import com.rocketmart.pcweb.common.api.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +29,12 @@ public class ProductRestCtl {
 
 	@PostMapping("/seller/product/info/save")
 	public ResponseEntity<String> saveProductInfo(ProductDto productDto) {
-		return new ResponseEntity<>(productSvc.saveOneForProductInfo(productDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+		return new ResponseEntity<>(productSvc.saveOneForProductInfo(productDto), HttpStatus.OK);
 	}
 
-	@PostMapping("/seller/product/copy/{productSeq}")
-	public ResponseEntity<String> product_copy(@PathVariable(value = "productSeq") int productSeq) {
-		return new ResponseEntity<>(productSvc.copyProduct(productSeq), HttpStatus.OK);
+	@PutMapping("/seller/product/info/update")
+	public ResponseEntity<String> updateProductInfo(ProductDto productDto) {
+		return new ResponseEntity<>(productSvc.updateOneForProductInfo(productDto), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/seller/product/{productSeq}")
