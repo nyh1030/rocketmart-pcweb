@@ -37,4 +37,13 @@ public class BrandCtl {
 	public String brand_detail() {
 		return prefixPath.concat("/mypage/brand_detail");
 	}
+
+	/**
+	 * 메인 > Brand 목록
+	 * @return String
+	 */
+	@GetMapping("/any/brand/list")
+	public String dispBrandList() {
+		return prefixPath.concat("/brand/brand_list");
+	}
 }

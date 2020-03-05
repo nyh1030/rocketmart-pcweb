@@ -18,24 +18,6 @@ public class MainCtl {
 
 
     /**
-     * 메인 > Category 목록 페이지
-     * @return String
-     */
-    @GetMapping("/any/category/list")
-    public String dispBrandList() {
-        return prefixPath.concat("/brand/brand_list");
-    }
-
-    /**
-     * 메인 > Brand 목록 페이지
-     * @return String
-     */
-    @GetMapping("/any/brand/list")
-    public String dispCategoryList() {
-        return prefixPath.concat("/category/category_list");
-    }
-
-    /**
      * 메인 > ContactUs 등록 페이지
      * @return String
      */

@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row12;
+import org.jooq.Row13;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCateMst extends TableImpl<TbCateMstRecord> {
 
-    private static final long serialVersionUID = -1362700437;
+    private static final long serialVersionUID = 216334925;
 
     /**
      * The reference instance of <code>rocketmart.TB_CATE_MST</code>
@@ -66,32 +66,37 @@ public class TbCateMst extends TableImpl<TbCateMstRecord> {
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE1_CD</code>. 카테고리1 코드
      */
-    public final TableField<TbCateMstRecord, String> CATE1_CD = createField(DSL.name("CATE1_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).nullable(false), this, "카테고리1 코드");
+    public final TableField<TbCateMstRecord, String> CATE1_CD = createField(DSL.name("CATE1_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리1 코드");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE1_NM</code>. 카테고리1 명
      */
-    public final TableField<TbCateMstRecord, String> CATE1_NM = createField(DSL.name("CATE1_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "카테고리1 명");
+    public final TableField<TbCateMstRecord, String> CATE1_NM = createField(DSL.name("CATE1_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리1 명");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE2_CD</code>. 카테고리2 코드
      */
-    public final TableField<TbCateMstRecord, String> CATE2_CD = createField(DSL.name("CATE2_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).nullable(false), this, "카테고리2 코드");
+    public final TableField<TbCateMstRecord, String> CATE2_CD = createField(DSL.name("CATE2_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리2 코드");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE2_NM</code>. 카테고리2 명
      */
-    public final TableField<TbCateMstRecord, String> CATE2_NM = createField(DSL.name("CATE2_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "카테고리2 명");
+    public final TableField<TbCateMstRecord, String> CATE2_NM = createField(DSL.name("CATE2_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리2 명");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE3_CD</code>. 카테고리3 코드
      */
-    public final TableField<TbCateMstRecord, String> CATE3_CD = createField(DSL.name("CATE3_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).nullable(false), this, "카테고리3 코드");
+    public final TableField<TbCateMstRecord, String> CATE3_CD = createField(DSL.name("CATE3_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리3 코드");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.CATE3_NM</code>. 카테고리3 명
      */
-    public final TableField<TbCateMstRecord, String> CATE3_NM = createField(DSL.name("CATE3_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "카테고리3 명");
+    public final TableField<TbCateMstRecord, String> CATE3_NM = createField(DSL.name("CATE3_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리3 명");
+
+    /**
+     * The column <code>rocketmart.TB_CATE_MST.DEPTH</code>. DEPTH
+     */
+    public final TableField<TbCateMstRecord, Integer> DEPTH = createField(DSL.name("DEPTH"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "DEPTH");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.DEL_YN</code>. 삭제여부
@@ -203,11 +208,11 @@ public class TbCateMst extends TableImpl<TbCateMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row12 type methods
+    // Row13 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row12<Integer, String, String, String, String, String, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row12) super.fieldsRow();
+    public Row13<Integer, String, String, String, String, String, String, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row13) super.fieldsRow();
     }
 }

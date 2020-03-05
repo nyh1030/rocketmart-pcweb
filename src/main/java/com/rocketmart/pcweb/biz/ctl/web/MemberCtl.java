@@ -19,10 +19,10 @@ import java.util.Map;
 @Controller
 public class MemberCtl {
 
-    private String prefixPath = "fragments/content";
-
     @Autowired
     private MemberSvc memberSvc;
+
+    private String prefixPath = "fragments/content";
 
     /**
      * 회원가입 페이지
