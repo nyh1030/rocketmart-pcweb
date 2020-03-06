@@ -88,9 +88,9 @@
                                 <ul class="ps-list--dot">
                                     <li th:text="${'Size/Weight: '.concat(productInfo.PRODUCT_CAPACITY)}"></li>
                                     <li th:text="${'Color/Type: '.concat(productInfo.PRODUCT_CAPACITY)}">"></li>
-                                    <li id="lProductAtrbt">Keyword:  Collagen, Anti-aging, Whitening</li>
-                                    <li id="lProductCrt">Product Certificate: Natural&Organic, Halal Cert. </li>
-                                    <li id="lExportHst">Export Experience: Europe, China</li>
+                                    <li id="lProductAtrbt">Keyword: </li>
+                                    <li id="lProductCrt">Product Certificate: </li>
+                                    <li id="lExportHst">Export Experience: </li>
                                 </ul>
                             </div>
                             <div class="btn-box">
@@ -139,9 +139,10 @@
             },
 
             bindFields() {
+
                 if (this.productAtrbt) {
                     const productAtrbtNm = this.productAtrbt.split(',').map(atrbt => {
-                       return PRODUCT_ATRBT[atrbt];
+                        return PRODUCT_ATRBT[atrbt];
                     });
                     $('#lProductAtrbt').text(`Keyword: ${productAtrbtNm.join(', ')}`);
                 }
@@ -157,6 +158,7 @@
                     });
                     $('#lExportHstNm').text(`Export Experience: ${exportHstNm.join(', ')}`);
                 }
+            }
         };
     </script>
 </th:block>
