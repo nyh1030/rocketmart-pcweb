@@ -1,7 +1,5 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
-import com.rocketmart.jooq.tables.TbCmAfile;
-import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import org.jooq.DSLContext;
 import org.jooq.Record1;
@@ -15,8 +13,8 @@ import java.util.Map;
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
-import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
+import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 
 @Repository
 public class ProductRepository {
@@ -238,7 +236,7 @@ public class ProductRepository {
 				.set(TB_PRD_MST.EXPORT_HST, productDto.getExportHst())
 				.set(TB_PRD_MST.TRADING_CONDITIONS, productDto.getTradingConditions())
 				.set(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ, productDto.getProductFrontAfileSeq())
-				.set(TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, productDto.getProductFrontAfileSeq())
+				.set(TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, productDto.getProductBackAfileSeq())
 				.set(TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ, productDto.getProductAspectAfileSeq())
 				.set(TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ, productDto.getProductShape1AfileSeq())
 				.set(TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ, productDto.getProductShape2AfileSeq())
@@ -255,5 +253,33 @@ public class ProductRepository {
 				.set(TB_PRD_MST.DEL_YN, "Y")
 				.where(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq))
 				.execute();
+	}
+
+	public int deleteByFobSeq(List<Integer> fobSeqs) {
+		return this.dslContext.delete(TB_PRD_FOB).where(TB_PRD_FOB.FOB_SEQ.in(fobSeqs)).execute();
+	}
+
+	public Map<String, Object> findCateInoByCate1Cd(String cate1Cd) {
+		return this.dslContext.select(TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE1_NM)
+				.from(TB_CATE_MST)
+				.where(TB_CATE_MST.CATE1_CD.equal(cate1Cd))
+				.groupBy(TB_CATE_MST.CATE1_CD, TB_CATE_MST.CATE1_NM)
+				.fetchOneMap();
+	}
+
+	public Map<String, Object> findCateInoByCate2Cd(String cate2Cd) {
+		return this.dslContext.select(TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE2_NM)
+				.from(TB_CATE_MST)
+				.where(TB_CATE_MST.CATE2_CD.equal(cate2Cd))
+				.groupBy(TB_CATE_MST.CATE2_CD, TB_CATE_MST.CATE2_NM)
+				.fetchOneMap();
+	}
+
+	public Map<String, Object> findCateInoByCate3Cd(String cate3Cd) {
+		return this.dslContext.select(TB_CATE_MST.CATE3_CD, TB_CATE_MST.CATE3_NM)
+				.from(TB_CATE_MST)
+				.where(TB_CATE_MST.CATE3_CD.equal(cate3Cd))
+				.groupBy(TB_CATE_MST.CATE3_CD, TB_CATE_MST.CATE3_NM)
+				.fetchOneMap();
 	}
 }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a th:href="@{/}">Home</a></li>
+                <th:block th:if="${productCate1 != null}">
+                    <li th:text="${productCate1.CATE1_NM}"></li>
+                </th:block>
+                <th:block th:if="${productCate2 != null}">
+                    <li th:text="${productCate2.CATE2_NM}"></li>
+                </th:block>
+                <th:block th:if="${productCate3 != null}">
+                    <li th:text="${productCate3.CATE3_NM}"></li>
+                </th:block>
+                <th:block th:if="${productInfo != null}">
+                    <li th:text="${productInfo.PRODUCT_NM}"></li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+    <div class="ps-page--product">
+        <div class="container">
+            <div class="ps-page__container">
+                <div class="ps-product--detail">
+                    <div class="ps-product__header">
+                        <div class="ps-product__thumbnail" data-vertical="false">
+                            <figure>
+                                <div class="ps-wrapper">
+                                    <div class="ps-product__gallery" data-arrow="true">
+                                        <div th:if="${productFrontAfile != null}" class="item"><a th:href="${productFrontAfile.URL_PATH_CD}"><img th:src="${productFrontAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productBackAfile != null}" class="item"><a th:href="${productBackAfile.URL_PATH_CD}"><img th:src="${productBackAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productAspectAfile != null}" class="item"><a th:href="${productAspectAfile.URL_PATH_CD}"><img th:src="${productAspectAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productShape1Afile != null}" class="item"><a th:href="${productShape1Afile.URL_PATH_CD}"><img th:src="${productShape1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productShape2Afile != null}" class="item"><a th:href="${productShape2Afile.URL_PATH_CD}"><img th:src="${productShape2Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productOutside1Afile != null}" class="item"><a th:href="${productOutside1Afile.URL_PATH_CD}"><img th:src="${productOutside1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productOutside2Afile != null}" class="item"><a th:href="${productOutside2Afile.URL_PATH_CD}"><img th:src="${productOutside2Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productEtc1Afile != null}" class="item"><a th:href="${productEtc1Afile.URL_PATH_CD}"><img th:src="${productEtc1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productEtc2Afile != null}" class="item"><a th:href="${productEtc2Afile.URL_PATH_CD}"><img th:src="${productEtc2Afile.URL_PATH_CD}"></a></div>
+                                    </div>
+                                </div>
+                            </figure>
+                            <div class="ps-product__variants" data-item="9" data-md="9" data-sm="9" data-arrow="false">
+                                <div th:if="${productFrontAfile != null}" class="item"><img th:src="${productFrontAfile.URL_PATH_CD}"></div>
+                                <div th:if="${productBackAfile != null}" class="item"><img th:src="${productBackAfile.URL_PATH_CD}"></div>
+                                <div th:if="${productAspectAfile != null}" class="item"><img th:src="${productAspectAfile.URL_PATH_CD}"></div>
+                                <div th:if="${productShape1Afile != null}" class="item"><img th:src="${productShape1Afile.URL_PATH_CD}"></div>
+                                <div th:if="${productShape2Afile != null}" class="item"><img th:src="${productShape2Afile.URL_PATH_CD}"></div>
+                                <div th:if="${productOutside1Afile != null}" class="item"><img th:src="${productOutside1Afile.URL_PATH_CD}"></div>
+                                <div th:if="${productOutside2Afile != null}" class="item"><img th:src="${productOutside2Afile.URL_PATH_CD}"></div>
+                                <div th:if="${productEtc1Afile != null}" class="item"><img th:src="${productEtc1Afile.URL_PATH_CD}"></div>
+                                <div th:if="${productEtc2Afile != null}" class="item"><img th:src="${productEtc2Afile.URL_PATH_CD}"></div>
+                            </div>
+                        </div>
+                        <div class="ps-product__info">
+                            <h1 th:text="${productInfo.PRODUCT_NM}"></h1>
+                            <div class="ps-product__meta">
+                                <p th:text="${'Brand: ' + productInfo.BRAND_NM}">></p>
+                            </div>
+                            <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(productInfo.RETAIL_PRICE)}"></span></h4>
+                            <h4>Quotation (Wholesale Price)</h4>
+                            <table class="tbl-price">
+                                <colgroup>
+                                    <col style="width:33%">
+                                    <col style="width:33%">
+                                    <col>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Quantity</th>
+                                        <th>FOB Unit Price</th>
+                                        <th>Supply Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="fob : ${fobList}">
+                                        <tr>
+                                            <td th:text="${fob.RANGE_START + ' ~ ' + fob.RANGE_START}"></td>
+                                            <td th:text="${fob.TRADING_PRICE}"></td>
+                                            <td th:text="${fob.SUPPLY_RATE}"></td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                            <p class="txt-impt">* Free Sample: Available</p>
+                            <div class="ps-product__desc">
+                                <ul class="ps-list--dot">
+                                    <li th:text="${'Size/Weight: '.concat(productInfo.PRODUCT_CAPACITY)}"></li>
+                                    <li th:text="${'Color/Type: '.concat(productInfo.PRODUCT_CAPACITY)}">"></li>
+                                    <li id="lProductAtrbt">Keyword: </li>
+                                    <li id="lProductCrt">Product Certificate: </li>
+                                    <li id="lExportHst">Export Experience: </li>
+                                </ul>
+                            </div>
+                            <div class="btn-box">
+                                <a class="ps-btn type-pink" href="#"><i class="fa fa-heart-o"></i> WISHLIST</a>
+                                <a class="ps-btn" href="#">ASK NOW</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps-product__content ps-tab-root">
+                        <ul class="ps-tab-list">
+                            <li class="active"><a href="#tab-1">Seller’s Note</a></li>
+                            <li><a href="#tab-2">Product Detail</a></li>
+                            <li><a href="#tab-3">Deal Option</a></li>
+                        </ul>
+                        <div class="ps-tabs">
+                            <div class="ps-tab active" id="tab-1">
+                                <div class="ps-document" th:utext="${productInfo.SELLER_NOTE}"></div>
+                            </div>
+                            <div class="ps-tab" id="tab-2" th:utext="${productInfo.PRODUCT_CONTENT}"></div>
+                            <div class="ps-tab" id="tab-3">
+                                Deal Option
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript" type="text/javascript">
+        $(() => {
+            PageScope.init();
+        });
+
+        const PageScope = {
+
+            productAtrbt: null,
+            productCrt: null,
+            exportHst: null,
+
+            init() {
+                this.productAtrbt = /*[[${productInfo.PRODUCT_ATRBT}]]*/ 'default' || '';
+                this.productCrt = /*[[${productInfo.PRODUCT_CRT}]]*/ 'default' || '';
+                this.exportHst = /*[[${productInfo.EXPORT_HST}]]*/ 'default' || '';
+                this.bindFields();
+            },
+
+            bindFields() {
+
+                if (this.productAtrbt) {
+                    const productAtrbtNm = this.productAtrbt.split(',').map(atrbt => {
+                        return PRODUCT_ATRBT[atrbt];
+                    });
+                    $('#lProductAtrbt').text(`Keyword: ${productAtrbtNm.join(', ')}`);
+                }
+                if (this.productCrt) {
+                    const productCrtNm = this.productCrt.split(',').map(crt => {
+                        return PRODUCT_CRT[crt];
+                    });
+                    $('#lProductCrt').text(`Product Certificate: ${productCrtNm.join(', ')}`);
+                }
+                if (this.exportHst) {
+                    const exportHstNm = this.exportHst.split(',').map(hst => {
+                        return EXPORT_HIST[hst];
+                    });
+                    $('#lExportHstNm').text(`Export Experience: ${exportHstNm.join(', ')}`);
+                }
+            }
+        };
+    </script>
+</th:block>
+</html>

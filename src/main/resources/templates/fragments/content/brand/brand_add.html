@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/seller/seller_detail}">회사정보</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="btn-box txt-left">
+                        <button type="button" id="btnBrandAdd" class="ps-btn">+ 브랜드 추가</button>
+                        <p class="date ab-r">last updated: <span th:text="${#dates.format(updateDateTime, 'yyyy-MM-dd hh:mm:ss')}"></span></p>
+                    </div>
+                    <ul class="brand-list">
+                        <th:block th:if="${#lists.isEmpty(brandList)}">
+                            <div class="no_data"><i class="fa fa-exclamation-circle"></i>등록되어 있는 제품이 없습니다.</div>
+                        </th:block>
+                            <th:block th:if="${not #lists.isEmpty(brandList)}">
+                            <li th:each="brand : ${brandList}">
+                                <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
+                                <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정하기</button>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <div class="btn-box">
+                        <button type="button" id="btnAddProduct" class="ps-btn type-black">제품 추가하기</button>
+                    </div>
+                    <p class="total mt-80">총 <em id="totalCount" class="num">0</em>개 제품이 등록되어 있습니다.</p>
+                    <div class="table-responsive">
+                        <table id="tblProduct" class="table ps-table ps-table--vendor">
+                            <colgroup>
+                                <col style="width:15%">
+                                <col style="width:25%">
+                                <col style="width:17%">
+                                <col style="width:17%">
+                                <col>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>Product Image</th>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th>Retail Price</th>
+                                <th>Check</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript">
+        $(() => {
+            EventScope.init();
+        });
+
+        const PageScope = {
+
+            currentBrandSeq: "",
+            currentBrandNm: "",
+
+            init() {
+                this.setDataTables();
+            },
+
+            getProductListForBrand(brandSeq) {
+                axios({
+                    method: 'get',
+                    url: `/seller/product/list/${brandSeq}`
+                }).then(response => {
+                    if (response.status === 200) {
+                        const data = response.data || [];
+                        const $tblProductTbody = $('#tblProduct > tbody');
+                        $tblProductTbody.empty();
+
+                        if (data.length > 0) {
+                            data.forEach(item => {
+                                $tblProductTbody.append(`
+                                            <tr>
+                                                <td>
+                                                <div class="img-box"><a href="/seller/product_detail/${item.PRODUCT_SEQ}"><img src="${item.URL_PATH_CD}"></a></div>
+                                                </td>
+                                                <td style="text-align: left">${item.PRODUCT_NM}</td>
+                                                <td style="text-align: center">${item.PRODUCT_CAPACITY}</td>
+                                                <td style="text-align: right">${item.RETAIL_PRICE}</td>
+                                                <td>
+                                                    <div class="btns">
+                                                        <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
+                                                        <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${item.PRODUCT_SEQ})">삭제 <i class="fa fa-trash-o"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>`);
+                            });
+                            $("#btnAddProduct").text(`${PageScope.currentBrandNm} 제품 추가하기`);
+                        } else {
+                            alert('등록된 제품이 존재하지 않습니다.\n제품을 추가해주세요.');
+                            $("#btnAddProduct").text(`제품 추가하기`);
+                        }
+
+                        // 총 개수
+                        $("#totalCount").text(data.length);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
+            deleteProduct(productSeq) {
+                axios({
+                    method: 'delete',
+                    url: `/seller/product/${productSeq}`
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('정상적으로 삭제되었습니다.');
+                        PageScope.getProductListForBrand(PageScope.currentBrandSeq);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
+        };
+
+        const EventScope = {
+
+            init() {
+              this.clickEventListener();
+            },
+
+            updateOnclickListener(brandSeq) {
+                CommonUtils.redirectPage(`/seller/brand_modify/${brandSeq}`);
+            },
+
+            choiceBrandLogoImage(brandSeq, brandNm, _this) {
+                $('.brand-list').find('li').removeClass('on');
+                $(_this).closest('li').addClass('on');
+
+                PageScope.currentBrandSeq = brandSeq;
+                PageScope.currentBrandNm = brandNm;
+                PageScope.getProductListForBrand(brandSeq);
+            },
+
+            clickEventListener() {
+                $("#btnBrandAdd").on("click", () => {
+                    CommonUtils.redirectPage("/seller/brand_register");
+                });
+                $("#btnAddProduct").on("click", () => {
+                    const brandSeq = PageScope.currentBrandSeq;
+                    if (_.isEmpty(brandSeq)) {
+                        alert('브랜드 로고를 선택 후 제품을 추가해주세요.');
+                        return;
+                    }
+
+                    CommonUtils.redirectPage(`/seller/product_register/${brandSeq}`);
+                });
+            },
+
+            redirectProductModify(productSeq) {
+                CommonUtils.redirectPage(`/seller/product_modify/${productSeq}`);
+            },
+
+            deleteProductRow(productSeq) {
+                if (confirm('정말 이 제품을 삭제하시겠습니까?')) {
+                    PageScope.deleteProduct(productSeq);
+                }
+            }
+        };
+    </script>
+</th:block>
+</html>
