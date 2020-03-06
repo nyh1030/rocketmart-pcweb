@@ -29,6 +29,7 @@
                             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>
                             <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/brand_add}">Mypage</a>
                             <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/buyer/inquiry/list}">Mypage</a>
+                            <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/buyer/buyer_modify}">Mypage</a>
                         </div>
                     </div>
                 </div>

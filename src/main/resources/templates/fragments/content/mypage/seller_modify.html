@@ -16,7 +16,7 @@
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
-                                <form id="sllrFrm" method="post" action="">
+                                <form id="sllrFrm" method="post" action="" enctype="multipart/form-data">
                                     <h4 id="registerText">회사 정보</h4>
                                     <div class="form-group">
                                         <input class="form-control" type="email" id="memId" name="memId"
@@ -66,9 +66,10 @@
                                     <div class="form-group form-row-wide">
                                         <label for="bsnsRgstrNm"> 사업자 등록증 <span class="required">*</span></label>
                                         <div class="filebox">
-                                            <input class="form-control" id="bsnsRgstrNm" value="" readonly >
+                                            <input type="hidden" name="bsnsRgstrSeq" th:value="${mmbr.get('BSNS_RGSTR_SEQ')}" />
+                                            <input class="form-control" id="bsnsRgstrNm" th:value="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}" />
                                             <label for="bsnsRgstr" class="ps-btn type-black">File</label>
-                                            <input type="file" id="bsnsRgstr" class="upload-hidden" required="required">
+                                            <input type="file" id="bsnsRgstr" name="file" class="upload-hidden" required="required" />
                                         </div>
                                     </div>
 
@@ -94,6 +95,8 @@
             var nwPw = null;    // 비밀번호 input Obj
             var nwPwChck = null;    // 비밀번호 확인 input Obj
             var btnMdfy = null;     // 수정 Button Obj
+            var bsnsRgstrNm = null;   // 첨부파일 Text Obj
+            var bsnsRgstr = null;   // 첨부파일 File Obj
             var chckNtc = null;     // 알림 Obj
 
             var modify = {
@@ -106,8 +109,9 @@
                     chckNtc = form.find("#chckNtc");
                     btnMdfy = form.find("#btnMdfy");
 
-                    this.clickEventListener();
                     this.confirmPasswordForm();
+                    this.fileEventListener();
+                    this.clickEventListener();
                 },
                 confirmPasswordForm : function() {  // 비밀번호 입력 유효성검사
 
@@ -126,6 +130,20 @@
                                 chckNtc.html("<strong style='color=\"#f82a2aa3\"'>Passwords do not match</strong>");
                                 btnMdfy.prop("disabled", true);
                             }
+                        }
+                    });
+                },
+                fileEventListener : function() {    // 첨부파일 Event Listener
+
+                    bsnsRgstrNm = form.find("#bsnsRgstrNm");
+                    bsnsRgstr = form.find("#bsnsRgstr");
+
+                    bsnsRgstr.on("change", function() {
+
+                        if(window.FileReader) {
+                            bsnsRgstrNm.val($(this)[0].files[0].name);
+                        }else {
+                            bsnsRgstrNm.val($(this).val().split('/').pop().split('\\').pop());
                         }
                     });
                 },

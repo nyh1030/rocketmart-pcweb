@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Map;
+
 @Controller
 public class ProductCtl {
 
@@ -16,20 +18,20 @@ public class ProductCtl {
 	@Autowired
 	private BrandSvc brandSvc;
 
-	private String prefixPath = "fragments/content";
+	private String prefixPath = "fragments/content/product";
 
 	@GetMapping("/seller/product_register/{brandSeq}")
-	public String product_register(Model model, @PathVariable(value = "brandSeq") int brandSeq) {
+	public String productRegister(Model model, @PathVariable(value = "brandSeq") int brandSeq) {
 		model.addAttribute("brandInfo", brandSvc.findByBrandSeq(brandSeq));
 		model.addAttribute("cate1List", productSvc.findListForCate1());
 		model.addAttribute("cate2List", productSvc.findListForCate2());
 		model.addAttribute("cate3List", productSvc.findListForCate3());
 
-		return prefixPath.concat("/mypage/product_register");
+		return prefixPath.concat("/product_register");
 	}
 
 	@GetMapping("/seller/product_modify/{productSeq}")
-	public String product_modify(Model model, @PathVariable(value = "productSeq") int productSeq) {
+	public String productModify(Model model, @PathVariable(value = "productSeq") int productSeq) {
 		model.addAttribute("productInfo", productSvc.findByProductSeq(productSeq));
 		model.addAttribute("fobList", productSvc.findFobByProductSeq(productSeq));
 		model.addAttribute("productFrontAfile", productSvc.findFrontAfileByProductSeq(productSeq));
@@ -45,6 +47,28 @@ public class ProductCtl {
 		model.addAttribute("cate2List", productSvc.findListForCate2());
 		model.addAttribute("cate3List", productSvc.findListForCate3());
 
-		return prefixPath.concat("/mypage/product_modify");
+		return prefixPath.concat("/product_modify");
+	}
+
+	@GetMapping("/seller/product_detail/{productSeq}")
+	public String productDetail(Model model, @PathVariable(value = "productSeq") int productSeq) {
+		Map<String, Object> productInfo = productSvc.findByProductSeq(productSeq);
+
+		model.addAttribute("productInfo", productInfo);
+		model.addAttribute("fobList", productSvc.findFobByProductSeq(productSeq));
+		model.addAttribute("productFrontAfile", productSvc.findFrontAfileByProductSeq(productSeq));
+		model.addAttribute("productBackAfile", productSvc.findBackAfileByProductSeq(productSeq));
+		model.addAttribute("productAspectAfile", productSvc.findAspectAfileByProductSeq(productSeq));
+		model.addAttribute("productShape1Afile", productSvc.findShape1AfileByProductSeq(productSeq));
+		model.addAttribute("productShape2Afile", productSvc.findShape2AfileByProductSeq(productSeq));
+		model.addAttribute("productOutside1Afile", productSvc.findOutside1AfileByProductSeq(productSeq));
+		model.addAttribute("productOutside2Afile", productSvc.findOutside2AfileByProductSeq(productSeq));
+		model.addAttribute("productEtc1Afile", productSvc.findEtc1AfileByProductSeq(productSeq));
+		model.addAttribute("productEtc2Afile", productSvc.findEtc2AfileByProductSeq(productSeq));
+		model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productInfo.get("CATE1_CD")));
+		model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productInfo.get("CATE2_CD")));
+		model.addAttribute("productCate3", productSvc.findCateInoByCate3Cd((String) productInfo.get("CATE3_CD")));
+
+		return prefixPath.concat("/product_detail");
 	}
 }

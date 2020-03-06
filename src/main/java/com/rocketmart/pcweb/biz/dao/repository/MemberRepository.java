@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.tables.TbCmAfile;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
+import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 import static org.jooq.impl.DSL.currentTimestamp;
 
@@ -23,8 +25,18 @@ public class MemberRepository {
      * 회원 정보 조회
      */
     public Map<String, Object> findOneForMemInfo(String memId) {
-        return this.dslContext.selectFrom(TB_MEM_MST)
-                .where(TB_MEM_MST.MEM_ID.eq(memId))
+
+        return this.dslContext
+                .select(TB_MEM_MST.MEM_SEQ, TB_MEM_MST.ROLE, TB_MEM_MST.MEM_ID, TB_MEM_MST.MEM_NM,
+                        TB_MEM_MST.MEM_PW, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.TEL, TB_MEM_MST.COMPANY_NM,
+                        TB_MEM_MST.COMPANY_URL, TB_MEM_MST.BSNS_TYPE, TB_MEM_MST.OFFLINE_YN, TB_MEM_MST.OFFLINE_TEXT,
+                        TB_MEM_MST.ONLINE_YN, TB_MEM_MST.ONLINE_TEXT, TB_MEM_MST.BSNS_RGSTR_SEQ, TB_MEM_MST.USE_YN,
+                        TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
+                        TB_CM_AFILE.ORGN_FILE_NM, TB_CM_AFILE.URL_PATH_CD, TB_CM_AFILE.EXT, TB_CM_AFILE.AFILE_SIZE)
+                .from(TB_MEM_MST)
+                .innerJoin(TB_CM_AFILE)
+                .on(TB_MEM_MST.BSNS_RGSTR_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .where(TB_MEM_MST.MEM_ID.equal(memId))
                 .fetchOneMap();
     }
 
@@ -90,6 +102,7 @@ public class MemberRepository {
                 .set(TB_MEM_MST.OFFLINE_TEXT, mmbrRcrd.getOfflineText())
                 .set(TB_MEM_MST.ONLINE_YN, DSL.nvl(mmbrRcrd.getOnlineYn(),"N"))
                 .set(TB_MEM_MST.ONLINE_TEXT, mmbrRcrd.getOnlineText())
+                .set(TB_MEM_MST.BSNS_RGSTR_SEQ, mmbrRcrd.getBsnsRgstrSeq())
                 .set(TB_MEM_MST.UPD_USR_ID, mmbrRcrd.getUpdUsrId())
                 .set(TB_MEM_MST.UPD_TS, currentTimestamp())
                 .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
@@ -109,6 +122,7 @@ public class MemberRepository {
                 .set(TB_MEM_MST.COMPANY_NM, mmbrRcrd.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, mmbrRcrd.getCompanyUrl())
                 .set(TB_MEM_MST.BSNS_TYPE, mmbrRcrd.getBsnsType())
+                .set(TB_MEM_MST.BSNS_RGSTR_SEQ, mmbrRcrd.getBsnsRgstrSeq())
                 .set(TB_MEM_MST.UPD_USR_ID, mmbrRcrd.getUpdUsrId())
                 .set(TB_MEM_MST.UPD_TS, currentTimestamp())
                 .where(TB_MEM_MST.MEM_ID.eq(mmbrRcrd.getMemId()))
