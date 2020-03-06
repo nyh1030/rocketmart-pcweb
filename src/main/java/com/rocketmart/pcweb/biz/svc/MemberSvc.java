@@ -165,12 +165,19 @@ public class MemberSvc {
 	 * @param nwPw
 	 * @return int
 	 */
-	public int execModifyBuyerInfo(TbMemMstRecord mmbrRcrd, String nwPw) {
+	public int execModifyBuyerInfo(MultipartFile multipartFile, TbMemMstRecord mmbrRcrd, String nwPw) {
 
 		BCryptPasswordEncoder passwordEncoder = null;	// 암호화
+		String flSeq = "";	// 첨부파일 일련번호
+
+		if(multipartFile != null && multipartFile.getSize() != 0) {
+			// 첨부파일 등록
+			flSeq = fileUtils.uploadFile(multipartFile, "member", "/buyer/buyer_modify");
+			mmbrRcrd.setBsnsRgstrSeq(Integer.parseInt(flSeq));
+		}
 
 		// 비밀번호 입력값 있을경우
-		if(!nwPw.isEmpty()) {
+		if(nwPw != null && !nwPw.isEmpty()) {
 			passwordEncoder = new BCryptPasswordEncoder();
 			mmbrRcrd.setMemPw(passwordEncoder.encode(nwPw));
 		}
@@ -180,16 +187,26 @@ public class MemberSvc {
 
 	/**
 	 * 판매자 정보 수정
+	 * @param multipartFile
 	 * @param mmbrRcrd
 	 * @param nwPw
 	 * @return int
 	 */
-	public int execModifySellerInfo(TbMemMstRecord mmbrRcrd, String nwPw) {
+	public int execModifySellerInfo(MultipartFile multipartFile, TbMemMstRecord mmbrRcrd,
+		String nwPw) {
 
 		BCryptPasswordEncoder passwordEncoder = null;	// 암호화
+		String flSeq = "";	// 첨부파일 일련번호
+
+		if(multipartFile != null && multipartFile.getSize() != 0) {
+
+			// 첨부파일 등록
+			flSeq = fileUtils.uploadFile(multipartFile, "member", "/seller/seller_modify");
+			mmbrRcrd.setBsnsRgstrSeq(Integer.parseInt(flSeq));
+		}
 
 		// 비밀번호 입력값 있을경우
-		if(!nwPw.isEmpty()) {
+		if(nwPw != null && !nwPw.isEmpty()) {
 			passwordEncoder = new BCryptPasswordEncoder();
 			mmbrRcrd.setMemPw(passwordEncoder.encode(nwPw));
 		}

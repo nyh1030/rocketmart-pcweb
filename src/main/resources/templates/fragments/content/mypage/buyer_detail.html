@@ -55,7 +55,10 @@
                                 <li>
                                     <span class="tit bul-type">Business Registration : </span>
                                     <span class="txt">
-                                        <a href="#" class="btn-file"><i class="fa fa-file-text-o"></i>Business Registration.pdf</a>
+                                         <a href="#" class="btn-file">
+                                            <i class="fa fa-file-text-o"></i>
+                                            <span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span>
+                                        </a>
                                     </span>
                                 </li>
                                 <li>
