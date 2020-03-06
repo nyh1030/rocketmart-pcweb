@@ -63,7 +63,7 @@ public class MemberRepository {
                 .set(TB_MEM_MST.TEL, memberRecord.getTel())
                 .set(TB_MEM_MST.COMPANY_NM, memberRecord.getCompanyNm())
                 .set(TB_MEM_MST.COMPANY_URL, memberRecord.getCompanyUrl())
-                .set(TB_MEM_MST.BSNS_RGSTR_SEQ, 5)
+                .set(TB_MEM_MST.BSNS_RGSTR_SEQ, memberRecord.getBsnsRgstrSeq())
                 .set(TB_MEM_MST.BSNS_TYPE, memberRecord.getBsnsType())
                 .set(TB_MEM_MST.OFFLINE_YN, memberRecord.getOfflineYn())
                 .set(TB_MEM_MST.OFFLINE_TEXT, memberRecord.getOfflineText())

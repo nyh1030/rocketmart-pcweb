@@ -16,7 +16,7 @@
                     <div class="ps-tabs">
                         <div class="ps-tab active" id="register">
                             <div class="ps-form__content">
-                                <form id="signup" name="signup" th:action="@{/any/member/signup}" method="post">
+                                <form id="signup" name="signup" th:action="@{/any/member/signup}" method="post" enctype="multipart/form-data">
                                     <div class="ps-form__decs form-group user-role">
                                         <div class="ps-radio mb-1">
                                             <input class="form-control" type="radio" id="buyer" name="role" value="BUYER" checked>
@@ -98,7 +98,7 @@
                                         <div class="filebox">
                                             <input class="form-control" id="bsnsRgstrNm" value="" readonly >
                                             <label for="btnBsnsRgstr" class="ps-btn type-black">File</label>
-                                            <input type="file" id="btnBsnsRgstr" class="upload-hidden" required="required">
+                                            <input type="file" id="btnBsnsRgstr" name="file" class="upload-hidden" required="required" />
                                         </div>
                                     </div>
 
@@ -135,7 +135,6 @@
 
         init: function() {
             this.inputFileForm();
-            this.setUploadComponent();
             $('.user-role input[type=radio]').on('change', this.changeMemberForm);
             $('.form-group input[type=password]').on('keyup',this.confirmPasswordForm);
             $('#tel').on('keydown',this.ensurePhoneNumber);
@@ -277,39 +276,6 @@
                 }
             });
         },
-        setUploadComponent() {
-            this.uploadStarter = new Dropzone('#bsnsRgstrNm' ,{
-                method: 'post',
-                url: '/any/rest/member/bsnsRgstr/file/upload',
-                params: {themaRelmCd: "member", regMenuPart: "/any/signup"},
-                addRemoveLinks: false,
-                autoProcessQueue: true,
-                maxFiles: 1,
-                maxFilesize: 20,
-
-                init: function() {
-                    let _this;
-                    this.on("addedfile", file =>{
-                        _this = this;
-
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
-                    });
-                    this.on("maxfilesexceeded", function (file) {
-                        _this.removeFile(file);
-                        alert('The maximum upload file is one');
-                    });
-                },
-                success: (response) => {
-                    if (response.status === "success") {
-                        alert("aaa");
-                    }else{
-                        alert("bbb");
-                    }
-                }
-            });
-        },
         validateForm: function() {
             //1. 아이디 중복체크
             if(!signup.idOverLapChk()){
@@ -323,9 +289,6 @@
             if(!signup.sellerAgreeChk()){
                 return false;
             }
-            signup.uploadStarter.processQueue();
-            alert("aaaaaaa");
-            return false;
 
             if("SELLER" === $('.user-role input[type=radio]:checked').val()){
                 if(confirm("회원가입을 하시겠습니까?")){

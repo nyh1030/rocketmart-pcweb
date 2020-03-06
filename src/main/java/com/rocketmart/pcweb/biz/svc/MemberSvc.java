@@ -59,33 +59,35 @@ public class MemberSvc {
 	@Transactional(rollbackFor = Exception.class)
 	public Map<String, Object> saveOneForMemInfo(TbMemMstRecord memberRecord, MultipartFile multipartFile) {
 
-		Map<String, Object> fileMap = null;
-		String flag = "";
-
-		// 비밀번호 암호화
-		//BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		//memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
-
-		//int resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
-
-		// 첨부파일 테스트
-
+		BCryptPasswordEncoder passwordEncoder = null;
+		Map<String, Object> returnMap = null;
+		String flSeq = "";	// 첨부파일 일련번호
 		int resultCnt = 0;
 
-		if(resultCnt > 0) {
 
-			System.out.println(" ::: " + multipartFile);
 
-			// File Upload
-			// themaRelmCd : "member", regMenuPart : "/any/member/signup"
-			flag = fileUtils.uploadFile(multipartFile, "member", "/any/member/signup");
+		// 첨부파일 존재할 경우
+		if(multipartFile != null) {
 
-			System.out.println(flag);
+			flSeq = fileUtils.uploadFile(multipartFile, "member", "/any/member/signup");
+
+			// 첨부파일이 등록되었을경우
+			if(!flSeq.equals("0")) {
+
+				// 비밀번호 암호화
+				passwordEncoder = new BCryptPasswordEncoder();
+				memberRecord.setMemPw(passwordEncoder.encode(memberRecord.getMemPw()));
+				// 첨부파일 일련번호 저장
+				memberRecord.setBsnsRgstrSeq(Integer.parseInt(flSeq));
+
+				resultCnt = memberRepository.saveOneForMemInfo(memberRecord);
+			}
 		}
 
-		Map<String, Object> returnMap = new HashMap<>();
+		returnMap = new HashMap<>();
 		returnMap.put("resultCode", resultCnt > 0 ? "200" : "-1");
 		returnMap.put("resultMsg", resultCnt > 0 ? "SUCCESS" : "FAIL");
+
 		return returnMap;
 	}
 
