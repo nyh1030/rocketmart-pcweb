@@ -74,7 +74,7 @@ public class MemberCtl {
     @RequestMapping("/seller/seller_detail")
     public String getSellerDetail(Model model, String mmbrId) {
 
-        if(mmbrId.isEmpty()) {
+        if(mmbrId == null || mmbrId.isEmpty()) {
             mmbrId = "123123123@asd.com";
         }
 
@@ -139,30 +139,38 @@ public class MemberCtl {
 
     /**
      * 판매자 정보수정 처리
+     * @param file
      * @param mmbrRcrd
      * @param nwPw
+     * @param principal
      * @return String
      */
     @PostMapping("/seller/execSellerModify")
-    public String execSellerModify(TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+    public String execSellerModify(MultipartFile file, TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+
+        // 수정자 아이디 저장
         mmbrRcrd.setUpdUsrId(principal.getName());
         // 판매자 정보수정
-        memberSvc.execModifySellerInfo(mmbrRcrd, nwPw);
+        memberSvc.execModifySellerInfo(file, mmbrRcrd, nwPw);
 
-        return "redirect:/seller/seller_detail";
+        return "forward:/seller/seller_detail";
     }
 
     /**
      * 구매자 정보수정 처리
+     * @param file
      * @param mmbrRcrd
      * @param nwPw
+     * @param principal
      * @return String
      */
     @PostMapping("/buyer/execBuyerModify")
-    public String execBuyerModify(TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+    public String execBuyerModify(MultipartFile file, TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+
+        // 수정자 아이디 저장
         mmbrRcrd.setUpdUsrId(principal.getName());
         // 구매자 정보수정
-        memberSvc.execModifyBuyerInfo(mmbrRcrd, nwPw);
+        memberSvc.execModifyBuyerInfo(file, mmbrRcrd, nwPw);
 
         return "redirect:/buyer/buyer_detail";
     }
