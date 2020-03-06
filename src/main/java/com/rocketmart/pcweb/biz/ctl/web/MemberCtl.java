@@ -60,11 +60,9 @@ public class MemberCtl {
     @PostMapping("/any/member/signup")
     public String execSignup(TbMemMstRecord memberRecord, MultipartFile file) {
 
-        System.out.println(" ::: " + file);
-
         memberSvc.saveOneForMemInfo(memberRecord, file);
 
-        return "redirect:/user/signin";
+        return "redirect:/any/signin";
     }
 
     /**
@@ -73,7 +71,7 @@ public class MemberCtl {
      * @param mmbrId
      * @return String
      */
-    @PostMapping("/seller/seller_detail")
+    @RequestMapping("/seller/seller_detail")
     public String getSellerDetail(Model model, String mmbrId) {
 
         if(mmbrId.isEmpty()) {
@@ -94,7 +92,7 @@ public class MemberCtl {
      * @param mmbrId
      * @return String
      */
-    @PostMapping("/buyer/buyer_detail")
+    @RequestMapping("/buyer/buyer_detail")
     public String getBuyerDetail(Model model, String mmbrId) {
 
         if(mmbrId.isEmpty()) {
@@ -115,7 +113,7 @@ public class MemberCtl {
      * @param mmbrId
      * @return String
      */
-    @PostMapping("/seller/seller_modify")
+    @RequestMapping("/seller/seller_modify")
     public String modifySellerInfo(Model model, String mmbrId) {
 
         // 회원 정보조회
@@ -130,7 +128,7 @@ public class MemberCtl {
      * @param mmbrId
      * @return String
      */
-    @PostMapping("/buyer/buyer_modify")
+    @RequestMapping("/buyer/buyer_modify")
     public String modifyBuyerInfo(Model model, String mmbrId) {
 
         // 회원 정보조회
