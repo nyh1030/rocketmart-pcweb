@@ -108,11 +108,12 @@
                                                 </td>
                                             </tr>`);
                             });
-                            $("#btnAddProduct").text(`${PageScope.currentBrandNm} 제품 추가하기`);
                         } else {
                             alert('등록된 제품이 존재하지 않습니다.\n제품을 추가해주세요.');
-                            $("#btnAddProduct").text(`제품 추가하기`);
                         }
+
+                        // 버튼명 브랜드명으로 동적변경
+                        $("#btnAddProduct").text(`${PageScope.currentBrandNm} 제품 추가하기`);
 
                         // 총 개수
                         $("#totalCount").text(data.length);

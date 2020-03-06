@@ -20,7 +20,7 @@
                 <div class="ps-section__right">
                     <div class="ps-product--detail">
                         <div class="ps-product__content">
-                            <div class="logo-box">로고이미지 들어가는자리</div>
+<!--                            <div class="logo-box">로고이미지 들어가는자리</div>-->
                             <ul class="ps-tab-list">
                                 <li class="active"><a href="#" data-id="tab-1" onclick="EventScope.clickTabControl(this);">기본정보</a></li>
                                 <li><a href="#" data-id="tab-2" onclick="EventScope.clickTabControl(this);">가격정보</a></li>
@@ -31,7 +31,7 @@
                                 <!-- 기본정보 : S -->
                                 <div class="ps-tab active" id="tab-1">
                                     <div class="mb-5">
-                                        <label for="txtProductNm" class="bul-type">제품명<span class="required">*</span></label>
+                                        <label for="txtProductNm" class="bul-type">제품명 <span class="required">*</span></label>
                                         <input type="text" id="txtProductNm" class="form-control" required>
                                     </div>
                                     <div class="mb-5">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductCapacity" class="bul-type">제품 용량 <span class="required">*</span></label>
-                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="10">
+                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml" maxlength="10">
                                     </div>
                                     <div class="mb-5">
                                         <label for="txtProductLineup" class="bul-type">색상/라인업</label>
@@ -573,13 +573,20 @@
             clickEventListener() {
                 $("#sltCate1Cd").on('change', function() {
                     const cate1Cd = $(this).val();
-                    if (cate1Cd) PageScope.bindCate2Combo(cate1Cd);
-                    else $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                    if (cate1Cd) {
+                        PageScope.bindCate2Combo(cate1Cd);
+                    } else {
+                        $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    }
                 });
                 $("#sltCate2Cd").on('change', function() {
                     const cate2Cd = $(this).val();
-                    if (cate2Cd) PageScope.bindCate3Combo(cate2Cd);
-                    else $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    if (cate2Cd) {
+                        PageScope.bindCate3Combo(cate2Cd);
+                    } else {
+                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                    }
                 });
 
                 $('#btnSave').on('click', () => {
@@ -646,13 +653,13 @@
             clickTabControl(pElement) {
                 const tabId = $(pElement).data('id');
                 if (tabId === 'tab-1') {
-                    PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                    PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide(); $('#btnPrev').hide(); $('#btnNext').show();
                 } else if (tabId === 'tab-2') {
-                    PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                    PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide(); $('#btnPrev').show(); $('#btnNext').show();
                 } else if (tabId === 'tab-3') {
-                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide();
+                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide(); $('#btnPrev').show(); $('#btnNext').show();
                 } else if (tabId === 'tab-4') {
-                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show();
+                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show(); $('#btnPrev').show(); $('#btnNext').hide();
                 }
             }
         };
