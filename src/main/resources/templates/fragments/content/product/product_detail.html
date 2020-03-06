@@ -152,11 +152,12 @@
                     });
                     $('#lProductCrt').text(`Product Certificate: ${productCrtNm.join(', ')}`);
                 }
+                console.log(this.exportHst);
                 if (this.exportHst) {
                     const exportHstNm = this.exportHst.split(',').map(hst => {
                         return EXPORT_HIST[hst];
                     });
-                    $('#lExportHstNm').text(`Export Experience: ${exportHstNm.join(', ')}`);
+                    $('#lExportHst').text(`Export Experience: ${exportHstNm.join(', ')}`);
                 }
             }
         };
