@@ -13,37 +13,33 @@ public class BrandCtl {
 	@Autowired
 	private BrandSvc brandSvc;
 
-	private String prefixPath = "fragments/content";
+	private String prefixPath = "fragments/content/brand";
 
 	@GetMapping("/seller/brand_add")
-	public String brand_add(Model model) {
+	public String brandAdd(Model model) {
 		model.addAttribute("brandList", brandSvc.findAllForAfile());
 		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime());
-		return prefixPath.concat("/mypage/brand_add");
+		return prefixPath.concat("/brand_add");
 	}
 
 	@GetMapping("/seller/brand_register")
-	public String brand_register(Model model) {
-		return prefixPath.concat("/mypage/brand_register");
+	public String brandRegister(Model model) {
+		return prefixPath.concat("/brand_register");
 	}
 
 	@GetMapping("/seller/brand_modify/{brandSeq}")
-	public String brand_register(Model model, @PathVariable(value = "brandSeq") int brandSeq) {
+	public String brandModify(Model model, @PathVariable(value = "brandSeq") int brandSeq) {
 		model.addAttribute("brandInfo", brandSvc.findByBrandSeq(brandSeq));
-		return prefixPath.concat("/mypage/brand_modify");
+		return prefixPath.concat("/brand_modify");
 	}
 
 	@GetMapping("/seller/brand_detail")
-	public String brand_detail() {
-		return prefixPath.concat("/mypage/brand_detail");
+	public String brandDetail() {
+		return prefixPath.concat("/brand_detail");
 	}
 
-	/**
-	 * 메인 > Brand 목록
-	 * @return String
-	 */
 	@GetMapping("/any/brand/list")
 	public String dispBrandList() {
-		return prefixPath.concat("/brand/brand_list");
+		return prefixPath.concat("/brand_list");
 	}
 }

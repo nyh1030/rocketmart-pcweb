@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a href="#">회사정보</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-dashboard">
+                        <div class="ps-block__header">
+                            <h3>브랜드 정보</h3>
+                        </div>
+                        <div class="ps-block__content">
+                            <div class="mb-5">
+                                <label for="txtBrandNm" class="bul-type">브랜드 이름 <span class="required">*</span></label>
+                                <input type="text" id="txtBrandNm" class="form-control" th:value="${brandInfo.BRAND_NM}" required>
+                                <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">*</span></label>
+                                <div class="upload_box">
+                                    <div class="img_logo" id="dvBrandLogo"></div>
+                                    <button type="button" id="btnUpload" class="ps-btn">upload</button>
+                                </div>
+                                <div class="invalid-feedback">브랜드 로고를 선택해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label class="bul-type">브랜드 오너십 <span class="required">*</span></label>
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership1" name="brandOwnership" th:value="10">
+                                    <label for="rdoBrandOwnership1">자사 브랜드 (직접 제조)</label>
+                                </div>
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership2" name="brandOwnership" th:value="20">
+                                    <label for="rdoBrandOwnership2">자사 브랜드 (위탁 제조)</label>
+                                </div>
+                                <div class="ps-radio mb-1">
+                                    <input class="form-control" type="radio" id="rdoBrandOwnership3" name="brandOwnership" th:value="30">
+                                    <label for="rdoBrandOwnership3">타사 브랜드 (도소매 유통)</label>
+                                </div>
+                                <div class="invalid-feedback">브랜드 오너십을 선택해주세요.</div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="txtHomepageUrl" class="bul-type">브랜드 홈페이지</label>
+                                <input type="text" class="form-control" id="txtHomepageUrl" th:value="${brandInfo.BRAND_HOMEPAGE_URL}">
+
+                                <label for="txtYoutubeUrl" class="bul-type">유투브 채널</label>
+                                <input type="text" class="form-control" id="txtYoutubeUrl" th:value="${brandInfo.BRAND_YOUTUBE_URL}">
+
+                                <label for="txtInstagramUrl" class="bul-type">인스타그램</label>
+                                <input type="text" class="form-control" id="txtInstagramUrl" th:value="${brandInfo.BRAND_INSTAGRAM_URL}">
+                            </div>
+                            <div class="mb-5">
+                                <label class="bul-type">브랜드 인증 (중복체크 가능)</label>
+                                <div class="ps-checkbox mb-1">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify1" name="brandCerify" th:value="10">
+                                    <label for="chkBrandCerify1">ISO 22716 / CGMP</label>
+                                </div>
+                                <div class="ps-checkbox">
+                                    <input class="form-control" type="checkbox" id="chkBrandCerify2" name="brandCerify" th:value="20">
+                                    <label for="chkBrandCerify2">ISO 9001</label>
+                                </div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="txtBrandIntroduction" class="bul-type">브랜드 소개</label>
+                                <div class="edit_wrap">
+                                    <div id="txtBrandIntroduction"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
+                            <button type="button" id="btnBack" class="ps-btn type-gray ab-r">뒤로가기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript" th:inline="javascript">
+        $(() => {
+            PageScope.init();
+            EventScope.init();
+        });
+
+        const PageScope = {
+
+            objBrandInfo: null,
+            objLogoUploader: null,
+            isFileChange: false,
+
+            init() {
+                this.setUploadComponent();
+                this.setWebEditor();
+                this.bindFields(/*[[${brandInfo}]]*/ 'default' || []);
+            },
+
+            bindFields(brandInfo) {
+                this.objBrandInfo = brandInfo;
+
+                const template = `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img  data-dz-thumbnail src="${brandInfo.URL_PATH_CD}" /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`;
+                $("#dvBrandLogo").html(template);
+
+                $('[name="brandOwnership"]').each(function () {
+                    if ($(this).val() === brandInfo.BRAND_OWNERSHIP) $(this).prop('checked', true);
+                });
+
+                $("#txtBrandIntroduction").summernote('code', brandInfo.BRAND_INTRODUCTION);
+
+                const brandCerify = brandInfo.BRAND_CERIFY;
+                if (brandCerify.indexOf(",") > 0) {
+                    const brandCerifyArry = brandCerify.split(',');
+                    $("#chkBrandCerify1").prop('checked', brandCerifyArry[0] === "10");
+                    $("#chkBrandCerify2").prop('checked', brandCerifyArry[1] === "20");
+                } else {
+                    $("#chkBrandCerify1").prop('checked', brandCerify === "10");
+                    $("#chkBrandCerify2").prop('checked', brandCerify === "20");
+                }
+            },
+
+            setUploadComponent() {
+                this.objLogoUploader = new Dropzone('#dvBrandLogo' ,{
+                    method: 'post',
+                    url: '/seller/brand/file/upload',
+                    params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
+                    acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                    addRemoveLinks: false,
+                    autoProcessQueue: false,
+                    thumbnailWidth: 300,
+                    thumbnailHeight: 300,
+                    maxFilesize: 10,
+                    clickable: '#btnUpload',
+                    previewTemplate: `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img data-dz-thumbnail /></div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                            </div>`,
+                    init: function() {
+                        let _this;
+                        this.on("addedfile", file =>{
+                            _this = this;
+                            PageScope.isFileChange = true;
+
+                            $("#dvBrandLogo > .dz-preview:first").remove();
+                            if (file.status === "queued") {
+                                $(".dz-success-mark").remove();
+                            }
+                        });
+                    },
+                    success: (response) => {
+                        if (response.status === "success") {
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: response.xhr.response });
+                        }
+                    }
+                });
+            },
+
+            setWebEditor() {
+                $("#txtBrandIntroduction").summernote({
+                    placeholder: '브랜드를 소개해주세요.',
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
+                });
+            },
+
+            saveBrandInfo(objFileSeq) {
+                axios({
+                    method: 'put',
+                    url: '/seller/brand/info/update',
+                    params: Object.assign(this.getParameters(), objFileSeq)
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('브랜드 정보가 저장되었습니다.');
+                        CommonUtils.forwardPage('/seller/brand_add');
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
+            getParameters() {
+                return {
+                    brandSeq: this.objBrandInfo.BRAND_SEQ,
+                    brandNm: $('#txtBrandNm').val(),
+                    brandOwnership: CommonUtils.getCheckValToCommaString($('[name="brandOwnership"]')),
+                    brandHomePageUrl: $('#txtHomepageUrl').val(),
+                    brandYouTubeUrl: $('#txtYoutubeUrl').val(),
+                    brandInstagramUrl: $('#txtInstagramUrl').val(),
+                    brandCerify: CommonUtils.getCheckValToCommaString($('[name="brandCerify"]')),
+                    brandIntroduction: $('#txtBrandIntroduction').summernote('code')
+                }
+            },
+
+            invokeValidation() {
+                if (!$('#txtBrandNm').val().trim()) {
+                    alert('브랜드 이름은 필수값 입니다.');
+                    return false;
+                }
+
+                return true;
+            }
+        };
+
+        const EventScope = {
+
+            init() {
+              this.clickEventListener();
+            },
+
+            clickEventListener() {
+                $('#btnSave').on('click', () => {
+                    if (!PageScope.invokeValidation()) return;
+
+                    if (confirm('저장하시겠습니까?')) {
+                        if (PageScope.isFileChange) {
+                            PageScope.objLogoUploader.processQueue();
+                        } else {
+                            PageScope.saveBrandInfo({ brandLogoFileSeq: PageScope.objBrandInfo.BRAND_LOGO_AFILE_SEQ });
+                        }
+
+                    }
+                });
+                $('#btnBack').on('click', () => {
+                    CommonUtils.backwardPage();
+                });
+            }
+        };
+    </script>
+</th:block>
+</html>

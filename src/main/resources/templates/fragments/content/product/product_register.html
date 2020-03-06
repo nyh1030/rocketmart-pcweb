@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a href="#" class="active">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a href="#">회사정보</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-product--detail">
+                        <div class="ps-product__content">
+                            <div class="logo-box">로고이미지 들어가는자리</div>
+                            <ul class="ps-tab-list">
+                                <li class="active"><a href="#" data-id="tab-1" onclick="EventScope.clickTabControl(this);">기본정보</a></li>
+                                <li><a href="#" data-id="tab-2" onclick="EventScope.clickTabControl(this);">가격정보</a></li>
+                                <li><a href="#" data-id="tab-3" onclick="EventScope.clickTabControl(this);">주요특징</a></li>
+                                <li><a href="#" data-id="tab-4" onclick="EventScope.clickTabControl(this);">사진등록</a></li>
+                            </ul>
+                            <div class="ps-tabs">
+                                <!-- 기본정보 : S -->
+                                <div class="ps-tab active" id="tab-1">
+                                    <div class="mb-5">
+                                        <label for="txtProductNm" class="bul-type">제품명<span class="required">*</span></label>
+                                        <input type="text" id="txtProductNm" class="form-control" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtBrandNm" class="bul-type">브랜드 <span class="required">*</span></label>
+                                        <input type="text" id="txtBrandNm" class="form-control" th:data-brand-seq="${brandInfo.BRAND_SEQ}" th:value="${brandInfo.BRAND_NM}" readonly="readonly" required>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">제품 카테고리 <span class="required">*</span></label>
+                                        <div class="select-col3">
+                                            <select id="sltCate1Cd" class="ps-select type-first">
+                                                <option value="">(선택)</option>
+                                            </select>
+                                            <select id="sltCate2Cd" class="ps-select">
+                                                <option value="">(선택)</option>
+                                            </select>
+                                            <select id="sltCate3Cd" class="ps-select">
+                                                <option value="">(선택)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtProductUrl" class="bul-type">제품 소개 영상</label>
+                                        <input type="text" id="txtProductUrl" class="form-control" placeholder="url">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtProductCapacity" class="bul-type">제품 용량 <span class="required">*</span></label>
+                                        <input type="text" id="txtProductCapacity" class="form-control" required placeholder="ex) 28 oz, 100 ml" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="10">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtProductLineup" class="bul-type">색상/라인업</label>
+                                        <input type="text" id="txtProductLineup" class="form-control" placeholder="Ex) Color #13(rose), #15(dark rabbit),">
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtSellerNote" class="bul-type">셀러노트</label>
+                                        <div class="edit_wrap">
+                                            <div id="txtSellerNote"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="txtProductContent" class="bul-type">제품 상세 설명</label>
+                                        <div class="edit_wrap">
+                                            <div id="txtProductContent"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //기본정보 : E -->
+                                <div class="ps-tab" id="tab-2" style="display: none">
+                                    <div class="mb-5">
+                                        <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
+                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
+                                        <div class="table_wrap">
+                                            <table id="tblFob">
+                                                <colgroup>
+                                                    <col style="width:25%;">
+                                                    <col style="width:25%;">
+                                                    <col style="width:25%;">
+                                                    <col>
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="2">범위</th>
+                                                    <th rowspan="2">거래가<br>(US)</th>
+                                                    <th rowspan="2" class="last">공급률(%)</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>구간 시작</th>
+                                                    <th>구간 끝</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                            <div class="btns">
+                                                <button type="button" id="btnAddFob" class="ps-btn"><i class="fa fa-plus"></i> 구간 추가하기</button>
+                                                <button type="button" id="btnRemoveFob" class="ps-btn"><i class="fa fa-trash"></i> 구간 삭제하기</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">무료 샘플 제공 여부 <span class="required">*</span></label>
+                                        <div class="radio-wrap">
+                                            <div class="ps-radio">
+                                                <input class="form-control" type="radio" id="rdoGiveSampleYn1" name="giveSampleYn" th:value="Y" checked>
+                                                <label for="rdoGiveSampleYn1">Yes</label>
+                                            </div>
+                                            <div class="ps-radio">
+                                                <input class="form-control" type="radio" id="rdoGiveSampleYn2" name="giveSampleYn" th:value="N">
+                                                <label for="rdoGiveSampleYn2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-3" style="display: none">
+                                    <div class="mb-5">
+                                        <label class="bul-type">제품 속성 (중복체크 가능)</label>
+                                        <div class="chk-wrap">
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt10" name="productAtrbt" th:value="10">
+                                                <label for="chkProductAtrbt10">미백</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt11" name="productAtrbt" th:value="11">
+                                                <label for="chkProductAtrbt11">주름 개선</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt12" name="productAtrbt" th:value="12">
+                                                <label for="chkProductAtrbt12">자외선차단</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt13" name="productAtrbt" th:value="13">
+                                                <label for="chkProductAtrbt13">보습</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt14" name="productAtrbt" th:value="14">
+                                                <label for="chkProductAtrbt14">진정</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt15" name="productAtrbt" th:value="15">
+                                                <label for="chkProductAtrbt15">친환경</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt16" name="productAtrbt" th:value="16">
+                                                <label for="chkProductAtrbt16">잡티관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt17" name="productAtrbt" th:value="17">
+                                                <label for="chkProductAtrbt17">콜라겐</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt18" name="productAtrbt" th:value="18">
+                                                <label for="chkProductAtrbt18">방수</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt19" name="productAtrbt" th:value="19">
+                                                <label for="chkProductAtrbt19">각질관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt20" name="productAtrbt" th:value="20">
+                                                <label for="chkProductAtrbt20">탄력개선</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt21" name="productAtrbt" th:value="21">
+                                                <label for="chkProductAtrbt21">여드름관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt22" name="productAtrbt" th:value="22">
+                                                <label for="chkProductAtrbt22">기미/주근깨관리</label>
+                                            </div>
+                                            <div class="ps-checkbox mb-2">
+                                                <input class="form-control" type="checkbox" id="chkProductAtrbt23" name="productAtrbt" th:value="23">
+                                                <label for="chkProductAtrbt23">기타</label>
+                                            </div>
+                                            <input type="text" id="txtEtc" class="form-control" style="display: none">
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">제품 인증 (중복체크 가능)</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkProductCrt1" name="productCrt" th:value="10">
+                                            <label for="chkProductCrt1">Natural&Organic (USDA, COSMOS, ECOCERT, etc)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkProductCrt2" name="productCrt" th:value="20">
+                                            <label for="chkProductCrt2">Cruelty Free & Vegan Certificate</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkProductCrt3" name="productCrt" th:value="30">
+                                            <label for="chkProductCrt3">Halal Certificate</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">수출 이력</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst1" name="exportHst" th:value="10">
+                                            <label for="chkExportHst1">Europe (CPNP)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst2" name="exportHst" th:value="20">
+                                            <label for="chkExportHst2">Russia & CIS (EAC)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst3" name="exportHst" th:value="30">
+                                            <label for="chkExportHst3">China (NMPA)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst4" name="exportHst" th:value="40">
+                                            <label for="chkExportHst4">AEAN (DAV, HAS, NPRA etc.)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst5" name="exportHst" th:value="50">
+                                            <label for="chkExportHst5">USA (VCRP & OTC)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst6" name="exportHst" th:value="60">
+                                            <label for="chkExportHst6">Australia (NICNAS)</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkExportHst7" name="exportHst" th:value="70">
+                                            <label for="chkExportHst7">Japan (PMDA)</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label class="bul-type">가능한 거래 조건 (중복체크 가능)</label>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkTradingConditions1" name="tradingConditions" th:value="10">
+                                            <label for="chkTradingConditions1">완제품 형태의 수출</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkTradingConditions2" name="tradingConditions" th:value="20">
+                                            <label for="chkTradingConditions2">원료 공급 형태의 수출</label>
+                                        </div>
+                                        <div class="ps-checkbox mb-1">
+                                            <input class="form-control" type="checkbox" id="chkTradingConditions3" name="tradingConditions" th:value="30">
+                                            <label for="chkTradingConditions3">바이어 주문에 대한 위탁생산</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-4" style="display: none">
+                                    <p class="txt-impt">*제품 사진은 반드시 한 장 이상 등록되어야 합니다.</p>
+                                    <ul class="photo-upload">
+                                        <li>
+                                            <div id="dvProductFront" class="prd-photo"></div>
+                                            <span class="txt">제품 정면</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductBack" class="prd-photo"></div>
+                                            <span class="txt">제품 후면</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductAspect" class="prd-photo"></div>
+                                            <span class="txt">제품 측면</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductShape1" class="prd-photo"></div>
+                                            <span class="txt">제형1</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductShape2" class="prd-photo"></div>
+                                            <span class="txt">제형2</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductOutside1" class="prd-photo"></div>
+                                            <span class="txt">외부패키지1</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductOutside2" class="prd-photo"></div>
+                                            <span class="txt">외부패키지2</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductEtc1" class="prd-photo"></div>
+                                            <span class="txt">기타1</span>
+                                        </li>
+                                        <li>
+                                            <div id="dvProductEtc2" class="prd-photo"></div>
+                                            <span class="txt">기타2</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="ps-pagination">
+                                <ul class="pagination">
+                                    <li><button id="btnPrev"><i class="icon-chevron-left"></i>이전페이지</button></li>
+                                    <li class="active"><button id="btnNext">다음페이지<i class="icon-chevron-right"></i></button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button type="button" id="btnSave" class="ps-btn type-black">저장하기</button>
+                            <button type="button" id="btnBack" class="ps-btn type-gray ab-r">뒤로가기</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+    <script type="text/javascript" th:inline="javascript">
+        $(() => {
+            PageScope.init();
+            EventScope.init();
+        });
+
+        const PageScope = {
+
+            tabId: 'tab-1',
+            $tab1: $('#tab-1'),
+            $tab2: $('#tab-2'),
+            $tab3: $('#tab-3'),
+            $tab4: $('#tab-4'),
+
+            objDataTables: null,
+            
+            objFrontUploader: null,
+            objBackUploader: null,
+            objAspectUploader: null,
+            objShape1Uploader: null,
+            objShape2Uploader: null,
+            objOutside1Uploader: null,
+            objOutside2Uploader: null,
+            objEtc1Uploader: null,
+            objEtc2Uploader: null,
+
+            strFrontAfileSeq: null,
+            strBackAfileSeq: null,
+            strAspectAfileSeq: null,
+            strShape1AfileSeq: null,
+            strShape2AfileSeq: null,
+            strOutside1AfileSeq: null,
+            strOutside2AfileSeq: null,
+            strEtc1AfileSeq: null,
+            strEtc2AfileSeq: null,
+
+            init() {
+                this.bindCate1Combo();
+                this.setWebEditor();
+                this.setDataTables();
+                this.setUploadComponent();
+            },
+
+            bindCate1Combo() {
+                const cate1List = /*[[${cate1List}]]*/ 'default' || [];
+                const $cate1Cd = $("#sltCate1Cd");
+                $cate1Cd.html(`<option value="">(선택)</option>`);
+                cate1List.forEach(item => {
+                    $cate1Cd.append(`<option value="${item.CATE1_CD}">${item.CATE1_NM}</option>`);
+                });
+            },
+
+            bindCate2Combo(parentCd) {
+                const cate2List = /*[[${cate2List}]]*/ 'default' || [];
+                const $cate2Cd = $("#sltCate2Cd");
+                const $cate3Cd = $("#sltCate3Cd");
+                $cate2Cd.html(`<option value="">(선택)</option>`);
+                $cate3Cd.html(`<option value="">(선택)</option>`);
+                cate2List.filter(item => {
+                    return item.CATE1_CD == parentCd;
+                }).forEach(item => {
+                    $cate2Cd.append(`<option value="${item.CATE2_CD}">${item.CATE2_NM}</option>`);
+                });
+            },
+
+            bindCate3Combo(parentCd) {
+                const cate3List = /*[[${cate3List}]]*/ 'default' || [];
+                const $cate3Cd = $("#sltCate3Cd");
+                cate3List.filter(item => {
+                    return item.CATE2_CD == parentCd;
+                }).forEach(item => {
+                    $cate3Cd.append(`<option value="${item.CATE3_CD}">${item.CATE3_NM}</option>`);
+                });
+            },
+
+            setWebEditor() {
+                $("#txtSellerNote").summernote({
+                    placeholder: '셀러노트를 입력해주세요.',
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
+                });
+
+                $("#txtProductContent").summernote({
+                    placeholder: '제품을 설명해주세요.',
+                    height: 250,
+                    disableDragAndDrop: true,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']]
+                    ]
+                });
+            },
+            setDataTables() {
+                this.objDataTables = $("#tblFob").DataTable({
+                    paging: false,
+                    searching: false,
+                    ordering:  false,
+                    select: true,
+                    columnDefs: [{
+                        orderable: false
+                    }]
+                });
+
+                $(".dataTables_info").remove();
+            },
+            setUploadComponent() {
+                Dropzone.autoDiscover = false;
+
+                this.objFrontUploader = this.newDropzone('#dvProductFront', (response) => { if (response.status === "success") this.strFrontAfileSeq = response.xhr.response; });
+                this.objBackUploader = this.newDropzone('#dvProductBack', (response) => { if (response.status === "success") this.strBackAfileSeq = response.xhr.response; });
+                this.objAspectUploader = this.newDropzone('#dvProductAspect', (response) => { if (response.status === "success") this.strAspectAfileSeq = response.xhr.response; });
+                this.objShape1Uploader = this.newDropzone('#dvProductShape1', (response) => { if (response.status === "success") this.strShape1AfileSeq = response.xhr.response; });
+                this.objShape2Uploader = this.newDropzone('#dvProductShape2', (response) => { if (response.status === "success") this.strShape2AfileSeq = response.xhr.response; });
+                this.objOutside1Uploader = this.newDropzone('#dvProductOutside1', (response) => { if (response.status === "success") this.strOutside1AfileSeq = response.xhr.response; });
+                this.objOutside2Uploader = this.newDropzone('#dvProductOutside2', (response) => { if (response.status === "success") this.strOutside2AfileSeq = response.xhr.response; });
+                this.objEtc1Uploader = this.newDropzone('#dvProductEtc1', (response) => { if (response.status === "success") this.strEtc1AfileSeq = response.xhr.response; });
+                this.objEtc2Uploader = this.newDropzone('#dvProductEtc2', (response) => { if (response.status === "success") this.strEtc2AfileSeq = response.xhr.response; });
+            },
+
+            newDropzone(targetId, fnSuccess) {
+              return new Dropzone(targetId ,{
+                  method: 'post',
+                  url: '/seller/product/file/upload',
+                  params: {themaRelmCd: "product", regMenuPart: "/seller/product_add"},
+                  acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                  addRemoveLinks: false,
+                  autoProcessQueue: true,
+                  thumbnailWidth: 150,
+                  thumbnailHeight: 150,
+                  maxFiles: 1,
+                  maxFilesize: 10,
+                  clickable: true,
+                  dictDefaultMessage: "Drop files here to upload",
+                  dictFileSizeUnits: { tb: "TB", gb: "GB", mb: "MB", kb: "KB", b: "b" },
+                  previewTemplate: `
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img data-dz-thumbnail /></div>
+                              <div class="dz-details">
+                                  <div class="dz-size"><span data-dz-size></span></div>
+                                  <div class="dz-filename"><span data-dz-name></span></div>
+                              </div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                            </div>`,
+                  init: function() {
+                      let _this;
+                      this.on("addedfile", file =>{
+                          _this = this;
+
+                          if (file.status === "queued") {
+                              $(".dz-success-mark").remove();
+                          }
+                      });
+                      this.on("maxfilesexceeded", function (file) {
+                          _this.removeFile(file);
+                          alert('최대 업로드 파일 수는 1개 입니다.');
+                      });
+                  },
+                  success: fnSuccess
+              });
+            },
+
+            saveProductInfo() {
+                axios({
+                    method: 'post',
+                    url: '/seller/product/info/save',
+                    params: this.getParameters()
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('상품 정보가 저장되었습니다.');
+                        CommonUtils.forwardPage('/seller/brand_add');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            },
+
+            getParameters() {
+                return {
+                    productNm: $('#txtProductNm').val(),
+                    brandSeq: $('#txtBrandNm').data('brandSeq'),
+                    cate1Cd: $('#sltCate1Cd').val(),
+                    cate2Cd: $('#sltCate2Cd').val(),
+                    cate3Cd: $('#sltCate3Cd').val(),
+                    productUrl: $('#txtProductUrl').val(),
+                    productCapacity: $('#txtProductCapacity').val(),
+                    productLineup: $('#txtProductLineup').val(),
+                    sellerNote: $('#txtSellerNote').summernote('code'),
+                    productContent: $('#txtProductContent').summernote('code'),
+                    retailPrice: CommonUtils.removeComma($('#txtRetailPrice').val()),
+                    giveSampleYn: $('[name="giveSampleYn"]:checked').val(),
+                    productAtrbt: CommonUtils.getCheckValToCommaString($('[name="productAtrbt"]')),
+                    productCrt: CommonUtils.getCheckValToCommaString($('[name="productCrt"]')),
+                    exportHst: CommonUtils.getCheckValToCommaString($('[name="exportHst"]')),
+                    tradingConditions: CommonUtils.getCheckValToCommaString($('[name="tradingConditions"]')),
+                    productFrontAfileSeq: this.strFrontAfileSeq,
+                    productBackAfileSeq: this.strBackAfileSeq,
+                    productAspectAfileSeq: this.strAspectAfileSeq,
+                    productShape1AfileSeq: this.strShape1AfileSeq,
+                    productShape2AfileSeq: this.strShape2AfileSeq,
+                    productOutside1AfileSeq: this.strOutside1AfileSeq,
+                    productOutside2AfileSeq: this.strOutside2AfileSeq,
+                    productEtc1AfileSeq: this.strEtc1AfileSeq,
+                    productEtc2AfileSeq: this.strEtc2AfileSeq,
+                    rangeStart: CommonUtils.getDataToCommaString($('[name="rangeStart"]')),
+                    rangeEnd: CommonUtils.getDataToCommaString($('[name="rangeEnd"]')),
+                    tradingPrice: CommonUtils.getDataToCommaString($('[name="tradingPrice"]')),
+                    supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]'))
+                }
+            },
+
+            invokeValidation() {
+                if (!$('#txtProductNm').val().trim()) {
+                    alert('제품명은 필수값 입니다.');
+                    $('#txtProductNm').focus();
+                    return false;
+                } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
+                    alert('카테고리 선택은 필수입니다.');
+                    $('#sltCate1Cd').focus();
+                    return false;
+                } else if (!$('#txtProductCapacity').val().trim()) {
+                    alert('제품 용량은 필수값 입니다.');
+                    $('#txtProductCapacity').focus();
+                    return false;
+                } else if (!$('#txtRetailPrice').val().trim()) {
+                    alert('소비자 가격 (USD)은 필수값 입니다.');
+                    $('#txtRetailPrice').focus();
+                    return false;
+                } else if (PageScope.objFrontUploader.files.length <= 0) {
+                    alert('대표 이미지 첨부는 필수 입니다.');
+                    return false;
+                }
+                return true;
+            }
+        };
+
+        const EventScope = {
+
+            init() {
+                this.clickEventListener();
+                $("#btnAddFob").trigger('click');
+            },
+
+            clickEventListener() {
+                $("#sltCate1Cd").on('change', function() {
+                    const cate1Cd = $(this).val();
+                    if (cate1Cd) PageScope.bindCate2Combo(cate1Cd);
+                    else $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
+                });
+                $("#sltCate2Cd").on('change', function() {
+                    const cate2Cd = $(this).val();
+                    if (cate2Cd) PageScope.bindCate3Combo(cate2Cd);
+                    else $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
+                });
+
+                $('#btnSave').on('click', () => {
+                    if (!PageScope.invokeValidation()) return;
+
+                    if (confirm('저장하시겠습니까?')) {
+                        PageScope.saveProductInfo();
+                    }
+                });
+                $('#btnBack').on('click', () => {
+                    CommonUtils.backwardPage();
+                });
+
+                $('#btnAddFob').on('click', () => {
+                    PageScope.objDataTables.row.add([
+                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    ]).draw(false);
+                });
+                $('#btnRemoveFob').on('click', () => {
+                    const $tblFobTr = $("#tblFob tbody").find("tr");
+                    if ($tblFobTr.length <= 0) {
+                        alert('더 이상 제거할 구간이 없습니다.');
+                        return;
+                    }
+
+                    PageScope.objDataTables.row($tblFobTr.last().remove()).remove();
+                });
+
+                $('#btnPrev').on('click', () => {
+                    $(document).scrollTop(0);
+                    if (PageScope.tabId === 'tab-2') {
+                        PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                        PageScope.tabId = 'tab-1';
+                        $('#btnPrev').hide();
+                    } else if (PageScope.tabId === 'tab-3') {
+                        PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                        PageScope.tabId = 'tab-2';
+                    } else if (PageScope.tabId === 'tab-4') {
+                        PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide();
+                        PageScope.tabId = 'tab-3';
+                        $('#btnNext').show();
+                    }
+                });
+                $('#btnNext').on('click', () => {
+                    $(document).scrollTop(0);
+                    if (PageScope.tabId === 'tab-1') {
+                        PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                        PageScope.tabId = 'tab-2';
+                        $('#btnPrev').show();
+                    } else if (PageScope.tabId === 'tab-2') {
+                        PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide();
+                        PageScope.tabId = 'tab-3';
+                    } else if (PageScope.tabId === 'tab-3') {
+                        PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show();
+                        PageScope.tabId = 'tab-4';
+                        $('#btnNext').hide();
+                    }
+                });
+            },
+
+            clickTabControl(pElement) {
+                const tabId = $(pElement).data('id');
+                if (tabId === 'tab-1') {
+                    PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                } else if (tabId === 'tab-2') {
+                    PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
+                } else if (tabId === 'tab-3') {
+                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide();
+                } else if (tabId === 'tab-4') {
+                    PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show();
+                }
+            }
+        };
+    </script>
+</th:block>
+</html>

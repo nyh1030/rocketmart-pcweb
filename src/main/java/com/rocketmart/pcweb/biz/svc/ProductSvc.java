@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductSvc {
@@ -120,23 +119,28 @@ public class ProductSvc {
 		int fobSaveCnt = 0;
 		int productSaveCnt = productRepository.updateOneForProductInfo(productDto);
 		if (productSaveCnt > 0) {
-			String[] fobSeq = productDto.getFobSeq().split(",", -1);
-			String[] rangeStart = productDto.getRangeStart().split(",", -1);
-			String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
-			String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
-			String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+			List<Integer> delParams = Arrays.stream(productDto.getFobSeq().split(",", -1))
+					.map(Integer::parseInt)
+					.collect(Collectors.toList());
+			int delCnt = productRepository.deleteByFobSeq(delParams);
 
-			int length = rangeStart.length;
-			for (int idx = 0; idx < length; idx++) {
-				Map<String, Object> paramMap = new HashMap<>();
-				paramMap.put("fobSeq", Integer.parseInt(fobSeq[idx]));
-				paramMap.put("productSeq", productDto.getProductSeq());
-				paramMap.put("rangeStart", rangeStart[idx]);
-				paramMap.put("rangeEnd", rangeEnd[idx]);
-				paramMap.put("tradingPrice", tradingPrice[idx]);
-				paramMap.put("supplyRate", supplyRate[idx]);
+			if (delCnt > 0) {
+				String[] rangeStart = productDto.getRangeStart().split(",", -1);
+				String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
+				String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
+				String[] supplyRate = productDto.getSupplyRate().split(",", -1);
 
-				fobSaveCnt += productRepository.updateOneForFobInfo(paramMap);
+				int length = rangeStart.length;
+				for (int idx = 0; idx < length; idx++) {
+					Map<String, Object> paramMap = new HashMap<>();
+					paramMap.put("productSeq", productDto.getProductSeq());
+					paramMap.put("rangeStart", rangeStart[idx]);
+					paramMap.put("rangeEnd", rangeEnd[idx]);
+					paramMap.put("tradingPrice", tradingPrice[idx]);
+					paramMap.put("supplyRate", supplyRate[idx]);
+
+					fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
+				}
 			}
 		}
 
@@ -146,5 +150,17 @@ public class ProductSvc {
 	@Transactional(rollbackFor = Exception.class)
 	public String deleteProduct(int productSeq) {
 		return productRepository.deleteProduct(productSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
+	}
+
+	public Map<String, Object> findCateInoByCate1Cd(String cate1Cd) {
+		return productRepository.findCateInoByCate1Cd(cate1Cd);
+	}
+
+	public Map<String, Object> findCateInoByCate2Cd(String cate2Cd) {
+		return productRepository.findCateInoByCate2Cd(cate2Cd);
+	}
+
+	public Map<String, Object> findCateInoByCate3Cd(String cate3Cd) {
+		return productRepository.findCateInoByCate3Cd(cate3Cd);
 	}
 }
