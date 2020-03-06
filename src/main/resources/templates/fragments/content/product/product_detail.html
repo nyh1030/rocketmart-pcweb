@@ -110,9 +110,7 @@
                                 <div class="ps-document" th:utext="${productInfo.SELLER_NOTE}"></div>
                             </div>
                             <div class="ps-tab" id="tab-2" th:utext="${productInfo.PRODUCT_CONTENT}"></div>
-                            <div class="ps-tab" id="tab-3">
-                                Deal Option
-                            </div>
+                            <div class="ps-tab" id="tab-3"></div>
                         </div>
                     </div>
                 </div>
@@ -130,11 +128,15 @@
             productAtrbt: null,
             productCrt: null,
             exportHst: null,
+            tradingConditions: null,
 
             init() {
                 this.productAtrbt = /*[[${productInfo.PRODUCT_ATRBT}]]*/ 'default' || '';
                 this.productCrt = /*[[${productInfo.PRODUCT_CRT}]]*/ 'default' || '';
                 this.exportHst = /*[[${productInfo.EXPORT_HST}]]*/ 'default' || '';
+                this.exportHst = /*[[${productInfo.EXPORT_HST}]]*/ 'default' || '';
+                this.tradingConditions = /*[[${productInfo.TRADING_CONDITIONS}]]*/ 'default' || '';
+
                 this.bindFields();
             },
 
@@ -152,12 +154,17 @@
                     });
                     $('#lProductCrt').text(`Product Certificate: ${productCrtNm.join(', ')}`);
                 }
-                console.log(this.exportHst);
                 if (this.exportHst) {
                     const exportHstNm = this.exportHst.split(',').map(hst => {
                         return EXPORT_HIST[hst];
                     });
                     $('#lExportHst').text(`Export Experience: ${exportHstNm.join(', ')}`);
+                }
+                if (this.tradingConditions) {
+                    const tradingConditionsNm = this.tradingConditions.split(',').map(condition => {
+                        return TRADING_CONDITIONS[condition];
+                    });
+                    $('#tab-3').text(`${tradingConditionsNm.join(', ')}`);
                 }
             }
         };

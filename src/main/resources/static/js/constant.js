@@ -33,3 +33,10 @@ const EXPORT_HIST = {
 	'60': 'Australia (NICNAS)',
 	'70': 'Japan (PMDA)'
 };
+
+// 가능한 거래 조건
+const TRADING_CONDITIONS = {
+	'10': '완제품 형태의 수출',
+	'20': '원료 공급 형태의 수출',
+	'30': '바이어 주문에 대한 위탁생산'
+};
