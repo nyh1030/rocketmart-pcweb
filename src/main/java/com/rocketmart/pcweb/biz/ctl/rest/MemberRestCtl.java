@@ -27,17 +27,17 @@ public class MemberRestCtl {
 
     /**
      * 회원 승인 처리
-     * @param mmbrId
+     * @param memId
      * @param apprvlYn
      * @return String
      */
     @PostMapping("/any/rest/member/execApproval")
-    public String execApproval(String mmbrId, String apprvlYn) {
+    public String execApproval(String memId, String apprvlYn) {
 
         String msg = "";
 
         // 회원 승인 처리
-        msg = memberSvc.execApprovalMember(mmbrId, apprvlYn);
+        msg = memberSvc.execApprovalMember(memId, apprvlYn);
 
         return msg;
     }

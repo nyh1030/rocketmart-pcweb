@@ -28,10 +28,11 @@ public class CategorySvc {
 
 	/**
 	 * 메인 > Category 목록 메뉴
+	 * @param cate1Cd
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForCategoryMenu() {
-		return categoryRepository.findAllForCategoryMenu();
+	public List<Map<String, Object>> findAllForCategoryMenu(String cate1Cd) {
+		return categoryRepository.findAllForCategoryMenu(cate1Cd);
 
 	}
 }

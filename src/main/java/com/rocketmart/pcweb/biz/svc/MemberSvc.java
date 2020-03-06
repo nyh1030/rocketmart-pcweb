@@ -93,10 +93,10 @@ public class MemberSvc {
 
 	/**
 	 * 회원 정보 조회
-	 * @param mmbrId
+	 * @param memId
 	 * @return mmbrMap
 	 */
-	public Map<String, Object> findOneForMemInfo(String mmbrId) {
+	public Map<String, Object> findOneForMemInfo(String memId) {
 
 		List<Map<String, Object>> bsnsList = null;	// List
 		Map<String, Object> mmbrMap = null;		// 회원정보 Map
@@ -109,7 +109,7 @@ public class MemberSvc {
 		int indx = 0;
 
 		// 회원정보 조회
-		mmbrMap = this.memberRepository.findOneForMemInfo(mmbrId);
+		mmbrMap = this.memberRepository.findOneForMemInfo(memId);
 		role = String.valueOf(mmbrMap.get("ROLE"));
 
 		if(role.equals("ADMIN")) {	// 관리자
@@ -216,11 +216,11 @@ public class MemberSvc {
 
 	/**
 	 * 회원 승인 처리
-	 * @param mmbrId
+	 * @param memId
 	 * @param flag
 	 * @return retMsg
 	 */
-	public String execApprovalMember(String mmbrId, String flag) {
+	public String execApprovalMember(String memId, String flag) {
 
 		String retMsg = "";        // Return Message
 		int ret = 0;
@@ -228,9 +228,7 @@ public class MemberSvc {
 		try {
 
 			// 회원 승인 처리
-			ret = memberRepository.execApprovalMemInfo(mmbrId, flag);
-
-			System.out.println(" ::::: " + ret);
+			ret = memberRepository.execApprovalMemInfo(memId, flag);
 
 			if(ret > 0) {
 				retMsg = "Success";

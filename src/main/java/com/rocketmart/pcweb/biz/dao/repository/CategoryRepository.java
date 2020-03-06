@@ -23,11 +23,13 @@ public class CategoryRepository {
 
     /**
      * 메인 > Category 목록 메뉴
+     * @param cate1Cd
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> findAllForCategoryMenu() {
+    public List<Map<String, Object>> findAllForCategoryMenu(String cate1Cd) {
 
         return this.dslContext.selectFrom(TB_CATE_MST)
+                .where(TB_CATE_MST.CATE1_CD.eq(cate1Cd))
                 .orderBy(TB_CATE_MST.CATE1_CD.asc(), TB_CATE_MST.CATE2_CD.asc(), TB_CATE_MST.CATE3_CD.asc())
                 .fetchMaps();
     }

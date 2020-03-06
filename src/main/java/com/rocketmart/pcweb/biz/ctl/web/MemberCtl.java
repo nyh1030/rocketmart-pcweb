@@ -70,30 +70,29 @@ public class MemberCtl {
 
     /**
      * 판매자 정보조회
-     * @param request
      * @param model
+     * @param memId
      * @param principal
-     * @param mmbrId
      * @return String
      */
     @RequestMapping("/seller/seller_detail")
-    public String getSellerDetail(HttpServletRequest request, Model model, Principal principal, String mmbrId) {
+    public String getSellerDetail(HttpServletRequest request, Model model, String memId, Principal principal) {
 
         Map<String, ?> fMap = null;
 
-        if(mmbrId == null || mmbrId.isEmpty()) {
+        if(memId == null || memId.isEmpty()) {
 
             fMap = RequestContextUtils.getInputFlashMap(request);
 
             if(fMap == null) {
-                mmbrId = principal.getName();
+                memId = principal.getName();
             }else {
-                mmbrId = String.valueOf(fMap.get("mmbrId"));
+                memId = String.valueOf(fMap.get("memId"));
             }
         }
 
         // 회원 정보조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(memId));
 
         return prefixPath.concat("/mypage/seller_detail");
     }
@@ -101,20 +100,28 @@ public class MemberCtl {
     /**
      * 구매자 정보조회
      * @param model
-     * @param mmbrId
+     * @param memId
+     * @param principal
      * @return String
      */
     @RequestMapping("/buyer/buyer_detail")
-    public String getBuyerDetail(Model model, String mmbrId) {
+    public String getBuyerDetail(HttpServletRequest request, Model model, String memId, Principal principal) {
 
-        if(mmbrId.isEmpty()) {
-            mmbrId = "buyer@buyer.com";
+        Map<String, ?> fMap = null;
+
+        if(memId == null || memId.isEmpty()) {
+
+            fMap = RequestContextUtils.getInputFlashMap(request);
+
+            if(fMap == null) {
+                memId = principal.getName();
+            }else {
+                memId = String.valueOf(fMap.get("memId"));
+            }
         }
 
-        System.out.println(" ::: " + mmbrId);
-
         // 회원 정보조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(memId));
 
         return prefixPath.concat("/mypage/buyer_detail");
     }
@@ -122,14 +129,14 @@ public class MemberCtl {
     /**
      * 판매자 수정화면
      * @param model
-     * @param mmbrId
+     * @param memId
      * @return String
      */
     @RequestMapping("/seller/seller_modify")
-    public String modifySellerInfo(Model model, String mmbrId) {
+    public String modifySellerInfo(Model model, String memId) {
 
         // 회원 정보조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(memId));
 
         return prefixPath.concat("/mypage/seller_modify");
     }
@@ -137,14 +144,14 @@ public class MemberCtl {
     /**
      * 구매자 수정화면
      * @param model
-     * @param mmbrId
+     * @param memId
      * @return String
      */
     @RequestMapping("/buyer/buyer_modify")
-    public String modifyBuyerInfo(Model model, String mmbrId) {
+    public String modifyBuyerInfo(Model model, String memId) {
 
         // 회원 정보조회
-        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(mmbrId));
+        model.addAttribute("mmbr", this.memberSvc.findOneForMemInfo(memId));
 
         return prefixPath.concat("/mypage/buyer_modify");
     }
@@ -170,7 +177,7 @@ public class MemberCtl {
         memberSvc.execModifySellerInfo(file, mmbrRcrd, nwPw);
 
         fMap = RequestContextUtils.getOutputFlashMap(request);
-        fMap.put("mmbrId", mmbrRcrd.getMemId());
+        fMap.put("memId", mmbrRcrd.getMemId());
 
         return "redirect:/seller/seller_detail";
     }
@@ -184,12 +191,18 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/buyer/execBuyerModify")
-    public String execBuyerModify(MultipartFile file, TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+    public String execBuyerModify(HttpServletRequest request, MultipartFile file,
+                                  TbMemMstRecord mmbrRcrd, String nwPw, Principal principal) {
+
+        FlashMap fMap = null;
 
         // 수정자 아이디 저장
         mmbrRcrd.setUpdUsrId(principal.getName());
         // 구매자 정보수정
         memberSvc.execModifyBuyerInfo(file, mmbrRcrd, nwPw);
+
+        fMap = RequestContextUtils.getOutputFlashMap(request);
+        fMap.put("memId", mmbrRcrd.getMemId());
 
         return "redirect:/buyer/buyer_detail";
     }

@@ -24,9 +24,12 @@ public class CategoryCtl {
      * @return List<Map<String, Object>>
      */
     @GetMapping("/any/category/list")
-    public String dispCategoryList(Model model) {
-
-        model.addAttribute("cateMenuList", categorySvc.findAllForCategoryMenu());
+    public String dispCategoryList(TbCateMstRecord tbCateMstRecord, Model model) {
+        model.addAttribute("cate1_list", categorySvc.findAllForCategoryMenu("1"));
+        model.addAttribute("cate2_list", categorySvc.findAllForCategoryMenu("2"));
+        model.addAttribute("cate3_list", categorySvc.findAllForCategoryMenu("3"));
+        model.addAttribute("cate4_list", categorySvc.findAllForCategoryMenu("4"));
+        model.addAttribute("cate5_list", categorySvc.findAllForCategoryMenu("5"));
 
         return prefixPath.concat("/category/category_list");
     }

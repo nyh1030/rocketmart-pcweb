@@ -32,7 +32,7 @@ public class MemberRepository {
                         TB_MEM_MST.COMPANY_URL, TB_MEM_MST.BSNS_TYPE, TB_MEM_MST.OFFLINE_YN, TB_MEM_MST.OFFLINE_TEXT,
                         TB_MEM_MST.ONLINE_YN, TB_MEM_MST.ONLINE_TEXT, TB_MEM_MST.BSNS_RGSTR_SEQ, TB_MEM_MST.USE_YN,
                         TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
-                        TB_CM_AFILE.ORGN_FILE_NM, TB_CM_AFILE.URL_PATH_CD, TB_CM_AFILE.EXT, TB_CM_AFILE.AFILE_SIZE)
+                        TB_CM_AFILE.REG_FILE_NM, TB_CM_AFILE.ORGN_FILE_NM, TB_CM_AFILE.URL_PATH_CD, TB_CM_AFILE.EXT, TB_CM_AFILE.AFILE_SIZE, TB_CM_AFILE.THEMA_RELM_CD)
                 .from(TB_MEM_MST)
                 .innerJoin(TB_CM_AFILE)
                 .on(TB_MEM_MST.BSNS_RGSTR_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
@@ -77,9 +77,9 @@ public class MemberRepository {
                 .set(TB_MEM_MST.COMPANY_URL, memberRecord.getCompanyUrl())
                 .set(TB_MEM_MST.BSNS_RGSTR_SEQ, memberRecord.getBsnsRgstrSeq())
                 .set(TB_MEM_MST.BSNS_TYPE, memberRecord.getBsnsType())
-                .set(TB_MEM_MST.OFFLINE_YN, memberRecord.getOfflineYn())
+                .set(TB_MEM_MST.OFFLINE_YN, DSL.nvl(memberRecord.getOfflineYn(),"N"))
                 .set(TB_MEM_MST.OFFLINE_TEXT, memberRecord.getOfflineText())
-                .set(TB_MEM_MST.ONLINE_YN, memberRecord.getOnlineYn())
+                .set(TB_MEM_MST.ONLINE_YN, DSL.nvl(memberRecord.getOnlineYn(),"N"))
                 .set(TB_MEM_MST.ONLINE_TEXT, memberRecord.getOnlineText())
                 .set(TB_MEM_MST.REG_USR_ID, "system")
                 .set(TB_MEM_MST.UPD_USR_ID, "system")
@@ -131,14 +131,14 @@ public class MemberRepository {
 
     /**
      * 회원 승인 처리
-     * @param mmbrId
+     * @param memId
      * @param flag
      * @return
      */
-    public int execApprovalMemInfo(String mmbrId, String flag) {
+    public int execApprovalMemInfo(String memId, String flag) {
         return this.dslContext.update(TB_MEM_MST)
                 .set(TB_MEM_MST.APPROVAL_YN, flag)
-                .where(TB_MEM_MST.MEM_ID.eq(mmbrId))
+                .where(TB_MEM_MST.MEM_ID.eq(memId))
                 .execute();
     }
 }

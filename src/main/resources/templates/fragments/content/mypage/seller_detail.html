@@ -25,7 +25,7 @@
                         </div>
                         <div class="ps-block__content">
                             <form id="sllrFrm" method="post" action="">
-                                <input type="hidden" name="mmbrId" class="mmbrId" th:value="${mmbr.get('MEM_ID')}" />
+                                <input type="hidden" name="memId" class="memId" th:value="${mmbr.get('MEM_ID')}" />
                                 <input type="hidden" name="apprvlYn" class="apprvlYn" value="" />
                             </form>
                             <ul class="info-list">
@@ -55,7 +55,7 @@
                                     <span class="txt">
                                         <a href="#" class="btn-file">
                                             <i class="fa fa-file-text-o"></i>
-                                            <span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span>
+                                            <a th:href="@{'/downloadFile/' + ${mmbr.get('THEMA_RELM_CD')} + '/' +${mmbr.get('REG_FILE_NM') +  mmbr.get('EXT')} }"><span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span></a>
                                         </a>
                                     </span>
                                 </li>
@@ -68,11 +68,11 @@
                         </div>
                         <div class="btns">
                             <button type="button" id="btnApprvl" class="ps-btn type-black"
-                                    th:if="${mmbr.get('APPROVAL_YN').equals('N')}" th:value="Y">승인</button>
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('N')}" th:value="Y" sec:authorize="hasAuthority('ADMIN')">승인</button>
                             <button type="button" id="btnApprvl" class="ps-btn type-black"
-                                    th:if="${mmbr.get('APPROVAL_YN').equals('Y')}" th:value="N">승인취소</button>
+                                    th:if="${mmbr.get('APPROVAL_YN').equals('Y')}" th:value="N" sec:authorize="hasAuthority('ADMIN')">승인취소</button>
                             <button type="button" id="btnMdfy" class="ps-btn type-black">수정하기</button>
-                            <button type="button" id="btnList" class="ps-btn type-black">목록</button>
+                            <button type="button" id="btnList" class="ps-btn type-black" sec:authorize="hasAuthority('ADMIN')">목록</button>
                         </div>
                     </div>
                 </div>
@@ -128,6 +128,13 @@
                    $("#btnMdfy").click(function() {
 
                        form.attr("action", "/seller/seller_modify");
+                       form.submit();
+                   });
+
+                   // 목록 버튼 클릭 Event
+                   $("#btnList").click(function() {
+
+                       form.attr("action", "/admin/member/list");
                        form.submit();
                    });
                }

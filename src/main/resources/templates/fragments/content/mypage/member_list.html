@@ -39,7 +39,7 @@
                             <p class="total">Total : <em class="num" th:text="${#lists.size(memList)}"></em> result</p>
                             <div class="table-responsive">
                                 <form id="detailFrm" action="" method="post">
-                                    <input type="hidden" class="mmbrId" name="mmbrId" />
+                                    <input type="hidden" class="memId" name="memId" />
                                 </form>
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
@@ -131,7 +131,7 @@
                 }else if(flag === "BUYER") {
                     form.attr("action", "/buyer/buyer_detail");
                 }
-                form.find(".mmbrId").val(id);
+                form.find(".memId").val(id);
                 form.submit();
             }
         }

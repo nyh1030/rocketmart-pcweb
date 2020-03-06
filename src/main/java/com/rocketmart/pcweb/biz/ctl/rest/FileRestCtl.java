@@ -1,38 +1,32 @@
 package com.rocketmart.pcweb.biz.ctl.rest;
 
-import com.rocketmart.pcweb.common.file.FileResponse;
 import com.rocketmart.pcweb.common.file.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
-public class FileTestRestCtl {
+public class FileRestCtl {
 
 	@Autowired
 	private FileUtils fileUtils;
 
-	/*@PostMapping("/uploadMultiFiles")
-	public List<FileResponse> uploadMultiFiles(@RequestParam("files") MultipartFile[] files, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
-		return Arrays.stream(files)
-				.map(this::uploadFile)
-				.collect(Collectors.toList());
-	}*/
+	@Value("${afile.path}")
+	private String path;
 
-	@GetMapping("/downloadFile/{fileName:.+}")
-	public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("resources/fileUpload");
-		Resource resource = fileUtils.loadFileAsResource(fileName, path);
+	@GetMapping("/downloadFile/{module}/{fileName:.+}")
+	public ResponseEntity<Resource> downloadFile(@PathVariable String module, @PathVariable String fileName, HttpServletRequest request) {
+		Resource resource = fileUtils.loadFileAsResource(fileName, path+"\\"+module);
 
 		String contentType = "";
 		try {
@@ -49,7 +43,5 @@ public class FileTestRestCtl {
 				.contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);
-
-
 	}
 }
