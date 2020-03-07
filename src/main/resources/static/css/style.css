@@ -8360,7 +8360,7 @@ textarea.form-control {
 }
 
 .ps-product:hover {
-  border-color: silver;
+/*  border-color: silver;*/
 }
 
 .ps-product:hover .ps-product__thumbnail .ps-product__actions {
@@ -8368,11 +8368,13 @@ textarea.form-control {
   transform: translate(0, 0);
 }
 
+/*
 .ps-product:hover .ps-product__content {
   visibility: hidden;
   opacity: 0;
   height: 0;
 }
+*/
 
 .ps-product:hover .ps-product__content.hover {
   height: auto;

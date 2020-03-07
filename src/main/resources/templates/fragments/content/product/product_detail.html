@@ -94,8 +94,11 @@
                                 </ul>
                             </div>
                             <div class="btn-box">
-                                <a class="ps-btn type-pink" href="#"><i class="fa fa-heart-o"></i> WISHLIST</a>
-                                <a class="ps-btn" href="#">ASK NOW</a>
+                                <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry_register}" method="post">
+                                    <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
+                                </form>
+                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAuthenticated()"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAuthenticated()">ASK NOW</span>
                             </div>
                         </div>
                     </div>
@@ -121,6 +124,7 @@
     <script th:inline="javascript" type="text/javascript">
         $(() => {
             PageScope.init();
+            EventScope.init();
         });
 
         const PageScope = {
@@ -166,6 +170,46 @@
                     });
                     $('#tab-3').text(`${tradingConditionsNm.join(', ')}`);
                 }
+            },
+
+            saveWishInfo() {
+                axios({
+                    method: 'post',
+                    url: '/any/rest/wishlist/info/save',
+                    params: Object.assign(this.getParameters())
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('Successfully added');
+                    }else{
+                        alert('This Product has already been added');
+                    }
+                }).catch(error => {
+                    alert('[Error] Please contact administrator');
+                });
+            },
+
+            getParameters() {
+                return {
+                    productSeq: $('#productSeq').val()
+                }
+            }
+
+        };
+
+        const EventScope = {
+
+            init() {
+                this.clickEventListener();
+            },
+
+            clickEventListener() {
+                $('#btnAddWish').on('click', () => {
+                    PageScope.saveWishInfo();
+                });
+                $('#btnInquiry').on('click', () => {
+                    var form = $('#inquiryFrm');
+                    form.submit();
+                });
             }
         };
     </script>

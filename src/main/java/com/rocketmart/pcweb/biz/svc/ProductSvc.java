@@ -29,6 +29,10 @@ public class ProductSvc {
 		return productRepository.findByProductSeq(productSeq);
 	}
 
+	public List<Map<String, Object>> findAllForProductInfo(List<Integer> productSeqs) {
+		return productRepository.findAllForProductInfo(productSeqs);
+	}
+
 	public List<Map<String, Object>> findFobByProductSeq(int productSeq) {
 		return productRepository.findFobByProductSeq(productSeq);
 	}

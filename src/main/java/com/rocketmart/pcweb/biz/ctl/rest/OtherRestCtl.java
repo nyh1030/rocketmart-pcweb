@@ -37,9 +37,14 @@ public class OtherRestCtl {
 	 */
 	@PostMapping("/any/rest/wishlist/info/save")
 	public ResponseEntity<String> saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord, Principal principal) {
+		int resultCnt = 0;
+
 		tbWishMstRecord.setRegUsrId(principal.getName());
 
-		return new ResponseEntity<>(otherSvc.saveOneForWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+		//중복이면 실패, 중복없으면 등록
+		resultCnt = otherSvc.wishInfoOverLapChk(tbWishMstRecord) ? 0 : otherSvc.saveOneForWishListInfo(tbWishMstRecord);
+
+		return new ResponseEntity<>(resultCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }
