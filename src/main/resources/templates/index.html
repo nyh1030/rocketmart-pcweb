@@ -492,7 +492,7 @@
                         <div class="ps-block__left">
                             <h3>New Arrivals</h3>
                         </div>
-                    </div><a href="shop-default.html">View all</a>
+                    </div>
                 </div>
                 <div class="ps-section__content">
                     <th:block th:if="${productList == null}">
@@ -529,7 +529,7 @@
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
-                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                            <div id="dvCate1" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
                                 <a href="#tab-1-1" class="active">basic care</a>
                                 <a href="#tab-1-2">cleansing/peeling</a>
                                 <a href="#tab-1-3">suncare</a>
@@ -537,183 +537,184 @@
                                 <a href="#tab-1-5">Men Care</a>
                                 <a href="#tab-1-6">Baby Care</a>
                                 <a href="#tab-1-7">Mom</a>
-                        </div>
-                        <div class="ps-tabs">
+                            </div>
                             <div class="ps-tabs">
-                                <div class="ps-tab active" id="tab-1-1">
-                                    <th:block th:if="${cate101_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate101_productList != null}">
-                                        <div class="row" th:each="product : ${cate101_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                <div class="ps-tabs">
+                                    <div class="ps-tab active" id="tab-1-1">
+                                        <th:block th:if="${#arrays.length(cate101_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate101_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate101_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-2">
-                                    <th:block th:if="${cate102_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate102_productList != null}">
-                                        <div class="row" th:each="product : ${cate102_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-2">
+                                        <th:block th:if="${#arrays.length(cate102_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate102_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate102_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-3">
-                                    <th:block th:if="${cate103_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate103_productList != null}">
-                                        <div class="row" th:each="product : ${cate103_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-3">
+                                        <th:block th:if="${#arrays.length(cate103_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate103_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate103_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-4">
-                                    <th:block th:if="${cate104_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate104_productList != null}">
-                                        <div class="row" th:each="product : ${cate104_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-4">
+                                        <th:block th:if="${#arrays.length(cate104_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate104_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate104_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-5">
-                                    <th:block th:if="${cate105_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate105_productList != null}">
-                                        <div class="row" th:each="product : ${cate105_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-5">
+                                        <th:block th:if="${#arrays.length(cate105_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate105_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate105_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-6">
-                                    <th:block th:if="${cate106_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate106_productList != null}">
-                                        <div class="row" th:each="product : ${cate106_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-6">
+                                        <th:block th:if="${#arrays.length(cate106_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate106_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate106_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
-                                </div>
-                                <div class="ps-tab" id="tab-1-7">
-                                    <th:block th:if="${cate107_productList == null}">
-                                        <p class="no_data">등록된 제품이 없습니다.</p>
-                                    </th:block>
-                                    <th:block th:if="${cate107_productList != null}">
-                                        <div class="row" th:each="product : ${cate107_productList}">
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                <div class="ps-product">
-                                                    <a href="#">
-                                                        <div class="ps-product__thumbnail">
-                                                            <img th:src="${product.URL_PATH_CD}">
-                                                        </div>
-                                                        <div class="ps-product__container">
-                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                            <div class="ps-product__content">
-                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                        </th:block>
+                                    </div>
+                                    <div class="ps-tab" id="tab-1-7">
+                                        <th:block th:if="${#arrays.length(cate107_productList) <= 0}">
+                                            <p class="no_data">등록된 제품이 없습니다.</p>
+                                        </th:block>
+                                        <th:block th:if="${#arrays.length(cate107_productList) > 0}">
+                                            <div class="row" th:each="product : ${cate107_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </th:block>
+                                        </th:block>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -730,7 +731,7 @@
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
-                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                            <div id="dvCate2" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
                                 <a href="#tab-2-1" class="active">face</a>
                                 <a href="#tab-2-2">Lip</a>
                                 <a href="#tab-2-3">suncare</a>
@@ -740,10 +741,10 @@
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-2-1">
-                                        <th:block th:if="${cate201_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate201_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate201_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate201_productList) > 0}">
                                             <div class="row" th:each="product : ${cate201_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -765,10 +766,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-2-2">
-                                        <th:block th:if="${cate202_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate202_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate202_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate202_productList) > 0}">
                                             <div class="row" th:each="product : ${cate202_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -790,10 +791,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-2-3">
-                                        <th:block th:if="${cate203_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate203_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate203_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate203_productList) > 0}">
                                             <div class="row" th:each="product : ${cate203_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -815,10 +816,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-2-4">
-                                        <th:block th:if="${cate204_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate204_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate204_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate204_productList) > 0}">
                                             <div class="row" th:each="product : ${cate204_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -840,10 +841,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-2-5">
-                                        <th:block th:if="${cate205_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate205_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate205_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate205_productList) > 0}">
                                             <div class="row" th:each="product : ${cate205_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -880,7 +881,7 @@
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
-                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                            <div id="dvCate3" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
                                 <a href="#tab-3-1" class="active">body care</a>
                                 <a href="#tab-3-2">Hair Care</a>
                                 <a href="#tab-3-3">Oral Care</a>
@@ -890,10 +891,10 @@
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-3-1">
-                                        <th:block th:if="${cate301_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate301_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate301_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate301_productList) > 0}">
                                             <div class="row" th:each="product : ${cate301_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -915,10 +916,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-3-2">
-                                        <th:block th:if="${cate302_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate302_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate302_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate302_productList) > 0}">
                                             <div class="row" th:each="product : ${cate302_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -940,10 +941,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-3-3">
-                                        <th:block th:if="${cate303_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate303_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate303_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate303_productList) > 0}">
                                             <div class="row" th:each="product : ${cate303_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -965,10 +966,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-3-4">
-                                        <th:block th:if="${cate304_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate304_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate304_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate304_productList) > 0}">
                                             <div class="row" th:each="product : ${cate304_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -990,10 +991,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-3-5">
-                                        <th:block th:if="${cate305_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate305_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate305_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate305_productList) > 0}">
                                             <div class="row" th:each="product : ${cate305_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1030,7 +1031,7 @@
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
-                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                            <div id="dvCate4" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
                                 <a href="#tab-4-1" class="active">Massage Device</a>
                                 <a href="#tab-4-2">brush</a>
                                 <a href="#tab-4-3">facial rollers</a>
@@ -1038,10 +1039,10 @@
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-4-1">
-                                        <th:block th:if="${cate401_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate401_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate401_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate401_productList) > 0}">
                                             <div class="row" th:each="product : ${cate401_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1063,10 +1064,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-4-2">
-                                        <th:block th:if="${cate402_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate402_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate402_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate402_productList) > 0}">
                                             <div class="row" th:each="product : ${cate402_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1088,10 +1089,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-4-3">
-                                        <th:block th:if="${cate403_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate403_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate403_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate403_productList) > 0}">
                                             <div class="row" th:each="product : ${cate403_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1128,17 +1129,17 @@
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
-                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                            <div id="dvCate5" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
                                 <a href="#tab-5-1" class="active">Red-ginseng</a>
                                 <a href="#tab-5-2">Dietary Supplement</a>
                             </div>
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
                                     <div class="ps-tab active" id="tab-5-1">
-                                        <th:block th:if="${cate501_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate501_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate501_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate501_productList) > 0}">
                                             <div class="row" th:each="product : ${cate501_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1160,10 +1161,10 @@
                                         </th:block>
                                     </div>
                                     <div class="ps-tab" id="tab-5-2">
-                                        <th:block th:if="${cate502_productList == null}">
+                                        <th:block th:if="${#arrays.length(cate502_productList) <= 0}">
                                             <p class="no_data">등록된 제품이 없습니다.</p>
                                         </th:block>
-                                        <th:block th:if="${cate502_productList != null}">
+                                        <th:block th:if="${#arrays.length(cate502_productList) > 0}">
                                             <div class="row" th:each="product : ${cate502_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
@@ -1206,6 +1207,26 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(() => {
+            EventScope.init();
+        });
+
+        const EventScope = {
+
+            init() {
+                this.clickEventListener();
+            },
+
+            clickEventListener() {
+                $('#dvCate1 a, #dvCate2 a, #dvCate3 a, #dvCate4 a, #dvCate5 a').on('click', function () {
+                    $(this).parent().siblings().find('a').removeClass('active');
+                    $(this).addClass('active');
+                });
+            }
+        };
+    </script>
+
 </th:block>
 
 </html>
