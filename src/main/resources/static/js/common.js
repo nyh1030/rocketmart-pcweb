@@ -16,6 +16,9 @@ const CommonUtils = {
         });
         return returnArray.join(",");
     },
+    getNamesToCommaString(objTarget) {
+        return objTarget.map(function(){ return $(this).val() }).get().join();
+    },
     getDataToCommaString(objTarget) {
         const _this = this;
         let returnArray = [];

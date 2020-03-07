@@ -63,15 +63,15 @@
                             </th:block>
                             <th:block th:if="${not #lists.isEmpty(wishList)}">
                                 <tr th:each="wish : ${wishList}">
-                                    <td><input type="checkbox" id="productSeqArr" name="productSeqArr" th:value="${wish.get('PRODUCT_SEQ')}" class="check"/></td>
-                                    <td th:text="${wish.get('PRODUCT_NM')}" class="txt-left"></td>
-                                    <td th:text="'$' + ${wish.get('RETAIL_PRICE')}"></td>
-                                    <td th:if="${wish.get('APPROVAL_YN') == 'N'}">Pending</td>
-                                    <td th:if="${wish.get('APPROVAL_YN') == 'Y'}">Click Here</td>
+                                    <td><input type="checkbox" id="productSeqArr" name="productSeqArr" th:value="${wish.PRODUCT_SEQ}" class="check"/></td>
+                                    <td th:text="${wish.PRODUCT_NM}" class="txt-left"></td>
+                                    <td th:text="'$' + ${wish.RETAIL_PRICE}"></td>
+                                    <td th:if="${wish.APPROVAL_YN == 'N'}">Pending</td>
+                                    <td th:if="${wish.APPROVAL_YN == 'Y'}">Click Here</td>
                                     <td>
                                         <div class="btns type">
-                                            <button type="button" id="btnAsk" class="ps-btn type-yellow">Ask This</button>
-                                            <button type="button" id="btnDetail" class="ps-btn type-black">Details</button>
+                                            <button type="button" id="btnAsk" name="btnAsk" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                            <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -90,7 +90,7 @@
 
 <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/register}" method="post">
     <input type="hidden" id="productSeq" name="productSeq"/>
-    <input type="hidden" id="returnGbn" name="returnGbn" th:value="wishlist"/>
+    <input type="hidden" id="returnGbn" name="returnGbn" value="wishList"/>
 </form>
 
 <script type="text/javascript">
@@ -136,15 +136,22 @@
         },
 
         clickEventListener() {
-            $('#btnAskAll, #btnAsk').on('click', () => {
+            $('#btnAskAll').on('click', () => {
                 if (!PageScope.invokeValidation()) return;
 
                 if (confirm('Would you like to inquire about this product?')) {
                     $('#inquiryFrm').submit();
                 }
             });
-            $('#btnDetail').on('click', () => {
-                CommonUtils.forwardPage();
+            $('[name="btnAsk"]').on('click', function() {
+                $('#productSeq').val($(this).val());
+
+                if (confirm('Would you like to inquire about this product?')) {
+                    $('#inquiryFrm').submit();
+                }
+            });
+            $('[name="btnDetail"]').on('click', function() {
+                CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
             });
         }
     };
