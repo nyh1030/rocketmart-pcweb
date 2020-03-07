@@ -21,7 +21,7 @@
                     <div class="ps-product--detail">
                         <div class="ps-product__content">
 <!--                            <div class="logo-box"><img th:src="${productInfo.URL_PATH_CD}"></div>-->
-                            <ul class="ps-tab-list">
+                            <ul id="ulTabList" class="ps-tab-list">
                                 <li class="active"><a href="#" data-id="tab-1" onclick="EventScope.clickTabControl(this);">기본정보</a></li>
                                 <li><a href="#" data-id="tab-2" onclick="EventScope.clickTabControl(this);">가격정보</a></li>
                                 <li><a href="#" data-id="tab-3" onclick="EventScope.clickTabControl(this);">주요특징</a></li>
@@ -81,7 +81,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${productInfo.RETAIL_PRICE}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
@@ -592,7 +592,7 @@
                         `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
                         `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
                         `<td><input type="text" name="tradingPrice" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     ]).draw(false);
                 });
 
@@ -830,6 +830,9 @@
                     alert('소비자 가격 (USD)은 필수값 입니다.');
                     $('#txtRetailPrice').focus();
                     return false;
+                } else if ($("#tblFob tbody tr").length <= 0) {
+                    alert('도매 가격은 필수 입니다.\n구간 추가 후 입력해주세요.');
+                    return false;
                 } else if (!PageScope.strFrontAfileSeq) {
                     alert('대표 이미지 첨부는 필수 입니다.');
                     return false;
@@ -894,6 +897,9 @@
 
                 $('#btnPrev').on('click', () => {
                     $(document).scrollTop(0);
+                    $('#ulTabList').find('li').removeClass('active');
+                    $(`[data-id="${PageScope.tabId}"]`).closest('li').prev().addClass('active');
+
                     if (PageScope.tabId === 'tab-2') {
                         PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
                         PageScope.tabId = 'tab-1';
@@ -909,6 +915,9 @@
                 });
                 $('#btnNext').on('click', () => {
                     $(document).scrollTop(0);
+                    $('#ulTabList').find('li').removeClass('active');
+                    $(`[data-id="${PageScope.tabId}"]`).closest('li').next().addClass('active');
+
                     if (PageScope.tabId === 'tab-1') {
                         PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide();
                         PageScope.tabId = 'tab-2';
@@ -928,12 +937,16 @@
                 const tabId = $(pElement).data('id');
                 if (tabId === 'tab-1') {
                     PageScope.$tab1.show(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.hide(); $('#btnPrev').hide(); $('#btnNext').show();
+                    PageScope.tabId = 'tab-1';
                 } else if (tabId === 'tab-2') {
                     PageScope.$tab1.hide(); PageScope.$tab2.show(); PageScope.$tab3.hide(); PageScope.$tab4.hide(); $('#btnPrev').show(); $('#btnNext').show();
+                    PageScope.tabId = 'tab-2';
                 } else if (tabId === 'tab-3') {
                     PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.show(); PageScope.$tab4.hide(); $('#btnPrev').show(); $('#btnNext').show();
+                    PageScope.tabId = 'tab-3';
                 } else if (tabId === 'tab-4') {
                     PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show(); $('#btnPrev').show(); $('#btnNext').hide();
+                    PageScope.tabId = 'tab-4';
                 }
             }
         };
