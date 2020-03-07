@@ -20,12 +20,21 @@ public class BrandRepository {
 	@Autowired
 	private DSLContext dslContext;
 
-	public List<Map<String, Object>> findAllForAfile() {
+	public List<Map<String, Object>> findAll() {
 		return this.dslContext.select(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
 				.from(TB_BRAND_MST)
 				.join(TB_CM_AFILE)
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_BRAND_MST.DEL_YN.equal("N"))
+				.fetchMaps();
+	}
+
+	public List<Map<String, Object>> findAllForAfile(String regUsrId) {
+		return this.dslContext.select(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
+				.from(TB_BRAND_MST)
+				.join(TB_CM_AFILE)
+				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+				.where(TB_BRAND_MST.REG_USR_ID.equal(regUsrId)).and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchMaps();
 	}
 
@@ -50,10 +59,10 @@ public class BrandRepository {
 				.fetchMaps();
 	}
 
-	public Timestamp findLastUpdatedDateTime() {
+	public Timestamp findLastUpdatedDateTime(String regUsrId) {
 		return this.dslContext.select(DSL.max(TB_BRAND_MST.UPD_TS))
 				.from(TB_BRAND_MST)
-				.where(TB_BRAND_MST.DEL_YN.equal("N"))
+				.where(TB_BRAND_MST.REG_USR_ID.equal(regUsrId)).and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchOne(Record1::value1);
 	}
 
@@ -64,7 +73,7 @@ public class BrandRepository {
 						TB_BRAND_MST.BRAND_CERIFY, TB_BRAND_MST.BRAND_INTRODUCTION, TB_BRAND_MST.REG_USR_ID, TB_BRAND_MST.UPD_USR_ID)
 				.values(brandDto.getBrandNm(), brandDto.getBrandLogoFileSeq(), brandDto.getBrandOwnership(),
 						brandDto.getBrandHomePageUrl(), brandDto.getBrandYouTubeUrl(), brandDto.getBrandInstagramUrl(),
-						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), "ADMIN", "ADMIN")
+						brandDto.getBrandCerify(), brandDto.getBrandIntroduction(), brandDto.getRegUsrId(), brandDto.getUpdUsrId())
 				.execute();
 	}
 
@@ -78,7 +87,7 @@ public class BrandRepository {
 				.set(TB_BRAND_MST.BRAND_INSTAGRAM_URL, brandDto.getBrandInstagramUrl())
 				.set(TB_BRAND_MST.BRAND_CERIFY, brandDto.getBrandCerify())
 				.set(TB_BRAND_MST.BRAND_INTRODUCTION, brandDto.getBrandIntroduction())
-				.set(TB_BRAND_MST.UPD_USR_ID, "ADMIN")
+				.set(TB_BRAND_MST.UPD_USR_ID, brandDto.getRegUsrId())
 				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandDto.getBrandSeq()))
 				.execute();
 	}

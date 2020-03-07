@@ -483,9 +483,15 @@
                     });
                 };
                 const fnEtc2Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
+                        _this = this;
                         if (file.status === "added") $("#dvProductEtc2 > .txt-drag").remove();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
 
@@ -513,7 +519,6 @@
                   maxFiles: 1,
                   maxFilesize: 10,
                   clickable: true,
-                  dictDefaultMessage: "Drop files here to upload",
                   dictFileSizeUnits: { tb: "TB", gb: "GB", mb: "MB", kb: "KB", b: "b" },
                   previewTemplate: `
                             <div class="dz-preview dz-file-preview" >
@@ -579,6 +584,15 @@
                     tradingPrice: CommonUtils.getDataToCommaString($('[name="tradingPrice"]')),
                     supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]'))
                 }
+            },
+
+            addGridRow() {
+                PageScope.objDataTables.row.add([
+                    `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                ]).draw(false);
             },
 
             invokeValidation() {
@@ -647,13 +661,9 @@
                 });
 
                 $('#btnAddFob').on('click', () => {
-                    PageScope.objDataTables.row.add([
-                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
-                    ]).draw(false);
+                    PageScope.addGridRow();
                 });
+
                 $('#btnRemoveFob').on('click', () => {
                     const $tblFobTr = $("#tblFob tbody").find("tr");
                     if ($tblFobTr.length <= 0) {

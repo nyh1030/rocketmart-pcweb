@@ -31,7 +31,7 @@ public class MainCtl {
         model.addAttribute("categoryList", categorySvc.findAll());
         model.addAttribute("productList", productSvc.findAllForLastestOrder());
 
-        List<Map<String, Object>> brandList = brandSvc.findAllForAfile();
+        List<Map<String, Object>> brandList = brandSvc.findAll();
         Collections.shuffle(brandList);
         model.addAttribute("brandList", brandList);
 

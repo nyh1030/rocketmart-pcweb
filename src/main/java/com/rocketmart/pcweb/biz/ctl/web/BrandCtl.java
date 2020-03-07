@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
+
 @Controller
 public class BrandCtl {
 
@@ -16,9 +18,9 @@ public class BrandCtl {
 	private String prefixPath = "fragments/content/brand";
 
 	@GetMapping("/seller/brand_add")
-	public String brandAdd(Model model) {
-		model.addAttribute("brandList", brandSvc.findAllForAfile());
-		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime());
+	public String brandAdd(Model model, Principal principal) {
+		model.addAttribute("brandList", brandSvc.findAllForAfile(principal.getName()));
+		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime(principal.getName()));
 		return prefixPath.concat("/brand_add");
 	}
 
