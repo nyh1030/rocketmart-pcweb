@@ -296,8 +296,8 @@
                             </div>
                             <div class="ps-pagination">
                                 <ul class="pagination">
-                                    <li><button id="btnPrev"><i class="icon-chevron-left"></i>이전페이지</button></li>
-                                    <li class="active"><button id="btnNext">다음페이지<i class="icon-chevron-right"></i></button></li>
+                                    <li><button id="btnPrev"><i class="fa fa-angle-left"></i></button></li>
+                                    <li class="active"><button id="btnNext"><i class="fa fa-angle-right"></i></button></li>
                                 </ul>
                             </div>
                         </div>
@@ -430,7 +430,6 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                                  <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                                 </div>`);
                 }
                 if (productBackAfile) {
@@ -740,8 +739,6 @@
                   acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
                   addRemoveLinks: false,
                   autoProcessQueue: true,
-                  thumbnailWidth: 100,
-                  thumbnailHeight: 100,
                   maxFiles: 1,
                   maxFilesize: 10,
                   clickable: true,
@@ -755,7 +752,6 @@
                               </div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
                   init: fnInit,
                   success: fnSuccess

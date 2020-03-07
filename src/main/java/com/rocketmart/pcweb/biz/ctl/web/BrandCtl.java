@@ -35,8 +35,9 @@ public class BrandCtl {
 		return prefixPath.concat("/brand_modify");
 	}
 
-	@GetMapping("/seller/brand_detail")
-	public String brandDetail() {
+	@GetMapping("/seller/brand_detail/{brandSeq}")
+	public String brandDetail(Model model, @PathVariable(value = "brandSeq") int brandSeq) {
+		model.addAttribute("brandInfo", brandSvc.findByBrandSeq(brandSeq));
 		return prefixPath.concat("/brand_detail");
 	}
 

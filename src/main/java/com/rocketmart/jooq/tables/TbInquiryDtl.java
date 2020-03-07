@@ -17,6 +17,7 @@ import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
@@ -42,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
-    private static final long serialVersionUID = -2096813988;
+    private static final long serialVersionUID = -823178077;
 
     /**
      * The reference instance of <code>rocketmart.TB_INQUIRY_DTL</code>
@@ -60,7 +61,7 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     /**
      * The column <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ</code>. 상품문의 상세 일련번호
      */
-    public final TableField<TbInquiryDtlRecord, Integer> INQUIRY_DTL_SEQ = createField(DSL.name("INQUIRY_DTL_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "상품문의 상세 일련번호");
+    public final TableField<TbInquiryDtlRecord, Integer> INQUIRY_DTL_SEQ = createField(DSL.name("INQUIRY_DTL_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "상품문의 상세 일련번호");
 
     /**
      * The column <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_SEQ</code>. 상품문의 일련번호
@@ -133,6 +134,11 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     @Override
     public List<Index> getIndexes() {
         return Arrays.<Index>asList(Indexes.TB_INQUIRY_DTL_PRIMARY, Indexes.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK, Indexes.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK);
+    }
+
+    @Override
+    public Identity<TbInquiryDtlRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_TB_INQUIRY_DTL;
     }
 
     @Override

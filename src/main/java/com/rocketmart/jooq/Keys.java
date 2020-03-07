@@ -56,6 +56,7 @@ public class Keys {
     public static final Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Identities0.IDENTITY_TB_BRAND_MST;
     public static final Identity<TbCateMstRecord, Integer> IDENTITY_TB_CATE_MST = Identities0.IDENTITY_TB_CATE_MST;
     public static final Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Identities0.IDENTITY_TB_CONTACT_US;
+    public static final Identity<TbInquiryDtlRecord, Integer> IDENTITY_TB_INQUIRY_DTL = Identities0.IDENTITY_TB_INQUIRY_DTL;
     public static final Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Identities0.IDENTITY_TB_INQUIRY_MST;
     public static final Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Identities0.IDENTITY_TB_MEM_MST;
     public static final Identity<TbPrdFobRecord, Integer> IDENTITY_TB_PRD_FOB = Identities0.IDENTITY_TB_PRD_FOB;
@@ -101,6 +102,7 @@ public class Keys {
         public static Identity<TbBrandMstRecord, Integer> IDENTITY_TB_BRAND_MST = Internal.createIdentity(TbBrandMst.TB_BRAND_MST, TbBrandMst.TB_BRAND_MST.BRAND_SEQ);
         public static Identity<TbCateMstRecord, Integer> IDENTITY_TB_CATE_MST = Internal.createIdentity(TbCateMst.TB_CATE_MST, TbCateMst.TB_CATE_MST.CATE_SEQ);
         public static Identity<TbContactUsRecord, Integer> IDENTITY_TB_CONTACT_US = Internal.createIdentity(TbContactUs.TB_CONTACT_US, TbContactUs.TB_CONTACT_US.CONTACT_SEQ);
+        public static Identity<TbInquiryDtlRecord, Integer> IDENTITY_TB_INQUIRY_DTL = Internal.createIdentity(TbInquiryDtl.TB_INQUIRY_DTL, TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ);
         public static Identity<TbInquiryMstRecord, Integer> IDENTITY_TB_INQUIRY_MST = Internal.createIdentity(TbInquiryMst.TB_INQUIRY_MST, TbInquiryMst.TB_INQUIRY_MST.INQUIRY_SEQ);
         public static Identity<TbMemMstRecord, Integer> IDENTITY_TB_MEM_MST = Internal.createIdentity(TbMemMst.TB_MEM_MST, TbMemMst.TB_MEM_MST.MEM_SEQ);
         public static Identity<TbPrdFobRecord, Integer> IDENTITY_TB_PRD_FOB = Internal.createIdentity(TbPrdFob.TB_PRD_FOB, TbPrdFob.TB_PRD_FOB.FOB_SEQ);

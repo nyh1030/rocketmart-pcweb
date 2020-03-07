@@ -40,3 +40,9 @@ const TRADING_CONDITIONS = {
 	'20': '원료 공급 형태의 수출',
 	'30': '바이어 주문에 대한 위탁생산'
 };
+
+// 브랜드 인증
+const BRAND_CERIFY = {
+	'10': 'ISO 22716 / CGMP',
+	'20': 'ISO 9001'
+};
