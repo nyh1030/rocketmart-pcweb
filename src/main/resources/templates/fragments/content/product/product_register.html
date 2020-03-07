@@ -436,58 +436,106 @@
                 Dropzone.autoDiscover = false;
 
                 const fnFrontInit = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductFront > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductFront > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnBackInit = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductBack > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductBack > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnAspectInit = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductAspect > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductAspect > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnShape1Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductShape1 > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductShape1 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnShape2Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductShape2 > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductShape2 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnOutside1Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductOutside1 > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductOutside1 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnOutside2Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductOutside2 > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductOutside2 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnEtc1Init = function() {
+                    let _this;
                     this.on("addedfile", file => {
-                        if (file.status === "added") $("#dvProductEtc1 > .txt-drag").remove();
+                        _this = this;
+                        if (file.status === "added") $("#dvProductEtc1 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnEtc2Init = function() {
                     let _this;
                     this.on("addedfile", file => {
                         _this = this;
-                        if (file.status === "added") $("#dvProductEtc2 > .txt-drag").remove();
+                        if (file.status === "added") $("#dvProductEtc2 > .txt-drag").hide();
                         if (file.status === "queued") $(".dz-success-mark").remove();
                     });
                     this.on("maxfilesexceeded", function (file) {
