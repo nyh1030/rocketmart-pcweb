@@ -10,9 +10,21 @@
                 <aside class="widget widget--vendor">
                     <h3 class="widget-title">Mypage</h3>
                     <ul class="ps-list--arrow">
-                        <li><a th:href="@{/admin/member/list}" class="active">Member List</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
-                        <li><a th:href="@{/admin/inquiry/list}">Inquiry</a></li>
-                        <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
+                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                            <li><a th:href="@{/admin/member/list}">Member List</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/admin/inquiry/list}">Inquiry</a></li>
+                            <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
+                            <li><a th:href="@{/any/wishlist/list}" class="active">WishList</a></li>
+                        </th:block>
+                        <th:block sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')">
+                            <li><a th:href="@{/seller/brand_add}">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/seller/seller_detail}">회사정보</a></li>
+                            <li><a th:href="@{/any/wishlist/list}" class="active">WishList</a></li>
+                        </th:block>
+                        <th:block sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')">
+                            <li><a th:href="@{/any/wishlist/list}" class="active">WishList</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/buyer/buyer_detail}">MyInfo</a></li>
+                        </th:block>
                     </ul>
                 </aside>
             </div>
