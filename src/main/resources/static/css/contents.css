@@ -151,7 +151,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-block--categories-tabs .ps-tab-list a{font-size:15px;}
 #homepage-5 .ps-block--categories-tabs .ps-tab-list a.active{color:#000;font-weight:600;}
 #homepage-5 .ps-search-trending{padding:60px 0 0;}
-#homepage-5 .ps-search-trending .no_data{border:0;padding:40px 0 60px;}
+#homepage-5 .ps-search-trending .no_data{border:0;text-align:center;margin-top:40px;}
 .ps-page--shop .ps-block--vendor{overflow:hidden;margin-bottom:70px;}
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail{float:left;width:20%;}
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail .logo-box{}
