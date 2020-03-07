@@ -33,7 +33,15 @@ public class CategorySvc {
 	 */
 	public List<Map<String, Object>> findAllForCategoryMenu(String cate1Cd) {
 		return categoryRepository.findAllForCategoryMenu(cate1Cd);
+	}
 
+	/**
+	 * 메인 > Category 목록 조회
+	 * @param
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForCategoryInfo(TbCateMstRecord tbCateMstRecord) {
+		return categoryRepository.findAllForCategoryInfo(tbCateMstRecord);
 	}
 
 	public List<Map<String, Object>> findAll() {

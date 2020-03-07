@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @Slf4j
 @RestController
 public class OtherRestCtl {
@@ -34,7 +36,9 @@ public class OtherRestCtl {
 	 * @return ResponseEntity<String>
 	 */
 	@PostMapping("/any/rest/wishlist/info/save")
-	public ResponseEntity<String> saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord) {
+	public ResponseEntity<String> saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord, Principal principal) {
+		tbWishMstRecord.setRegUsrId(principal.getName());
+
 		return new ResponseEntity<>(otherSvc.saveOneForWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
