@@ -17,7 +17,7 @@
             </div>
             <div class="header__right">
                 <div class="header__actions">
-                    <a class="header__extra" href="#"><i class="icon-heart"></i><span><i>0</i></span></a>
+                    <!--<a class="header__extra" href="#"><i class="icon-heart"></i><span><i>0</i></span></a>-->
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
@@ -27,9 +27,8 @@
                             <!-- D : 로그인후 -->
                             <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>
-                            <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/seller_detail}">Mypage</a>
+                            <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/brand_add}">Mypage</a>
                             <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/buyer/inquiry/list}">Mypage</a>
-                            <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/buyer/buyer_detail}">Mypage</a>
                         </div>
                     </div>
                 </div>

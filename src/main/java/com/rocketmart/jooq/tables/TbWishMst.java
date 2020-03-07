@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbWishMst extends TableImpl<TbWishMstRecord> {
 
-    private static final long serialVersionUID = -1088421805;
+    private static final long serialVersionUID = 785690428;
 
     /**
      * The reference instance of <code>rocketmart.TB_WISH_MST</code>
@@ -72,6 +72,11 @@ public class TbWishMst extends TableImpl<TbWishMstRecord> {
      * The column <code>rocketmart.TB_WISH_MST.ASK_YN</code>. 문의여부
      */
     public final TableField<TbWishMstRecord, String> ASK_YN = createField(DSL.name("ASK_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "문의여부");
+
+    /**
+     * The column <code>rocketmart.TB_WISH_MST.DEL_YN</code>. 삭제여부
+     */
+    public final TableField<TbWishMstRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
      * The column <code>rocketmart.TB_WISH_MST.REG_USR_ID</code>. 등록자아이디
@@ -187,11 +192,11 @@ public class TbWishMst extends TableImpl<TbWishMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Integer, Integer, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

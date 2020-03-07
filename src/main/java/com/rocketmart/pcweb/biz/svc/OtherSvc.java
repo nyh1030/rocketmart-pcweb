@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import java.util.List;
 import java.util.Map;
 
+import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
+
 @Slf4j
 @AllArgsConstructor
 @Service
@@ -47,6 +49,17 @@ public class OtherSvc {
 	 */
 	public Map<String, Object> findOneForContactUsInfo(int contactSeq) {
 		return otherRepository.findOneForContactUsInfo(contactSeq);
+	}
+
+	/**
+	 * WishList 등록 중복 체크
+	 * @param tbWishMstRecord
+	 * @return boolean
+	 *
+	 * Y면 중복상품 존재, N이면 중복상품 없음
+	 */
+	public boolean wishInfoOverLapChk(TbWishMstRecord tbWishMstRecord) {
+		return this.otherRepository.wishInfoOverLapChk(tbWishMstRecord);
 	}
 
 	/**

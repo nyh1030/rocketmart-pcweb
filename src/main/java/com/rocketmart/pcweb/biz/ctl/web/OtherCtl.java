@@ -1,16 +1,19 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
+import com.rocketmart.pcweb.biz.svc.ProductSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class OtherCtl {
@@ -19,6 +22,9 @@ public class OtherCtl {
 
     @Autowired
     private OtherSvc otherSvc;
+
+    @Autowired
+    private ProductSvc productSvc;
 
     /**
      * ContactUs 목록(어드민)
@@ -64,6 +70,17 @@ public class OtherCtl {
         model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
 
         return prefixPath.concat("/mypage/wish_list");
+    }
+
+    @PostMapping("/any/inquiry_register")
+    public String dispInquiryRegister(@RequestParam(value = "productSeq") String productSeq, Model model) {
+        List<Integer> productSeqs = Arrays.stream(productSeq.split(",", -1))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        model.addAttribute("productList", productSvc.findAllForProductInfo(productSeqs));
+
+        return prefixPath.concat("/other/inquiry_register");
     }
 
 }

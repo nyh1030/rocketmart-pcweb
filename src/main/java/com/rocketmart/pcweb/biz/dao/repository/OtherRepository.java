@@ -60,6 +60,19 @@ public class OtherRepository {
     }
 
     /**
+     * WishList 등록 중복 체크
+     */
+    public boolean wishInfoOverLapChk(TbWishMstRecord tbWishMstRecord) {
+        return this.dslContext.selectCount()
+                .from(TB_WISH_MST)
+                .where(TB_WISH_MST.PRODUCT_SEQ.eq(tbWishMstRecord.getProductSeq()))
+                    .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())
+                    .and(TB_WISH_MST.ASK_YN.eq("N"))
+                    .and(TB_WISH_MST.DEL_YN.eq("N")))
+                .fetchOne().value1() > 0;
+    }
+
+    /**
      * WishList 등록
      */
     public int saveOneForWishListInfo(TbWishMstRecord tbWishMstRecord) {
@@ -96,7 +109,8 @@ public class OtherRepository {
                 .join(TB_PRD_MST)
                 .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .where(TB_WISH_MST.ASK_YN.eq("N")
-                        .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())))
+                        .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
+                        .and(TB_WISH_MST.DEL_YN.eq("N")))
                 .orderBy(TB_WISH_MST.REG_TS.desc())
                 .fetchMaps();
     }

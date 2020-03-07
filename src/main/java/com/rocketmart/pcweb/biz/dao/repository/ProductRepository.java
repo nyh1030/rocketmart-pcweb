@@ -7,6 +7,7 @@ import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,23 @@ public class ProductRepository {
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.PRODUCT_SEQ.equal(productSeq)).and(TB_PRD_MST.DEL_YN.equal("N"))
 				.fetchOneMap();
+	}
+
+	public List<Map<String, Object>> findAllForProductInfo(List<Integer> productSeqs) {
+		return this.dslContext.select(
+				TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM,TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM,TB_PRD_MST.CATE1_CD, TB_PRD_MST.CATE2_CD, TB_PRD_MST.CATE3_CD,
+				TB_PRD_MST.PRODUCT_CAPACITY, TB_PRD_MST.PRODUCT_URL, TB_PRD_MST.PRODUCT_LINEUP, TB_PRD_MST.SELLER_NOTE, TB_PRD_MST.PRODUCT_CONTENT,
+				TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.FOB_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN, TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT,
+				TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS, TB_CM_AFILE.URL_PATH_CD)
+				.from(TB_PRD_MST)
+				.innerJoin(TB_BRAND_MST)
+				.on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
+				.innerJoin(TB_CM_AFILE)
+				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.where(TB_PRD_MST.DEL_YN.equal("N"))
+					.and(TB_PRD_MST.PRODUCT_SEQ.in(productSeqs))
+				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.fetchMaps();
 	}
 
 	public List<Map<String, Object>> findAllForLastestOrder() {
