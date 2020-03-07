@@ -50,6 +50,9 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .total{color:#000;}
 .total em{font-style:normal;font-weight:600;}
 /* contents */
+.ps-home-banner .ps-section__left .mega-menu.type{display:block;min-width:930px;}
+.ps-home-banner .ps-section__left .mega-menu.type li{vertical-align:top;padding-right:0;}
+.ps-home-banner .ps-section__left .mega-menu.type li .mega-menu__column{min-width: 165px;display: inline-block;vertical-align: top;}
 .ps-block__header{position:relative;}
 .ps-block__header .ps-btn{font-size:14px;}
 .ps-block__header .ab-r{position:absolute;right:0;top:0;padding:6px 18px;}
