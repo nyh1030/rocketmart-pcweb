@@ -11,9 +11,11 @@
                 <div class="ps-block__content contact-box">
                     <div class="mb-5">
                         <label for="" class="bul-type">PRODUCT</label>
-                        <div class="prd-box" th:each="productList : ${productList}">
-                            <div class="img-box"><img th:src="${productList.get('URL_PATH_CD')}"></div>
-                            <span class="name" th:text="${productList.get('PRODUCT_NM')}"></span>
+                        <div class="prd-wrap">
+                            <div class="item" th:each="productList : ${productList}">
+                                <div class="img-box"><img th:src="${productList.get('URL_PATH_CD')}"></div>
+                                <span class="name" th:text="${productList.get('PRODUCT_NM')}"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-5">

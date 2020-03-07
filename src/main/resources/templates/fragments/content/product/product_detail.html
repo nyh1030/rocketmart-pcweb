@@ -60,30 +60,33 @@
                             </div>
                             <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA'))}"></span></h4>
                             <h4>Quotation (Wholesale Price)</h4>
-                            <table class="tbl-price">
-                                <colgroup>
-                                    <col style="width:33%">
-                                    <col style="width:33%">
-                                    <col>
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th>Quantity</th>
-                                        <th>FOB Unit Price</th>
-                                        <th>Supply Rate</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <th:block th:each="fob : ${fobList}">
+                            <div class="price-info-box">
+                                <a href="#" class="btn-login">Login Required</a>
+                                <table class="tbl-price">
+                                    <colgroup>
+                                        <col style="width:33%">
+                                        <col style="width:33%">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
                                         <tr>
-                                            <td th:text="${fob.RANGE_START + ' ~ ' + fob.RANGE_START}"></td>
-                                            <td th:text="${#numbers.formatInteger(fob.TRADING_PRICE, 3, 'COMMA')}"></td>
-                                            <td th:text="${fob.SUPPLY_RATE}"></td>
+                                            <th>Quantity</th>
+                                            <th>FOB Unit Price</th>
+                                            <th>Supply Rate</th>
                                         </tr>
-                                    </th:block>
-                                </tbody>
-                            </table>
-                            <p class="txt-impt">* Free Sample: Available</p>
+                                    </thead>
+                                    <tbody>
+                                        <th:block th:each="fob : ${fobList}">
+                                            <tr>
+                                                <td th:text="${fob.RANGE_START + ' ~ ' + fob.RANGE_START}"></td>
+                                                <td th:text="${#numbers.formatInteger(fob.TRADING_PRICE, 3, 'COMMA')}"></td>
+                                                <td th:text="${fob.SUPPLY_RATE}"></td>
+                                            </tr>
+                                        </th:block>
+                                    </tbody>
+                                </table>
+                                <p class="txt-impt">* Free Sample: Available</p>
+                            </div>
                             <div class="ps-product__desc">
                                 <ul class="ps-list--dot">
                                     <li th:text="${'Size/Weight: '.concat(productInfo.PRODUCT_CAPACITY)}"></li>
