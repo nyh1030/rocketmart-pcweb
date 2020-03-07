@@ -63,7 +63,7 @@ public class OtherCtl {
      * @param model
      * @return String
      */
-    @GetMapping("/any/wishlist/list")
+    @RequestMapping("/any/wishlist/list")
     public String dispWishList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
         tbWishMstRecord.setRegUsrId(principal.getName());
 
@@ -72,13 +72,37 @@ public class OtherCtl {
         return prefixPath.concat("/mypage/wish_list");
     }
 
-    @PostMapping("/any/inquiry_register")
-    public String dispInquiryRegister(@RequestParam(value = "productSeq") String productSeq, Model model) {
+    /**
+     * Inquiry 목록 조회
+     * @param tbWishMstRecord
+     * @param model
+     * @return String
+     */
+    @RequestMapping("/any/inquiry/list")
+    public String dispInquiryList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
+        tbWishMstRecord.setRegUsrId(principal.getName());
+
+        model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
+
+        return prefixPath.concat("/mypage/wish_list");
+    }
+
+    /**
+     * Inquiry 등록 화면
+     * @param productSeq
+     * @param returnGbn
+     * @param model
+     * @return String
+     */
+    @PostMapping("/any/inquiry/register")
+    public String dispInquiryRegister(@RequestParam(value = "productSeq") String productSeq, @RequestParam(value = "returnGbn") String returnGbn, Model model) {
         List<Integer> productSeqs = Arrays.stream(productSeq.split(",", -1))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
         model.addAttribute("productList", productSvc.findAllForProductInfo(productSeqs));
+        model.addAttribute("returnGbn", returnGbn);
+        model.addAttribute("returnSeq", productSeq);
 
         return prefixPath.concat("/other/inquiry_register");
     }

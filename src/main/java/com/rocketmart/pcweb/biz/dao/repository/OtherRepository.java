@@ -1,6 +1,8 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
+import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -94,23 +96,19 @@ public class OtherRepository {
                         ,TB_PRD_MST.PRODUCT_NM
                         ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_PRD_MST.RETAIL_PRICE
-                        ,TB_WISH_MST.ASK_YN
                         ,TB_MEM_MST.APPROVAL_YN
-                        ,TB_WISH_MST.REG_USR_ID
-                        ,TB_WISH_MST.REG_TS
-                        ,TB_WISH_MST.UPD_USR_ID
-                        ,TB_WISH_MST.UPD_TS
                 )
                 .from(TB_WISH_MST)
                 .join(TB_PRD_MST)
-                .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                .join(TB_PRD_MST)
-                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .join(TB_PRD_MST)
-                .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .where(TB_WISH_MST.ASK_YN.eq("N")
-                        .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
-                        .and(TB_WISH_MST.DEL_YN.eq("N")))
+                    .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                .join(TB_CM_AFILE)
+                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .join(TB_MEM_MST)
+                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .where(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())
+                    .and(TB_WISH_MST.ASK_YN.eq("N"))
+                    .and(TB_WISH_MST.DEL_YN.eq("N"))
+                )
                 .orderBy(TB_WISH_MST.REG_TS.desc())
                 .fetchMaps();
     }
@@ -131,6 +129,30 @@ public class OtherRepository {
                 .from(TB_INQUIRY_MST)
                 .orderBy(TB_INQUIRY_MST.REG_TS.desc())
                 .fetchMaps();
+    }
+
+    /**
+     * Inquiry 마스터 등록
+     */
+    public TbInquiryMstRecord saveOneForInquiryMstInfo(TbInquiryMstRecord tbInquiryMstRecord) {
+        return this.dslContext.insertInto(TB_INQUIRY_MST)
+                .set(TB_INQUIRY_MST.MESSAGE, tbInquiryMstRecord.getMessage())
+                .set(TB_INQUIRY_MST.REG_USR_ID, tbInquiryMstRecord.getRegUsrId())
+                .set(TB_INQUIRY_MST.UPD_USR_ID, tbInquiryMstRecord.getRegUsrId())
+                .returning(TB_INQUIRY_MST.INQUIRY_SEQ)
+                .fetchOne();
+    }
+
+    /**
+     * Inquiry 상세 등록
+     */
+    public int saveAllForInquiryDtlInfo(TbInquiryDtlRecord tbInquiryDtlRecord) {
+        return this.dslContext.insertInto(TB_INQUIRY_DTL)
+                .set(TB_INQUIRY_DTL.INQUIRY_SEQ, tbInquiryDtlRecord.getInquirySeq())
+                .set(TB_INQUIRY_DTL.PRODUCT_SEQ, tbInquiryDtlRecord.getProductSeq())
+                .set(TB_INQUIRY_DTL.REG_USR_ID, tbInquiryDtlRecord.getRegUsrId())
+                .set(TB_INQUIRY_DTL.UPD_USR_ID, tbInquiryDtlRecord.getRegUsrId())
+                .execute();
     }
 
 }

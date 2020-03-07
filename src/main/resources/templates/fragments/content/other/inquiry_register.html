@@ -15,6 +15,7 @@
                             <div class="item" th:each="productList : ${productList}">
                                 <div class="img-box"><img th:src="${productList.get('URL_PATH_CD')}"></div>
                                 <span class="name" th:text="${productList.get('PRODUCT_NM')}"></span>
+                                <input type="hidden" id="productSeq" name="productSeq" th:value="${productList.get('PRODUCT_SEQ')}"/>
                             </div>
                         </div>
                     </div>
@@ -26,6 +27,10 @@
                 <div class="btns">
                     <button type="button" id="btnSave" class="ps-btn type-black">Submit</button>
                     <button type="button" id="btnCancel" class="ps-btn type-black">Cancel</button>
+                    <form id="returnFrm" method="post" action="">
+                        <input type="hidden" id="returnGbn" name="returnGbn" th:value="${returnGbn}"/>
+                        <input type="hidden" id="returnSeq" name="returnSeq" th:value="${returnSeq}"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -33,3 +38,67 @@
     </div>
 </th:block>
 </html>
+
+
+
+<script>
+    $(() => {
+        PageScope.init();
+        EventScope.init();
+    });
+
+    const PageScope = {
+
+        init() {
+
+        },
+        saveInquiryInfo() {
+            axios({
+                method: 'post',
+                url: '/any/rest/inquiry/info/save',
+                params: Object.assign(this.getParameters())
+            }).then(response => {
+                if (response.data === 200) {
+                    alert('Submitted successfully');
+                    this.returnPage();
+                }else{
+                    alert('Failed to submit');
+                }
+            }).catch(error => {
+                console.log(error);
+                alert('[Error] Please contact administrator');
+            });
+        },
+        getParameters() {
+            return {
+                productSeq: $('input[name=productSeq]').val(),
+                message: $('#message').val()
+            }
+        },
+        returnPage(){
+            if("productDetail" === $('#returnGbn').val()){
+                CommonUtils.forwardPage("/any/product_detail/"+$('#returnSeq').val());
+            }else if("wishList" === $('#returnGbn').val()){
+                CommonUtils.forwardPage('/any/wishlist/list');
+            }
+        }
+    };
+
+    const EventScope = {
+
+        init() {
+            this.clickEventListener();
+        },
+
+        clickEventListener() {
+            $('#btnSave').on('click', () => {
+                if (confirm('Do you want to submit?')) {
+                    PageScope.saveInquiryInfo();
+                }
+            });
+            $('#btnCancel').on('click', () => {
+                PageScope.returnPage();
+            });
+        }
+    };
+</script>

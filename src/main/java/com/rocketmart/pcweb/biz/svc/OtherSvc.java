@@ -1,8 +1,12 @@
 package com.rocketmart.pcweb.biz.svc;
 
+import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
+import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.dao.repository.OtherRepository;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +83,32 @@ public class OtherSvc {
 	 */
 	public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord) {
 		return otherRepository.findAllForWishInfo(tbWishMstRecord);
+	}
+
+	/**
+	 * Inquiry 등록
+	 * @param tbInquiryMstRecord
+	 * @param productSeqs
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public String saveInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, List<Integer> productSeqs) {
+		int resultMstSeq = 0;
+		int resultDtlCnt = 0;
+		TbInquiryMstRecord inquiryMstRecord = otherRepository.saveOneForInquiryMstInfo(tbInquiryMstRecord);
+		resultMstSeq = inquiryMstRecord.getInquirySeq();
+
+		if (resultMstSeq > 0){
+			TbInquiryDtlRecord tbInquiryDtlRecord = new TbInquiryDtlRecord();
+			tbInquiryDtlRecord.setInquirySeq(resultMstSeq);
+			tbInquiryDtlRecord.setRegUsrId(tbInquiryMstRecord.getRegUsrId());
+
+			for(Integer productSeq : productSeqs){
+				tbInquiryDtlRecord.setProductSeq(productSeq);
+				resultDtlCnt += otherRepository.saveAllForInquiryDtlInfo(tbInquiryDtlRecord);
+			}
+		}
+
+		return resultDtlCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
 }

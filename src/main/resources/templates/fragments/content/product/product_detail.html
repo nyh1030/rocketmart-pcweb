@@ -97,11 +97,8 @@
                                 </ul>
                             </div>
                             <div class="btn-box">
-                                <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry_register}" method="post">
-                                    <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
-                                </form>
-                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAuthenticated()"><i class="fa fa-heart-o"></i> WISHLIST</span>
-                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAuthenticated()">ASK NOW</span>
+                                <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                <span class="ps-btn" id="btnInquiry">ASK NOW</span>
                             </div>
                         </div>
                     </div>
@@ -123,6 +120,11 @@
             </div>
         </div>
     </div>
+
+    <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/register}" method="post">
+        <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
+        <input type="hidden" id="returnGbn" name="returnGbn" th:value="productDetail"/>
+    </form>
 
     <script th:inline="javascript" type="text/javascript">
         $(() => {
@@ -187,6 +189,7 @@
                         alert('This Product has already been added');
                     }
                 }).catch(error => {
+                    console.log(error);
                     alert('[Error] Please contact administrator');
                 });
             },
@@ -210,8 +213,8 @@
                     PageScope.saveWishInfo();
                 });
                 $('#btnInquiry').on('click', () => {
-                    var form = $('#inquiryFrm');
-                    form.submit();
+                    //Inquiry 등록 화면 이동
+                    $('#inquiryFrm').submit();
                 });
             }
         };

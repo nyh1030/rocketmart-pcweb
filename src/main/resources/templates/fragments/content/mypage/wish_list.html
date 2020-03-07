@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
 <th:block layout:fragment="content">
-<div class="ps-vendor-dashboard">
+<div class="ps-vendor-dashboard ps-store-list">
     <!-- .container : S -->
     <div class="container">
         <div class="ps-section__wrapper">
@@ -22,7 +22,7 @@
                 <div class="ps-block--vendor-dashboard">
                 <div class="ps-block__header mt-50">
                     <h3>Wishlist</h3>
-                    <button type="button" id="" class="ab-r ps-btn type-yellow">ASK ALL</button>
+                    <button type="button" id="btnAskAll" class="ab-r ps-btn type-yellow">ASK ALL</button>
                 </div>
                 <div class="ps-block__content">
                     <div class="table-responsive">
@@ -36,7 +36,7 @@
                             </colgroup>
                             <thead>
                             <tr>
-                                <th><input type="checkbox" id="productSeqAll" name="productSeqAll" /></th>
+                                <th><input type="checkbox" id="productSeqAll" name="productSeqAll" class="check-all"/></th>
                                 <th>PRODUCT</th>
                                 <th>RETAIL PRICE</th>
                                 <th>FOB PRICE</th>
@@ -51,12 +51,11 @@
                             </th:block>
                             <th:block th:if="${not #lists.isEmpty(wishList)}">
                                 <tr th:each="wish : ${wishList}">
-                                    <td><input type="checkbox" id="productSeqArr" name="productSeqArr" th:value="${wish.get('PRODUCT_SEQ')}" /></td>
+                                    <td><input type="checkbox" id="productSeqArr" name="productSeqArr" th:value="${wish.get('PRODUCT_SEQ')}" class="check"/></td>
                                     <td th:text="${wish.get('PRODUCT_NM')}"></td>
                                     <td th:text="'$' + ${wish.get('RETAIL_PRICE')}"></td>
                                     <td th:if="${wish.get('APPROVAL_YN') == 'N'}">Pending</td>
                                     <td th:if="${wish.get('APPROVAL_YN') == 'Y'}">Click Here</td>
-                                    <td th:text="${wish.get('COMPANY_NM')}"></td>
                                     <td>
                                         <div class="btns type">
                                             <button type="button" id="btnAsk" class="ps-btn type-yellow">Ask This</button>
@@ -77,6 +76,11 @@
     <!-- //.container : E -->
 </div>
 
+<form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/register}" method="post">
+    <input type="hidden" id="productSeq" name="productSeq"/>
+    <input type="hidden" id="returnGbn" name="returnGbn" th:value="wishlist"/>
+</form>
+
 <script type="text/javascript">
     $(() => {
         PageScope.init();
@@ -86,25 +90,12 @@
     const PageScope = {
 
         init() {
-
+            $('.check-all').on('click',this.checkAll);
         },
-/* 전시 상품 상세에 추가할 내용
 
-        saveWishInfo(productSeq) {
-            axios({
-                method: 'post',
-                url: '/any/rest/wishlist/info/save',
-                params: Object.assign(this.getParameters(), productSeq)
-            }).then(response => {
-                if (response.data === 200) {
-                    alert('Added to wishlist');
-                }
-            })
-                .catch(error => {
-                    console.log(error);
-                });
+        checkAll() {
+            $( '.check' ).prop( 'checked', this.checked );
         },
-*/
 
         getParameters() {
             return {
@@ -116,9 +107,11 @@
         },
 
         invokeValidation() {
-            if (!$('#productSeqArr').val()) {
+            if (0 === $("[name='productSeqArr']:checked").length) {
                 alert('Please check the product');
                 return false;
+            }else{
+                $('#productSeq').val(CommonUtils.getCheckValToCommaString($('[name="productSeqArr"]')));
             }
             return true;
         }
@@ -131,11 +124,11 @@
         },
 
         clickEventListener() {
-            $('#btnAsk').on('click', () => {
+            $('#btnAskAll, #btnAsk').on('click', () => {
                 if (!PageScope.invokeValidation()) return;
 
                 if (confirm('Would you like to inquire about this product?')) {
-                    PageScope.uploadStarter.processQueue();
+                    $('#inquiryFrm').submit();
                 }
             });
             $('#btnDetail').on('click', () => {
