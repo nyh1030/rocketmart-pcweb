@@ -254,39 +254,40 @@
                                     <p class="txt-impt">*제품 사진은 반드시 한 장 이상 등록되어야 합니다.</p>
                                     <ul class="photo-upload">
                                         <li>
-                                            <div id="dvProductFront" class="prd-photo"></div>
+                                            <span class="flag">대표이미지</span>
+                                            <div id="dvProductFront" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">제품 정면</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductBack" class="prd-photo"></div>
+                                            <div id="dvProductBack" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">제품 후면</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductAspect" class="prd-photo"></div>
+                                            <div id="dvProductAspect" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">제품 측면</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductShape1" class="prd-photo"></div>
+                                            <div id="dvProductShape1" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">제형1</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductShape2" class="prd-photo"></div>
+                                            <div id="dvProductShape2" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">제형2</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductOutside1" class="prd-photo"></div>
+                                            <div id="dvProductOutside1" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">외부패키지1</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductOutside2" class="prd-photo"></div>
+                                            <div id="dvProductOutside2" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">외부패키지2</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductEtc1" class="prd-photo"></div>
+                                            <div id="dvProductEtc1" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">기타1</span>
                                         </li>
                                         <li>
-                                            <div id="dvProductEtc2" class="prd-photo"></div>
+                                            <div id="dvProductEtc2" class="prd-photo"><span class="txt-drag">Drag and Drop</span></div>
                                             <span class="txt">기타2</span>
                                         </li>
                                     </ul>
@@ -353,16 +354,6 @@
             isCate1First: true,
             isCate2First: true,
             isCate3First: true,
-
-            isFrontFileChange: false,
-            isBackFileChange: false,
-            isAspectFileChange: false,
-            isShape1FileChange: false,
-            isShape2FileChange: false,
-            isOutside1FileChange: false,
-            isOutside2FileChange: false,
-            isEtc1FileChange: false,
-            isEtc2FileChange: false,
 
             init() {
                 this.setWebEditor();
@@ -432,60 +423,79 @@
                 this.strEtc1AfileSeq = productEtc1Afile ? productEtc1Afile.AFILE_SEQ : null;
                 this.strEtc2AfileSeq = productEtc2Afile ? productEtc2Afile.AFILE_SEQ : null;
 
-                $('#dvProductFront').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductBack').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile ? productBackAfile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductAspect').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile ? productAspectAfile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductShape1').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile ? productShape1Afile.URL_PATH_CD : ''} : '" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductShape2').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile ? productShape2Afile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductOutside1').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile ? productOutside1Afile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductOutside2').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile ? productOutside2Afile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductEtc1').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile ? productEtc1Afile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
-                $('#dvProductEtc2').html(`
-                            <div class="dz-preview dz-file-preview" >
-                              <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile ? productEtc2Afile.URL_PATH_CD : ''}" /></div>
-                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            </div>`);
+                if (productFrontAfile) {
+                    $('#dvProductFront').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                                </div>`);
+                }
+                if (productBackAfile) {
+                    $('#dvProductBack').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile ? productBackAfile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productAspectAfile) {
+                    $('#dvProductAspect').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile ? productAspectAfile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productShape1Afile) {
+                    $('#dvProductShape1').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile ? productShape1Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productShape2Afile) {
+                    $('#dvProductShape2').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile ? productShape2Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productOutside1Afile) {
+                    $('#dvProductOutside1').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile ? productOutside1Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productOutside2Afile) {
+                    $('#dvProductOutside2').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile ? productOutside2Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productEtc1Afile) {
+                    $('#dvProductEtc1').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile ? productEtc1Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
+                if (productEtc2Afile) {
+                    $('#dvProductEtc2').html(`
+                                <div class="dz-preview dz-file-preview" >
+                                  <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile ? productEtc2Afile.URL_PATH_CD : ''}" /></div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`);
+                }
             },
 
             bindCate1Combo() {
@@ -603,119 +613,110 @@
 
                 const fnFrontInit = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isFrontFileChange = true;
-
-                        $("#dvProductFront > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductFront > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnBackInit = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isBackFileChange = true;
-
-                        $("#dvProductBack > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductBack > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnAspectInit = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isAspectFileChange = true;
-
-                        $("#dvProductAspect > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductAspect > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnShape1Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isShape1FileChange = true;
-
-                        $("#dvProductShape1 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductShape1 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnShape2Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isShape2FileChange = true;
-
-                        $("#dvProductShape2 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductShape2 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnOutside1Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isOutside1FileChange = true;
-
-                        $("#dvProductOutside1 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductOutside1 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnOutside2Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isOutside2FileChange = true;
-
-                        $("#dvProductOutside2 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductOutside2 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnEtc1Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isEtc1FileChange = true;
-
-                        $("#dvProductEtc1 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductEtc1 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
                 const fnEtc2Init = function() {
                     let _this;
-                    this.on("addedfile", file =>{
+                    this.on("addedfile", file => {
                         _this = this;
-
-                        PageScope.isEtc2FileChange = true;
-
-                        $("#dvProductEtc2 > .dz-preview:first").remove();
-                        if (file.status === "queued") {
-                            $(".dz-success-mark").remove();
-                        }
+                        if (file.status === "added") $("#dvProductEtc2 > .txt-drag").remove();
+                        if (file.status === "queued") $(".dz-success-mark").remove();
+                    });
+                    this.on("maxfilesexceeded", function (file) {
+                        _this.removeFile(file);
+                        alert('최대 업로드 파일 수는 1개 입니다.');
                     });
                 };
 
@@ -743,7 +744,6 @@
                   maxFiles: 1,
                   maxFilesize: 10,
                   clickable: true,
-                  dictDefaultMessage: "Drop files here to upload",
                   dictFileSizeUnits: { tb: "TB", gb: "GB", mb: "MB", kb: "KB", b: "b" },
                   previewTemplate: `
                             <div class="dz-preview dz-file-preview" >
@@ -813,6 +813,15 @@
                 }
             },
 
+            addGridRow() {
+                PageScope.objDataTables.row.add([
+                    `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                ]).draw(false);
+            },
+
             invokeValidation() {
                 if (!$('#txtProductNm').val().trim()) {
                     alert('제품명은 필수값 입니다.');
@@ -878,13 +887,9 @@
                 });
 
                 $('#btnAddFob').on('click', () => {
-                    PageScope.objDataTables.row.add([
-                        `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    ]).draw(false);
+                    PageScope.addGridRow();
                 });
+
                 $('#btnRemoveFob').on('click', () => {
                     const $tblFobTr = $("#tblFob tbody").find("tr");
                     if ($tblFobTr.length <= 0) {

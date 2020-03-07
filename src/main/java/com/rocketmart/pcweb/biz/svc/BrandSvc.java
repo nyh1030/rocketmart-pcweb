@@ -21,8 +21,12 @@ public class BrandSvc {
 	@Autowired
 	private FileUtils fileUtils;
 
-	public List<Map<String, Object>> findAllForAfile() {
-		return brandRepository.findAllForAfile();
+	public List<Map<String, Object>> findAll() {
+		return brandRepository.findAll();
+	}
+
+	public List<Map<String, Object>> findAllForAfile(String regUsrId) {
+		return brandRepository.findAllForAfile(regUsrId);
 	}
 
 	public Map<String, Object> findByBrandSeq(int brandSeq) {
@@ -33,8 +37,8 @@ public class BrandSvc {
 		return brandRepository.findBrandByUsrId("ADMIN");
 	}
 
-	public Timestamp findLastUpdatedDateTime() {
-		return brandRepository.findLastUpdatedDateTime();
+	public Timestamp findLastUpdatedDateTime(String regUsrId) {
+		return brandRepository.findLastUpdatedDateTime(regUsrId);
 	}
 
 	@Transactional(rollbackFor = Exception.class)

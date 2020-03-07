@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
+
 @Slf4j
 @RestController
 public class BrandRestCtl {
@@ -24,12 +26,16 @@ public class BrandRestCtl {
 	}
 
 	@PostMapping("/seller/brand/info/save")
-	public ResponseEntity<String> saveBrandInfo(BrandDto brandDto) {
+	public ResponseEntity<String> saveBrandInfo(BrandDto brandDto, Principal principal) {
+		brandDto.setRegUsrId(principal.getName());
+		brandDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(brandSvc.saveOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 	@PutMapping("/seller/brand/info/update")
-	public ResponseEntity<String> updateBrandInfo(BrandDto brandDto) {
+	public ResponseEntity<String> updateBrandInfo(BrandDto brandDto, Principal principal) {
+		brandDto.setRegUsrId(principal.getName());
+		brandDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(brandSvc.updateOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 }
