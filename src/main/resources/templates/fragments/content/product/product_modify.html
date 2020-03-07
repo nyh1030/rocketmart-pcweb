@@ -252,7 +252,9 @@
                                     </div>
                                 </div>
                                 <div class="ps-tab" id="tab-4" style="display: none">
-                                    <p class="txt-impt">*제품 사진은 반드시 한 장 이상 등록되어야 합니다.</p>
+                                    <p class="txt-impt">
+                                        * 이미지 변경시 remove 버튼을 클릭 후 이미지 Drag And Drop을 해주세요.
+                                    </p>
                                     <ul class="photo-upload">
                                         <li>
                                             <span class="flag">대표이미지</span>
@@ -426,11 +428,16 @@
 
                 if (productFrontAfile) {
                     $('#dvProductFront').html(`
-                                <div class="dz-preview dz-file-preview" >
-                                  <div class="dz-image"><img  data-dz-thumbnail src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
-                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                                </div>`);
+                            <div class="dz-preview dz-file-preview" >
+                              <div class="dz-image"><img src="${productFrontAfile ? productFrontAfile.URL_PATH_CD : ''}" /></div>
+                              <div class="dz-details">
+                                  <div class="dz-size"><span data-dz-size></span></div>
+                                  <div class="dz-filename"><span data-dz-name></span></div>
+                              </div>
+                              <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductFront');">remove</button>
+                            </div>`);
                 }
                 if (productBackAfile) {
                     $('#dvProductBack').html(`
@@ -438,6 +445,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productBackAfile ? productBackAfile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductBack');">remove</button>
                                 </div>`);
                 }
                 if (productAspectAfile) {
@@ -446,6 +454,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productAspectAfile ? productAspectAfile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductAspect');">remove</button>
                                 </div>`);
                 }
                 if (productShape1Afile) {
@@ -454,6 +463,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productShape1Afile ? productShape1Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductShape1');">remove</button>
                                 </div>`);
                 }
                 if (productShape2Afile) {
@@ -462,6 +472,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productShape2Afile ? productShape2Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductShape2');">remove</button>
                                 </div>`);
                 }
                 if (productOutside1Afile) {
@@ -470,6 +481,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productOutside1Afile ? productOutside1Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductOutside1');">remove</button>
                                 </div>`);
                 }
                 if (productOutside2Afile) {
@@ -478,6 +490,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productOutside2Afile ? productOutside2Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductOutside2');">remove</button>
                                 </div>`);
                 }
                 if (productEtc1Afile) {
@@ -486,6 +499,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productEtc1Afile ? productEtc1Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductEtc1');">remove</button>
                                 </div>`);
                 }
                 if (productEtc2Afile) {
@@ -494,6 +508,7 @@
                                   <div class="dz-image"><img  data-dz-thumbnail src="${productEtc2Afile ? productEtc2Afile.URL_PATH_CD : ''}" /></div>
                                   <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                                   <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                  <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvProductEtc2');">remove</button>
                                 </div>`);
                 }
             },
@@ -746,12 +761,9 @@
                   previewTemplate: `
                             <div class="dz-preview dz-file-preview" >
                               <div class="dz-image"><img data-dz-thumbnail /></div>
-                              <div class="dz-details">
-                                  <div class="dz-size"><span data-dz-size></span></div>
-                                  <div class="dz-filename"><span data-dz-name></span></div>
-                              </div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
                   init: fnInit,
                   success: fnSuccess
@@ -950,6 +962,10 @@
                     PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show(); $('#btnPrev').show(); $('#btnNext').hide();
                     PageScope.tabId = 'tab-4';
                 }
+            },
+
+            removeImage(objTarget) {
+                $(`#${objTarget}`).empty();
             }
         };
     </script>
