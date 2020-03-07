@@ -79,18 +79,22 @@
         invokeValidation() {
             if (!$('#usrNm').val().trim()) {
                 alert('Name is required.');
+                $('#usrNm').focus();
                 return false;
             }
             if (!$('#email').val().trim()) {
                 alert('Email is required.');
+                $('#email').focus();
                 return false;
             }
             if (!$('#companyNm').val().trim()) {
                 alert('Company is required.');
+                $('#companyNm').focus();
                 return false;
             }
             if (!$('#subject').val().trim()) {
                 alert('Subject is required.');
+                $('#subject').focus();
                 return false;
             }
             return true;
