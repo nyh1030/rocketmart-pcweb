@@ -119,6 +119,7 @@
                               <div class="dz-image"><img  data-dz-thumbnail src="${brandInfo.URL_PATH_CD}" /></div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`;
                 $("#dvBrandLogo").html(template);
 
@@ -156,6 +157,7 @@
                               <div class="dz-image"><img data-dz-thumbnail /></div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
                     init: function() {
                         let _this;
