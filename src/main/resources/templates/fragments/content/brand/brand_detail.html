@@ -8,40 +8,42 @@
                     <ul class="breadcrumb">
                         <li><a th:href="@{/}">Home</a></li>
                         <li>Brands</li>
-                        <li>ccc</li>
+                        <li th:text="${brandInfo.BRAND_NM}"></li>
                     </ul>
                 </div>
             </div>
             <div class="ps-block--vendor">
                 <div class="ps-block__thumbnail">
-                    <div class="logo-box"><img src="../../../../static/img/vendor/vendor-store.jpg" alt=""></div>
+                    <div class="logo-box"><img th:src="${brandInfo.URL_PATH_CD}" alt=""></div>
                     <ul class="ps-list--social-color">
-                        <li><a class="home" href="#"><i class="fa fa-home"></i></a></li>
-                        <li><a class="youtube" href="#"><i class="fa fa-youtube"></i></a></li>
-                        <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        <th:block th:if="${!#strings.isEmpty(brandInfo.BRAND_HOMEPAGE_URL)}">
+                            <li><a class="home" th:href="${brandInfo.BRAND_HOMEPAGE_URL}" target="_blank"><i class="fa fa-home"></i></a></li>
+                        </th:block>
+                        <th:block th:if="${!#strings.isEmpty(brandInfo.BRAND_YOUTUBE_URL)}">
+                            <li><a class="youtube" th:href="${brandInfo.BRAND_YOUTUBE_URL}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                        </th:block>
+                        <th:block th:if="${!#strings.isEmpty(brandInfo.BRAND_INSTAGRAM_URL)}">
+                            <li><a class="instagram" th:href="${brandInfo.BRAND_INSTAGRAM_URL}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        </th:block>
                     </ul>
                 </div>
                 <div class="ps-block__container">
                     <div class="ps-block__header">
-                        <h4>Innisfree</h4>
+                        <h4 th:text="${brandInfo.BRAND_NM}"></h4>
                     </div>
                     <div class="ps-block__content">
                         <strong class="tit">Brand_Description</strong>
-                        <p class="txt">
-                            Blabla~~<br>
-                            Blabla~~<br>
-                            Blabla~~
-                        </p>
+                        <p class="txt" th:utext="${brandInfo.BRAND_INTRODUCTION}"></p>
                         <strong class="tit">Brand Certificate</strong>
-                        <p class="txt">ISO 22716 / CGM</p>
+                        <p class="txt" id="pBrandCerify"></p>
                     </div>
                 </div>
             </div>
-            <div class="ps-layout--shop">
+            <!--<div class="ps-layout&#45;&#45;shop">
                 <div class="ps-layout__left">
                     <aside class="widget widget_shop">
                         <h4 class="widget-title">Categories</h4>
-                        <ul class="ps-list--categories">
+                        <ul class="ps-list&#45;&#45;categories">
                             <li class="current-menu-item menu-item-has-children"><a href="#">SKINCARE</a><span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
                                 <ul class="sub-menu depth-2">
                                     <li class="current-menu-item menu-item-has-children"><a href="#">기초케어</a> <span class="sub-toggle"><i class="fa fa-angle-down"></i></span>
@@ -382,7 +384,7 @@
                             </div>
                             <div class="ps-tab" id="tab-2">
                                 <div class="ps-shopping-product">
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/1.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -405,7 +407,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/1.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -428,7 +430,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/2.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -460,7 +462,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/3.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -492,7 +494,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/4.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -524,7 +526,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/5.jpg" alt=""></a>
                                             <div class="ps-product__badge">-37%</div>
                                         </div>
@@ -557,7 +559,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/6.jpg" alt=""></a>
                                             <div class="ps-product__badge">-5%</div>
                                         </div>
@@ -590,7 +592,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/7.jpg" alt=""></a>
                                             <div class="ps-product__badge">-16%</div>
                                         </div>
@@ -623,7 +625,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/8.jpg" alt=""></a>
                                             <div class="ps-product__badge">-16%</div>
                                         </div>
@@ -656,7 +658,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/9.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -688,7 +690,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/10.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -720,7 +722,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ps-product ps-product--wide">
+                                    <div class="ps-product ps-product&#45;&#45;wide">
                                         <div class="ps-product__thumbnail"><a href="product-default.html"><img src="../../../../static/img/products/shop/11.jpg" alt=""></a>
                                         </div>
                                         <div class="ps-product__container">
@@ -765,8 +767,33 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
+    <script type="text/javascript" th:inline="javascript">
+        $(() => {
+            PageScope.init();
+        });
+
+        const PageScope = {
+
+            productAtrbt: null,
+
+            init() {
+                this.brandCerify = /*[[${brandInfo.BRAND_CERIFY}]]*/ 'default' || '';
+
+                this.bindFields();
+            },
+
+            bindFields() {
+                if (this.brandCerify) {
+                    const brandCerifyNm = this.brandCerify.split(',').map(cerify => {
+                        return BRAND_CERIFY[cerify];
+                    });
+                    $('#pBrandCerify').text(`Keyword: ${brandCerifyNm.join(', ')}`);
+                }
+            }
+        };
+    </script>
 </th:block>
 </html>
