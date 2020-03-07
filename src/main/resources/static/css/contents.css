@@ -21,6 +21,7 @@
 .ps-btn.type-gray02{background:#b5b5b5;}
 .ps-btn.type-orange{background:#f05025;padding:0 16px;height:34px;border-radius:5px;color:#fff;}
 .ps-btn.type-red{background:#f14705;}
+.ps-btn[disabled]{background: #e2e2e2;color: #fff;pointer-events:none;}
 .btn-back{top:13px!important;font-size:16px;font-weight:600;border:0;background:#fff;color:#109fd6;}
 .btn-back .fa{font-size:19px;}
 .txt-drag{color:#b1b1b1;}
@@ -193,7 +194,8 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #tblProduct tbody tr td .btns .ps-btn:first-child:before{display:none;}
 #tblProduct tbody tr td .btns .ps-btn.type-red{color:#f30;}
 .price-info-box{position:relative;}
-.price-info-box .btn-login{position: absolute;left: 0;top: 0px;width: 100%;background: rgba(37, 37, 37, 0.95);height: 190px;color: #fff;text-align: center;line-height: 190px;font-size: 18px;font-weight: 600;border-radius: 4px;}
+.price-info-box .btn-login{position: absolute;left: 0;top: 0px;display:flex;align-items:center;justify-content:center;width: 100%;background:rgb(204, 204, 204);height: 100%;color: #fff;font-size: 18px;font-weight: 600;border-radius: 4px;}
+.price-info-box .btn-login span{}
 .ps-table--vendor td .btns.type{margin:0;}
 .ps-table--vendor td .btns.type .ps-btn{padding:5px 15px;font-size:13px;}
 /* popup */
