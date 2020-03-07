@@ -8238,11 +8238,11 @@ textarea.form-control {
 
 .ps-product .ps-product__vendor {
   display: block;
-  padding-bottom: 8px;
-  margin-bottom: 13px;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
   line-height: 1.2;
   font-size: 12px;
-  color: #000;
+  color: #888;
   text-transform: uppercase;
   border-bottom: 1px solid #e1e1e1;
 }
@@ -8274,12 +8274,17 @@ textarea.form-control {
   display: block;
   padding: 0 0 5px;
   font-size: 14px;
-  line-height: 1.2em;
-  color: #06c;
+  line-height: 17px;
+  color: #000;
+  font-weight:600;
   --max-lines: 2;
   max-height: calc(1.2em * var(--max-lines));
   overflow: hidden;
-  padding-right: 1rem;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap:break-word;
 }
 
 .ps-product .ps-product__title:hover {
