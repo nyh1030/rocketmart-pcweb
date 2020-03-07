@@ -35,4 +35,8 @@ public class CategorySvc {
 		return categoryRepository.findAllForCategoryMenu(cate1Cd);
 
 	}
+
+	public List<Map<String, Object>> findAll() {
+		return categoryRepository.findAll();
+	}
 }

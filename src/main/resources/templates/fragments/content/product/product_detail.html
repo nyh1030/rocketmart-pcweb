@@ -58,7 +58,7 @@
                             <div class="ps-product__meta">
                                 <p th:text="${'Brand: ' + productInfo.BRAND_NM}">></p>
                             </div>
-                            <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(productInfo.RETAIL_PRICE)}"></span></h4>
+                            <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA'))}"></span></h4>
                             <h4>Quotation (Wholesale Price)</h4>
                             <table class="tbl-price">
                                 <colgroup>
@@ -77,7 +77,7 @@
                                     <th:block th:each="fob : ${fobList}">
                                         <tr>
                                             <td th:text="${fob.RANGE_START + ' ~ ' + fob.RANGE_START}"></td>
-                                            <td th:text="${fob.TRADING_PRICE}"></td>
+                                            <td th:text="${#numbers.formatInteger(fob.TRADING_PRICE, 3, 'COMMA')}"></td>
                                             <td th:text="${fob.SUPPLY_RATE}"></td>
                                         </tr>
                                     </th:block>

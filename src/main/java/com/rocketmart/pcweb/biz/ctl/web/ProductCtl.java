@@ -50,7 +50,7 @@ public class ProductCtl {
 		return prefixPath.concat("/product_modify");
 	}
 
-	@GetMapping("/seller/product_detail/{productSeq}")
+	@GetMapping("/any/product_detail/{productSeq}")
 	public String productDetail(Model model, @PathVariable(value = "productSeq") int productSeq) {
 		Map<String, Object> productInfo = productSvc.findByProductSeq(productSeq);
 

@@ -61,4 +61,9 @@ public class CategoryRepository {
                 .fetchMaps();
     }
 
+    public List<Map<String, Object>> findAll() {
+        return this.dslContext.select()
+                .from(TB_CATE_MST)
+                .fetchMaps();
+    }
 }

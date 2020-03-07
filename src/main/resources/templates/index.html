@@ -320,66 +320,168 @@
             <div class="container">
                 <div class="ps-section__left">
                     <ul class="menu--dropdown">
-                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">SKINCARE</a>
+                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Skincare</a>
                             <div class="mega-menu">
                                 <div class="mega-menu__column">
-                                    <h4>기초케어<span class="sub-toggle"></span></h4>
-                                    <ul class="mega-menu__list">
-                                        <li class="current-menu-item "><a href="#">스킨/토너</a></li>
-                                        <li class="current-menu-item "><a href="#">로션</a></li>
-                                        <li class="current-menu-item "><a href="#">크림</a></li>
-                                        <li class="current-menu-item "><a href="#">에센스/페이스오일</a></li>
-                                        <li class="current-menu-item "><a href="#">미스트</a></li>
-                                        <li class="current-menu-item "><a href="#">팩/마스크팩</a></li>
-                                        <li class="current-menu-item "><a href="#">아이케어</a></li>
-                                        <li class="current-menu-item "><a href="#">립케어</a></li>
-                                        <li class="current-menu-item "><a href="#">스페셜케어</a></li>
-                                        <li class="current-menu-item "><a href="#">피부관리용품</a></li>
-                                        <li class="current-menu-item "><a href="#">기초케어 세트</a></li>
+                                    <h4>basic care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '101'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
-                                    <h4>선케어<span class="sub-toggle"></span></h4>
-                                    <ul class="mega-menu__list">
-                                        <li class="current-menu-item "><a href="#">로션/크림/젤</a></li>
-                                        <li class="current-menu-item "><a href="#">파우더/스틱/스프레이</a></li>
-                                        <li class="current-menu-item "><a href="#">세트</a></li>
+                                    <h4>cleansing/peeling<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '102'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
-                                    <h4>클렌징<span class="sub-toggle"></span></h4>
-                                    <ul class="mega-menu__list">
-                                        <li class="current-menu-item "><a href="#">클렌징 크림/오일</a></li>
-                                        <li class="current-menu-item "><a href="#">클렌징 폼</a></li>
-                                        <li class="current-menu-item "><a href="#">립/아이리무버</a></li>
-                                        <li class="current-menu-item "><a href="#">피부관리용품</a></li>
+                                    <h4>suncare<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '103'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
-                                    <h4>남성용<span class="sub-toggle"></span></h4>
-                                    <ul class="mega-menu__list">
-                                        <li class="current-menu-item "><a href="#">쉐이빙/애프터쉐이브</a></li>
-                                        <li class="current-menu-item "><a href="#">로션/크림/에센스</a></li>
-                                        <li class="current-menu-item "><a href="#">미스트/팩/마스크팩</a></li>
-                                        <li class="current-menu-item "><a href="#">아이/립/스페셜케어</a></li>
-                                        <li class="current-menu-item "><a href="#">기초케어 세트</a></li>
+                                    <h4>mask/pack<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '104'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Men Care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '105'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Baby Care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '106'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Baby Care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '107'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
-                        <li class="current-menu-item "><a href="#">MAKEUP</a>
-                        </li>
-                        <li class="current-menu-item "><a href="#">BODY/HAIR</a>
-                        </li>
-                        <li class="current-menu-item "><a href="#">TOOL/BRUSH</a>
-                        </li>
-                        <li class="current-menu-item "><a href="#">SUPPLEMENT</a>
+
+                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">makeup</a>
+                            <div class="mega-menu">
+                                <div class="mega-menu__column">
+                                    <h4>face<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '201'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Lip<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '202'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>eye<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '203'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>nail<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '204'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Pallet<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '205'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
 
+                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">body/hair/oral/perfume</a>
+                            <div class="mega-menu">
+                                <div class="mega-menu__column">
+                                    <h4>body care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '301'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Hair Care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '302'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Oral Care<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '303'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Women Perfume<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '304'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Men Perfume<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '305'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Beauty Device/Brush</a>
+                            <div class="mega-menu">
+                                <div class="mega-menu__column">
+                                    <h4>Massage Device<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '401'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>brush<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '402'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>facial rollers<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '403'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Supplement</a>
+                            <div class="mega-menu">
+                                <div class="mega-menu__column">
+                                    <h4>Red-ginseng<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '501'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-menu__column">
+                                    <h4>Dietary Supplement<span class="sub-toggle"></span></h4>
+                                    <ul class="mega-menu__list" th:each="category : ${categoryList}">
+                                        <li th:if="${category.CATE2_CD == '502'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="ps-section__center">
-                    <div class="visual"></div>
+                    <div class="visual">
+                        <img th:src="@{img/main-banner.jpg}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -393,92 +495,29 @@
                     </div><a href="shop-default.html">View all</a>
                 </div>
                 <div class="ps-section__content">
-                    <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
+                    <th:block th:if="${productList == null}">
+                        <p class="no_data">등록된 제품이 없습니다.</p>
+                    </th:block>
+                    <th:block th:if="${productList != null}">
+                        <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
+                            <th:block th:each="product : ${productList}">
+                                <div class="ps-product">
+                                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                        <div class="ps-product__thumbnail">
+                                            <img th:src="${product.URL_PATH_CD}">
+                                        </div>
+                                        <div class="ps-product__container">
+                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                            <div class="ps-product__content">
+                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
+                            </th:block>
                         </div>
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
-                                </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
-                                </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
-                                </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
-                                </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="ps-product">
-                            <a href="#">
-                                <div class="ps-product__thumbnail">
-                                    <img src="img/products/electronic/2.jpg" alt="">
-                                </div>
-                                <div class="ps-product__container">
-                                    <span class="ps-product__vendor">Global Office</span>
-                                    <div class="ps-product__content">
-                                        <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                        <p class="ps-product__price">$101.99</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    </th:block>
                 </div>
             </div>
         </div>
@@ -491,106 +530,82 @@
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
                             <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
-                                <a href="#tab-1" class="active">Basiccare</a>
-                                <a href="#tab-2">Suncare</a>
-                                <a href="#tab-3">Cleansing</a>
-                                <a href="#tab-4">Mask</a>
+                                <a href="#tab-1-1" class="active">basic care</a>
+                                <a href="#tab-1-2">cleansing/peeling</a>
+                                <a href="#tab-1-3">suncare</a>
+                                <a href="#tab-1-4">mask/pack</a>
+                                <a href="#tab-1-5">Men Care</a>
+                                <a href="#tab-1-6">Baby Care</a>
+                                <a href="#tab-1-7">Mom</a>
                         </div>
                         <div class="ps-tabs">
                             <div class="ps-tabs">
-                                <div class="ps-tab active" id="tab-1">
-                                    <div class="row">
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                            <div class="ps-product">
-                                                <a href="#">
-                                                    <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
-                                                        <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
+                                <div class="ps-tab active" id="tab-1-1">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${cate101_productList != null}">
+                                        <div class="row" th:each="product : ${cate101_productList}">
+                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                <div class="ps-product">
+                                                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                        <div class="ps-product__thumbnail">
+                                                            <img th:src="${product.URL_PATH_CD}">
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                        <div class="ps-product__container">
+                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                            <div class="ps-product__content">
+                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                            <div class="ps-product">
-                                                <a href="#">
-                                                    <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
-                                                        <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
+                                    </th:block>
+                                </div>
+                                <div class="ps-tab" id="tab-1-2">
+                                    <th:block th:if="${cate102_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${cate102_productList != null}">
+                                        <div class="row" th:each="product : ${cate102_productList}">
+                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                <div class="ps-product">
+                                                    <a href="#">
+                                                        <div class="ps-product__thumbnail">
+                                                            <img th:src="${product.URL_PATH_CD}">
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                        <div class="ps-product__container">
+                                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                            <div class="ps-product__content">
+                                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
+                                    </th:block>
+                                </div>
+                                <div class="ps-tab" id="tab-1-3">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <div class="row" th:each="product : ${cate103_productList}">
                                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                             <div class="ps-product">
                                                 <a href="#">
                                                     <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
+                                                        <img th:src="${product.URL_PATH_CD}">
                                                     </div>
                                                     <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
+                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
                                                         <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                            <div class="ps-product">
-                                                <a href="#">
-                                                    <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
-                                                        <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                            <div class="ps-product">
-                                                <a href="#">
-                                                    <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
-                                                        <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                            <div class="ps-product">
-                                                <a href="#">
-                                                    <div class="ps-product__thumbnail">
-                                                        <img src="img/products/electronic/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="ps-product__container">
-                                                        <span class="ps-product__vendor">Global Office</span>
-                                                        <div class="ps-product__content">
-                                                            <span class="ps-product__title">Xbox One Wireless Controller Black Color</span>
-                                                            <p class="ps-product__price">$101.99</p>
+                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -598,16 +613,96 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="ps-tab" id="tab-2">
-                                    <div class="ps-block__item">
+                                <div class="ps-tab" id="tab-1-4">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <div class="row" th:each="product : ${cate104_productList}">
+                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="ps-product">
+                                                <a href="#">
+                                                    <div class="ps-product__thumbnail">
+                                                        <img th:src="${product.URL_PATH_CD}">
+                                                    </div>
+                                                    <div class="ps-product__container">
+                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                        <div class="ps-product__content">
+                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="ps-tab" id="tab-3">
-                                    <div class="ps-block__item">
+                                <div class="ps-tab" id="tab-1-5">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <div class="row" th:each="product : ${cate105_productList}">
+                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="ps-product">
+                                                <a href="#">
+                                                    <div class="ps-product__thumbnail">
+                                                        <img th:src="${product.URL_PATH_CD}">
+                                                    </div>
+                                                    <div class="ps-product__container">
+                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                        <div class="ps-product__content">
+                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="ps-tab" id="tab-4">
-                                    <div class="ps-block__item">
+                                <div class="ps-tab" id="tab-1-6">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <div class="row" th:each="product : ${cate106_productList}">
+                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="ps-product">
+                                                <a href="#">
+                                                    <div class="ps-product__thumbnail">
+                                                        <img th:src="${product.URL_PATH_CD}">
+                                                    </div>
+                                                    <div class="ps-product__container">
+                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                        <div class="ps-product__content">
+                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-1-7">
+                                    <th:block th:if="${cate101_productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <div class="row" th:each="product : ${cate107_productList}">
+                                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                            <div class="ps-product">
+                                                <a href="#">
+                                                    <div class="ps-product__thumbnail">
+                                                        <img th:src="${product.URL_PATH_CD}">
+                                                    </div>
+                                                    <div class="ps-product__container">
+                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                        <div class="ps-product__content">
+                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -616,40 +711,431 @@
                 </div>
             </div>
         </div>
+
+        <div class="ps-search-trending">
+            <div class="container">
+                <div class="ps-section__header">
+                    <h3>makeup</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-block--categories-tabs ps-tab-root">
+                        <div class="ps-block__header">
+                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                                <a href="#tab-2-1" class="active">face</a>
+                                <a href="#tab-2-2">Lip</a>
+                                <a href="#tab-2-3">suncare</a>
+                                <a href="#tab-2-4">mask/pack</a>
+                                <a href="#tab-2-5">Men Care</a>
+                            </div>
+                            <div class="ps-tabs">
+                                <div class="ps-tabs">
+                                    <th:block th:if="${productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${productList != null}">
+                                        <div class="ps-tab active" id="tab-2-1">
+                                            <div class="row" th:each="product : ${cate201_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-2-2">
+                                            <div class="row" th:each="product : ${cate202_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-2-3">
+                                            <div class="row" th:each="product : ${cate203_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-2-4">
+                                            <div class="row" th:each="product : ${cate204_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-2-5">
+                                            <div class="row" th:each="product : ${cate205_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-search-trending">
+            <div class="container">
+                <div class="ps-section__header">
+                    <h3>body/hair/oral/perfume</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-block--categories-tabs ps-tab-root">
+                        <div class="ps-block__header">
+                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                                <a href="#tab-3-1" class="active">body care</a>
+                                <a href="#tab-3-2">Hair Care</a>
+                                <a href="#tab-3-3">Oral Care</a>
+                                <a href="#tab-3-4">Women Perfume</a>
+                                <a href="#tab-3-5">Men Perfume</a>
+                            </div>
+                            <div class="ps-tabs">
+                                <div class="ps-tabs">
+                                    <th:block th:if="${productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${productList != null}">
+                                        <div class="ps-tab active" id="tab-3-1">
+                                            <div class="row" th:each="product : ${cate301_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-3-2">
+                                            <div class="row" th:each="product : ${cate302_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-3-3">
+                                            <div class="row" th:each="product : ${cate303_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-3-4">
+                                            <div class="row" th:each="product : ${cate304_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-3-5">
+                                            <div class="row" th:each="product : ${cate305_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-search-trending">
+            <div class="container">
+                <div class="ps-section__header">
+                    <h3>Beauty Device/Brush</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-block--categories-tabs ps-tab-root">
+                        <div class="ps-block__header">
+                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                                <a href="#tab-4-1" class="active">Massage Device</a>
+                                <a href="#tab-4-2">brush</a>
+                                <a href="#tab-4-3">facial rollers</a>
+                            </div>
+                            <div class="ps-tabs">
+                                <div class="ps-tabs">
+                                    <th:block th:if="${productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${productList != null}">
+                                        <div class="ps-tab active" id="tab-4-1">
+                                            <div class="row" th:each="product : ${cate401_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-4-2">
+                                            <div class="row" th:each="product : ${cate402_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-4-3">
+                                            <div class="row" th:each="product : ${cate403_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ps-search-trending">
+            <div class="container">
+                <div class="ps-section__header">
+                    <h3>Supplement</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-block--categories-tabs ps-tab-root">
+                        <div class="ps-block__header">
+                            <div class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="8" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="6" data-owl-item-lg="6" data-owl-duration="500" data-owl-mousedrag="on">
+                                <a href="#tab-5-1" class="active">Red-ginseng</a>
+                                <a href="#tab-5-2">Dietary Supplement</a>
+                            </div>
+                            <div class="ps-tabs">
+                                <div class="ps-tabs">
+                                    <th:block th:if="${productList == null}">
+                                        <p class="no_data">등록된 제품이 없습니다.</p>
+                                    </th:block>
+                                    <th:block th:if="${productList != null}">
+                                        <div class="ps-tab active" id="tab-5-1">
+                                            <div class="row" th:each="product : ${cate501_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ps-tab" id="tab-5-2">
+                                            <div class="row" th:each="product : ${cate502_productList}">
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="ps-product">
+                                                        <a href="#">
+                                                            <div class="ps-product__thumbnail">
+                                                                <img th:src="${product.URL_PATH_CD}">
+                                                            </div>
+                                                            <div class="ps-product__container">
+                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                <div class="ps-product__content">
+                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="ps-brand-logo">
             <div class="container">
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
-                        <div class="ps-product">
-                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/furniture/12.jpg" alt=""></a></div>
-                        </div>
+                        <th:block th:each="brand : ${brandList}">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img th:src="${brand.URL_PATH_CD}"></a></div>
+                            </div>
+                        </th:block>
                     </div>
                 </div>
             </div>

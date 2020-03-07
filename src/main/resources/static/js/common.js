@@ -24,6 +24,9 @@ const CommonUtils = {
         });
         return returnArray.join(",");
     },
+    formatNumberWithCommas(targetValue) {
+        return targetValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     removeComma(targetValue) {
         return parseInt(targetValue.replace(/,/g,""));
     },

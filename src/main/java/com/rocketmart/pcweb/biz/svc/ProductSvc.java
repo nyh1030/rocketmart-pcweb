@@ -163,4 +163,12 @@ public class ProductSvc {
 	public Map<String, Object> findCateInoByCate3Cd(String cate3Cd) {
 		return productRepository.findCateInoByCate3Cd(cate3Cd);
 	}
+
+	public List<Map<String, Object>> findAllForLastestOrder() {
+		return productRepository.findAllForLastestOrder();
+	}
+
+	public List<Map<String, Object>> findProductListByCateCd(String cateCd) {
+		return productRepository.findProductListByCateCd(cateCd);
+	}
 }

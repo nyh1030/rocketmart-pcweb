@@ -589,10 +589,10 @@
                 const _this = this;
                 fobList.forEach(item => {
                     _this.objDataTables.row.add([
-                        `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="${item.TRADING_PRICE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
                     ]).draw(false);
                 });
 
