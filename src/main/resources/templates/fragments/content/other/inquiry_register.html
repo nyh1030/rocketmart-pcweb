@@ -13,9 +13,9 @@
                         <label for="" class="bul-type">PRODUCT</label>
                         <div class="prd-wrap">
                             <div class="item" th:each="productList : ${productList}">
-                                <div class="img-box"><img th:src="${productList.get('URL_PATH_CD')}"></div>
-                                <span class="name" th:text="${productList.get('PRODUCT_NM')}"></span>
-                                <input type="hidden" id="productSeq" name="productSeq" th:value="${productList.get('PRODUCT_SEQ')}"/>
+                                <div class="img-box"><img th:src="${productList.URL_PATH_CD}"></div>
+                                <span class="name" th:text="${productList.PRODUCT_NM}"></span>
+                                <input type="hidden" id="productSeq" name="productSeq" th:value="${productList.PRODUCT_SEQ}"/>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
         },
         getParameters() {
             return {
-                productSeq: $('input[name=productSeq]').val(),
+                productSeq: CommonUtils.getCheckValToCommaString($('[name="productSeq"]')),
                 message: $('#message').val()
             }
         },

@@ -4,6 +4,7 @@ import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
+import static org.jooq.impl.DSL.currentTimestamp;
 
 @Repository
 public class OtherRepository {
@@ -152,6 +154,20 @@ public class OtherRepository {
                 .set(TB_INQUIRY_DTL.PRODUCT_SEQ, tbInquiryDtlRecord.getProductSeq())
                 .set(TB_INQUIRY_DTL.REG_USR_ID, tbInquiryDtlRecord.getRegUsrId())
                 .set(TB_INQUIRY_DTL.UPD_USR_ID, tbInquiryDtlRecord.getRegUsrId())
+                .execute();
+    }
+
+    /**
+     * Inquiry 후 WishList 에서 제거
+     */
+    public int updateOneForWishInfo(TbInquiryDtlRecord tbInquiryDtlRecord, int productSeq) {
+        return this.dslContext.update(TB_WISH_MST)
+                .set(TB_WISH_MST.ASK_YN, "Y")
+                .set(TB_WISH_MST.UPD_USR_ID, tbInquiryDtlRecord.getRegUsrId())
+                .set(TB_WISH_MST.UPD_TS, currentTimestamp())
+                .where(TB_WISH_MST.PRODUCT_SEQ.equal(productSeq)
+                    .and(TB_WISH_MST.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()
+                )))
                 .execute();
     }
 

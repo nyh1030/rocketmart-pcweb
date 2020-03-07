@@ -95,6 +95,7 @@ public class OtherSvc {
 	public String saveInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, List<Integer> productSeqs) {
 		int resultMstSeq = 0;
 		int resultDtlCnt = 0;
+		int resultWishCnt = 0;
 		TbInquiryMstRecord inquiryMstRecord = otherRepository.saveOneForInquiryMstInfo(tbInquiryMstRecord);
 		resultMstSeq = inquiryMstRecord.getInquirySeq();
 
@@ -106,7 +107,11 @@ public class OtherSvc {
 			for(Integer productSeq : productSeqs){
 				tbInquiryDtlRecord.setProductSeq(productSeq);
 				resultDtlCnt += otherRepository.saveAllForInquiryDtlInfo(tbInquiryDtlRecord);
+				if(resultDtlCnt > 0){
+					resultWishCnt += otherRepository.updateOneForWishInfo(tbInquiryDtlRecord, productSeq);
+				}
 			}
+
 		}
 
 		return resultDtlCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();

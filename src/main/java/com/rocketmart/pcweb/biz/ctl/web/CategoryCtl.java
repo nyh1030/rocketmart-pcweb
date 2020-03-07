@@ -39,20 +39,22 @@ public class CategoryCtl {
         model.addAttribute("cate3CdList", categorySvc.findAllForCategoryMenu("3"));
         model.addAttribute("cate4CdList", categorySvc.findAllForCategoryMenu("4"));
         model.addAttribute("cate5CdList", categorySvc.findAllForCategoryMenu("5"));*/
-        model.addAttribute("categoryList", categorySvc.findAll());
 
         if (depth.isPresent() && cateCd.isPresent()) {
-            if ("2".equals(depth.get())) {
+            if ("1".equals(depth.get())) {
+                tbCateMstRecord.setCate1Cd(cateCd.get());
+            } else if ("2".equals(depth.get())) {
                 tbCateMstRecord.setCate2Cd(cateCd.get());
             } else if ("3".equals(depth.get())) {
                 tbCateMstRecord.setCate3Cd(cateCd.get());
-            } else {
+            } else{
                 tbCateMstRecord.setCate1Cd("1");
             }
         }else{
             tbCateMstRecord.setCate1Cd("1");
         }
 
+        model.addAttribute("categoryList", categorySvc.findAll());
         model.addAttribute("productList", categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord));
 
         return prefixPath.concat("/category/category_list");
