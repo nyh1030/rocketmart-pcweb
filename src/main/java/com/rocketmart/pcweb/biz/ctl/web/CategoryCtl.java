@@ -25,11 +25,11 @@ public class CategoryCtl {
      */
     @GetMapping("/any/category/list")
     public String dispCategoryList(TbCateMstRecord tbCateMstRecord, Model model) {
-        model.addAttribute("cate1_list", categorySvc.findAllForCategoryMenu("1"));
-        model.addAttribute("cate2_list", categorySvc.findAllForCategoryMenu("2"));
-        model.addAttribute("cate3_list", categorySvc.findAllForCategoryMenu("3"));
-        model.addAttribute("cate4_list", categorySvc.findAllForCategoryMenu("4"));
-        model.addAttribute("cate5_list", categorySvc.findAllForCategoryMenu("5"));
+        model.addAttribute("cate1CdList", categorySvc.findAllForCategoryMenu("1"));
+        model.addAttribute("cate2CdList", categorySvc.findAllForCategoryMenu("2"));
+        model.addAttribute("cate3CdList", categorySvc.findAllForCategoryMenu("3"));
+        model.addAttribute("cate4CdList", categorySvc.findAllForCategoryMenu("4"));
+        model.addAttribute("cate5CdList", categorySvc.findAllForCategoryMenu("5"));
 
         return prefixPath.concat("/category/category_list");
     }

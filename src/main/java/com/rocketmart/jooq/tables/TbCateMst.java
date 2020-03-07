@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCateMst extends TableImpl<TbCateMstRecord> {
 
-    private static final long serialVersionUID = 216334925;
+    private static final long serialVersionUID = -408686744;
 
     /**
      * The reference instance of <code>rocketmart.TB_CATE_MST</code>
@@ -97,6 +97,11 @@ public class TbCateMst extends TableImpl<TbCateMstRecord> {
      * The column <code>rocketmart.TB_CATE_MST.DEPTH</code>. DEPTH
      */
     public final TableField<TbCateMstRecord, Integer> DEPTH = createField(DSL.name("DEPTH"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "DEPTH");
+
+    /**
+     * The column <code>rocketmart.TB_CATE_MST.TAG_YN</code>. tag 임시
+     */
+    public final TableField<TbCateMstRecord, String> TAG_YN = createField(DSL.name("TAG_YN"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "tag 임시");
 
     /**
      * The column <code>rocketmart.TB_CATE_MST.DEL_YN</code>. 삭제여부
@@ -208,11 +213,11 @@ public class TbCateMst extends TableImpl<TbCateMstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<Integer, String, String, String, String, String, String, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<Integer, String, String, String, String, String, String, Integer, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }
