@@ -97,8 +97,8 @@
                                 </ul>
                             </div>
                             <div class="btn-box">
-                                <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
-                                <span class="ps-btn" id="btnInquiry">ASK NOW</span>
+                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAuthenticated()"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAuthenticated()">ASK NOW</span>
                             </div>
                         </div>
                     </div>

@@ -38,7 +38,7 @@ public class CategoryRepository {
      * 메인 > Category 목록 조회
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> findAllForCategoryInfo(TbCateMstRecord tbCateMstRecord) {
+    public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord) {
 
         return this.dslContext
                 .select(

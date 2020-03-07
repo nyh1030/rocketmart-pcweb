@@ -40,8 +40,8 @@ public class CategorySvc {
 	 * @param
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForCategoryInfo(TbCateMstRecord tbCateMstRecord) {
-		return categoryRepository.findAllForCategoryInfo(tbCateMstRecord);
+	public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord) {
+		return categoryRepository.findAllForCategoryPrdInfo(tbCateMstRecord);
 	}
 
 	public List<Map<String, Object>> findAll() {
