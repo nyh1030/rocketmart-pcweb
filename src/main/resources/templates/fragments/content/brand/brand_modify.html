@@ -30,7 +30,7 @@
                                 <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
                             </div>
                             <div class="mb-5">
-                                <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">*</span></label>
+                                <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">* (이미지 변경시 remove 버튼으로 제거 후 수정해주세요.)</span></label>
                                 <div class="upload_box">
                                     <div class="img_logo" id="dvBrandLogo"></div>
                                     <button type="button" id="btnUpload" class="ps-btn">upload</button>
@@ -119,7 +119,7 @@
                               <div class="dz-image"><img  data-dz-thumbnail src="${brandInfo.URL_PATH_CD}" /></div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                               <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                              <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
+                              <button class="btn btn-info dz-remove" onclick="EventScope.removeImage('dvBrandLogo');">remove</button>
                             </div>`;
                 $("#dvBrandLogo").html(template);
 
@@ -165,10 +165,13 @@
                             _this = this;
                             PageScope.isFileChange = true;
 
-                            $("#dvBrandLogo > .dz-preview:first").remove();
                             if (file.status === "queued") {
                                 $(".dz-success-mark").remove();
                             }
+                        });
+                        this.on("maxfilesexceeded", function (file) {
+                            _this.removeFile(file);
+                            alert('remove 버튼으로 제거 후 upload 해주세요.');
                         });
                     },
                     success: (response) => {
@@ -253,9 +256,13 @@
 
                     }
                 });
+
                 $('#btnBack').on('click', () => {
                     CommonUtils.backwardPage();
                 });
+            },
+            removeImage(objTarget) {
+                $(`#${objTarget}`).empty();
             }
         };
     </script>
