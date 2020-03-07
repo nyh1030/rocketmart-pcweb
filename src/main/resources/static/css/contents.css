@@ -65,8 +65,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail .logo-box img{width:100%;height:100%;object-fit:cover}
 .ps-block__content .upload_box .img_logo .dz-preview,
 .ps-block__content .upload_box .img_logo .dz-image,
-.ps-product--detail .photo-upload li .prd-photo .dz-preview,
-.ps-product--detail .photo-upload li .prd-photo .dz-image{width:100%;height:100%}
+.ps-product--detail .photo-upload li .prd-photo .dz-preview{width:100%;height:100%}
 .ps-block__content .upload_box .ps-btn{vertical-align:top;padding:10px 20px;}
 .ps-block__content .upload_box .txt-file{font-size:12px;vertical-align:top;display:inline-block;line-height:40px;margin-left:4px;}
 .ps-block__content .info-list > li{margin-bottom:10px;}
@@ -131,10 +130,15 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-product--detail .chk-wrap .ps-checkbox + input{width: 150px; display: inline-block; height: 30px;margin-left:-10px;}
 .ps-product--detail .txt-impt{color:#f14705;font-weight:600;}
 .ps-product--detail .photo-upload{text-align:center;}
-.ps-product--detail .photo-upload li{position:relative;width:215px;display:inline-block;text-align:center;margin:0 15px 25px;}
-.ps-product--detail .photo-upload li .prd-photo{display:inline-flex;width:100%;height:250px;border:1px solid #ddd;align-items:center;justify-content:center;}
+.ps-product--detail .photo-upload li{position:relative;width:215px;display:inline-block;text-align:center;margin:0 15px 25px;vertical-align:top;}
+.ps-product--detail .photo-upload li .prd-photo{display:inline-flex;width:100%;height:291px;border:1px solid #ddd;align-items:center;justify-content:center;}
 .ps-product--detail .photo-upload li .txt{display:block;margin-top:5px;font-weight:600;}
 .ps-product--detail .photo-upload li .flag{position:absolute;left:1px;top:1px;padding:4px 8px;background:#1b9dec;color:#fff;font-weight:600;font-size:13px;}
+.ps-product--detail .photo-upload li .dz-remove{width: 90%;margin-top:3px;}
+.ps-product--detail .photo-upload li .dz-image img{height:80%}
+.ps-product--detail .photo-upload li .dz-file-preview .dz-image{height:80%}
+.ps-product--detail .photo-upload li .dz-file-preview .dz-image img{height:100%}
+.ps-product--detail .photo-upload li .dz-file-preview .dz-remove{margin-top:18px;}
 .ps-product--detail .table_wrap{position:relative;padding-bottom:50px;margin-top:20px;}
 .ps-product--detail .table_wrap .dataTables_wrapper{height:335px;overflow-y:auto;margin-bottom:30px;}
 .ps-product--detail .table_wrap table{width:100%!important;}
