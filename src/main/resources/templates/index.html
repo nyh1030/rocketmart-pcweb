@@ -495,10 +495,10 @@
                     </div>
                 </div>
                 <div class="ps-section__content">
-                    <th:block th:if="${productList == null}">
+                    <th:block th:if="${#arrays.length(productList) <= 0}">
                         <p class="no_data">등록된 제품이 없습니다.</p>
                     </th:block>
-                    <th:block th:if="${productList != null}">
+                    <th:block th:if="${#arrays.length(productList) > 0}">
                         <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
                             <th:block th:each="product : ${productList}">
                                 <div class="ps-product">
@@ -573,7 +573,7 @@
                                             <div class="row" th:each="product : ${cate102_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -598,7 +598,7 @@
                                             <div class="row" th:each="product : ${cate103_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -623,7 +623,7 @@
                                             <div class="row" th:each="product : ${cate104_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -648,7 +648,7 @@
                                             <div class="row" th:each="product : ${cate105_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -673,7 +673,7 @@
                                             <div class="row" th:each="product : ${cate106_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -698,7 +698,7 @@
                                             <div class="row" th:each="product : ${cate107_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -748,7 +748,7 @@
                                             <div class="row" th:each="product : ${cate201_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -773,7 +773,7 @@
                                             <div class="row" th:each="product : ${cate202_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -798,7 +798,7 @@
                                             <div class="row" th:each="product : ${cate203_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -823,7 +823,7 @@
                                             <div class="row" th:each="product : ${cate204_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -848,7 +848,7 @@
                                             <div class="row" th:each="product : ${cate205_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -898,7 +898,7 @@
                                             <div class="row" th:each="product : ${cate301_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -923,7 +923,7 @@
                                             <div class="row" th:each="product : ${cate302_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -948,7 +948,7 @@
                                             <div class="row" th:each="product : ${cate303_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -973,7 +973,7 @@
                                             <div class="row" th:each="product : ${cate304_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -998,7 +998,7 @@
                                             <div class="row" th:each="product : ${cate305_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -1046,7 +1046,7 @@
                                             <div class="row" th:each="product : ${cate401_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -1071,7 +1071,7 @@
                                             <div class="row" th:each="product : ${cate402_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -1096,7 +1096,7 @@
                                             <div class="row" th:each="product : ${cate403_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -1143,7 +1143,7 @@
                                             <div class="row" th:each="product : ${cate501_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
@@ -1168,7 +1168,7 @@
                                             <div class="row" th:each="product : ${cate502_productList}">
                                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
                                                     <div class="ps-product">
-                                                        <a href="#">
+                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
                                                             <div class="ps-product__thumbnail">
                                                                 <img th:src="${product.URL_PATH_CD}">
                                                             </div>
