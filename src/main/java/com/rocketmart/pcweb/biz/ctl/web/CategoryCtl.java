@@ -31,6 +31,9 @@ public class CategoryCtl {
         model.addAttribute("cate4CdList", categorySvc.findAllForCategoryMenu("4"));
         model.addAttribute("cate5CdList", categorySvc.findAllForCategoryMenu("5"));
 
+        tbCateMstRecord.setCate1Cd("1");
+        model.addAttribute("cateList", categorySvc.findAllForCategoryInfo(tbCateMstRecord));
+
         return prefixPath.concat("/category/category_list");
     }
 
