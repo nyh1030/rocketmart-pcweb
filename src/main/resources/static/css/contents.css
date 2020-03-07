@@ -162,7 +162,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-search-trending .no_data{border:0;text-align:center;margin-top:40px;}
 .ps-page--shop .ps-block--vendor{overflow:hidden;margin-bottom:70px;}
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail{float:left;width:20%;}
-.ps-page--shop .ps-block--vendor .ps-block__thumbnail .logo-box{}
+.ps-page--shop .ps-block--vendor .ps-block__thumbnail .logo-box{width:160px;height:160px;margin:0 auto;}
 .ps-page--shop .ps-block--vendor .ps-list--social-color{text-align:center;margin-top:20px;}
 .ps-page--shop .ps-block--vendor .ps-list--social-color .home{background:#09c}
 .ps-page--shop .ps-block--vendor .ps-list--social-color .youtube{background:#ff0000}
