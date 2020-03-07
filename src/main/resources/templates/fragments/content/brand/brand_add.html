@@ -99,7 +99,7 @@
                                                 </td>
                                                 <td style="text-align: left">${item.PRODUCT_NM}</td>
                                                 <td style="text-align: center">${item.PRODUCT_CAPACITY}</td>
-                                                <td style="text-align: right">${item.RETAIL_PRICE}</td>
+                                                <td style="text-align: right">${CommonUtils.formatNumberWithCommas(item.RETAIL_PRICE)}</td>
                                                 <td>
                                                     <div class="btns">
                                                         <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
