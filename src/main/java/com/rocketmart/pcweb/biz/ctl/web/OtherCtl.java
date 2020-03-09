@@ -80,10 +80,16 @@ public class OtherCtl {
      * @return String
      */
     @RequestMapping("/any/inquiry/list")
-    public String dispInquiryList(TbInquiryMstRecord tbInquiryMstRecord, Principal principal, Model model) {
-        tbInquiryMstRecord.setRegUsrId(principal.getName());
+    public String dispInquiryList(TbInquiryMstRecord tbInquiryMstRecord
+            , @RequestParam(value = "schMemId", required = false) String schMemId
+            , @RequestParam(value = "schMemNm", required = false) String schMemNm
+            , Principal principal
+            , Model model) {
+        if(!"admin".equals(principal.getName())){
+            tbInquiryMstRecord.setRegUsrId(principal.getName());
+        }
 
-        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord));
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm));
 
         return prefixPath.concat("/mypage/inquiry_list");
     }

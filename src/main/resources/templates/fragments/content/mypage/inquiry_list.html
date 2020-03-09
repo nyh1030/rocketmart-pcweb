@@ -11,7 +11,7 @@
                     <h3 class="widget-title">Mypage</h3>
                     <ul class="ps-list--arrow">
                         <li><a th:href="@{/admin/member/list}">Member List</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
-                        <li><a th:href="@{/admin/inquiry/list}" class="active">Inquiry</a></li>
+                        <li><a th:href="@{/any/inquiry/list}" class="active">Inquiry</a></li>
                         <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
                         <li><a th:href="@{/any/wishlist/list}">WishList</a></li>
                     </ul>
@@ -25,11 +25,11 @@
                         <h3>Inquiry</h3>
                     </div>
                     <div class="ps-block__content">
-                        <form id="memberFrm" name="memberFrm" th:action="@{/admin/inquiry/list}" method="post">
+                        <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/list}" method="post" sec:authorize="hasAuthority('ADMIN')">
                         <div class="search-box">
-                            <input type="text" class="form-control" id="memId" name="memId" th:value="${memId}" placeholder="Id" style="width:20%">
-                            <input type="text" class="form-control" id="memNm" name="memNm" th:value="${memNm}" placeholder="Name" style="width:20%">
-                            <button type="button" id="btnSearch" class="ps-btn type-black">Search</button>
+                            <input type="text" class="form-control" id="schMemId" name="schMemId" th:value="${memId}" placeholder="Id" style="width:20%">
+                            <input type="text" class="form-control" id="schMemNm" name="schMemNm" th:value="${memNm}" placeholder="Name" style="width:20%">
+                            <button type="submit" id="btnSearch" class="ps-btn type-black">Search</button>
                         </div>
                         </form>
                         <p class="total">Total : <em class="num" th:text="${#lists.size(inquiryList)}"></em> result</p>

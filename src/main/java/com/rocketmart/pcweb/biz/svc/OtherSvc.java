@@ -90,8 +90,8 @@ public class OtherSvc {
 	 * @param tbInquiryMstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord) {
-		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord);
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm) {
+		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm);
 	}
 
 	/**

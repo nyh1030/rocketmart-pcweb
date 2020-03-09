@@ -11,23 +11,27 @@
                 <div class="ps-block__content contact-box">
                     <div class="mb-5">
                         <label for="usrNm" class="bul-type">NAME</label>
-                        <input type="text" id="usrNm" name="usrNm" class="form-control" th:value="${contactusInfo.get('USR_NM')}"  disabled>
+                        <input type="text" id="usrNm" name="usrNm" class="form-control" th:value="${contactusInfo.USR_NM}" disabled>
+                    </div>
+                    <div class="mb-5">
+                        <label for="regTs" class="bul-type">REG_TS</label>
+                        <input type="text" id="regTs" name="regTs" class="form-control" th:value="${#strings.substring(contactusInfo.REG_TS,0,19)}" disabled>
                     </div>
                     <div class="mb-5">
                         <label for="email" class="bul-type">EMAIL</label>
-                        <input type="text" id="email" name="email" class="form-control" th:value="${contactusInfo.get('EMAIL')}"  disabled>
+                        <input type="text" id="email" name="email" class="form-control" th:value="${contactusInfo.EMAIL}" disabled>
                     </div>
                     <div class="mb-5">
                         <label for="companyNm" class="bul-type">COMPANY</label>
-                        <input type="text" id="companyNm" name="companyNm" class="form-control" th:value="${contactusInfo.get('COMPANY_NM')}"  disabled>
+                        <input type="text" id="companyNm" name="companyNm" class="form-control" th:value="${contactusInfo.COMPANY_NM}" disabled>
                     </div>
                     <div class="mb-5">
                         <label for="subject" class="bul-type">SUBJECT</label>
-                        <input type="text" id="subject" name="subject" class="form-control" th:value="${contactusInfo.get('SUBJECT')}"  disabled>
+                        <input type="text" id="subject" name="subject" class="form-control" th:value="${contactusInfo.SUBJECT}" disabled>
                     </div>
                     <div class="mb-5">
                         <label for="message" class="bul-type">MESSAGE</label>
-                        <textarea id="message" name="message" maxlength="4000" class="form-control" th:text="${contactusInfo.get('MESSAGE')}"  disabled></textarea>
+                        <textarea id="message" name="message" maxlength="4000" class="form-control" th:text="${contactusInfo.MESSAGE}" disabled></textarea>
                     </div>
                 </div>
                 <div class="btns">

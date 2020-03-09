@@ -92,7 +92,7 @@ public class MemberSvc {
 	}
 
 	/**
-	 * 회원 정보 조회
+	 * 회원 상세정보 조회
 	 * @param memId
 	 * @return mmbrMap
 	 */

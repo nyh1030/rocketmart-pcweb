@@ -27,7 +27,7 @@ public class OtherRepository {
     private DSLContext dslContext;
 
     /**
-     * ContactUs 정보 조회
+     * ContactUs 상세정보 조회
      */
     public Map<String, Object> findOneForContactUsInfo(int contactSeq) {
         return this.dslContext.selectFrom(TB_CONTACT_US)
@@ -116,9 +116,9 @@ public class OtherRepository {
     }
 
     /**
-     * Inquiry 목록 조회(관리자)
+     * Inquiry 목록 조회
      */
-    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord) {
+    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm) {
         return this.dslContext
                 .select(
                         TB_INQUIRY_MST.INQUIRY_SEQ
@@ -129,8 +129,32 @@ public class OtherRepository {
                         ,TB_INQUIRY_MST.UPD_TS
                 )
                 .from(TB_INQUIRY_MST)
+                .join(TB_MEM_MST)
+                    .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
+                    .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like(schMemId)))
+                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like(schMemNm)))
+                )
                 .orderBy(TB_INQUIRY_MST.REG_TS.desc())
                 .fetchMaps();
+    }
+
+    /**
+     * Inquiry 상세정보 조회_마스터
+     */
+    public Map<String, Object> findOneForInquiryMstInfo(int inquirySeq) {
+        return this.dslContext.selectFrom(TB_INQUIRY_MST)
+                .where(TB_INQUIRY_MST.INQUIRY_SEQ.eq(inquirySeq))
+                .fetchOneMap();
+    }
+
+    /**
+     * Inquiry 상세정보 조회_상세
+     */
+    public Map<String, Object> findAllForInquiryDtlInfo(int inquirySeq) {
+        return this.dslContext.selectFrom(TB_INQUIRY_DTL)
+                .where(TB_INQUIRY_DTL.INQUIRY_SEQ.eq(inquirySeq))
+                .fetchOneMap();
     }
 
     /**

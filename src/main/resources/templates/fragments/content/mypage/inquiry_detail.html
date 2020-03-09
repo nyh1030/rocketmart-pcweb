@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-vendor-dashboard">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-block--vendor-dashboard">
+                <div class="ps-block__header mt-50">
+                    <h3>Inquiry</h3>
+                </div>
+                <div class="ps-block__content contact-box">
+                    <div class="mb-5">
+                        <label for="" class="bul-type">PRODUCT</label>
+                        <div class="prd-wrap">
+                            <div class="item" th:each="productList : ${productList}">
+                                <div class="img-box"><img th:src="${productList.URL_PATH_CD}"></div>
+                                <span class="name" th:text="${productList.PRODUCT_NM}"></span>
+                                <input type="hidden" id="productSeq" name="productSeq" th:value="${productList.PRODUCT_SEQ}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="memId" class="bul-type">MEM_ID</label>
+                        <input type="text" id="memId" name="memId" class="form-control" th:value="${inquiryInfo.REG_USR_ID}" disabled>
+                    </div>
+                    <div class="mb-5">
+                        <label for="memNm" class="bul-type">MEM_NM</label>
+                        <input type="text" id="memNm" name="memNm" class="form-control" th:value="${inquiryInfo.MEM_NM}" disabled>
+                    </div>
+                    <div class="mb-5">
+                        <label for="regTs" class="bul-type">REG_TS</label>
+                        <input type="text" id="regTs" name="regTs" class="form-control" th:value="${#strings.substring(inquiryInfo.REG_TS,0,19)}" disabled>
+                    </div>
+                    <div class="mb-5">
+                        <label for="message" class="bul-type">MESSAGE</label>
+                        <textarea id="message" name="message" maxlength="4000" class="form-control" th:text="${inquiryInfo.MESSAGE}" disabled></textarea>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button type="button" id="btnList" class="ps-btn type-black">List</button>
+                </div>
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+</th:block>
+</html>
+
+
+
+<script>
+    $(() => {
+        PageScope.init();
+        EventScope.init();
+    });
+
+    const PageScope = {
+
+        init() {
+
+        },
+        returnPage(){
+            CommonUtils.forwardPage('/any/inquiry/list');
+        }
+    };
+
+    const EventScope = {
+
+        init() {
+            this.clickEventListener();
+        },
+
+        clickEventListener() {
+            $('#btnList').on('click', () => {
+                PageScope.returnPage();
+            });
+        }
+    };
+</script>

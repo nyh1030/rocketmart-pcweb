@@ -22,7 +22,7 @@ public class MemberRepository {
     private DSLContext dslContext;
 
     /**
-     * 회원 정보 조회
+     * 회원 상세정보 조회
      */
     public Map<String, Object> findOneForMemInfo(String memId) {
 

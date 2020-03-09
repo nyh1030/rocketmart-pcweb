@@ -12,7 +12,7 @@
                     <ul class="ps-list--arrow">
                         <th:block sec:authorize="hasAuthority('ADMIN')">
                             <li><a th:href="@{/admin/member/list}">Member List</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
-                            <li><a th:href="@{/admin/inquiry/list}">Inquiry</a></li>
+                            <li><a th:href="@{/any/inquiry/list}">Inquiry</a></li>
                             <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
                             <li><a th:href="@{/any/wishlist/list}" class="active">WishList</a></li>
                         </th:block>
