@@ -118,7 +118,7 @@ public class OtherRepository {
     /**
      * Inquiry 목록 조회(관리자)
      */
-    public List<Map<String, Object>> findAllForInquiryInfo(TbWishMstRecord tbWishMstRecord) {
+    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord) {
         return this.dslContext
                 .select(
                         TB_INQUIRY_MST.INQUIRY_SEQ

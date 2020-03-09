@@ -86,6 +86,15 @@ public class OtherSvc {
 	}
 
 	/**
+	 * Inquiry 목록 조회
+	 * @param tbInquiryMstRecord
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord) {
+		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord);
+	}
+
+	/**
 	 * Inquiry 등록
 	 * @param tbInquiryMstRecord
 	 * @param productSeqs

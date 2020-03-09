@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
+import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
@@ -74,17 +75,17 @@ public class OtherCtl {
 
     /**
      * Inquiry 목록 조회
-     * @param tbWishMstRecord
+     * @param tbInquiryMstRecord
      * @param model
      * @return String
      */
     @RequestMapping("/any/inquiry/list")
-    public String dispInquiryList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
-        tbWishMstRecord.setRegUsrId(principal.getName());
+    public String dispInquiryList(TbInquiryMstRecord tbInquiryMstRecord, Principal principal, Model model) {
+        tbInquiryMstRecord.setRegUsrId(principal.getName());
 
-        model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord));
 
-        return prefixPath.concat("/mypage/wish_list");
+        return prefixPath.concat("/mypage/inquiry_list");
     }
 
     /**
