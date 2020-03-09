@@ -6,7 +6,7 @@
 - JDK - 1.8
 - Builder - Gradle 6.0
 - DB - MariaDB
-- DB Interface - jOOQ // SQL Mapper - Mybatis 대신에 사용 
+- DB Interface - jOOQ // SQL Mapper - Mybatis 대신에 사용하며, 프로젝트내에 XML파일 없음
 - 형상관리 - Git
 - 배포(CI) - Jenkins
 - Layout - Responsive, Bootstrap 4.x
@@ -29,11 +29,12 @@
 - [ ] 인터셉터 : 로그인, 마이바티스, //다국어
 - [ ] 메일전송 
 - [ ] 시큐어 코딩(벨리드 어노테이션, 데이터 마스킹)
-- [ ] Restful 설계 / axios
+- [X] Restful 설계 / axios
+- [X] To - Do List : gitkraken 사용
 
 ## 📑 작성문서
 
-- [ ] 기획서(요구사항정의서)
+- [X] 기획서(요구사항정의서)
 - [ ] 테이블정의서
 - [ ] ERD
 
@@ -53,6 +54,12 @@ php 버전이 더 많은 내용을 가지고 있음
 - Controller : ctl
 - Data Access Object : dao
 - Service : svc
+
+- Method : 
+ 단건 조회 : findOneFor___Info
+ 다건 조회 : findAllFor___Info
+ 단건 등록 : saveOneFor___Info
+ 다건 등록 : saveAllFor___Info
 ```
 
 ## DB Naming rule
