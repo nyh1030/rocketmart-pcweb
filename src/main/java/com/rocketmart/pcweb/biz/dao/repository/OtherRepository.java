@@ -151,10 +151,11 @@ public class OtherRepository {
     /**
      * Inquiry 상세정보 조회_상세
      */
-    public Map<String, Object> findAllForInquiryDtlInfo(int inquirySeq) {
+    public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
         return this.dslContext.selectFrom(TB_INQUIRY_DTL)
                 .where(TB_INQUIRY_DTL.INQUIRY_SEQ.eq(inquirySeq))
-                .fetchOneMap();
+                .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.asc())
+                .fetchMaps();
     }
 
     /**
@@ -194,5 +195,6 @@ public class OtherRepository {
                 )))
                 .execute();
     }
+
 
 }

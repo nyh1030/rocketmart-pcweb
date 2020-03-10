@@ -114,5 +114,22 @@ public class OtherCtl {
         return prefixPath.concat("/other/inquiry_register");
     }
 
+    /**
+     * Inquiry 상세정보 조회
+     * @param inquirySeq
+     * @param model
+     * @return String
+     */
+    @GetMapping("/any/inquiry/detail/{inquirySeq}")
+    public String dispInquiryDetail(@PathVariable("inquirySeq") int inquirySeq, Model model) {
+
+        // Inquiry 상세정보 조회_마스터
+        model.addAttribute("inquiryInfo", this.otherSvc.findOneForInquiryMstInfo(inquirySeq));
+        // Inquiry 상세정보 조회_상세
+        model.addAttribute("productList", this.otherSvc.findAllForInquiryDtlInfo(inquirySeq));
+
+        return prefixPath.concat("/mypage/inquiry_detail");
+    }
+
 }
 

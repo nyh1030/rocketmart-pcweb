@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.jooq.tables.TbInquiryDtl;
+import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
@@ -125,4 +126,24 @@ public class OtherSvc {
 
 		return resultDtlCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
+
+	/**
+	 * Inquiry 상세정보 조회_마스터
+	 * @param inquirySeq
+	 * @return Map<String, Object>
+	 */
+	public Map<String, Object> findOneForInquiryMstInfo(int inquirySeq) {
+		return otherRepository.findOneForInquiryMstInfo(inquirySeq);
+	}
+
+	/**
+	 * Inquiry 상세정보 조회_상세
+	 * @param inquirySeq
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
+		return otherRepository.findAllForInquiryDtlInfo(inquirySeq);
+	}	
+
+
 }
