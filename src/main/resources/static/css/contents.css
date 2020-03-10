@@ -2,6 +2,7 @@
  /* common */
 .ps-store-list .btn-box{position:relative;text-align:center;}
 .ps-store-list .btn-box .ps-btn{margin:40px 0 20px;}
+.ps-store-list .ps-breadcrumb.type-bg{background:transparent;}
 .no_data{text-align:center;color:#666;font-size:15px;margin:20px 0;border:1px solid #ededed;padding:30px 0;}
 .no_data .fa-exclamation-circle{margin-right:10px;vertical-align: baseline;}
 .no_data .fa-exclamation-circle:before{font-size:22px;color:#ccc;}
@@ -209,6 +210,20 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-table--vendor td .btns.type{margin:0;}
 .ps-table--vendor td .btns.type .ps-btn{padding:5px 15px;font-size:13px;}
 .ps-shopping-product .no_data{width:100%;border:0;margin:20px 15px;}
+.brand-list-wrap{margin-top:40px;padding:0 50px;}
+.brand-list-wrap .sort{border-bottom:1px solid #e2e1e1;padding-bottom:10px;margin-bottom:30px;text-align:center;}
+.brand-list-wrap .sort a{font-size:16px;display:inline-block;padding:4px 10px;font-weight:600;border-radius:10px;}
+.brand-list-wrap .sort a.active{background:#fcb800;color:#fff;}
+.brand-list-wrap .sort a.disabled{color:#dedbdb;pointer-events:none;}
+.brand-list-wrap .list-box > li{border-bottom:1px solid #f1f1f1;padding:40px 0;overflow:hidden;}
+.brand-list-wrap .list-box > li:last-child{border-bottom:0;}
+.brand-list-wrap .list-box > li .tit{float:left;width:50px;font-size:24px;}
+.brand-list-wrap .list-box > li div{float:left;width:calc(100% - 50px)}
+.brand-list-wrap .list-box > li .item{display:inline-block;width:200px;height:200px;margin:3px;border:1px solid #f1f1f1;text-align:center;}
+.brand-list-wrap .list-box > li .item .img-box{width:100%;height:70%;padding:0 10px;box-sizing:border-box;}
+.brand-list-wrap .list-box > li .item .img-box img{width:100%;height:100%;object-fit:contain;}
+.brand-list-wrap .list-box > li .name,
+.brand-list-wrap .list-box > li .num{display:block;margin-top:3px;color:#333;font-weight:500;}
 /* popup */
 .jquery-modal.blocker{z-index:10;}
 .modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}
