@@ -9,8 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandSvc {
@@ -54,5 +57,98 @@ public class BrandSvc {
 	@Transactional(rollbackFor = Exception.class)
 	public int updateOneForBrandInfo(BrandDto brandDto) {
 		return brandRepository.updateOneForBrandInfo(brandDto);
+	}
+
+	public Map<String, Object> findAllForAlPaBet() {
+		List<Map<String, Object>> BRAND_A = new ArrayList<>();
+		List<Map<String, Object>> BRAND_B = new ArrayList<>();
+		List<Map<String, Object>> BRAND_C = new ArrayList<>();
+		List<Map<String, Object>> BRAND_D = new ArrayList<>();
+		List<Map<String, Object>> BRAND_E = new ArrayList<>();
+		List<Map<String, Object>> BRAND_F = new ArrayList<>();
+		List<Map<String, Object>> BRAND_G = new ArrayList<>();
+		List<Map<String, Object>> BRAND_H = new ArrayList<>();
+		List<Map<String, Object>> BRAND_I = new ArrayList<>();
+		List<Map<String, Object>> BRAND_J = new ArrayList<>();
+		List<Map<String, Object>> BRAND_K = new ArrayList<>();
+		List<Map<String, Object>> BRAND_L = new ArrayList<>();
+		List<Map<String, Object>> BRAND_M = new ArrayList<>();
+		List<Map<String, Object>> BRAND_N = new ArrayList<>();
+		List<Map<String, Object>> BRAND_O = new ArrayList<>();
+		List<Map<String, Object>> BRAND_P = new ArrayList<>();
+		List<Map<String, Object>> BRAND_Q = new ArrayList<>();
+		List<Map<String, Object>> BRAND_R = new ArrayList<>();
+		List<Map<String, Object>> BRAND_S = new ArrayList<>();
+		List<Map<String, Object>> BRAND_T = new ArrayList<>();
+		List<Map<String, Object>> BRAND_U = new ArrayList<>();
+		List<Map<String, Object>> BRAND_V = new ArrayList<>();
+		List<Map<String, Object>> BRAND_W = new ArrayList<>();
+		List<Map<String, Object>> BRAND_X = new ArrayList<>();
+		List<Map<String, Object>> BRAND_Y = new ArrayList<>();
+		List<Map<String, Object>> BRAND_Z = new ArrayList<>();
+		List<Map<String, Object>> BRAND_ETC = new ArrayList<>();
+
+
+		brandRepository.findAllForAlPaBet().forEach(brandInfo -> {
+			String brandNm = (String) brandInfo.get("BRAND_NM");
+
+			if (brandNm.toUpperCase().startsWith("A")) BRAND_A.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("B")) BRAND_B.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("C")) BRAND_C.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("D")) BRAND_D.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("E")) BRAND_E.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("F")) BRAND_F.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("G")) BRAND_G.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("H")) BRAND_H.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("I")) BRAND_U.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("J")) BRAND_J.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("K")) BRAND_K.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("L")) BRAND_L.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("M")) BRAND_M.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("N")) BRAND_N.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("O")) BRAND_O.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("P")) BRAND_P.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("Q")) BRAND_Q.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("R")) BRAND_R.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("S")) BRAND_S.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("T")) BRAND_T.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("U")) BRAND_U.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("V")) BRAND_V.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("W")) BRAND_W.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("X")) BRAND_X.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("Y")) BRAND_Y.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("Z")) BRAND_Z.add(brandInfo);
+			else BRAND_ETC.add(brandInfo);
+
+		});
+
+		Map<String, Object> returnMap = new HashMap<>();
+		returnMap.put("BRAND_A", BRAND_A);
+		returnMap.put("BRAND_B", BRAND_B);
+		returnMap.put("BRAND_C", BRAND_C);
+		returnMap.put("BRAND_D", BRAND_D);
+		returnMap.put("BRAND_E", BRAND_E);
+		returnMap.put("BRAND_F", BRAND_F);
+		returnMap.put("BRAND_G", BRAND_G);
+		returnMap.put("BRAND_H", BRAND_H);
+		returnMap.put("BRAND_I", BRAND_I);
+		returnMap.put("BRAND_J", BRAND_J);
+		returnMap.put("BRAND_K", BRAND_K);
+		returnMap.put("BRAND_L", BRAND_L);
+		returnMap.put("BRAND_M", BRAND_M);
+		returnMap.put("BRAND_N", BRAND_N);
+		returnMap.put("BRAND_O", BRAND_O);
+		returnMap.put("BRAND_P", BRAND_P);
+		returnMap.put("BRAND_Q", BRAND_Q);
+		returnMap.put("BRAND_R", BRAND_R);
+		returnMap.put("BRAND_S", BRAND_S);
+		returnMap.put("BRAND_T", BRAND_T);
+		returnMap.put("BRAND_U", BRAND_U);
+		returnMap.put("BRAND_V", BRAND_V);
+		returnMap.put("BRAND_W", BRAND_W);
+		returnMap.put("BRAND_X", BRAND_X);
+		returnMap.put("BRAND_Y", BRAND_Y);
+		returnMap.put("BRAND_Z", BRAND_Z);
+		return returnMap;
 	}
 }

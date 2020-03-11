@@ -15,93 +15,291 @@
             <div class="ps-section__wrapper">
                 <div class="brand-list-wrap">
                     <div class="sort">
-                        <a href="#" class="active">All</a>
-                        <a href="#">A</a>
-                        <a href="#">B</a>
-                        <a href="#">C</a>
-                        <a href="#">D</a>
-                        <a href="#">E</a>
-                        <a href="#">F</a>
-                        <a href="#">G</a>
-                        <a href="#">H</a>
-                        <a href="#">I</a>
-                        <a href="#">J</a>
-                        <a href="#" class="disabled">K</a>
-                        <a href="#" class="disabled">L</a>
-                        <a href="#">M</a>
-                        <a href="#">N</a>
-                        <a href="#">O</a>
-                        <a href="#">P</a>
-                        <a href="#">Q</a>
-                        <a href="#">R</a>
-                        <a href="#">S</a>
-                        <a href="#">T</a>
-                        <a href="#">U</a>
-                        <a href="#">V</a>
-                        <a href="#">W</a>
-                        <a href="#">X</a>
-                        <a href="#">Y</a>
-                        <a href="#">Z</a>
-                        <a href="#">etc</a>
+                        <a id="aA" href="#" class="active">A</a>
+                        <a id="aB" href="#">B</a>
+                        <a id="aC" href="#">C</a>
+                        <a id="aD" href="#">D</a>
+                        <a id="aE" href="#">E</a>
+                        <a id="aF" href="#">F</a>
+                        <a id="aG" href="#">G</a>
+                        <a id="aH" href="#">H</a>
+                        <a id="aI" href="#">I</a>
+                        <a id="aJ" href="#">J</a>
+                        <a id="aK" href="#">K</a>
+                        <a id="aL" href="#">L</a>
+                        <a id="aM" href="#">M</a>
+                        <a id="aN" href="#">N</a>
+                        <a id="aO" href="#">O</a>
+                        <a id="aP" href="#">P</a>
+                        <a id="aQ" href="#">Q</a>
+                        <a id="aR" href="#">R</a>
+                        <a id="aS" href="#">S</a>
+                        <a id="aT" href="#">T</a>
+                        <a id="aU" href="#">U</a>
+                        <a id="aV" href="#">V</a>
+                        <a id="aW" href="#">W</a>
+                        <a id="aX" href="#">X</a>
+                        <a id="aY" href="#">Y</a>
+                        <a id="aZ" href="#">Z</a>
+                        <a id="aETC" href="#">ETC</a>
                     </div>
                     <ul class="list-box">
-                       <li>
+                        <li>
                            <strong class="tit">A</strong>
                            <div>
-                               <a href="#" class="item">
-                                   <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                   <span class="name">AAA</span>
-                                   <span class="num">(12)</span>
-                               </a>
-                               <a href="#" class="item">
-                                   <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                   <span class="name">AAA</span>
-                                   <span class="num">(12)</span>
-                               </a>
-                               <a href="#" class="item">
-                                   <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                   <span class="name">AAA</span>
-                                   <span class="num">(12)</span>
-                               </a>
-                               <a href="#" class="item">
-                                   <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                   <span class="name">AAA</span>
-                                   <span class="num">(12)</span>
-                               </a>
-                               <a href="#" class="item">
-                                   <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                   <span class="name">AAA</span>
-                                   <span class="num">(12)</span>
+                               <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_A}">
+                                   <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                   <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                   <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                </a>
                            </div>
-                       </li>
+                        </li>
                         <li>
                             <strong class="tit">B</strong>
                             <div>
-                                <a href="#" class="item">
-                                    <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                    <span class="name">AAA</span>
-                                    <span class="num">(12)</span>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_B}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
-                                <a href="#" class="item">
-                                    <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                    <span class="name">AAA</span>
-                                    <span class="num">(12)</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">C</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_C}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
-                                <a href="#" class="item">
-                                    <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                    <span class="name">AAA</span>
-                                    <span class="num">(12)</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">D</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_D}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
-                                <a href="#" class="item">
-                                    <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                    <span class="name">AAA</span>
-                                    <span class="num">(12)</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">E</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_E}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
-                                <a href="#" class="item">
-                                    <div class="img-box"><img src="https://images.innisfree.co.kr/resources/web2/images/common/logo_basic.png" alt=""></div>
-                                    <span class="name">AAA</span>
-                                    <span class="num">(12)</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">F</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_F}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li><li>
+                        <strong class="tit">G</strong>
+                        <div>
+                            <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_G}">
+                                <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                            </a>
+                        </div>
+                    </li>
+                        <li>
+                            <strong class="tit">H</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_H}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">I</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_I}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">J</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_J}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">K</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_K}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">L</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_L}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">M</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_M}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">N</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_N}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">O</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_O}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">P</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_P}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">Q</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Q}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">R</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_R}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">S</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_S}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">T</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_T}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">U</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_U}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">V</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_V}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">W</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_W}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">X</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_X}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">Y</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Y}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <strong class="tit">Z</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Z}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
                             </div>
                         </li>
@@ -112,5 +310,45 @@
         <!-- //.container : E -->
     </div>
 
+    <script type="text/javascript" th:inline="javascript">
+        $(() => {
+            PageScope.init();
+        });
+    
+        const PageScope = {
+            
+            init() {
+                
+                const brandMap = /*[[${brandMap}]]*/ 'default' || {};
+                if (brandMap.BRAND_A.length <= 0) $('#aA').addClass('disabled');
+                if (brandMap.BRAND_B.length <= 0) $('#aB').addClass('disabled');
+                if (brandMap.BRAND_C.length <= 0) $('#aC').addClass('disabled');
+                if (brandMap.BRAND_D.length <= 0) $('#aD').addClass('disabled');
+                if (brandMap.BRAND_E.length <= 0) $('#aE').addClass('disabled');
+                if (brandMap.BRAND_F.length <= 0) $('#aF').addClass('disabled');
+                if (brandMap.BRAND_G.length <= 0) $('#aG').addClass('disabled');
+                if (brandMap.BRAND_H.length <= 0) $('#aH').addClass('disabled');
+                if (brandMap.BRAND_I.length <= 0) $('#aI').addClass('disabled');
+                if (brandMap.BRAND_J.length <= 0) $('#aJ').addClass('disabled');
+                if (brandMap.BRAND_K.length <= 0) $('#aK').addClass('disabled');
+                if (brandMap.BRAND_L.length <= 0) $('#aL').addClass('disabled');
+                if (brandMap.BRAND_M.length <= 0) $('#aM').addClass('disabled');
+                if (brandMap.BRAND_N.length <= 0) $('#aN').addClass('disabled');
+                if (brandMap.BRAND_O.length <= 0) $('#aO').addClass('disabled');
+                if (brandMap.BRAND_P.length <= 0) $('#aP').addClass('disabled');
+                if (brandMap.BRAND_Q.length <= 0) $('#aQ').addClass('disabled');
+                if (brandMap.BRAND_R.length <= 0) $('#aR').addClass('disabled');
+                if (brandMap.BRAND_S.length <= 0) $('#aS').addClass('disabled');
+                if (brandMap.BRAND_T.length <= 0) $('#aT').addClass('disabled');
+                if (brandMap.BRAND_U.length <= 0) $('#aU').addClass('disabled');
+                if (brandMap.BRAND_V.length <= 0) $('#aV').addClass('disabled');
+                if (brandMap.BRAND_W.length <= 0) $('#aW').addClass('disabled');
+                if (brandMap.BRAND_X.length <= 0) $('#aX').addClass('disabled');
+                if (brandMap.BRAND_Y.length <= 0) $('#aY').addClass('disabled');
+                if (brandMap.BRAND_Z.length <= 0) $('#aZ').addClass('disabled');
+            }
+        };
+
+    </script>
 </th:block>
 </html>

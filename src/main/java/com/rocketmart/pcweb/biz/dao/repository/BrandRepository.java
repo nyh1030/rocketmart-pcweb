@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
+import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 
 @Repository
 public class BrandRepository {
@@ -90,5 +91,17 @@ public class BrandRepository {
 				.set(TB_BRAND_MST.UPD_USR_ID, brandDto.getRegUsrId())
 				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandDto.getBrandSeq()))
 				.execute();
+	}
+
+	public List<Map<String, Object>> findAllForAlPaBet() {
+		return this.dslContext.select(
+				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD, DSL.count(TB_PRD_MST.PRODUCT_SEQ).as("PRODUCT_CNT"))
+				.from(TB_BRAND_MST)
+				.innerJoin(TB_CM_AFILE)
+				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.leftOuterJoin(TB_PRD_MST)
+				.on(TB_BRAND_MST.BRAND_SEQ.equal(TB_PRD_MST.PRODUCT_SEQ))
+				.groupBy(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
+				.fetchMaps();
 	}
 }

@@ -44,6 +44,15 @@ public class CategorySvc {
 		return categoryRepository.findAllForCategoryPrdInfo(tbCateMstRecord);
 	}
 
+	/**
+	 * 메인 > Brands 목록 조회
+	 * @param
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForCategoryWithBrandPrdInfo(TbCateMstRecord tbCateMstRecord, int brandSeq) {
+		return categoryRepository.findAllForCategoryWithBrandPrdInfo(tbCateMstRecord, brandSeq);
+	}
+
 	public List<Map<String, Object>> findAll() {
 		return categoryRepository.findAll();
 	}

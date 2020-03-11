@@ -61,6 +61,32 @@ public class CategoryRepository {
                 .fetchMaps();
     }
 
+    /**
+     * 메인 > brands 목록 조회
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> findAllForCategoryWithBrandPrdInfo(TbCateMstRecord tbCateMstRecord, int brandSeq) {
+        return this.dslContext
+                .select(
+                        TB_PRD_MST.PRODUCT_SEQ
+                        ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_BRAND_MST.BRAND_NM
+                        ,TB_CM_AFILE.AFILE_SEQ
+                        ,TB_CM_AFILE.URL_PATH_CD
+                )
+                .from(TB_PRD_MST)
+                .innerJoin(TB_CM_AFILE)
+                .on(TB_PRD_MST.PRODUCT_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+                .innerJoin(TB_BRAND_MST)
+                .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
+                .where(TB_PRD_MST.DEL_YN.equal("N").and(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq)))
+                .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
+                .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
+                .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
+                .orderBy(TB_PRD_MST.REG_TS.desc())
+                .fetchMaps();
+    }
+
     public List<Map<String, Object>> findAll() {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
