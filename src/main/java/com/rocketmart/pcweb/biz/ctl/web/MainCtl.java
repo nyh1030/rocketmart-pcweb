@@ -68,7 +68,7 @@ public class MainCtl {
 
     /**
      * 메인 > ContactUs 등록 페이지
-     * @return String
+     * @return Stringhomepage-5.html
      */
     @GetMapping("/any/contactus/register")
     public String dispContactUs() {
