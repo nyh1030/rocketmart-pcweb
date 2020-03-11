@@ -118,6 +118,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-product--detail .btn-box .ps-btn{display:inline-block;width:45%!important;color:#fff;}
 .ps-product--detail .btn-box .ps-btn.type-pink{background:#f55743;}
 .ps-product--detail .btn-box .ps-btn.type-pink:hover{background:#222}
+.ps-product--detail .btn-box .ps-btn.type-pink[disabled]{background:#ffada3;}
 .ps-product--detail .tbl-price{width:100%;}
 .ps-product--detail .tbl-price th,
 .ps-product--detail .tbl-price td{text-align:center;padding:5px 0;border:1px solid #eaeaea;}
