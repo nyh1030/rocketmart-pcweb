@@ -61,7 +61,7 @@
                             <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA'))}"></span></h4>
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
-                                <a href="#" class="btn-login">Login Required</a>
+                                <a href="#" class="btn-login">Login Required</br></a>
                                 <table class="tbl-price">
                                     <colgroup>
                                         <col style="width:33%">
@@ -98,7 +98,9 @@
                             </div>
                             <div class="btn-box">
                                 <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAuthenticated()"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAnonymous()" disabled><i class="fa fa-heart-o"></i> WISHLIST</span>
                                 <span class="ps-btn" id="btnInquiry" sec:authorize="isAuthenticated()">ASK NOW</span>
+                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAnonymous()" disabled>ASK NOW</span>
                             </div>
                         </div>
                     </div>
@@ -147,6 +149,12 @@
                 this.tradingConditions = /*[[${productInfo.TRADING_CONDITIONS}]]*/ 'default' || '';
 
                 this.bindFields();
+
+
+            },
+
+            setPriceBox() {
+
             },
 
             bindFields() {
