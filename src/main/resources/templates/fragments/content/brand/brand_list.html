@@ -15,36 +15,36 @@
             <div class="ps-section__wrapper">
                 <div class="brand-list-wrap">
                     <div class="sort">
-                        <a id="aA" href="#" class="active">A</a>
-                        <a id="aB" href="#">B</a>
-                        <a id="aC" href="#">C</a>
-                        <a id="aD" href="#">D</a>
-                        <a id="aE" href="#">E</a>
-                        <a id="aF" href="#">F</a>
-                        <a id="aG" href="#">G</a>
-                        <a id="aH" href="#">H</a>
-                        <a id="aI" href="#">I</a>
-                        <a id="aJ" href="#">J</a>
-                        <a id="aK" href="#">K</a>
-                        <a id="aL" href="#">L</a>
-                        <a id="aM" href="#">M</a>
-                        <a id="aN" href="#">N</a>
-                        <a id="aO" href="#">O</a>
-                        <a id="aP" href="#">P</a>
-                        <a id="aQ" href="#">Q</a>
-                        <a id="aR" href="#">R</a>
-                        <a id="aS" href="#">S</a>
-                        <a id="aT" href="#">T</a>
-                        <a id="aU" href="#">U</a>
-                        <a id="aV" href="#">V</a>
-                        <a id="aW" href="#">W</a>
-                        <a id="aX" href="#">X</a>
-                        <a id="aY" href="#">Y</a>
-                        <a id="aZ" href="#">Z</a>
-                        <a id="aETC" href="#">ETC</a>
+                        <a id="aA" href="#s1" class="active">A</a>
+                        <a id="aB" href="#s2">B</a>
+                        <a id="aC" href="#s3">C</a>
+                        <a id="aD" href="#s4">D</a>
+                        <a id="aE" href="#s5">E</a>
+                        <a id="aF" href="#s6">F</a>
+                        <a id="aG" href="#s7">G</a>
+                        <a id="aH" href="#s8">H</a>
+                        <a id="aI" href="#s9">I</a>
+                        <a id="aJ" href="#s10">J</a>
+                        <a id="aK" href="#s11">K</a>
+                        <a id="aL" href="#s12">L</a>
+                        <a id="aM" href="#s13">M</a>
+                        <a id="aN" href="#s14">N</a>
+                        <a id="aO" href="#s15">O</a>
+                        <a id="aP" href="#s16">P</a>
+                        <a id="aQ" href="#s17">Q</a>
+                        <a id="aR" href="#s18">R</a>
+                        <a id="aS" href="#s19">S</a>
+                        <a id="aT" href="#s20">T</a>
+                        <a id="aU" href="#s21">U</a>
+                        <a id="aV" href="#s22">V</a>
+                        <a id="aW" href="#s23">W</a>
+                        <a id="aX" href="#s24">X</a>
+                        <a id="aY" href="#s25">Y</a>
+                        <a id="aZ" href="#s26">Z</a>
+                        <a id="aETC" href="#s27">ETC</a>
                     </div>
                     <ul class="list-box">
-                        <li>
+                        <li id="s1">
                            <strong class="tit">A</strong>
                            <div>
                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_A}">
@@ -54,7 +54,7 @@
                                </a>
                            </div>
                         </li>
-                        <li>
+                        <li id="s2">
                             <strong class="tit">B</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_B}">
@@ -64,7 +64,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s3">
                             <strong class="tit">C</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_C}">
@@ -74,7 +74,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s4">
                             <strong class="tit">D</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_D}">
@@ -84,7 +84,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s5">
                             <strong class="tit">E</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_E}">
@@ -94,7 +94,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s6">
                             <strong class="tit">F</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_F}">
@@ -103,17 +103,18 @@
                                     <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
                                 </a>
                             </div>
-                        </li><li>
-                        <strong class="tit">G</strong>
-                        <div>
-                            <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_G}">
-                                <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
-                                <span class="name" th:text="${brand.BRAND_NM}"></span>
-                                <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
-                            </a>
-                        </div>
-                    </li>
-                        <li>
+                        </li>
+                        <li id="s7">
+                            <strong class="tit">G</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_G}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
+                        <li id="s8">
                             <strong class="tit">H</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_H}">
@@ -123,7 +124,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s9">
                             <strong class="tit">I</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_I}">
@@ -133,7 +134,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s10">
                             <strong class="tit">J</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_J}">
@@ -143,7 +144,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s11">
                             <strong class="tit">K</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_K}">
@@ -153,7 +154,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s12">
                             <strong class="tit">L</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_L}">
@@ -163,7 +164,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s13">
                             <strong class="tit">M</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_M}">
@@ -173,7 +174,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s14">
                             <strong class="tit">N</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_N}">
@@ -183,7 +184,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s15">
                             <strong class="tit">O</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_O}">
@@ -193,7 +194,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s16">
                             <strong class="tit">P</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_P}">
@@ -203,7 +204,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s17">
                             <strong class="tit">Q</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Q}">
@@ -213,7 +214,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s18">
                             <strong class="tit">R</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_R}">
@@ -223,7 +224,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s19">
                             <strong class="tit">S</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_S}">
@@ -233,7 +234,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s20">
                             <strong class="tit">T</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_T}">
@@ -243,7 +244,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s21">
                             <strong class="tit">U</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_U}">
@@ -253,7 +254,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s22">
                             <strong class="tit">V</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_V}">
@@ -263,7 +264,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s23">
                             <strong class="tit">W</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_W}">
@@ -273,7 +274,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s24">
                             <strong class="tit">X</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_X}">
@@ -283,7 +284,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s25">
                             <strong class="tit">Y</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Y}">
@@ -293,7 +294,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        <li id="s26">
                             <strong class="tit">Z</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Z}">
@@ -346,6 +347,17 @@
                 if (brandMap.BRAND_X.length <= 0) $('#aX').addClass('disabled');
                 if (brandMap.BRAND_Y.length <= 0) $('#aY').addClass('disabled');
                 if (brandMap.BRAND_Z.length <= 0) $('#aZ').addClass('disabled');
+
+                this.anchorEvent();
+            },
+            anchorEvent(){
+                $('.brand-list-wrap .sort').find('a[href^="#"]').on('click',function(e){
+                    e.preventDefault();
+                    const target = $(this.hash);
+                    const headerTop = $('.header .header__top').outerHeight() + 50;
+                    const targetTop = target.offset().top - headerTop;
+                    $('html,body').animate({scrollTop:targetTop}, 300);
+                });
             }
         };
 
