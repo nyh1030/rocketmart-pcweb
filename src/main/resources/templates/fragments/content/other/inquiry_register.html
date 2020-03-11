@@ -71,7 +71,7 @@
         },
         getParameters() {
             return {
-                productSeq: CommonUtils.getCheckValToCommaString($('[name="productSeq"]')),
+                productSeq: CommonUtils.getNamesToCommaString($('[name="productSeq"]')),
                 message: $('#message').val()
             }
         },

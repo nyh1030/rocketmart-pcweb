@@ -7,6 +7,7 @@ import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,10 +62,11 @@ public class OtherRestCtl {
 	 * @return ResponseEntity<String>
 	 */
 	@PostMapping("/any/rest/inquiry/info/save")
-	public ResponseEntity<String> saveInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, @RequestParam(value = "productSeq") String productSeq, Principal principal) {
+	public ResponseEntity<String> saveInquiryInfo(@NotNull TbInquiryMstRecord tbInquiryMstRecord, @NotNull @RequestParam(value = "productSeq") String productSeq, @NotNull Principal principal) {
 		List<Integer> productSeqs = Arrays.stream(productSeq.split(",", -1))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
+
 
 		tbInquiryMstRecord.setRegUsrId(principal.getName());
 

@@ -123,6 +123,8 @@ public class OtherRepository {
                 .select(
                         TB_INQUIRY_MST.INQUIRY_SEQ
                         ,TB_INQUIRY_MST.MESSAGE
+                        ,TB_MEM_MST.MEM_ID
+                        ,TB_MEM_MST.MEM_NM
                         ,TB_INQUIRY_MST.REG_USR_ID
                         ,TB_INQUIRY_MST.REG_TS
                         ,TB_INQUIRY_MST.UPD_USR_ID
@@ -143,7 +145,20 @@ public class OtherRepository {
      * Inquiry 상세정보 조회_마스터
      */
     public Map<String, Object> findOneForInquiryMstInfo(int inquirySeq) {
-        return this.dslContext.selectFrom(TB_INQUIRY_MST)
+        return this.dslContext
+                .select(
+                        TB_INQUIRY_MST.INQUIRY_SEQ
+                        ,TB_MEM_MST.MEM_ID
+                        ,TB_MEM_MST.MEM_NM
+                        ,TB_INQUIRY_MST.MESSAGE
+                        ,TB_INQUIRY_MST.REG_USR_ID
+                        ,TB_INQUIRY_MST.REG_TS
+                        ,TB_INQUIRY_MST.UPD_USR_ID
+                        ,TB_INQUIRY_MST.UPD_TS
+                )
+                .from(TB_INQUIRY_MST)
+                .join(TB_MEM_MST)
+                    .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .where(TB_INQUIRY_MST.INQUIRY_SEQ.eq(inquirySeq))
                 .fetchOneMap();
     }
@@ -152,9 +167,24 @@ public class OtherRepository {
      * Inquiry 상세정보 조회_상세
      */
     public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
-        return this.dslContext.selectFrom(TB_INQUIRY_DTL)
+        return this.dslContext
+                .select(
+                        TB_INQUIRY_DTL.INQUIRY_SEQ
+                        ,TB_INQUIRY_DTL.PRODUCT_SEQ
+                        ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_CM_AFILE.URL_PATH_CD
+                        ,TB_INQUIRY_DTL.REG_USR_ID
+                        ,TB_INQUIRY_DTL.REG_TS
+                        ,TB_INQUIRY_DTL.UPD_USR_ID
+                        ,TB_INQUIRY_DTL.UPD_TS
+                )
+                .from(TB_INQUIRY_DTL)
+                .join(TB_PRD_MST)
+                .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                .join(TB_CM_AFILE)
+                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .where(TB_INQUIRY_DTL.INQUIRY_SEQ.eq(inquirySeq))
-                .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.asc())
+                .orderBy(TB_INQUIRY_DTL.INQUIRY_SEQ.asc())
                 .fetchMaps();
     }
 
