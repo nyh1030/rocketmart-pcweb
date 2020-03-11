@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   devtools:
     restart:
       enabled: true

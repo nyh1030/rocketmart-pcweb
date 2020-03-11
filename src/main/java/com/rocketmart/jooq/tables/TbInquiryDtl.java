@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
-    private static final long serialVersionUID = -823178077;
+    private static final long serialVersionUID = 1129202190;
 
     /**
      * The reference instance of <code>rocketmart.TB_INQUIRY_DTL</code>
@@ -89,9 +89,9 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     public final TableField<TbInquiryDtlRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "수정자아이디");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.UPD_USR_TS</code>. 수정일시
+     * The column <code>rocketmart.TB_INQUIRY_DTL.UPD_TS</code>. 수정일시
      */
-    public final TableField<TbInquiryDtlRecord, Timestamp> UPD_USR_TS = createField(DSL.name("UPD_USR_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
+    public final TableField<TbInquiryDtlRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
      * Create a <code>rocketmart.TB_INQUIRY_DTL</code> table reference

@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> implements Record7<Integer, Integer, Integer, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = 305973211;
+    private static final long serialVersionUID = -50638354;
 
     /**
      * Setter for <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ</code>. 상품문의 상세 일련번호
@@ -117,16 +117,16 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_DTL.UPD_USR_TS</code>. 수정일시
+     * Setter for <code>rocketmart.TB_INQUIRY_DTL.UPD_TS</code>. 수정일시
      */
-    public void setUpdUsrTs(Timestamp value) {
+    public void setUpdTs(Timestamp value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_DTL.UPD_USR_TS</code>. 수정일시
+     * Getter for <code>rocketmart.TB_INQUIRY_DTL.UPD_TS</code>. 수정일시
      */
-    public Timestamp getUpdUsrTs() {
+    public Timestamp getUpdTs() {
         return (Timestamp) get(6);
     }
 
@@ -185,7 +185,7 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
 
     @Override
     public Field<Timestamp> field7() {
-        return TbInquiryDtl.TB_INQUIRY_DTL.UPD_USR_TS;
+        return TbInquiryDtl.TB_INQUIRY_DTL.UPD_TS;
     }
 
     @Override
@@ -220,7 +220,7 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
 
     @Override
     public Timestamp component7() {
-        return getUpdUsrTs();
+        return getUpdTs();
     }
 
     @Override
@@ -255,7 +255,7 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
 
     @Override
     public Timestamp value7() {
-        return getUpdUsrTs();
+        return getUpdTs();
     }
 
     @Override
@@ -296,7 +296,7 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
 
     @Override
     public TbInquiryDtlRecord value7(Timestamp value) {
-        setUpdUsrTs(value);
+        setUpdTs(value);
         return this;
     }
 
@@ -326,7 +326,7 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
     /**
      * Create a detached, initialised TbInquiryDtlRecord
      */
-    public TbInquiryDtlRecord(Integer inquiryDtlSeq, Integer inquirySeq, Integer productSeq, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updUsrTs) {
+    public TbInquiryDtlRecord(Integer inquiryDtlSeq, Integer inquirySeq, Integer productSeq, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
         super(TbInquiryDtl.TB_INQUIRY_DTL);
 
         set(0, inquiryDtlSeq);
@@ -335,6 +335,6 @@ public class TbInquiryDtlRecord extends UpdatableRecordImpl<TbInquiryDtlRecord> 
         set(3, regUsrId);
         set(4, regTs);
         set(5, updUsrId);
-        set(6, updUsrTs);
+        set(6, updTs);
     }
 }
