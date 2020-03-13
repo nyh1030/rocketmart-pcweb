@@ -326,31 +326,31 @@
                                     <div class="mega-menu__column">
                                         <h4>basic care<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '101'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '101'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="mega-menu__column">
                                         <h4>cleansing/peeling<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '102'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '102'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="mega-menu__column">
                                         <h4>suncare<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '103'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '103'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="mega-menu__column">
                                         <h4>mask/pack<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '104'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '104'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="mega-menu__column">
                                         <h4>Men Care<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '105'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '105'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -358,13 +358,13 @@
                                     <div class="mega-menu__column">
                                         <h4>Baby Care<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '106'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '106'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div class="mega-menu__column">
                                         <h4>Mom<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                            <li th:if="${category.CATE2_CD == '107'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                            <li th:if="${category.CATE2_CD == '107'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -376,31 +376,31 @@
                                 <div class="mega-menu__column">
                                     <h4>face<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '201'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '201'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Lip<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '202'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '202'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>eye<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '203'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '203'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>nail<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '204'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '204'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Pallet<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '205'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '205'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -411,31 +411,31 @@
                                 <div class="mega-menu__column">
                                     <h4>body care<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '301'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '301'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Hair Care<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '302'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '302'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Oral Care<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '303'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '303'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Women Perfume<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '304'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '304'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Men Perfume<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '305'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '305'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -446,19 +446,19 @@
                                 <div class="mega-menu__column">
                                     <h4>Massage Device<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '401'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '401'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>brush<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '402'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '402'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>facial rollers<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '403'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '403'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -469,13 +469,13 @@
                                 <div class="mega-menu__column">
                                     <h4>Red-ginseng<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '501'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '501'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div class="mega-menu__column">
                                     <h4>Dietary Supplement<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
-                                        <li th:if="${category.CATE2_CD == '502'}" class="current-menu-item"><a href="#" th:text="${category.CATE3_NM}"></a></li>
+                                        <li th:if="${category.CATE2_CD == '502'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                             </div>

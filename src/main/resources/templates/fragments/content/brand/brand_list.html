@@ -14,7 +14,7 @@
             </div>
             <div class="ps-section__wrapper">
                 <div class="brand-list-wrap">
-                    <div class="sort">
+                    <div id="dvAlpabet" class="sort">
                         <a id="aA" href="#s1" class="active">A</a>
                         <a id="aB" href="#s2">B</a>
                         <a id="aC" href="#s3">C</a>
@@ -304,6 +304,16 @@
                                 </a>
                             </div>
                         </li>
+                        <li id="s27">
+                            <strong class="tit">ETC</strong>
+                            <div>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_ETC}">
+                                    <div class="img-box"><img th:src="${brand.URL_PATH_CD}" alt=""></div>
+                                    <span class="name" th:text="${brand.BRAND_NM}"></span>
+                                    <span class="num" th:text="|PRODUCT COUNT: ${brand.PRODUCT_CNT}|"></span>
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -347,6 +357,7 @@
                 if (brandMap.BRAND_X.length <= 0) $('#aX').addClass('disabled');
                 if (brandMap.BRAND_Y.length <= 0) $('#aY').addClass('disabled');
                 if (brandMap.BRAND_Z.length <= 0) $('#aZ').addClass('disabled');
+                if (brandMap.BRAND_ETC.length <= 0) $('#aETC').addClass('disabled');
 
                 this.anchorEvent();
             },

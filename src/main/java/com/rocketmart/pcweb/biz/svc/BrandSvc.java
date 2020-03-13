@@ -149,6 +149,7 @@ public class BrandSvc {
 		returnMap.put("BRAND_X", BRAND_X);
 		returnMap.put("BRAND_Y", BRAND_Y);
 		returnMap.put("BRAND_Z", BRAND_Z);
+		returnMap.put("BRAND_ETC", BRAND_ETC);
 		return returnMap;
 	}
 }
