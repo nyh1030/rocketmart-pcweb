@@ -36,4 +36,5 @@ public class ProductDto {
 	private String rangeEnd;
 	private String tradingPrice;
 	private String supplyRate;
+	private String exposureSupplyRate;
 }
