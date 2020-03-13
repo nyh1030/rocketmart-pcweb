@@ -107,7 +107,7 @@ public class ProductRepository {
 	public List<Map<String, Object>> findFobByProductSeq(int productSeq) {
 		return this.dslContext.select(
 				TB_PRD_FOB.FOB_SEQ, TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
-				TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE)
+				TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE, TB_PRD_FOB.EXPOSURE_SUPPLY_RATE)
 				.from(TB_PRD_FOB)
 				.where(TB_PRD_FOB.PRODUCT_SEQ.equal(productSeq)).and(TB_PRD_FOB.DEL_YN.equal("N"))
 				.fetchMaps();
@@ -251,9 +251,9 @@ public class ProductRepository {
 	public int saveOneForFobInfo(Map<String, Object> paramMap) {
 		return this.dslContext.insertInto(TB_PRD_FOB)
 				.columns(TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
-						TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE)
+						TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE, TB_PRD_FOB.EXPOSURE_SUPPLY_RATE)
 				.values(Integer.parseInt(paramMap.get("productSeq").toString()), Long.parseLong(paramMap.get("rangeStart").toString()), Long.parseLong(paramMap.get("rangeEnd").toString()),
-						Long.parseLong(paramMap.get("tradingPrice").toString()), Integer.parseInt(paramMap.get("supplyRate").toString()))
+						Long.parseLong(paramMap.get("tradingPrice").toString()), Integer.parseInt(paramMap.get("supplyRate").toString()), Integer.parseInt(paramMap.get("exposureSupplyRate").toString()))
 				.execute();
 	}
 
