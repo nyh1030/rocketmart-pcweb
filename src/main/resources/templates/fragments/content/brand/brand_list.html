@@ -44,7 +44,7 @@
                         <a id="aETC" href="#s27">ETC</a>
                     </div>
                     <ul class="list-box">
-                        <li id="s1">
+                        <li id="s1" th:if="${!#lists.isEmpty(brandMap.BRAND_A)}">
                            <strong class="tit">A</strong>
                            <div>
                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_A}">
@@ -54,7 +54,7 @@
                                </a>
                            </div>
                         </li>
-                        <li id="s2">
+                        <li id="s2" th:if="${!#lists.isEmpty(brandMap.BRAND_B)}">
                             <strong class="tit">B</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_B}">
@@ -64,7 +64,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s3">
+                        <li id="s3" th:if="${!#lists.isEmpty(brandMap.BRAND_C)}">
                             <strong class="tit">C</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_C}">
@@ -74,7 +74,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s4">
+                        <li id="s4" th:if="${!#lists.isEmpty(brandMap.BRAND_D)}">
                             <strong class="tit">D</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_D}">
@@ -84,7 +84,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s5">
+                        <li id="s5" th:if="${!#lists.isEmpty(brandMap.BRAND_E)}">
                             <strong class="tit">E</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_E}">
@@ -94,7 +94,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s6">
+                        <li id="s6" th:if="${!#lists.isEmpty(brandMap.BRAND_F)}">
                             <strong class="tit">F</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_F}">
@@ -104,7 +104,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s7">
+                        <li id="s7" th:if="${!#lists.isEmpty(brandMap.BRAND_G)}">
                             <strong class="tit">G</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_G}">
@@ -114,7 +114,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s8">
+                        <li id="s8" th:if="${!#lists.isEmpty(brandMap.BRAND_H)}">
                             <strong class="tit">H</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_H}">
@@ -124,7 +124,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s9">
+                        <li id="s9" th:if="${!#lists.isEmpty(brandMap.BRAND_I)}">
                             <strong class="tit">I</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_I}">
@@ -134,7 +134,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s10">
+                        <li id="s10" th:if="${!#lists.isEmpty(brandMap.BRAND_J)}">
                             <strong class="tit">J</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_J}">
@@ -144,7 +144,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s11">
+                        <li id="s11" th:if="${!#lists.isEmpty(brandMap.BRAND_K)}">
                             <strong class="tit">K</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_K}">
@@ -154,7 +154,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s12">
+                        <li id="s12" th:if="${!#lists.isEmpty(brandMap.BRAND_L)}">
                             <strong class="tit">L</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_L}">
@@ -164,7 +164,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s13">
+                        <li id="s13" th:if="${!#lists.isEmpty(brandMap.BRAND_M)}">
                             <strong class="tit">M</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_M}">
@@ -174,7 +174,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s14">
+                        <li id="s14" th:if="${!#lists.isEmpty(brandMap.BRAND_N)}">
                             <strong class="tit">N</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_N}">
@@ -184,7 +184,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s15">
+                        <li id="s15" th:if="${!#lists.isEmpty(brandMap.BRAND_O)}">
                             <strong class="tit">O</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_O}">
@@ -194,7 +194,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s16">
+                        <li id="s16" th:if="${!#lists.isEmpty(brandMap.BRAND_P)}">
                             <strong class="tit">P</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_P}">
@@ -204,7 +204,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s17">
+                        <li id="s17" th:if="${!#lists.isEmpty(brandMap.BRAND_Q)}">
                             <strong class="tit">Q</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Q}">
@@ -214,7 +214,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s18">
+                        <li id="s18" th:if="${!#lists.isEmpty(brandMap.BRAND_R)}">
                             <strong class="tit">R</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_R}">
@@ -224,7 +224,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s19">
+                        <li id="s19" th:if="${!#lists.isEmpty(brandMap.BRAND_S)}">
                             <strong class="tit">S</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_S}">
@@ -234,7 +234,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s20">
+                        <li id="s20" th:if="${!#lists.isEmpty(brandMap.BRAND_T)}">
                             <strong class="tit">T</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_T}">
@@ -244,7 +244,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s21">
+                        <li id="s21" th:if="${!#lists.isEmpty(brandMap.BRAND_U)}">
                             <strong class="tit">U</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_U}">
@@ -254,7 +254,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s22">
+                        <li id="s22" th:if="${!#lists.isEmpty(brandMap.BRAND_V)}">
                             <strong class="tit">V</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_V}">
@@ -264,7 +264,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s23">
+                        <li id="s23" th:if="${!#lists.isEmpty(brandMap.BRAND_W)}">
                             <strong class="tit">W</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_W}">
@@ -274,7 +274,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s24">
+                        <li id="s24" th:if="${!#lists.isEmpty(brandMap.BRAND_X)}">
                             <strong class="tit">X</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_X}">
@@ -284,7 +284,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s25">
+                        <li id="s25" th:if="${!#lists.isEmpty(brandMap.BRAND_Y)}">
                             <strong class="tit">Y</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Y}">
@@ -294,7 +294,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s26">
+                        <li id="s26" th:if="${!#lists.isEmpty(brandMap.BRAND_Z)}">
                             <strong class="tit">Z</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_Z}">
@@ -304,7 +304,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li id="s27">
+                        <li id="s27" th:if="${!#lists.isEmpty(brandMap.BRAND_ETC)}">
                             <strong class="tit">ETC</strong>
                             <div>
                                 <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" class="item" th:each="brand : ${brandMap.BRAND_ETC}">
@@ -324,6 +324,7 @@
     <script type="text/javascript" th:inline="javascript">
         $(() => {
             PageScope.init();
+            EventScope.init();
         });
     
         const PageScope = {
@@ -371,6 +372,20 @@
                 });
             }
         };
+
+        const EventScope = {
+
+            init() {
+                this.clickEventListener();
+            },
+
+            clickEventListener() {
+                $('#dvAlpabet a').on('click', function () {
+                    $('#dvAlpabet a').removeClass('active');
+                    $(this).addClass('active');
+                });
+            }
+        }
 
     </script>
 </th:block>
