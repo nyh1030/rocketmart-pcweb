@@ -93,6 +93,7 @@
                                                     <col style="width:25%;">
                                                     <col style="width:25%;">
                                                     <col style="width:25%;">
+                                                    <col style="width:25%;">
                                                     <col>
                                                 </colgroup>
                                                 <thead>
@@ -100,6 +101,7 @@
                                                     <th colspan="2">범위</th>
                                                     <th rowspan="2">거래가<br>(US)</th>
                                                     <th rowspan="2" class="last">공급률(%)</th>
+                                                    <th rowspan="2" class="last">노출 공급률(%)</th>
                                                 </tr>
                                                 <tr>
                                                     <th>구간 시작</th>
@@ -628,7 +630,8 @@
                     rangeStart: CommonUtils.getDataToCommaString($('[name="rangeStart"]')),
                     rangeEnd: CommonUtils.getDataToCommaString($('[name="rangeEnd"]')),
                     tradingPrice: CommonUtils.getDataToCommaString($('[name="tradingPrice"]')),
-                    supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]'))
+                    supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]')),
+                    exposureSupplyRate: CommonUtils.getDataToCommaString($('[name="exposureSupplyRate"]'))
                 }
             },
 
@@ -636,8 +639,9 @@
                 PageScope.objDataTables.row.add([
                     `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
+                    `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                 ]).draw(false);
             },
 
@@ -773,6 +777,18 @@
                     PageScope.$tab1.hide(); PageScope.$tab2.hide(); PageScope.$tab3.hide(); PageScope.$tab4.show(); $('#btnPrev').show(); $('#btnNext').hide();
                     PageScope.tabId = 'tab-4';
                 }
+            },
+            calculateSupplyRate(_this) {
+                const retailPrice = $('#txtRetailPrice').val();
+                if (!retailPrice) {
+                    alert('소비자 가격을 먼저 입력해주세요.');
+                    $(_this).val(0);
+                    return;
+                }
+                const supplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100).toFixed(2);
+                const exposureSupplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100 + 5).toFixed(2);
+                $(_this).parent().next().children().val(supplyRate); // 공급률
+                $(_this).parent().next().next().children().val(exposureSupplyRate); // 노출 공급률
             }
         };
     </script>

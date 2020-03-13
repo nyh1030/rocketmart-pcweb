@@ -101,6 +101,7 @@ public class ProductSvc {
 			String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
 			String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
 			String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+			String[] exposureSupplyRate = productDto.getExposureSupplyRate().split(",", -1);
 
 			int length = rangeStart.length;
 			for (int idx = 0; idx < length; idx++) {
@@ -110,6 +111,7 @@ public class ProductSvc {
 				paramMap.put("rangeEnd", rangeEnd[idx]);
 				paramMap.put("tradingPrice", tradingPrice[idx]);
 				paramMap.put("supplyRate", supplyRate[idx]);
+				paramMap.put("exposureSupplyRate", exposureSupplyRate[idx]);
 
 				fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
 			}
@@ -133,6 +135,7 @@ public class ProductSvc {
 				String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
 				String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
 				String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+				String[] exposureSupplyRate = productDto.getExposureSupplyRate().split(",", -1);
 
 				int length = rangeStart.length;
 				for (int idx = 0; idx < length; idx++) {
@@ -142,6 +145,7 @@ public class ProductSvc {
 					paramMap.put("rangeEnd", rangeEnd[idx]);
 					paramMap.put("tradingPrice", tradingPrice[idx]);
 					paramMap.put("supplyRate", supplyRate[idx]);
+					paramMap.put("exposureSupplyRate", exposureSupplyRate[idx]);
 
 					fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
 				}
