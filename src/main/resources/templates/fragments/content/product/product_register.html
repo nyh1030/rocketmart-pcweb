@@ -23,7 +23,7 @@
                     <div class="ps-product--detail">
                         <div class="ps-product__content">
 <!--                            <div class="logo-box">로고이미지 들어가는자리</div>-->
-                            <ul class="ps-tab-list">
+                            <ul id="ulTabList" class="ps-tab-list">
                                 <li class="active"><a href="#" data-id="tab-1" onclick="EventScope.clickTabControl(this);">기본정보</a></li>
                                 <li><a href="#" data-id="tab-2" onclick="EventScope.clickTabControl(this);">가격정보</a></li>
                                 <li><a href="#" data-id="tab-3" onclick="EventScope.clickTabControl(this);">주요특징</a></li>
@@ -299,7 +299,7 @@
                             </div>
                             <div class="ps-pagination">
                                 <ul class="pagination">
-                                    <li><button id="btnPrev"><i class="fa fa-angle-left"></i></button></li>
+                                    <li><button id="btnPrev" style="display: none;"><i class="fa fa-angle-left"></i></button></li>
                                     <li class="active"><button id="btnNext"><i class="fa fa-angle-right"></i></button></li>
                                 </ul>
                             </div>
@@ -384,6 +384,7 @@
             bindCate3Combo(parentCd) {
                 const cate3List = /*[[${cate3List}]]*/ 'default' || [];
                 const $cate3Cd = $("#sltCate3Cd");
+                $cate3Cd.html(`<option value="">(선택)</option>`);
                 cate3List.filter(item => {
                     return item.CATE2_CD == parentCd;
                 }).forEach(item => {
@@ -637,9 +638,9 @@
 
             addGridRow() {
                 PageScope.objDataTables.row.add([
-                    `<td><input type="text" name="rangeStart" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="rangeEnd" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="rangeStart" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="rangeEnd" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
                     `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                     `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                 ]).draw(false);
@@ -682,21 +683,10 @@
 
             clickEventListener() {
                 $("#sltCate1Cd").on('change', function() {
-                    const cate1Cd = $(this).val();
-                    if (cate1Cd) {
-                        PageScope.bindCate2Combo(cate1Cd);
-                    } else {
-                        $("#sltCate2Cd").html(`<option value="">(선택)</option>`);
-                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
-                    }
+                    PageScope.bindCate2Combo($(this).val());
                 });
                 $("#sltCate2Cd").on('change', function() {
-                    const cate2Cd = $(this).val();
-                    if (cate2Cd) {
-                        PageScope.bindCate3Combo(cate2Cd);
-                    } else {
-                        $("#sltCate3Cd").html(`<option value="">(선택)</option>`);
-                    }
+                    PageScope.bindCate3Combo($(this).val());
                 });
 
                 $('#btnSave').on('click', () => {
@@ -787,8 +777,8 @@
                 }
                 const supplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100).toFixed(2);
                 const exposureSupplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100 + 5).toFixed(2);
-                $(_this).parent().next().children().val(supplyRate); // 공급률
-                $(_this).parent().next().next().children().val(exposureSupplyRate); // 노출 공급률
+                $(_this).parent().next().children().val(supplyRate !== 'NaN' ? supplyRate : 0); // 공급률
+                $(_this).parent().next().next().children().val(exposureSupplyRate !== 'NaN' ? exposureSupplyRate : 0); // 노출 공급률
             }
         };
     </script>
