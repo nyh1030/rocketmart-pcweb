@@ -12,6 +12,7 @@
 - Layout - Responsive, Bootstrap 4.x
 - Compatible Browsers	Firefox, Safari, Opera, Chrome, Edge
 - 네이버 클라우드 플랫폼 / Linux
+- To - Do List : gitkraken 사용
 
 
 
@@ -30,7 +31,6 @@
 - [ ] 메일전송 
 - [ ] 시큐어 코딩(벨리드 어노테이션, 데이터 마스킹)
 - [X] Restful 설계 / axios
-- [X] To - Do List : gitkraken 사용
 
 ## 📑 작성문서
 
