@@ -2,6 +2,7 @@ package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
+import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,13 +95,17 @@ public class BrandRepository {
 	}
 
 	public List<Map<String, Object>> findAllForAlPaBet() {
+		Field<?> count =
+				this.dslContext.selectCount()
+						.from(TB_PRD_MST)
+						.where(TB_PRD_MST.BRAND_SEQ.eq(TB_BRAND_MST.BRAND_SEQ))
+						.asField("count");
+
 		return this.dslContext.select(
-				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD, DSL.count(TB_PRD_MST.PRODUCT_SEQ).as("PRODUCT_CNT"))
+				TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD, count.as("PRODUCT_CNT"))
 				.from(TB_BRAND_MST)
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.leftOuterJoin(TB_PRD_MST)
-				.on(TB_BRAND_MST.BRAND_SEQ.equal(TB_PRD_MST.PRODUCT_SEQ))
 				.groupBy(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
 				.fetchMaps();
 	}

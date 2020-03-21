@@ -12,6 +12,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -54,6 +55,9 @@ public class FileUtils {
 		String orgnFileNm = fullFileName.substring(0, fullFileName.indexOf("."));
 		String ext = fullFileName.substring(fullFileName.indexOf("."));
 		String regFileNm = CommonUtils.getFileId();
+
+		this.makeDirectoryIfNotExists(filePath.concat(themaRelmCd)); // 디렉토리가 없을 경우 생성
+
 		Path targetLocation = Paths.get(filePath.concat(themaRelmCd).concat("/")).toAbsolutePath().normalize().resolve(regFileNm.concat(ext));
 		try {
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
@@ -73,5 +77,12 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 		return resource;
+	}
+
+	public void makeDirectoryIfNotExists(String filePath) {
+		File directoryPath = new File(filePath);
+		if (!directoryPath.exists()) {
+			directoryPath.mkdir();
+		}
 	}
 }

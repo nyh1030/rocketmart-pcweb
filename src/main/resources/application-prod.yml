@@ -31,9 +31,12 @@ spring:
       max-request-size: 5MB
 
 afile:
-  host: "http://49.50.167.112:8080"
-  path: "/var/lib/tomcat8/webapps/ROOT/WEB-INF/classes/static/afiles/"
+  host: "http://49.50.167.112"
+  path: "/rocketmart/afiles/"
 
 logging:
   level:
     org.jooq.tools.LoggerListener: debug
+
+server:
+  port: 80
