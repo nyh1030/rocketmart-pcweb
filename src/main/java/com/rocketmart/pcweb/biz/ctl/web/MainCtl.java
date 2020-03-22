@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainCtl {
@@ -28,7 +29,10 @@ public class MainCtl {
 
     @GetMapping("/")
     public String mainPage(Model model) {
-        model.addAttribute("categoryList", categorySvc.findAll());
+        List<Map<String, Object>> categoryList = categorySvc.findAll();
+        model.addAttribute("category1Depth", categoryList.stream().map(category -> category.get("CATE1_CD")).collect(Collectors.toList()));
+        model.addAttribute("category2Depth", categoryList.stream().map(category -> category.get("CATE2_CD")).collect(Collectors.toList()));
+        model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", productSvc.findAllForLastestOrder());
 
         List<Map<String, Object>> brandList = brandSvc.findAll();

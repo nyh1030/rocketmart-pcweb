@@ -2,6 +2,7 @@ package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.records.TbCateMstRecord;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -90,6 +91,7 @@ public class CategoryRepository {
     public List<Map<String, Object>> findAll() {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
+                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
                 .fetchMaps();
     }
 }

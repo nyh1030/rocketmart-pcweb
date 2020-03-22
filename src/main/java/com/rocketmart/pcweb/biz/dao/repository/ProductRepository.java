@@ -101,6 +101,7 @@ public class ProductRepository {
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.CATE2_CD.equal(cateCd)).and(TB_PRD_MST.DEL_YN.equal("N"))
+				.and(DSL.exists(this.dslContext.selectQuery()))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
 	}
