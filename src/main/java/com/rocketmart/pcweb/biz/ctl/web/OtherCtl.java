@@ -66,7 +66,11 @@ public class OtherCtl {
      */
     @RequestMapping("/any/wishlist/list")
     public String dispWishList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
-        tbWishMstRecord.setRegUsrId(principal.getName());
+        if(!"admin".equals(principal.getName())){
+            tbWishMstRecord.setRegUsrId(principal.getName());
+        }else{
+            tbWishMstRecord.setRegUsrId("");
+        }
 
         model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
 

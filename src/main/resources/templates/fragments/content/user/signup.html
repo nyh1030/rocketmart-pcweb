@@ -6,7 +6,7 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a th:href="@{/}">Home</a></li>
-                    <li>Resister</li>
+                    <li>SignUp</li>
                 </ul>
             </div>
         </div>
@@ -290,7 +290,7 @@
                 return false;
             }
 
-            if("SELLER" === $('.user-role input[type=radio]:checked').val()){
+/*            if("SELLER" === $('.user-role input[type=radio]:checked').val()){
                 if(confirm("회원가입을 하시겠습니까?")){
                     return true;
                 }else{
@@ -302,7 +302,7 @@
                 }else{
                     return false;
                 }
-            }
+            }*/
 
             return true;
         }

@@ -23,7 +23,7 @@
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
                             <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
-                            <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">Register</a>
+                            <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">SignUp</a>
                             <!-- D : 로그인후 -->
                             <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>
@@ -60,7 +60,7 @@
                     <div class="ps-block__right">
                         <!-- D : 로그인전 -->
                         <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
-                        <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">Register</a>
+                        <a sec:authorize="isAnonymous()" th:href="@{/any/signup}">SignUp</a>
                         <!-- D : 로그인후 -->
                         <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                         <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>

@@ -99,6 +99,7 @@ public class OtherRepository {
                         ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_PRD_MST.RETAIL_PRICE
                         ,TB_MEM_MST.APPROVAL_YN
+                        ,TB_MEM_MST.MEM_NM
                 )
                 .from(TB_WISH_MST)
                 .join(TB_PRD_MST)
@@ -107,7 +108,7 @@ public class OtherRepository {
                     .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .join(TB_MEM_MST)
                     .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .where(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())
+                .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
                     .and(TB_WISH_MST.ASK_YN.eq("N"))
                     .and(TB_WISH_MST.DEL_YN.eq("N"))
                 )

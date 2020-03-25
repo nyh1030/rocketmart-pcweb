@@ -41,4 +41,9 @@ public class ProductRestCtl {
 	public ResponseEntity<String> deleteProduct(@PathVariable(value = "productSeq") int productSeq) {
 		return new ResponseEntity<>(productSvc.deleteProduct(productSeq), HttpStatus.OK);
 	}
+
+	@GetMapping("/any/product/fob/list/{productSeq}")
+	public ResponseEntity<List<Map<String, Object>>> findFobByProductSeq(@PathVariable(value = "productSeq") int productSeq) {
+		return new ResponseEntity<>(productSvc.findFobByProductSeq(productSeq), HttpStatus.OK);
+	}
 }
