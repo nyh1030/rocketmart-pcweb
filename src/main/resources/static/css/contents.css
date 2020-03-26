@@ -26,6 +26,7 @@
 .btn-back{top:13px!important;font-size:16px;font-weight:600;border:0;background:#fff;color:#109fd6;}
 .btn-back .fa{font-size:19px;}
 .txt-drag{color:#b1b1b1;}
+.txt-ex{display:block;margin-top:4px;color:red;font-size:13px;}
 label .required{color:red;font-weight:700;}
 table tbody tr td.link-type a,
 table tbody tr td.link-type a:hover{color:#fcb800!important;text-decoration:underline;font-weight:500;}
@@ -169,6 +170,11 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-search-trending .ps-section__header h3{font-size:24px;font-weight:600;}
 #homepage-5 .ps-deal-of-day{margin:60px 0 0;}
 #homepage-5 .ps-deal-of-day .no_data{border:0;}
+#homepage-5 .ps-deal-of-day .ps-product__thumbnail,
+#homepage-5 .ps-search-trending .ps-product__thumbnail{width:220px;height:220px;}
+#homepage-5 .ps-deal-of-day .ps-product__container,
+#homepage-5 .ps-search-trending .ps-product__container{width:220px;}
+#homepage-5 .ps-deal-of-day .owl-stage-outer{padding-left:5px;}
 #homepage-5 .ps-brand-logo{padding:60px 0;}
 #homepage-5 .ps-brand-logo .ps-product .ps-product__thumbnail{width:150px;height:150px;}
 #homepage-5 .ps-deal-of-day .ps-section__content{padding:30px;}
@@ -176,7 +182,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-product .ps-product__price{color:#f30!important;font-weight:500;font-size:17px;}
 #homepage-5 .ps-product:hover{border-color:transparent;}
 #homepage-5 .ps-product:hover .ps-product__content {visibility: visible;opacity: 1;height: auto;}
-#homepage-5 .ps-product .ps-product__thumbnail{width:100%;height:200px;}
+/*#homepage-5 .ps-product .ps-product__thumbnail{width:100%;height:200px;}*/
 #homepage-5 .ps-product .ps-product__thumbnail img{width:100%;height:100%;}
 #homepage-5 .ps-deal-of-day .ps-carousel--nav .owl-nav .owl-next{margin-right:-30px!important;}
 #homepage-5 .ps-deal-of-day .ps-carousel--nav .owl-nav .owl-prev{margin-left:-30px!important;}
@@ -227,10 +233,10 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .brand-list-wrap .list-box > li .tit{float:left;width:50px;font-size:24px;}
 .brand-list-wrap .list-box > li div{float:left;width:calc(100% - 50px)}
 .brand-list-wrap .list-box > li .item{display:inline-block;width:200px;height:200px;margin:3px;border:1px solid #f1f1f1;text-align:center;}
-.brand-list-wrap .list-box > li .item .img-box{width:100%;height:70%;padding:0 10px;box-sizing:border-box;}
-.brand-list-wrap .list-box > li .item .img-box img{width:100%;height:100%;object-fit:contain;}
+.brand-list-wrap .list-box > li .item .img-box{width:100%;height:70%;box-sizing:border-box;margin-bottom:8px;}
+.brand-list-wrap .list-box > li .item .img-box img{width:100%;height:100%;object-fit:cover;}
 .brand-list-wrap .list-box > li .name,
-.brand-list-wrap .list-box > li .num{display:block;margin-top:3px;color:#333;font-weight:500;}
+.brand-list-wrap .list-box > li .num{display:block;color:#333;font-weight:500;}
 /* popup */
 .jquery-modal.blocker{z-index:10;}
 .modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}
