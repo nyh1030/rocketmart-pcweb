@@ -61,6 +61,15 @@
                                 </a>
                             </div>
                             <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA'))}"></span></h4>
+                            <div class="ps-product__desc">
+                                <ul class="ps-list--dot">
+                                    <li th:text="${'Size/Weight: '.concat(productInfo.PRODUCT_CAPACITY)}"></li>
+                                    <li th:text="${'Color/Type: '.concat(productInfo.PRODUCT_CAPACITY)}">"></li>
+                                    <li id="lProductAtrbt">Keyword: </li>
+                                    <li id="lProductCrt">Product Certificate: </li>
+                                    <li id="lExportHst">Export Experience: </li>
+                                </ul>
+                            </div>
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
                                 <a href="#" class="btn-login">Login Required</br></a>
@@ -88,15 +97,6 @@
                                     </tbody>
                                 </table>
                                 <p class="txt-impt">* Free Sample: Available</p>
-                            </div>
-                            <div class="ps-product__desc">
-                                <ul class="ps-list--dot">
-                                    <li th:text="${'Size/Weight: '.concat(productInfo.PRODUCT_CAPACITY)}"></li>
-                                    <li th:text="${'Color/Type: '.concat(productInfo.PRODUCT_CAPACITY)}">"></li>
-                                    <li id="lProductAtrbt">Keyword: </li>
-                                    <li id="lProductCrt">Product Certificate: </li>
-                                    <li id="lExportHst">Export Experience: </li>
-                                </ul>
                             </div>
                             <div class="btn-box">
 <!--                                <span sec:authentication="principal.username"></span>-->
