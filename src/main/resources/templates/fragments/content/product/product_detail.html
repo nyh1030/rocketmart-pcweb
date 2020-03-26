@@ -56,7 +56,9 @@
                         <div class="ps-product__info">
                             <h1 th:text="${productInfo.PRODUCT_NM}"></h1>
                             <div class="ps-product__meta">
-                                <p th:text="${'Brand: ' + productInfo.BRAND_NM}">></p>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${productInfo.BRAND_SEQ})}">
+                                    <p th:text="${'Brand: ' + productInfo.BRAND_NM}" style="text-decoration: underline; color: #09c"></p>
+                                </a>
                             </div>
                             <h4 class="ps-product__price">Retail Price : <span class="num" th:text="${'$'.concat(#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA'))}"></span></h4>
                             <h4>Quotation (Wholesale Price)</h4>
@@ -80,7 +82,7 @@
                                             <tr>
                                                 <td th:text="${fob.RANGE_START + ' ~ ' + fob.RANGE_START}"></td>
                                                 <td th:text="${#numbers.formatInteger(fob.TRADING_PRICE, 3, 'COMMA')}"></td>
-                                                <td th:text="${fob.SUPPLY_RATE}"></td>
+                                                <td th:text="${fob.EXPOSURE_SUPPLY_RATE}"></td>
                                             </tr>
                                         </th:block>
                                     </tbody>
