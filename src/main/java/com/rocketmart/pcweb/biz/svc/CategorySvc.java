@@ -56,4 +56,8 @@ public class CategorySvc {
 	public List<Map<String, Object>> findAll() {
 		return categoryRepository.findAll();
 	}
+
+	public List<Map<String, Object>> findAllByBrandSeq(int brandSeq) {
+		return categoryRepository.findAllByBrandSeq(brandSeq);
+	}
 }

@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class BrandCtl {
@@ -51,8 +54,14 @@ public class BrandCtl {
 	public String brandDetail(TbCateMstRecord tbCateMstRecord, Model model,
 	                          @PathVariable(value = "brandSeq")  int brandSeq, @RequestParam(value = "depth", required = false) String depth,
 	                          @RequestParam(value = "cateCd", required = false) String cateCd) {
+
+		List<Map<String, Object>> categoryList = categorySvc.findAllByBrandSeq(brandSeq);
 		model.addAttribute("brandInfo", brandSvc.findByBrandSeq(brandSeq));
-		model.addAttribute("categoryList", categorySvc.findAll());
+		model.addAttribute("category1Depth", categoryList.stream().map(category -> category.get("CATE1_CD")).collect(Collectors.toList()));
+		model.addAttribute("category2Depth", categoryList.stream().map(category -> category.get("CATE2_CD")).collect(Collectors.toList()));
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("depth", depth);
+		model.addAttribute("cateCd", cateCd);
 
 		if (!StringUtils.isEmpty(depth) && !StringUtils.isEmpty(cateCd)) {
 			if ("1".equals(depth)) {
