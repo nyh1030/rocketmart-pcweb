@@ -80,7 +80,7 @@ public class CategoryRepository {
                 .on(TB_PRD_MST.PRODUCT_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
                 .innerJoin(TB_BRAND_MST)
                 .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
-                .where(TB_PRD_MST.DEL_YN.equal("N").and(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq)))
+                .where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)))
                 .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
