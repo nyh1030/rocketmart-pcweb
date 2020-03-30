@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
 import com.rocketmart.jooq.tables.TbCmAfile;
+import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Map;
 
+import static com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
@@ -140,5 +142,28 @@ public class MemberRepository {
                 .set(TB_MEM_MST.APPROVAL_YN, flag)
                 .where(TB_MEM_MST.MEM_ID.eq(memId))
                 .execute();
+    }
+
+
+    /**
+     * 상품에 대한 회원정보 조회
+     * @param productSeq
+     * @param memId
+     * @return mmbrMap
+     */
+    public Map<String, Object> findOneForMemProductInfo(int productSeq, String memId) {
+        return this.dslContext
+                .select(TB_MEM_MST.MEM_SEQ, TB_MEM_MST.ROLE, TB_MEM_MST.MEM_ID, TB_MEM_MST.MEM_NM,
+                        TB_MEM_MST.MEM_PW, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.TEL, TB_MEM_MST.COMPANY_NM,
+                        TB_MEM_MST.COMPANY_URL, TB_MEM_MST.BSNS_TYPE, TB_MEM_MST.OFFLINE_YN, TB_MEM_MST.OFFLINE_TEXT,
+                        TB_MEM_MST.ONLINE_YN, TB_MEM_MST.ONLINE_TEXT, TB_MEM_MST.BSNS_RGSTR_SEQ, TB_MEM_MST.USE_YN,
+                        TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
+                        DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_SEQ,"Y", "N").as("INQUIRY_YN"))
+                .from(TB_MEM_MST)
+                .leftOuterJoin(TB_INQUIRY_DTL)
+                .on(TB_MEM_MST.MEM_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
+                .where(TB_MEM_MST.MEM_ID.eq(memId)
+                    .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq)))
+                .fetchOneMap();
     }
 }

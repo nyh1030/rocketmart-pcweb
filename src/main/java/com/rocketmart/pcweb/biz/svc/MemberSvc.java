@@ -250,6 +250,15 @@ public class MemberSvc {
 	 */
 	public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
 		return memberRepository.findAllForMemInfo(tbMemMstRecord);
+	}
 
+	/**
+	 * 상품에 대한 회원정보 조회
+	 * @param productSeq
+	 * @param memId
+	 * @return mmbrMap
+	 */
+	public Map<String, Object> findOneForMemProductInfo(int productSeq, String memId) {
+		return memberRepository.findOneForMemProductInfo(productSeq, memId);
 	}
 }

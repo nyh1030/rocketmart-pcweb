@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class LoginCtl {
 	 * @return String
 	 */
 	@GetMapping("/any/signin")
-	public String dispSignin(Principal principal) {
+	public String dispSignin(Principal principal, Model model) {
 		String returnUrl;
 		if(null != principal){
 			returnUrl = "redirect:/";

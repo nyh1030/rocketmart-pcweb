@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -57,9 +59,10 @@ public class MemberCtl {
      * @return String
      */
     @PostMapping("/any/member/signup")
-    public String execSignup(TbMemMstRecord memberRecord, MultipartFile file) {
+    public String execSignup(TbMemMstRecord memberRecord, MultipartFile file, RedirectAttributes attributes) {
 
-        memberSvc.saveOneForMemInfo(memberRecord, file);
+        Map<String, ?> resultMap = memberSvc.saveOneForMemInfo(memberRecord, file);
+        attributes.addFlashAttribute("resultMsg", resultMap.get("resultMsg"));
 
         return "redirect:/any/signin";
     }

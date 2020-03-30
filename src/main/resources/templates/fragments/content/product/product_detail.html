@@ -72,7 +72,8 @@
                             </div>
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
-                                <a href="#" class="btn-login">Login Required</br></a>
+                                <a href="#" class="btn-login" sec:authorize="isAuthenticated()">Login Required</br></a>
+                                <a href="#" class="btn-login" sec:authorize="isAnonymous()" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
                                 <table class="tbl-price">
                                     <colgroup>
                                         <col style="width:33%">
@@ -99,11 +100,20 @@
                                 <p class="txt-impt">* Free Sample: Available</p>
                             </div>
                             <div class="btn-box">
-<!--                                <span sec:authentication="principal.username"></span>-->
-                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAuthenticated()"><i class="fa fa-heart-o"></i> WISHLIST</span>
-                                <span class="ps-btn type-pink" id="btnAddWish" sec:authorize="isAnonymous()" disabled><i class="fa fa-heart-o"></i> WISHLIST</span>
-                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAuthenticated()">ASK NOW</span>
-                                <span class="ps-btn" id="btnInquiry" sec:authorize="isAnonymous()" disabled>ASK NOW</span>
+                                <th:block sec:authorize="isAuthenticated()">
+                                    <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                    <th:block th:if="${memProductInfo != null}">
+                                        <span class="ps-btn" id="btnInquiryHst" th:if="${memProductInfo.INQUIRY_YN.equals('Y')}">INQUIRY HISTORY</span>
+                                        <span class="ps-btn" id="btnInquiryReg" th:if="${memProductInfo.INQUIRY_YN.equals('N')}">ASK NOW</span>
+                                    </th:block>
+                                    <th:block th:if="${memProductInfo == null}">
+                                        <span class="ps-btn" id="btnInquiryReg">ASK NOW</span>
+                                    </th:block>
+                                </th:block>
+                                <th:block sec:authorize="isAnonymous()">
+                                    <span class="ps-btn type-pink" th:onclick="'alert(\'Please login\')'"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                    <span class="ps-btn" th:onclick="'alert(\'Please login\')'">ASK NOW</span>
+                                </th:block>
                             </div>
                         </div>
                     </div>
@@ -126,7 +136,11 @@
         </div>
     </div>
 
-    <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/register}" method="post">
+    <form id="inquiryRegFrm" name="inquiryRegFrm" th:action="@{/any/inquiry/register}" method="post">
+        <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
+        <input type="hidden" id="returnGbn" name="returnGbn" th:value="productDetail"/>
+    </form>
+    <form id="inquiryHstFrm" name="inquiryHstFrm" th:action="@{/any/inquiry/list}" method="post">
         <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
         <input type="hidden" id="returnGbn" name="returnGbn" th:value="productDetail"/>
     </form>
@@ -194,10 +208,12 @@
                     url: '/any/rest/wishlist/info/save',
                     params: Object.assign(this.getParameters())
                 }).then(response => {
-                    if (response.data === 200) {
+                    if (response.data === 'ADD') {
                         alert('Successfully added');
-                    }else{
-                        alert('This Product has already been added');
+                        $('#btnAddWish').find('i').attr('class','fa fa-heart');
+                    }else if (response.data === 'DELETE') {
+                        alert('Successfully delete');
+                        $('#btnAddWish').find('i').attr('class','fa fa-heart-o');
                     }
                 }).catch(error => {
                     console.log(error);
@@ -223,9 +239,13 @@
                 $('#btnAddWish').on('click', () => {
                     PageScope.saveWishInfo();
                 });
-                $('#btnInquiry').on('click', () => {
+                $('#btnInquiryReg').on('click', () => {
                     //Inquiry 등록 화면 이동
-                    $('#inquiryFrm').submit();
+                    $('#inquiryRegFrm').submit();
+                });
+                $('#btnInquiryHst').on('click', () => {
+                    //Inquiry 목록 화면 이동
+                    $('#inquiryHstFrm').submit();
                 });
             }
         };

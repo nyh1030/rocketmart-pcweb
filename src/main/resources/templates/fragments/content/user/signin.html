@@ -44,11 +44,18 @@
 </th:block>
 </html>
 
-<script>
+<script th:inline="javascript">
 (function($) {
     var signin = {
         init: function() {
-            if ("?error" == $(location).attr('search')){
+            /*<![CDATA[*/
+            var result = /*[[ ${resultMsg} ]]*/;
+            /*]]*/
+            if (result === 'SUCCESS') {
+                alert("Sign up is complete");
+            }
+
+            if ("?error" === $(location).attr('search')){
                 $('.txt-fail').show();
             }else{
                 $('.txt-fail').hide();

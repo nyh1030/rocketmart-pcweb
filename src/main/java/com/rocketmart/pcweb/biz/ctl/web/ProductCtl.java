@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
+import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -17,6 +19,8 @@ public class ProductCtl {
 	private ProductSvc productSvc;
 	@Autowired
 	private BrandSvc brandSvc;
+	@Autowired
+	private MemberSvc memberSvc;
 
 	private String prefixPath = "fragments/content/product";
 
@@ -51,7 +55,7 @@ public class ProductCtl {
 	}
 
 	@GetMapping("/any/product_detail/{productSeq}")
-	public String productDetail(Model model, @PathVariable(value = "productSeq") int productSeq) {
+	public String productDetail(Model model, @PathVariable(value = "productSeq") int productSeq, Principal principal) {
 		Map<String, Object> productInfo = productSvc.findByProductSeq(productSeq);
 
 		model.addAttribute("productInfo", productInfo);
@@ -68,6 +72,10 @@ public class ProductCtl {
 		model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productInfo.get("CATE1_CD")));
 		model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productInfo.get("CATE2_CD")));
 		model.addAttribute("productCate3", productSvc.findCateInoByCate3Cd((String) productInfo.get("CATE3_CD")));
+
+		if(null != principal){
+			model.addAttribute("memProductInfo", memberSvc.findOneForMemProductInfo(productSeq, principal.getName()));
+		}
 
 		return prefixPath.concat("/product_detail");
 	}

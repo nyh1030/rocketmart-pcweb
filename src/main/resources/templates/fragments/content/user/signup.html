@@ -269,12 +269,15 @@
         openPopup: function () {
             this.blur();
 
-            $.modalPopup({
-                url: '/any/'+$(this).attr('id'),
-                close: function(result) {
-                    console.log(result);
-                }
-            });
+            if(this.checked){
+                $.modalPopup({
+                    url: '/any/'+$(this).attr('id'),
+                    close: function(result) {
+                        console.log(result);
+                    }
+                });
+            }
+
         },
         validateForm: function() {
             //1. 아이디 중복체크

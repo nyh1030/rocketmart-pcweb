@@ -17,6 +17,7 @@ import static com.rocketmart.jooq.Tables.*;
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
+import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 import static org.jooq.impl.DSL.currentTimestamp;
 
@@ -71,7 +72,7 @@ public class OtherRepository {
                 .from(TB_WISH_MST)
                 .where(TB_WISH_MST.PRODUCT_SEQ.eq(tbWishMstRecord.getProductSeq()))
                     .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())
-                    .and(TB_WISH_MST.ASK_YN.eq("N"))
+                    //.and(TB_WISH_MST.ASK_YN.eq("N"))
                     .and(TB_WISH_MST.DEL_YN.eq("N")))
                 .fetchOne().value1() > 0;
     }
@@ -84,6 +85,17 @@ public class OtherRepository {
                 .set(TB_WISH_MST.PRODUCT_SEQ, tbWishMstRecord.getProductSeq())
                 .set(TB_WISH_MST.REG_USR_ID, tbWishMstRecord.getRegUsrId())
                 .set(TB_WISH_MST.UPD_USR_ID, tbWishMstRecord.getRegUsrId())
+                .execute();
+    }
+
+    /**
+     * WishList 삭제
+     */
+    public int deleteWishListInfo(TbWishMstRecord tbWishMstRecord) {
+        return this.dslContext.update(TB_WISH_MST)
+                .set(TB_WISH_MST.DEL_YN, "Y")
+                .where(TB_WISH_MST.PRODUCT_SEQ.equal(tbWishMstRecord.getProductSeq())
+                        .and(TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId())))
                 .execute();
     }
 

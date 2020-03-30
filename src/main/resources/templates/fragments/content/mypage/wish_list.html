@@ -153,16 +153,18 @@
                                                     </tr>
                                                 `);
                                 });
+
+                                $(this).toggleClass('on');
+                                if($(this).hasClass('on')){
+                                    $(this).siblings('.cont').show();
+                                }else{
+                                    $(this).siblings('.cont').hide();
+                                }
                             } else {
                                 alert('FOB price does not exist');
                             }
 
-                            $(this).toggleClass('on');
-                            if($(this).hasClass('on')){
-                                $(this).siblings('.cont').show();
-                            }else{
-                                $(this).siblings('.cont').hide();
-                            }
+
 
                         }
                     }).catch(error => {

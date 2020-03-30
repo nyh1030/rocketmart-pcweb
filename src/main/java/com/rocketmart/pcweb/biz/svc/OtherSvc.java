@@ -78,6 +78,16 @@ public class OtherSvc {
 	}
 
 	/**
+	 * WishList 삭제
+	 * @param tbWishMstRecord
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteWishListInfo(TbWishMstRecord tbWishMstRecord) {
+		return otherRepository.deleteWishListInfo(tbWishMstRecord);
+	}
+
+	/**
 	 * WishList 목록 조회
 	 * @param tbWishMstRecord
 	 * @return List<Map<String, Object>>
