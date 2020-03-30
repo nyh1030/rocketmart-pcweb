@@ -241,6 +241,8 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .brand-list-wrap .list-box > li .num{display:block;color:#333;font-weight:500;}
 .brand-list-wrap .list-box > li .name{display:block;width:100%;padding:0 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; }
 .ps-form--account .ps-checkbox > label em{color:#09c;text-decoration:underline;font-style:normal;}
+.ps-shopping.ps-tab-root .ps-product .ps-product__thumbnail{width:165px;height:165px;}
+.ps-shopping.ps-tab-root .ps-product .ps-product__thumbnail img{width:100%;height:100%;object-fit:cover;}
 /* popup */
 .jquery-modal.blocker{z-index:10;}
 .modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}
