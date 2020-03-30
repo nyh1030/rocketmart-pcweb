@@ -10,25 +10,25 @@
                             <ul class="mega-menu type">
                                 <li>
                                     <div th:if="${#lists.contains(category2Depth, '101')}" class="mega-menu__column">
-                                        <h4>basic care<span class="sub-toggle"></span></h4>
+                                        <h4>Basic care<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                             <li th:if="${category.CATE2_CD == '101'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div th:if="${#lists.contains(category2Depth, '102')}" class="mega-menu__column">
-                                        <h4>cleansing/peeling<span class="sub-toggle"></span></h4>
+                                        <h4>Cleansing/peeling<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                             <li th:if="${category.CATE2_CD == '102'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div th:if="${#lists.contains(category2Depth, '103')}" class="mega-menu__column">
-                                        <h4>suncare<span class="sub-toggle"></span></h4>
+                                        <h4>Suncare<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                             <li th:if="${category.CATE2_CD == '103'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
                                     </div>
                                     <div th:if="${#lists.contains(category2Depth, '104')}" class="mega-menu__column">
-                                        <h4>mask/pack<span class="sub-toggle"></span></h4>
+                                        <h4>Mask/pack<span class="sub-toggle"></span></h4>
                                         <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                             <li th:if="${category.CATE2_CD == '104'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                         </ul>
@@ -57,10 +57,10 @@
                             </ul>
                         </li>
 
-                        <li th:if="${#lists.contains(category1Depth, '2')}" class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">makeup</a>
+                        <li th:if="${#lists.contains(category1Depth, '2')}" class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Makeup</a>
                             <div class="mega-menu">
                                 <div th:if="${#lists.contains(category2Depth, '201')}" class="mega-menu__column">
-                                    <h4>face<span class="sub-toggle"></span></h4>
+                                    <h4>Face<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '201'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
@@ -72,13 +72,13 @@
                                     </ul>
                                 </div>
                                 <div th:if="${#lists.contains(category2Depth, '203')}" class="mega-menu__column">
-                                    <h4>eye<span class="sub-toggle"></span></h4>
+                                    <h4>Eye<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '203'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div th:if="${#lists.contains(category2Depth, '204')}" class="mega-menu__column">
-                                    <h4>nail<span class="sub-toggle"></span></h4>
+                                    <h4>Nail<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '204'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
@@ -92,10 +92,10 @@
                             </div>
                         </li>
 
-                        <li th:if="${#lists.contains(category1Depth, '3')}" class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">body/hair/oral/perfume</a>
+                        <li th:if="${#lists.contains(category1Depth, '3')}" class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Body/hair/oral/perfume</a>
                             <div class="mega-menu">
                                 <div th:if="${#lists.contains(category2Depth, '301')}" class="mega-menu__column">
-                                    <h4>body care<span class="sub-toggle"></span></h4>
+                                    <h4>Body care<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '301'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
@@ -136,13 +136,13 @@
                                     </ul>
                                 </div>
                                 <div th:if="${#lists.contains(category2Depth, '402')}" class="mega-menu__column">
-                                    <h4>brush<span class="sub-toggle"></span></h4>
+                                    <h4>Brush<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '402'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
                                 </div>
                                 <div th:if="${#lists.contains(category2Depth, '403')}" class="mega-menu__column">
-                                    <h4>facial rollers<span class="sub-toggle"></span></h4>
+                                    <h4>Facial rollers<span class="sub-toggle"></span></h4>
                                     <ul class="mega-menu__list" th:each="category : ${categoryList}">
                                         <li th:if="${category.CATE2_CD == '403'}" class="current-menu-item"><a th:href="@{'/any/category/list/3/'+${category.CATE3_CD}}" th:text="${category.CATE3_NM}"></a></li>
                                     </ul>
@@ -220,10 +220,10 @@
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
                             <div id="dvCate1" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="4" data-owl-item-lg="4" data-owl-duration="500" data-owl-mousedrag="on">
-                                <a th:if="${#lists.contains(category2Depth, '101')}" href="#tab-1-1">basic care</a>
-                                <a th:if="${#lists.contains(category2Depth, '102')}" href="#tab-1-2">cleansing/peeling</a>
-                                <a th:if="${#lists.contains(category2Depth, '103')}" href="#tab-1-3">suncare</a>
-                                <a th:if="${#lists.contains(category2Depth, '104')}" href="#tab-1-4">mask/pack</a>
+                                <a th:if="${#lists.contains(category2Depth, '101')}" href="#tab-1-1">Basic care</a>
+                                <a th:if="${#lists.contains(category2Depth, '102')}" href="#tab-1-2">Cleansing/peeling</a>
+                                <a th:if="${#lists.contains(category2Depth, '103')}" href="#tab-1-3">Suncare</a>
+                                <a th:if="${#lists.contains(category2Depth, '104')}" href="#tab-1-4">Mask/pack</a>
                                 <a th:if="${#lists.contains(category2Depth, '105')}" href="#tab-1-5">Men Care</a>
                                 <a th:if="${#lists.contains(category2Depth, '106')}" href="#tab-1-6">Baby Care</a>
                                 <a th:if="${#lists.contains(category2Depth, '107')}" href="#tab-1-7">Mom</a>
@@ -395,16 +395,16 @@
         <div th:if="${#lists.contains(category1Depth, '2')}" class="ps-search-trending">
             <div class="container">
                 <div class="ps-section__header">
-                    <h3>makeup</h3>
+                    <h3>Makeup</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
                             <div id="dvCate2" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="4" data-owl-item-lg="4" data-owl-duration="500" data-owl-mousedrag="on">
-                                <a th:if="${#lists.contains(category2Depth, '201')}" href="#tab-2-1">face</a>
+                                <a th:if="${#lists.contains(category2Depth, '201')}" href="#tab-2-1">Face</a>
                                 <a th:if="${#lists.contains(category2Depth, '202')}" href="#tab-2-2">Lip</a>
-                                <a th:if="${#lists.contains(category2Depth, '203')}" href="#tab-2-3">suncare</a>
-                                <a th:if="${#lists.contains(category2Depth, '204')}" href="#tab-2-4">mask/pack</a>
+                                <a th:if="${#lists.contains(category2Depth, '203')}" href="#tab-2-3">Suncare</a>
+                                <a th:if="${#lists.contains(category2Depth, '204')}" href="#tab-2-4">Mask/pack</a>
                                 <a th:if="${#lists.contains(category2Depth, '205')}" href="#tab-2-5">Men Care</a>
                             </div>
                             <div class="ps-tabs">
@@ -530,13 +530,13 @@
         <div th:if="${#lists.contains(category1Depth, '3')}" class="ps-search-trending">
             <div class="container">
                 <div class="ps-section__header">
-                    <h3>body/hair/oral/perfume</h3>
+                    <h3>Body/hair/oral/perfume</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-block--categories-tabs ps-tab-root">
                         <div class="ps-block__header">
                             <div id="dvCate3" class="ps-carousel--nav ps-tab-list owl-slider" data-owl-auto="false" data-owl-speed="1000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="3" data-owl-item-sm="4" data-owl-item-md="4" data-owl-item-lg="4" data-owl-duration="500" data-owl-mousedrag="on">
-                                <a th:if="${#lists.contains(category2Depth, '301')}" href="#tab-3-1">body care</a>
+                                <a th:if="${#lists.contains(category2Depth, '301')}" href="#tab-3-1">Body care</a>
                                 <a th:if="${#lists.contains(category2Depth, '302')}" href="#tab-3-2">Hair Care</a>
                                 <a th:if="${#lists.contains(category2Depth, '303')}" href="#tab-3-3">Oral Care</a>
                                 <a th:if="${#lists.contains(category2Depth, '304')}" href="#tab-3-4">Women Perfume</a>

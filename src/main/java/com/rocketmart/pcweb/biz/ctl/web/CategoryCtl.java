@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class CategoryCtl {
@@ -54,8 +55,13 @@ public class CategoryCtl {
             tbCateMstRecord.setCate1Cd("1");
         }
 
-        model.addAttribute("categoryList", categorySvc.findAll());
+        List<Map<String, Object>> categoryList = categorySvc.findAll();
+        model.addAttribute("category1Depth", categoryList.stream().map(category -> category.get("CATE1_CD")).collect(Collectors.toList()));
+        model.addAttribute("category2Depth", categoryList.stream().map(category -> category.get("CATE2_CD")).collect(Collectors.toList()));
+        model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord));
+        model.addAttribute("depth", depth.orElse(""));
+        model.addAttribute("cateCd", cateCd.orElse(""));
 
         return prefixPath.concat("/category/category_list");
     }
