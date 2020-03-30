@@ -91,6 +91,7 @@
                                                             </table>
                                                             <p class="txt-impt">* Free Sample: Available</p>
                                                         </div>
+                                                        <a href="#" class="btn-close">X</a>
                                                     </div>
                                                 </div>
                                                 <!-- //.tooltip-box : E-->
@@ -168,6 +169,10 @@
                         console.log(error);
                     });
                 });
+
+                $('.tooltip-box .btn-close').on('click',function () {
+                    $(this).parent().hide();
+                })
             },
 
             checkAll() {
