@@ -16029,7 +16029,7 @@ textarea.form-control {
     font-size: 24px;
   }
   .header--mobile .ps-block--user-header .ps-block__right {
-    display: none;
+    display: block;
   }
   .header--mobile .ps-search--mobile {
     display: block;

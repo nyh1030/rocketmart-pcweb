@@ -19,7 +19,6 @@
                 <div class="header__actions">
                     <a class="header__extra" sec:authorize="isAuthenticated()" th:href="@{/any/wishlist/list}" style="margin-right: 0;"><i class="icon-heart"></i></a>
                     <div class="ps-block--user-header">
-                        <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
                             <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
@@ -57,7 +56,6 @@
             <div class="header__actions">
                 <a class="header__extra" sec:authorize="isAuthenticated()" th:href="@{/any/wishlist/list}" style="margin-right: 0;"><i class="icon-heart"></i></a>
                 <div class="ps-block--user-header">
-                    <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
                         <!-- D : 로그인전 -->
                         <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
@@ -73,4 +71,105 @@
         </div>
     </div>
 </header>
+<div class="ps-panel--sidebar" id="navigation-mobile">
+    <div class="ps-panel__header">
+        <h3>Categories</h3>
+    </div>
+    <div class="ps-panel__content">
+        <ul class="menu--mobile">
+            <li class="current-menu-item "><a href="#">Hot Promotions</a>
+            </li>
+            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Electronic<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li class="current-menu-item "><a href="#">Home Audio &amp; Theathers</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">TV &amp; Videos</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Camera, Photos &amp; Videos</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Cellphones &amp; Accessories</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Headphones</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Videosgames</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Wireless Speakers</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Office Electronic</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                        <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li class="current-menu-item "><a href="#">Digital Cables</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Batteries</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="current-menu-item "><a href="#">Clothing &amp; Apparel</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Home, Garden &amp; Kitchen</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Health &amp; Beauty</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Yewelry &amp; Watches</a>
+            </li>
+            <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span class="sub-toggle"></span>
+                <div class="mega-menu">
+                    <div class="mega-menu__column">
+                        <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
+                        <ul class="mega-menu__list">
+                            <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Laptop</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Monitors</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Networking</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Computer Components</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Security &amp; Protection</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Gaming Laptop</a>
+                            </li>
+                            <li class="current-menu-item "><a href="#">Accessories</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="current-menu-item "><a href="#">Babies &amp; Moms</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Sport &amp; Outdoor</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Phones &amp; Accessories</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Books &amp; Office</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Cars &amp; Motocycles</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Home Improments</a>
+            </li>
+            <li class="current-menu-item "><a href="#">Vouchers &amp; Services</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="navigation--list">
+    <div class="navigation__content">
+        <a class="navigation__item ps-toggle--sidebar" href="#navigation-mobile"><i class="icon-list4"></i><span> Categories</span></a>
+    </div>
+</div>
 </html>
