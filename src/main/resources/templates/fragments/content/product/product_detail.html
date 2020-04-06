@@ -72,8 +72,13 @@
                             </div>
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
-                                <a href="#" class="btn-login" sec:authorize="isAuthenticated()">Login Required</br></a>
-                                <a href="#" class="btn-login" sec:authorize="isAnonymous()" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
+                                <th:block sec:authorize="isAuthenticated()">
+                                    <a href="#" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}">Login Required</br></a>
+                                    <a href="#" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Login Required</br></a>
+                                </th:block>
+                                <th:block sec:authorize="isAnonymous()">
+                                    <a href="#" class="btn-login" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
+                                </th:block>
                                 <table class="tbl-price">
                                     <colgroup>
                                         <col style="width:33%">
@@ -237,6 +242,7 @@
 
             clickEventListener() {
                 $('#btnAddWish').on('click', () => {
+                    //wishList추가
                     PageScope.saveWishInfo();
                 });
                 $('#btnInquiryReg').on('click', () => {
@@ -246,6 +252,9 @@
                 $('#btnInquiryHst').on('click', () => {
                     //Inquiry 목록 화면 이동
                     $('#inquiryHstFrm').submit();
+                });
+                $('#btnFobHst').on('click', () => {
+                    $('#btnFobHst').hide();
                 });
             }
         };

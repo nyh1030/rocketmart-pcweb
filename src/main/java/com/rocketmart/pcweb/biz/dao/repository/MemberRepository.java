@@ -160,8 +160,8 @@ public class MemberRepository {
                         TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
                         DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_SEQ,"Y", "N").as("INQUIRY_YN"))
                 .from(TB_MEM_MST)
-                .leftOuterJoin(TB_INQUIRY_DTL)
-                .on(TB_MEM_MST.MEM_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
+                    .leftJoin(TB_INQUIRY_DTL)
+                    .on(TB_MEM_MST.MEM_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
                 .where(TB_MEM_MST.MEM_ID.eq(memId)
                     .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq)))
                 .fetchOneMap();
