@@ -116,7 +116,7 @@
                                         <label class="bul-type">공짜 샘플 제공 여부 <span class="required">*</span></label>
                                         <div class="radio-wrap">
                                             <div class="ps-radio">
-                                                <input class="form-control" type="radio" id="rdoGiveSampleYn1" name="giveSampleYn" th:value="Y" checked>
+                                                <input class="form-control" type="radio" id="rdoGiveSampleYn1" name="giveSampleYn" th:value="Y">
                                                 <label for="rdoGiveSampleYn1">Yes</label>
                                             </div>
                                             <div class="ps-radio">
@@ -372,10 +372,14 @@
                 $('#txtSellerNote').summernote('code', productInfo.SELLER_NOTE);
                 $('#txtProductContent').summernote('code', productInfo.PRODUCT_CONTENT);
 
+                const givesampleyn = productInfo.GIVE_SAMPLE_YN;
                 const productAtrbt = productInfo.PRODUCT_ATRBT;
                 const productCrt = productInfo.PRODUCT_CRT;
                 const exportHst = productInfo.EXPORT_HST;
                 const tradingConditions = productInfo.TRADING_CONDITIONS;
+
+                if (givesampleyn === 'Y') $('#rdoGiveSampleYn1').prop('checked', true);
+                else if (givesampleyn === 'N') $('#rdoGiveSampleYn2').prop('checked', true);
 
                 if (productAtrbt) {
                     productAtrbt.split(',').forEach(item => {

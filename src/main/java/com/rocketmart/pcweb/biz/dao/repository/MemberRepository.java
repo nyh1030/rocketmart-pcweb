@@ -36,7 +36,7 @@ public class MemberRepository {
                         TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
                         TB_CM_AFILE.REG_FILE_NM, TB_CM_AFILE.ORGN_FILE_NM, TB_CM_AFILE.URL_PATH_CD, TB_CM_AFILE.EXT, TB_CM_AFILE.AFILE_SIZE, TB_CM_AFILE.THEMA_RELM_CD)
                 .from(TB_MEM_MST)
-                .innerJoin(TB_CM_AFILE)
+                .leftOuterJoin(TB_CM_AFILE)
                 .on(TB_MEM_MST.BSNS_RGSTR_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .where(TB_MEM_MST.MEM_ID.equal(memId))
                 .fetchOneMap();

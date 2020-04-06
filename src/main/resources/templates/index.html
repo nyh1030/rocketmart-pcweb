@@ -175,7 +175,7 @@
                 </div>
             </div>
         </div>
-        <div class="ps-deal-of-day">
+        <div th:if="${#arrays.length(productList) > 0}" class="ps-deal-of-day">
             <div class="container">
                 <div class="ps-section__header">
                     <div class="ps-block--countdown-deal">
@@ -185,29 +185,24 @@
                     </div>
                 </div>
                 <div class="ps-section__content">
-                    <th:block th:if="${#arrays.length(productList) <= 0}">
-                        <p class="no_data">There is no registered product</p>
-                    </th:block>
-                    <th:block th:if="${#arrays.length(productList) > 0}">
-                        <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                            <th:block th:each="product : ${productList}">
-                                <div class="ps-product">
-                                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                        <div class="ps-product__thumbnail">
-                                            <img th:src="${product.URL_PATH_CD}">
+                    <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                        <th:block th:each="product : ${productList}">
+                            <div class="ps-product">
+                                <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                    <div class="ps-product__thumbnail">
+                                        <img th:src="${product.URL_PATH_CD}">
+                                    </div>
+                                    <div class="ps-product__container">
+                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                        <div class="ps-product__content">
+                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
                                         </div>
-                                        <div class="ps-product__container">
-                                            <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                            <div class="ps-product__content">
-                                                <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatInteger(product.RETAIL_PRICE, 3, 'COMMA'))}"></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </th:block>
-                        </div>
-                    </th:block>
+                                    </div>
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
                 </div>
             </div>
         </div>
