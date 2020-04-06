@@ -19,7 +19,6 @@
                 <div class="header__actions">
                     <a class="header__extra" sec:authorize="isAuthenticated()" th:href="@{/any/wishlist/list}" style="margin-right: 0;"><i class="icon-heart"></i></a>
                     <div class="ps-block--user-header">
-                        <div class="ps-block__left"><i class="icon-user"></i></div>
                         <div class="ps-block__right">
                             <!-- D : 로그인전 -->
                             <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
@@ -57,7 +56,6 @@
             <div class="header__actions">
                 <a class="header__extra" sec:authorize="isAuthenticated()" th:href="@{/any/wishlist/list}" style="margin-right: 0;"><i class="icon-heart"></i></a>
                 <div class="ps-block--user-header">
-                    <div class="ps-block__left"><i class="icon-user"></i></div>
                     <div class="ps-block__right">
                         <!-- D : 로그인전 -->
                         <a sec:authorize="isAnonymous()" th:href="@{/any/signin}">Login</a>
