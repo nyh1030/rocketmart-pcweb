@@ -98,7 +98,7 @@ public class BrandRepository {
 		Field<?> count =
 				this.dslContext.selectCount()
 						.from(TB_PRD_MST)
-						.where(TB_PRD_MST.BRAND_SEQ.eq(TB_BRAND_MST.BRAND_SEQ))
+						.where(TB_PRD_MST.BRAND_SEQ.eq(TB_BRAND_MST.BRAND_SEQ)).and(TB_PRD_MST.DEL_YN.equal("N"))
 						.asField("count");
 
 		return this.dslContext.select(
