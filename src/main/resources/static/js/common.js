@@ -23,7 +23,8 @@ const CommonUtils = {
         const _this = this;
         let returnArray = [];
         objTarget.each(function() {
-            returnArray.push(_this.removeComma($(this).val()));
+            const value = _this.removeComma($(this).val());
+            returnArray.push(value ? value : '0');
         });
         return returnArray.join(",");
     },

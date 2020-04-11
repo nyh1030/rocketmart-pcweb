@@ -80,23 +80,24 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatInteger(productInfo.RETAIL_PRICE, 3, 'COMMA')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatInteger(productInfo.RETAIL_PRICE, 0, 'COMMA')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
                                         <div class="table_wrap">
                                             <table id="tblFob">
                                                 <colgroup>
-                                                    <col style="width:25%;">
-                                                    <col style="width:25%;">
-                                                    <col style="width:25%;">
-                                                    <col style="width:25%;">
+                                                    <col style="width:20%;">
+                                                    <col style="width:20%;">
+                                                    <col style="width:20%;">
+                                                    <col style="width:20%;">
+                                                    <col style="width:20%;">
                                                     <col>
                                                 </colgroup>
                                                 <thead>
                                                 <tr>
                                                     <th colspan="2">범위</th>
-                                                    <th rowspan="2">거래가<br>(US)</th>
+                                                    <th rowspan="2">거래가<br>(USD)</th>
                                                     <th rowspan="2" class="last">공급률(%)</th>
                                                     <th rowspan="2" class="last">노출 공급률(%)</th>
                                                 </tr>
@@ -132,61 +133,52 @@
                                         <div class="chk-wrap">
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt10" name="productAtrbt" th:value="10">
-                                                <label for="chkProductAtrbt10">미백</label>
+                                                <label for="chkProductAtrbt10">Whitening</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt11" name="productAtrbt" th:value="11">
-                                                <label for="chkProductAtrbt11">주름 개선</label>
+                                                <label for="chkProductAtrbt11">Anti-aging</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt12" name="productAtrbt" th:value="12">
-                                                <label for="chkProductAtrbt12">자외선차단</label>
+                                                <label for="chkProductAtrbt12">Suncare</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt13" name="productAtrbt" th:value="13">
-                                                <label for="chkProductAtrbt13">보습</label>
+                                                <label for="chkProductAtrbt13">Moisturizing</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt14" name="productAtrbt" th:value="14">
-                                                <label for="chkProductAtrbt14">진정</label>
+                                                <label for="chkProductAtrbt14">Soothing</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt15" name="productAtrbt" th:value="15">
-                                                <label for="chkProductAtrbt15">친환경</label>
+                                                <label for="chkProductAtrbt15">Blemish Care</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt16" name="productAtrbt" th:value="16">
-                                                <label for="chkProductAtrbt16">잡티관리</label>
+                                                <label for="chkProductAtrbt16">Acne Care</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt17" name="productAtrbt" th:value="17">
-                                                <label for="chkProductAtrbt17">콜라겐</label>
+                                                <label for="chkProductAtrbt17">Dead-skin Care</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt18" name="productAtrbt" th:value="18">
-                                                <label for="chkProductAtrbt18">방수</label>
+                                                <label for="chkProductAtrbt18">Tightening</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt19" name="productAtrbt" th:value="19">
-                                                <label for="chkProductAtrbt19">각질관리</label>
+                                                <label for="chkProductAtrbt19">Water-proofing</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt20" name="productAtrbt" th:value="20">
-                                                <label for="chkProductAtrbt20">탄력개선</label>
+                                                <label for="chkProductAtrbt20">Eco-friendly</label>
                                             </div>
                                             <div class="ps-checkbox mb-2">
                                                 <input class="form-control" type="checkbox" id="chkProductAtrbt21" name="productAtrbt" th:value="21">
-                                                <label for="chkProductAtrbt21">여드름관리</label>
+                                                <label for="chkProductAtrbt21">Collagen</label>
                                             </div>
-                                            <div class="ps-checkbox mb-2">
-                                                <input class="form-control" type="checkbox" id="chkProductAtrbt22" name="productAtrbt" th:value="22">
-                                                <label for="chkProductAtrbt22">기미/주근깨관리</label>
-                                            </div>
-                                            <div class="ps-checkbox mb-2">
-                                                <input class="form-control" type="checkbox" id="chkProductAtrbt23" name="productAtrbt" th:value="23">
-                                                <label for="chkProductAtrbt23">기타</label>
-                                            </div>
-                                            <input type="text" id="txtEtc" class="form-control" style="display: none">
                                         </div>
                                     </div>
                                     <div class="mb-5">
@@ -239,15 +231,15 @@
                                         <label class="bul-type">가능한 거래 조건 (중복체크 가능)</label>
                                         <div class="ps-checkbox mb-1">
                                             <input class="form-control" type="checkbox" id="chkTradingConditions1" name="tradingConditions" th:value="10">
-                                            <label for="chkTradingConditions1">완제품 형태의 수출</label>
+                                            <label for="chkTradingConditions1">Export of finished products</label>
                                         </div>
                                         <div class="ps-checkbox mb-1">
                                             <input class="form-control" type="checkbox" id="chkTradingConditions2" name="tradingConditions" th:value="20">
-                                            <label for="chkTradingConditions2">원료 공급 형태의 수출</label>
+                                            <label for="chkTradingConditions2">Export in the form of raw material (Semi-finishied)</label>
                                         </div>
                                         <div class="ps-checkbox mb-1">
                                             <input class="form-control" type="checkbox" id="chkTradingConditions3" name="tradingConditions" th:value="30">
-                                            <label for="chkTradingConditions3">바이어 주문에 대한 위탁생산</label>
+                                            <label for="chkTradingConditions3">Consignment Production for buyer orders</label>
                                         </div>
                                     </div>
                                 </div>
@@ -619,9 +611,9 @@
                 const _this = this;
                 fobList.forEach(item => {
                     _this.objDataTables.row.add([
-                        `<td><input type="text" name="rangeStart" style="text-align: right" value="${item.RANGE_START}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="rangeEnd" style="text-align: right" value="${item.RANGE_END}" onkeyup="CommonUtils.keyEventOnlyNumber(this, false);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="tradingPrice" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeStart" data-name="구간 시작" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.RANGE_START)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="rangeEnd" data-name="구간 끝" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.RANGE_END)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                        `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
                         `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                         `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.EXPOSURE_SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true)" readonly /></td>`,
                     ]).draw(false);
@@ -831,33 +823,91 @@
 
             addGridRow() {
                 PageScope.objDataTables.row.add([
-                    `<td><input type="text" name="rangeStart" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="rangeEnd" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="tradingPrice" style="text-align: right" value="" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
-                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8 font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="3" readonly /></td>`,
-                    `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8 font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="3" readonly /></td>`,
+                    `<td><input type="text" name="rangeStart" data-name="구간 시작" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="rangeEnd" data-name="구간 끝" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
+                    `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                 ]).draw(false);
+            },
+
+            validateFobStart() {
+                const $tblFob = $('#tblFob');
+                let rangeStartValid = true;
+                let targetName = "";
+                $tblFob.find('[name="rangeStart"]').each(function () {
+                    if (!$(this).val()) {
+                        $(this).focus();
+                        rangeStartValid = false;
+                        targetName = $(this).data('name');
+                    }
+                });
+
+                if (!rangeStartValid) alert(`가격정보 탭 > 도매 가격 (FOB 기준)\n${targetName}에 값을 입력해주세요.`);
+
+                return rangeStartValid;
+            },
+            validateFobEnd() {
+                const $tblFob = $('#tblFob');
+                let rangeStartValid = true;
+                let targetName = "";
+                $tblFob.find('[name="rangeEnd"]').each(function () {
+                    if (!$(this).val()) {
+                        $(this).focus();
+                        rangeStartValid = false;
+                        targetName = $(this).data('name');
+                    }
+                });
+
+                if (!rangeStartValid) alert(`가격정보 탭 > 도매 가격 (FOB 기준)\n${targetName}에 값을 입력해주세요.`);
+
+                return rangeStartValid;
+            },
+            validateFobTradingPrice() {
+                const $tblFob = $('#tblFob');
+                let rangeStartValid = true;
+                let targetName = "";
+                $tblFob.find('[name="tradingPrice"]').each(function () {
+                    if (!$(this).val()) {
+                        $(this).focus();
+                        rangeStartValid = false;
+                        targetName = $(this).data('name');
+                    }
+                });
+
+                if (!rangeStartValid) alert(`가격정보 탭 > 도매 가격 (FOB 기준)\n${targetName}에 값을 입력해주세요.`);
+
+                return rangeStartValid;
             },
 
             invokeValidation() {
                 if (!$('#txtProductNm').val().trim()) {
-                    alert('제품명은 필수값 입니다.');
+                    alert('기본정보 탭 > 제품명은 필수값 입니다.');
                     $('#txtProductNm').focus();
                     return false;
                 } else if (!$("#sltCate1Cd").val() || !$("#sltCate2Cd").val() || !$("#sltCate3Cd").val()) {
-                    alert('카테고리 선택은 필수입니다.');
+                    alert('기본정보 탭 > 카테고리 선택은 필수입니다.');
                     $('#sltCate1Cd').focus();
                     return false;
                 } else if (!$('#txtProductCapacity').val().trim()) {
-                    alert('제품 용량은 필수값 입니다.');
+                    alert('기본정보 탭 > 제품 용량은 필수값 입니다.');
                     $('#txtProductCapacity').focus();
                     return false;
                 } else if (!$('#txtRetailPrice').val().trim()) {
-                    alert('소비자 가격 (USD)은 필수값 입니다.');
+                    alert('가격정보 탭 > 소비자 가격 (USD)은 필수값 입니다.');
                     $('#txtRetailPrice').focus();
                     return false;
                 } else if ($("#tblFob tbody tr").length <= 0) {
                     alert('도매 가격은 필수 입니다.\n구간 추가 후 입력해주세요.');
+                    return false;
+                } else if (!this.validateFobStart()) { // 도매 가격 시작구간
+                    return;
+                } else if (!this.validateFobEnd()) { // 도매 가격 끝구간
+                    return;
+                } else if (!this.validateFobTradingPrice()) { // 도매 가격 거래가
+                    return;
+                } else if (!($("#rdoGiveSampleYn1").prop("checked") || $("#rdoGiveSampleYn2").prop("checked"))) {
+                    alert('가격정보 탭 > 무료 샘플 제공여부를 선택해주세요.');
                     return false;
                 } else if (!PageScope.strFrontAfileSeq) {
                     alert('대표 이미지 첨부는 필수 입니다.');
@@ -965,7 +1015,7 @@
                 $(`#${objTarget}`).empty();
             },
             calculateSupplyRate(_this) {
-                const retailPrice = $('#txtRetailPrice').val();
+                const retailPrice = CommonUtils.removeComma($('#txtRetailPrice').val());
                 if (!retailPrice) {
                     alert('소비자 가격을 먼저 입력해주세요.');
                     $(_this).val(0);
@@ -975,6 +1025,11 @@
                 const exposureSupplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100 + 5).toFixed(2);
                 $(_this).parent().next().children().val(supplyRate !== 'NaN' ? supplyRate : 0); // 공급률
                 $(_this).parent().next().next().children().val(exposureSupplyRate !== 'NaN' ? exposureSupplyRate : 0); // 노출 공급률
+            },
+            calculateSupplyRateForRetailPrice(_this) {
+                $('[name="tradingPrice"]').each(function () {
+                    EventScope.calculateSupplyRate(this);
+                });
             }
         };
     </script>

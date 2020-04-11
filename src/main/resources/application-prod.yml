@@ -40,3 +40,4 @@ logging:
 
 server:
   port: 80
+  max-http-header-size: 1MB

@@ -37,3 +37,7 @@ afile:
 logging:
   level:
     org.jooq.tools.LoggerListener: debug
+
+server:
+  port: 8080
+  max-http-header-size: 1MB
