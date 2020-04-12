@@ -61,6 +61,8 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-block__header .ab-r{position:absolute;right:0;top:0;padding:6px 18px;}
 .ps-block__header .date{margin-top:12px;color:#555;font-size:12px;}
 .ps-block__header.type-mt{margin-top:60px;}
+.ps-block__content .txt-info,
+.ps-tab .txt-info{display:block;color:#dc3545;font-size:12px;margin-bottom:10px;font-weight:bold}
 .ps-block__content .upload_box .img_logo{display:inline-flex;width:250px;height:200px;border:1px solid #ddd;justify-content:center;align-items:center;overflow:hidden;}
 .ps-block__content .upload_box .img_logo img,
 .ps-product--detail .photo-upload li .prd-photo img,
@@ -105,7 +107,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-section__right .brand-list li .img-box{width:150px;height:150px;margin:0 auto 20px;border:1px solid #ededed;border-radius:20px;overflow:hidden;}
 .ps-section__right .brand-list li .img-box a{display:block;width:150px;height:150px;}
 .ps-section__right .brand-list li .img-box img{max-width:100%;height:100%;object-fit: contain;}
-.ps-section__right .brand-list li .ps-btn{height:36px;padding:10px 12px;font-size:14px;line-height:14px;}
+.ps-section__right .brand-list li .ps-btn{height:40px;padding:10px 12px;font-size:14px;line-height:14px;}
 .ps-section__right .brand-list li .ps-btn.type-orange{border:1px solid #f05025;color:#f05025;background:#fff;position: absolute;left: 50%;bottom: 6%;transform: translateX(-50%);}
 .select2-container--default .select2-selection--single{border-color:#ddd;}
 .ps-product--detail > .ps-product__content{padding-top:0;border-bottom:1px solid #e1e1e1;padding-bottom:50px;}

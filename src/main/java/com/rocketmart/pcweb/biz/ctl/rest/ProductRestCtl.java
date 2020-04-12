@@ -28,12 +28,12 @@ public class ProductRestCtl {
 	}
 
 	@PostMapping("/seller/product/info/save")
-	public ResponseEntity<String> saveProductInfo(ProductDto productDto) {
+	public ResponseEntity<String> saveProductInfo(@RequestBody ProductDto productDto) {
 		return new ResponseEntity<>(productSvc.saveOneForProductInfo(productDto), HttpStatus.OK);
 	}
 
 	@PutMapping("/seller/product/info/update")
-	public ResponseEntity<String> updateProductInfo(ProductDto productDto) {
+	public ResponseEntity<String> updateProductInfo(@RequestBody ProductDto productDto) throws Exception {
 		return new ResponseEntity<>(productSvc.updateOneForProductInfo(productDto), HttpStatus.OK);
 	}
 

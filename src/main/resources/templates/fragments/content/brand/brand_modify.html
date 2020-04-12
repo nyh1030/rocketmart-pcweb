@@ -29,7 +29,8 @@
                                 <div class="invalid-feedback">브랜드 이름을 입력해주세요.</div>
                             </div>
                             <div class="mb-5">
-                                <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">* (이미지 변경시 remove 버튼으로 제거 후 수정해주세요.)</span></label>
+                                <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">*</span></label>
+                                <span class="txt-info">* 이미지 사이즈 최소 200px * 200px 으로 등록해주세요.<br>* 확장자는 png,jpg,gif만 가능합니다.</span>
                                 <div class="upload_box">
                                     <div class="img_logo" id="dvBrandLogo"></div>
                                     <button type="button" id="btnUpload" class="ps-btn">upload</button>
@@ -194,22 +195,36 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
                         ['table', ['table']]
-                    ]
+                    ],
+                    callbacks: {
+                        onKeydown: function () {
+                            const $txtBrandIntroduction = $('#txtBrandIntroduction');
+                            const totalCharacters = $txtBrandIntroduction.summernote('code').length;
+                            if (30000 < totalCharacters) {
+                                alert('30000 byte 이상 넘을 수 없습니다.');
+                                $txtBrandIntroduction.summernote('code', $txtBrandIntroduction.summernote('code').substring(0, 29900));
+                            }
+                        }
+                    }
                 });
             },
 
             saveBrandInfo(objFileSeq) {
-                axios({
+                $.ajax({
                     method: 'put',
                     url: '/seller/brand/info/update',
-                    params: Object.assign(this.getParameters(), objFileSeq)
-                }).then(response => {
-                    if (response.data === 200) {
-                        alert('브랜드 정보가 저장되었습니다.');
-                        CommonUtils.forwardPage('/seller/brand_add');
+                    data: JSON.stringify(Object.assign(this.getParameters(), objFileSeq)),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response === 200) {
+                            alert('브랜드 정보가 수정되었습니다.');
+                            CommonUtils.forwardPage('/seller/brand_add');
+                        }
+                    },
+                    error: function() {
+                        alert('브랜드 정보를 수정하는데 실패하였습니다.\n관리자에게 문의해주세요');
                     }
-                }).catch(error => {
-                    console.log(error);
                 });
             },
 
@@ -228,6 +243,7 @@
 
             invokeValidation() {
                 if (!$('#txtBrandNm').val().trim()) {
+                    $('#txtBrandNm').focus();
                     alert('브랜드 이름은 필수값 입니다.');
                     return false;
                 }

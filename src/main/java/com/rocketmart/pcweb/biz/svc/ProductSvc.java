@@ -93,44 +93,12 @@ public class ProductSvc {
 	@Transactional(rollbackFor = Exception.class)
 	public String saveOneForProductInfo(ProductDto productDto) {
 		int fobSaveCnt = 0;
-		int productSaveCnt = productRepository.saveOneForProductInfo(productDto);
-		if (productSaveCnt > 0) {
-			int productSeq = productRepository.findOneForMaxProductSeq();
 
-			String[] rangeStart = productDto.getRangeStart().split(",", -1);
-			String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
-			String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
-			String[] supplyRate = productDto.getSupplyRate().split(",", -1);
-			String[] exposureSupplyRate = productDto.getExposureSupplyRate().split(",", -1);
+		try {
+			int productSaveCnt = productRepository.saveOneForProductInfo(productDto);
+			if (productSaveCnt > 0) {
+				int productSeq = productRepository.findOneForMaxProductSeq();
 
-			int length = rangeStart.length;
-			for (int idx = 0; idx < length; idx++) {
-				Map<String, Object> paramMap = new HashMap<>();
-				paramMap.put("productSeq", productSeq);
-				paramMap.put("rangeStart", rangeStart[idx]);
-				paramMap.put("rangeEnd", rangeEnd[idx]);
-				paramMap.put("tradingPrice", tradingPrice[idx]);
-				paramMap.put("supplyRate", supplyRate[idx]);
-				paramMap.put("exposureSupplyRate", exposureSupplyRate[idx]);
-
-				fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
-			}
-		}
-
-		return fobSaveCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
-	}
-
-	@Transactional(rollbackFor = Exception.class)
-	public String updateOneForProductInfo(ProductDto productDto) {
-		int fobSaveCnt = 0;
-		int productSaveCnt = productRepository.updateOneForProductInfo(productDto);
-		if (productSaveCnt > 0) {
-			List<Integer> delParams = Arrays.stream(productDto.getFobSeq().split(",", -1))
-					.map(Integer::parseInt)
-					.collect(Collectors.toList());
-			int delCnt = productRepository.deleteByFobSeq(delParams);
-
-			if (delCnt > 0) {
 				String[] rangeStart = productDto.getRangeStart().split(",", -1);
 				String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
 				String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
@@ -140,7 +108,7 @@ public class ProductSvc {
 				int length = rangeStart.length;
 				for (int idx = 0; idx < length; idx++) {
 					Map<String, Object> paramMap = new HashMap<>();
-					paramMap.put("productSeq", productDto.getProductSeq());
+					paramMap.put("productSeq", productSeq);
 					paramMap.put("rangeStart", rangeStart[idx]);
 					paramMap.put("rangeEnd", rangeEnd[idx]);
 					paramMap.put("tradingPrice", tradingPrice[idx]);
@@ -150,6 +118,49 @@ public class ProductSvc {
 					fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			fobSaveCnt = 0;
+		}
+
+		return fobSaveCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public String updateOneForProductInfo(ProductDto productDto) throws Exception {
+		int fobSaveCnt = 0;
+		try {
+			int productSaveCnt = productRepository.updateOneForProductInfo(productDto);
+			if (productSaveCnt > 0) {
+				List<Integer> delParams = Arrays.stream(productDto.getFobSeq().split(",", -1))
+						.map(Integer::parseInt)
+						.collect(Collectors.toList());
+				int delCnt = productRepository.deleteByFobSeq(delParams);
+
+				if (delCnt > 0) {
+					String[] rangeStart = productDto.getRangeStart().split(",", -1);
+					String[] rangeEnd = productDto.getRangeEnd().split(",", -1);
+					String[] tradingPrice = productDto.getTradingPrice().split(",", -1);
+					String[] supplyRate = productDto.getSupplyRate().split(",", -1);
+					String[] exposureSupplyRate = productDto.getExposureSupplyRate().split(",", -1);
+
+					int length = rangeStart.length;
+					for (int idx = 0; idx < length; idx++) {
+						Map<String, Object> paramMap = new HashMap<>();
+						paramMap.put("productSeq", productDto.getProductSeq());
+						paramMap.put("rangeStart", rangeStart[idx]);
+						paramMap.put("rangeEnd", rangeEnd[idx]);
+						paramMap.put("tradingPrice", tradingPrice[idx]);
+						paramMap.put("supplyRate", supplyRate[idx]);
+						paramMap.put("exposureSupplyRate", exposureSupplyRate[idx]);
+
+						fobSaveCnt += productRepository.saveOneForFobInfo(paramMap);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			fobSaveCnt = 0;
 		}
 
 		return fobSaveCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();

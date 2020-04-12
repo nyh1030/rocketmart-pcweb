@@ -247,7 +247,11 @@
                                     </div>
                                 </div>
                                 <div class="ps-tab" id="tab-4" style="display: none">
-                                    <p class="txt-impt">* 대표이미지는 반드시 등록되어야 합니다.</p>
+                                    <p class="txt-impt">
+                                        * 대표이미지는 반드시 등록되어야 합니다.<br>
+                                        * 이미지 사이즈 최소 450px * 450px 으로 등록해주세요.<br>
+                                        * 확장자는 png,jpg,gif만 가능합니다.
+                                    </p>
                                     <ul class="photo-upload">
                                         <li>
                                             <span class="flag">대표이미지</span>
@@ -397,7 +401,17 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
                         ['table', ['table']]
-                    ]
+                    ],
+                    callbacks: {
+                        onKeydown: function () {
+                            const $txtSellerNote = $('#txtSellerNote');
+                            const totalCharacters = $txtSellerNote.summernote('code').length;
+                            if (30000 < totalCharacters) {
+                                alert('30000 byte 이상 넘을 수 없습니다.');
+                                $txtSellerNote.summernote('code', $txtSellerNote.summernote('code').substring(0, 29900));
+                            }
+                        }
+                    }
                 });
 
                 $("#txtProductContent").summernote({
@@ -416,10 +430,10 @@
                     callbacks: {
                         onKeydown: function () {
                             const $txtProductContent = $('#txtProductContent');
-                            const totalCharacters = $txtProductContent.summernote('code').replace(/(<([^>]+)>)/ig, "").length;
-                            if (4000 < totalCharacters) {
-                                alert('4000btye 이상 넘을 수 없습니다.');
-                                $txtProductContent.summernote('code', $txtProductContent.summernote('code').replace(/(<([^>]+)>)/ig, "").substr(0, 10));
+                            const totalCharacters = $txtProductContent.summernote('code').length;
+                            if (30000 < totalCharacters) {
+                                alert('30000 byte 이상 넘을 수 없습니다.');
+                                $txtProductContent.summernote('code', $txtProductContent.summernote('code').substring(0, 29900));
                             }
                         }
                     }
@@ -588,18 +602,21 @@
             },
 
             saveProductInfo() {
-                axios({
+                $.ajax({
                     method: 'post',
                     url: '/seller/product/info/save',
-                    params: this.getParameters()
-                }).then(response => {
-                    if (response.data === 200) {
-                        alert('상품 정보가 저장되었습니다.');
-                        CommonUtils.forwardPage('/seller/brand_add');
+                    data: JSON.stringify(this.getParameters()),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response === 200) {
+                            alert('상품 정보가 등록되었습니다.');
+                            CommonUtils.forwardPage('/seller/brand_add');
+                        }
+                    },
+                    error: function() {
+                        alert('상품 정보를 등록하는데 실패하였습니다.\n관리자에게 문의해주세요');
                     }
-                })
-                .catch(error => {
-                    console.log(error);
                 });
             },
 

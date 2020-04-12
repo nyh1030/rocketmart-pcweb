@@ -26,14 +26,14 @@ public class BrandRestCtl {
 	}
 
 	@PostMapping("/seller/brand/info/save")
-	public ResponseEntity<String> saveBrandInfo(BrandDto brandDto, Principal principal) {
+	public ResponseEntity<String> saveBrandInfo(@RequestBody BrandDto brandDto, Principal principal) {
 		brandDto.setRegUsrId(principal.getName());
 		brandDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(brandSvc.saveOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 	@PutMapping("/seller/brand/info/update")
-	public ResponseEntity<String> updateBrandInfo(BrandDto brandDto, Principal principal) {
+	public ResponseEntity<String> updateBrandInfo(@RequestBody BrandDto brandDto, Principal principal) {
 		brandDto.setRegUsrId(principal.getName());
 		brandDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(brandSvc.updateOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);

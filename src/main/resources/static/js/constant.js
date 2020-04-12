@@ -1,19 +1,17 @@
 // 제품 속성
 const PRODUCT_ATRBT = {
-	'10': '미백',
-	'11': '주름 개선',
-	'12': '자외선차단',
-	'13': '보습',
-	'14': '진정',
-	'15': '친환경',
-	'16': '잡티관리',
-	'17': '콜라겐',
-	'18': '방수',
-	'19': '각질관리',
-	'20': '탄력개선',
-	'21': '여드름관리',
-	'22': '기미/주근깨관리',
-	'23': '기타'
+	'10': 'Whitening',
+	'11': 'Anti-aging',
+	'12': 'Suncare',
+	'13': 'Moisturizing',
+	'14': 'Soothing',
+	'15': 'Blemish Care',
+	'16': 'Acne Care',
+	'17': 'Dead-skin Care',
+	'18': 'Tightening',
+	'19': 'Water-proofing',
+	'20': 'Eco-friendly',
+	'21': 'Collagen'
 };
 
 // 제품 인증
@@ -36,9 +34,9 @@ const EXPORT_HIST = {
 
 // 가능한 거래 조건
 const TRADING_CONDITIONS = {
-	'10': '완제품 형태의 수출',
-	'20': '원료 공급 형태의 수출',
-	'30': '바이어 주문에 대한 위탁생산'
+	'10': 'Export of finished products',
+	'20': 'Export in the form of raw material (Semi-finishied)',
+	'30': 'Consignment Production for buyer orders'
 };
 
 // 브랜드 인증

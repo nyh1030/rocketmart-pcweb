@@ -30,6 +30,7 @@
                             </div>
                             <div class="mb-5">
                                 <label for="dvBrandLogo" class="bul-type">브랜드 로고 <span class="required">*</span></label>
+                                <span class="txt-info">* 이미지 사이즈 최소 200px * 200px 으로 등록해주세요.<br>* 확장자는 png,jpg,gif만 가능합니다.</span>
                                 <div class="upload_box">
                                     <div class="img_logo" id="dvBrandLogo"></div>
                                     <button type="button" id="btnUpload" class="ps-btn">upload</button>
@@ -114,24 +115,23 @@
                     method: 'post',
                     url: '/seller/brand/file/upload',
                     params: {themaRelmCd: "brand", regMenuPart: "/seller/brand_add"},
-                    acceptedFiles: '.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF',
+                    acceptedFiles: 'image/jpeg,image/jpg,image/png,image/gif',
                     addRemoveLinks: false,
                     autoProcessQueue: false,
                     thumbnailWidth: 100,
                     thumbnailHeight: 100,
                     maxFiles: 1,
-                    maxFilesize: 10,
+                    maxFilesize: 1,
                     clickable: '#btnUpload',
                     previewTemplate: `
                             <div class="dz-preview dz-file-preview" >
                               <div class="dz-image"><img data-dz-thumbnail /></div>
                               <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                              <div class="dz-error-message"><span data-dz-errormessage></span></div>
                               <button class="btn btn-info dz-remove" data-dz-remove>remove</button>
                             </div>`,
                     init: function() {
                         let _this;
-                        this.on("addedfile", file =>{
+                        this.on("addedfile", file => {
                             _this = this;
 
                             if (file.status === "queued") {
@@ -164,23 +164,36 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
                         ['table', ['table']]
-                    ]
+                    ],
+                    callbacks: {
+                        onKeydown: function () {
+                            const $txtBrandIntroduction = $('#txtBrandIntroduction');
+                            const totalCharacters = $txtBrandIntroduction.summernote('code').length;
+                            if (30000 < totalCharacters) {
+                                alert('30000 byte 이상 넘을 수 없습니다.');
+                                $txtBrandIntroduction.summernote('code', $txtBrandIntroduction.summernote('code').substring(0, 29900));
+                            }
+                        }
+                    }
                 });
             },
 
             saveBrandInfo(objFileSeq) {
-                axios({
+                $.ajax({
                     method: 'post',
                     url: '/seller/brand/info/save',
-                    params: Object.assign(this.getParameters(), objFileSeq)
-                }).then(response => {
-                    if (response.data === 200) {
-                        alert('브랜드 정보가 저장되었습니다.');
-                        CommonUtils.forwardPage('/seller/brand_add');
+                    data: JSON.stringify(Object.assign(this.getParameters(), objFileSeq)),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response === 200) {
+                            alert('브랜드 정보가 등록되었습니다.');
+                            CommonUtils.forwardPage('/seller/brand_add');
+                        }
+                    },
+                    error: function() {
+                        alert('브랜드 정보를 등록하는데 실패하였습니다.\n관리자에게 문의해주세요');
                     }
-                })
-                .catch(error => {
-                    console.log(error);
                 });
             },
 
@@ -198,7 +211,11 @@
 
             invokeValidation() {
                 if (!$('#txtBrandNm').val().trim()) {
+                    $('#txtBrandNm').focus();
                     alert('브랜드 이름은 필수값 입니다.');
+                    return false;
+                } else if (PageScope.uploadStarter.files.length <= 0) {
+                    alert('브랜드 이미지 첨부는 필수 입니다.');
                     return false;
                 }
                 return true;
