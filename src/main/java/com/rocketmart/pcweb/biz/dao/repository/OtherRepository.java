@@ -195,7 +195,7 @@ public class OtherRepository {
                 .join(TB_PRD_MST)
                 .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .join(TB_CM_AFILE)
-                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .where(TB_INQUIRY_DTL.INQUIRY_SEQ.eq(inquirySeq))
                 .orderBy(TB_INQUIRY_DTL.INQUIRY_SEQ.asc())
                 .fetchMaps();

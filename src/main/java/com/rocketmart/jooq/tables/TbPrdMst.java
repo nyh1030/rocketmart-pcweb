@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 1321828953;
+    private static final long serialVersionUID = -2132883719;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_MST</code>
@@ -105,12 +105,12 @@ public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
     /**
      * The column <code>rocketmart.TB_PRD_MST.SELLER_NOTE</code>. SELLER 노트
      */
-    public final TableField<TbPrdMstRecord, String> SELLER_NOTE = createField(DSL.name("SELLER_NOTE"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "SELLER 노트");
+    public final TableField<TbPrdMstRecord, String> SELLER_NOTE = createField(DSL.name("SELLER_NOTE"), org.jooq.impl.SQLDataType.CLOB.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.CLOB)), this, "SELLER 노트");
 
     /**
      * The column <code>rocketmart.TB_PRD_MST.PRODUCT_CONTENT</code>. 상품상세설명
      */
-    public final TableField<TbPrdMstRecord, String> PRODUCT_CONTENT = createField(DSL.name("PRODUCT_CONTENT"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "상품상세설명");
+    public final TableField<TbPrdMstRecord, String> PRODUCT_CONTENT = createField(DSL.name("PRODUCT_CONTENT"), org.jooq.impl.SQLDataType.CLOB.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.CLOB)), this, "상품상세설명");
 
     /**
      * The column <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)

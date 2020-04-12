@@ -158,6 +158,7 @@ public class MemberRepository {
                         TB_MEM_MST.COMPANY_URL, TB_MEM_MST.BSNS_TYPE, TB_MEM_MST.OFFLINE_YN, TB_MEM_MST.OFFLINE_TEXT,
                         TB_MEM_MST.ONLINE_YN, TB_MEM_MST.ONLINE_TEXT, TB_MEM_MST.BSNS_RGSTR_SEQ, TB_MEM_MST.USE_YN,
                         TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
+                        TB_INQUIRY_DTL.INQUIRY_SEQ,
                         DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_SEQ,"Y", "N").as("INQUIRY_YN"))
                 .from(TB_MEM_MST)
                     .leftJoin(TB_INQUIRY_DTL)

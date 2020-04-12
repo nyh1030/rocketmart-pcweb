@@ -55,14 +55,14 @@
                                     <span class="txt">
                                         <a href="#" class="btn-file">
                                             <i class="fa fa-file-text-o"></i>
-                                            <a th:href="@{'/downloadFile/' + ${mmbr.get('THEMA_RELM_CD')} + '/' +${String.valueOf(mmbr.get('REG_FILE_NM')) +  String.valueOf(mmbr.get('EXT'))} }"><span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span></a>
+                                            <a th:href="@{'/downloadFile/' + ${mmbr.get('THEMA_RELM_CD')} + '/' +${mmbr.get('REG_FILE_NM') +  mmbr.get('EXT')} }"><span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span></a>
                                         </a>
                                     </span>
                                 </li>
                                 <li>
                                     <span class="tit bul-type">회원등급 : </span>
                                     <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('Y')}">정회원</span>
-                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('N')}">준회원</span>
+                                    <span class="txt-info" th:if="${mmbr.get('APPROVAL_YN').equals('N')}">준회원  ※정회원 등급만 제품 등록이 가능합니다.</span>
                                 </li>
                             </ul>
                         </div>

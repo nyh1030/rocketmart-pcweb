@@ -113,8 +113,14 @@
                                 <th:block sec:authorize="isAuthenticated()">
                                     <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
                                     <th:block th:if="${memProductInfo != null}">
-                                        <span class="ps-btn" id="btnInquiryHst" th:if="${memProductInfo.INQUIRY_YN.equals('Y')}">INQUIRY HISTORY</span>
-                                        <span class="ps-btn" id="btnInquiryReg" th:if="${memProductInfo.INQUIRY_YN.equals('N')}">ASK NOW</span>
+                                        <th:block th:if="${memProductInfo.INQUIRY_YN.equals('Y')}">
+                                            <a th:href="@{'/any/inquiry/detail/' + ${memProductInfo.INQUIRY_SEQ}}">
+                                                <span class="ps-btn" id="btnInquiryHst">INQUIRY HISTORY</span>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:if="${memProductInfo.INQUIRY_YN.equals('N')}">
+                                            <span class="ps-btn" id="btnInquiryReg" th:if="${memProductInfo.INQUIRY_YN.equals('N')}">ASK NOW</span>
+                                        </th:block>
                                     </th:block>
                                     <th:block th:if="${memProductInfo == null}">
                                         <span class="ps-btn" id="btnInquiryReg">ASK NOW</span>
@@ -146,11 +152,11 @@
         </div>
     </div>
 
-    <form id="inquiryRegFrm" name="inquiryRegFrm" th:action="@{/any/inquiry/register}" method="post">
+    <form id="inquiryRegFrm" name="inquiryRegFrm" th:action="@{/any/inquiry/register}" method="POST">
         <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
         <input type="hidden" id="returnGbn" name="returnGbn" th:value="productDetail"/>
     </form>
-    <form id="inquiryHstFrm" name="inquiryHstFrm" th:action="@{/any/inquiry/list}" method="post">
+    <form id="inquiryHstFrm" name="inquiryHstFrm" th:action="@{/any/inquiry/list}" method="POST">
         <input type="hidden" id="productSeq" name="productSeq" th:value="${productInfo.PRODUCT_SEQ}"/>
         <input type="hidden" id="returnGbn" name="returnGbn" th:value="productDetail"/>
     </form>
@@ -256,7 +262,7 @@
                 });
                 $('#btnInquiryHst').on('click', () => {
                     //Inquiry 목록 화면 이동
-                    $('#inquiryHstFrm').submit();
+                    //$('#inquiryHstFrm').submit();
                 });
                 $('#btnFobHst').on('click', () => {
                     var productRegUsrId = /*[[${productInfo.REG_USR_ID}]]*/ 'default' || '';

@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = 820626539;
+    private static final long serialVersionUID = 1854109968;
 
     /**
      * The reference instance of <code>rocketmart.TB_BRAND_MST</code>
@@ -101,7 +101,7 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     /**
      * The column <code>rocketmart.TB_BRAND_MST.BRAND_INTRODUCTION</code>. 브랜드 소개
      */
-    public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 소개");
+    public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.CLOB.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.CLOB)), this, "브랜드 소개");
 
     /**
      * The column <code>rocketmart.TB_BRAND_MST.DEL_YN</code>. 삭제여부
