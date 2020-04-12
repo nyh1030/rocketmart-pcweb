@@ -3,6 +3,7 @@ package com.rocketmart.pcweb.biz.ctl.web;
 import com.rocketmart.jooq.tables.records.TbCateMstRecord;
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.biz.svc.CategorySvc;
+import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,20 @@ public class BrandCtl {
 	@Autowired
 	private CategorySvc categorySvc;
 
+	@Autowired
+	private MemberSvc memberSvc;
+
 	private String prefixPath = "fragments/content/brand";
+
+	@GetMapping("/seller/mypage")
+	public String mypage(Principal principal) {
+		Map<String, Object> memInfo = memberSvc.findOneForMemInfo(principal.getName());
+		if("Y".equals(memInfo.get("APPROVAL_YN"))){
+			return "redirect:/seller/brand_add";
+		}else{
+			return "redirect:/seller/seller_detail";
+		}
+	}
 
 	@GetMapping("/seller/brand_add")
 	public String brandAdd(Model model, Principal principal) {

@@ -4,6 +4,7 @@ import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
 import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class OtherCtl {
 
     @Autowired
     private ProductSvc productSvc;
+
+    @Autowired
+    private MemberSvc memberSvc;
 
     /**
      * ContactUs 목록(어드민)
@@ -94,6 +98,7 @@ public class OtherCtl {
         }
 
         model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm));
+        model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
 
         return prefixPath.concat("/mypage/inquiry_list");
     }

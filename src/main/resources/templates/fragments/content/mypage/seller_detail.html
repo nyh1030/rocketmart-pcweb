@@ -10,7 +10,7 @@
                     <aside class="widget widget--vendor">
                         <h3 class="widget-title">Mypage</h3>
                         <ul class="ps-list--arrow">
-                            <li><a th:href="@{/seller/brand_add}">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/seller/brand_add}" th:if="${mmbr.get('APPROVAL_YN').equals('Y')}">제품정보</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
                             <li><a th:href="@{/seller/seller_detail}" class="active">회사정보</a></li>
                         </ul>
                     </aside>
@@ -55,7 +55,7 @@
                                     <span class="txt">
                                         <a href="#" class="btn-file">
                                             <i class="fa fa-file-text-o"></i>
-                                            <a th:href="@{'/downloadFile/' + ${mmbr.get('THEMA_RELM_CD')} + '/' +${mmbr.get('REG_FILE_NM') +  mmbr.get('EXT')} }"><span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span></a>
+                                            <a th:href="@{'/downloadFile/' + ${mmbr.get('THEMA_RELM_CD')} + '/' +${String.valueOf(mmbr.get('REG_FILE_NM')) +  String.valueOf(mmbr.get('EXT'))} }"><span th:text="${mmbr.get('ORGN_FILE_NM') + mmbr.get('EXT')}"></span></a>
                                         </a>
                                     </span>
                                 </li>

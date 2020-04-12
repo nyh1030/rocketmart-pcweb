@@ -26,7 +26,7 @@
                             <!-- D : 로그인후 -->
                             <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                             <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>
-                            <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/brand_add}">Mypage</a>
+                            <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/mypage}">Mypage</a>
                             <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/any/inquiry/list}">Mypage</a>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <!-- D : 로그인후 -->
                         <a sec:authorize="isAuthenticated()" th:href="@{/any/signout/result}">Logout</a>
                         <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/member/list}">Mypage</a>
-                        <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/brand_add}">Mypage</a>
+                        <a sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')" th:href="@{/seller/mypage}">Mypage</a>
                         <a sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')" th:href="@{/any/inquiry/list}">Mypage</a>
                     </div>
                 </div>
