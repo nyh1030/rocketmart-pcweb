@@ -26,7 +26,7 @@ public class FileRestCtl {
 
 	@GetMapping("/downloadFile/{module}/{fileName:.+}")
 	public ResponseEntity<Resource> downloadFile(@PathVariable String module, @PathVariable String fileName, HttpServletRequest request) {
-		Resource resource = fileUtils.loadFileAsResource(fileName, path+"\\"+module);
+		Resource resource = fileUtils.loadFileAsResource(fileName, path+module);
 
 		String contentType = "";
 		try {
