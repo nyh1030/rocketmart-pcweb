@@ -96,7 +96,7 @@
                                         <th:block th:each="fob : ${fobList}">
                                             <tr>
                                                 <td th:text="${#numbers.formatInteger(fob.RANGE_START, 0, 'COMMA') + ' ~ ' + #numbers.formatInteger(fob.RANGE_END, 0, 'COMMA')}"></td>
-                                                <td th:text="${'$' + #numbers.formatInteger((productInfo.RETAIL_PRICE * fob.EXPOSURE_SUPPLY_RATE) / 100, 0, 'COMMA')}"></td>
+                                                <td th:text="${'$' + #numbers.formatDecimal(((productInfo.RETAIL_PRICE * fob.EXPOSURE_SUPPLY_RATE) / 100.0), 0, 1)}"></td>
                                                 <td th:text="${fob.EXPOSURE_SUPPLY_RATE + '%'}"></td>
                                             </tr>
                                         </th:block>
@@ -178,20 +178,12 @@
                 this.productAtrbt = /*[[${productInfo.PRODUCT_ATRBT}]]*/ 'default' || '';
                 this.productCrt = /*[[${productInfo.PRODUCT_CRT}]]*/ 'default' || '';
                 this.exportHst = /*[[${productInfo.EXPORT_HST}]]*/ 'default' || '';
-                this.exportHst = /*[[${productInfo.EXPORT_HST}]]*/ 'default' || '';
                 this.tradingConditions = /*[[${productInfo.TRADING_CONDITIONS}]]*/ 'default' || '';
 
                 this.bindFields();
-
-
-            },
-
-            setPriceBox() {
-
             },
 
             bindFields() {
-
                 if (this.productAtrbt) {
                     const productAtrbtNm = this.productAtrbt.split(',').map(atrbt => {
                         return PRODUCT_ATRBT[atrbt];
