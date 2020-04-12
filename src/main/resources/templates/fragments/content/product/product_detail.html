@@ -96,7 +96,7 @@
                                         <th:block th:each="fob : ${fobList}">
                                             <tr>
                                                 <td th:text="${#numbers.formatInteger(fob.RANGE_START, 0, 'COMMA') + ' ~ ' + #numbers.formatInteger(fob.RANGE_END, 0, 'COMMA')}"></td>
-                                                <td th:text="${'$' + #numbers.formatDecimal(((productInfo.RETAIL_PRICE * fob.EXPOSURE_SUPPLY_RATE) / 100.0), 0, 1)}"></td>
+                                                <td th:text="${'$' + #numbers.formatDecimal(((productInfo.RETAIL_PRICE * fob.EXPOSURE_SUPPLY_RATE) / 100.0), 0, 'COMMA', 1, 'POINT')}"></td>
                                                 <td th:text="${fob.EXPOSURE_SUPPLY_RATE + '%'}"></td>
                                             </tr>
                                         </th:block>
