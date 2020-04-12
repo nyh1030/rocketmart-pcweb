@@ -268,7 +268,7 @@
                     var productRegUsrId = /*[[${productInfo.REG_USR_ID}]]*/ 'default' || '';
                     var memId = /*[[${memInfo.MEM_ID}]]*/ 'default' || '';
                     var role = /*[[${memInfo.ROLE}]]*/ 'default' || '';
-                    if("ADMIN" === role || "BUYER" === role || productRegUsrId === memId){
+                    if(role.indexOf("ADMIN") != -1 || role.indexOf("BUYER") != -1 || productRegUsrId === memId){
                         $('#btnFobHst').hide();
                     }else{
                         alert("Only products that you registered can be viewed.");
