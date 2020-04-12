@@ -73,11 +73,11 @@
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
                                 <th:block sec:authorize="isAuthenticated()">
-                                    <a href="#" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}">Login Required</br></a>
-                                    <a href="#" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Login Required</br></a>
+                                    <a href="javascript:void(0);" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}">Login Required</br></a>
+                                    <a href="javascript:void(0);" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Login Required</br></a>
                                 </th:block>
                                 <th:block sec:authorize="isAnonymous()">
-                                    <a href="#" class="btn-login" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
+                                    <a href="javascript:void(0);" class="btn-login" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
                                 </th:block>
                                 <table class="tbl-price">
                                     <colgroup>
@@ -261,7 +261,8 @@
                 $('#btnFobHst').on('click', () => {
                     var productRegUsrId = /*[[${productInfo.REG_USR_ID}]]*/ 'default' || '';
                     var memId = /*[[${memInfo.MEM_ID}]]*/ 'default' || '';
-                    if(productRegUsrId === memId){
+                    var role = /*[[${memInfo.ROLE}]]*/ 'default' || '';
+                    if("ADMIN" === role || "BUYER" === role || productRegUsrId === memId){
                         $('#btnFobHst').hide();
                     }else{
                         alert("Only products that you registered can be viewed.");
