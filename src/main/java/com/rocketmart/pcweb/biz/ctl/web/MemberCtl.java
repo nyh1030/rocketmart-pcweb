@@ -60,7 +60,6 @@ public class MemberCtl {
      */
     @PostMapping("/any/member/signup")
     public String execSignup(TbMemMstRecord memberRecord, MultipartFile file, RedirectAttributes attributes) {
-
         Map<String, ?> resultMap = memberSvc.saveOneForMemInfo(memberRecord, file);
         attributes.addFlashAttribute("resultMsg", resultMap.get("resultMsg"));
 
