@@ -59,7 +59,11 @@ public class CategoryCtl {
         model.addAttribute("category1Depth", categoryList.stream().map(category -> category.get("CATE1_CD")).collect(Collectors.toList()));
         model.addAttribute("category2Depth", categoryList.stream().map(category -> category.get("CATE2_CD")).collect(Collectors.toList()));
         model.addAttribute("categoryList", categoryList);
-        model.addAttribute("productList", categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord));
+        if (depth.isPresent() && cateCd.isPresent()) {
+            model.addAttribute("productList", categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord));
+        } else {
+            model.addAttribute("productList", productSvc.findAll());
+        }
         model.addAttribute("depth", depth.orElse(""));
         model.addAttribute("cateCd", cateCd.orElse(""));
 

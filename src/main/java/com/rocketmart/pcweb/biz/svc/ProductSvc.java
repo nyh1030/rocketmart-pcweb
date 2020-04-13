@@ -21,6 +21,14 @@ public class ProductSvc {
 	@Autowired
 	private FileUtils fileUtils;
 
+	public List<Map<String, Object>> findAll() {
+		return productRepository.findAll();
+	}
+
+	public List<Map<String, Object>> findAllByBrand(int brandSeq) {
+		return productRepository.findAllByBrand(brandSeq);
+	}
+
 	public List<Map<String, Object>> findProductForBrand(int brandSeq) {
 		return productRepository.findProductForBrand(brandSeq);
 	}
