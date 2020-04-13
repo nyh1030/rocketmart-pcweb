@@ -100,7 +100,7 @@ public class BrandSvc {
 			else if (brandNm.toUpperCase().startsWith("F")) BRAND_F.add(brandInfo);
 			else if (brandNm.toUpperCase().startsWith("G")) BRAND_G.add(brandInfo);
 			else if (brandNm.toUpperCase().startsWith("H")) BRAND_H.add(brandInfo);
-			else if (brandNm.toUpperCase().startsWith("I")) BRAND_U.add(brandInfo);
+			else if (brandNm.toUpperCase().startsWith("I")) BRAND_I.add(brandInfo);
 			else if (brandNm.toUpperCase().startsWith("J")) BRAND_J.add(brandInfo);
 			else if (brandNm.toUpperCase().startsWith("K")) BRAND_K.add(brandInfo);
 			else if (brandNm.toUpperCase().startsWith("L")) BRAND_L.add(brandInfo);

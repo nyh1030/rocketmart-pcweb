@@ -8,8 +8,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -52,8 +50,8 @@ public class FileUtils {
 	public String saveFile(MultipartFile file, int afileSeq, int afileNo, String themaRelmCd, String regMenuPart) {
 		int resultCnt = 0;
 		String fullFileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-		String orgnFileNm = fullFileName.substring(0, fullFileName.indexOf("."));
-		String ext = fullFileName.substring(fullFileName.indexOf("."));
+		String orgnFileNm = fullFileName.substring(0, fullFileName.lastIndexOf("."));
+		String ext = fullFileName.substring(fullFileName.lastIndexOf("."));
 		String regFileNm = CommonUtils.getFileId();
 
 		this.makeDirectoryIfNotExists(filePath.concat(themaRelmCd)); // 디렉토리가 없을 경우 생성

@@ -91,14 +91,14 @@ public class CategoryRepository {
     public List<Map<String, Object>> findAll() {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
-                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
+                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD)))))
                 .fetchMaps();
     }
 
     public List<Map<String, Object>> findAllByBrandSeq(int brandSeq) {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
-                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
+                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq).and(TB_PRD_MST.DEL_YN.equal("N"))).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
                 .fetchMaps();
     }
 }

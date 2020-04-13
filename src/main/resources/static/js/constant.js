@@ -1,17 +1,19 @@
 // 제품 속성
 const PRODUCT_ATRBT = {
-	'10': 'Whitening',
+	'10': 'Acne Care',
 	'11': 'Anti-aging',
-	'12': 'Suncare',
-	'13': 'Moisturizing',
-	'14': 'Soothing',
-	'15': 'Blemish Care',
-	'16': 'Acne Care',
-	'17': 'Dead-skin Care',
-	'18': 'Tightening',
-	'19': 'Water-proofing',
-	'20': 'Eco-friendly',
-	'21': 'Collagen'
+	'12': 'Antioxidant',
+	'13': 'Blemish Care',
+	'14': 'Collagen',
+	'15': 'Dead-skin Care',
+	'16': 'Eco-friendly',
+	'17': 'Massage',
+	'18': 'Moisturizing',
+	'19': 'Soothing',
+	'20': 'Suncare',
+	'21': 'Tightening',
+	'22': 'Water proof',
+	'23': 'Whitening'
 };
 
 // 제품 인증
@@ -23,13 +25,14 @@ const PRODUCT_CRT = {
 
 // 수출 이력
 const EXPORT_HIST = {
-	'10': 'Europe (CPNP)',
-	'20': 'Russia & CIS (EAC)',
+	'10': 'ASEAN (DAV, HSA, NPRA etc.)',
+	'20': 'Australia (NICNAS)',
 	'30': 'China (NMPA)',
-	'40': 'AEAN (DAV, HAS, NPRA etc.)',
-	'50': 'USA (VCRP & OTC)',
-	'60': 'Australia (NICNAS)',
-	'70': 'Japan (PMDA)'
+	'40': 'Europe (CPNP)',
+	'50': 'Japan (PMDA)',
+	'60': 'Middle East (GCC)',
+	'70': 'Russia & CIS (EAC)',
+	'80': 'USA (VCRP & OTC)'
 };
 
 // 가능한 거래 조건
