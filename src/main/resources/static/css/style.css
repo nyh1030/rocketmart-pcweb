@@ -16596,7 +16596,7 @@ textarea.form-control {
           flex-flow: row nowrap;
   -webkit-box-pack: justify;
           justify-content: space-between;
-  padding-bottom: 35px;
+  padding-bottom: 0px;
   padding-top: 35px;
 }
 
