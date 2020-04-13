@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.Tables;
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import org.jooq.DSLContext;
 import org.jooq.Record1;
@@ -16,6 +17,7 @@ import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 
 @Repository
 public class ProductRepository {
@@ -27,6 +29,44 @@ public class ProductRepository {
 		return this.dslContext.select(DSL.coalesce(DSL.max(TB_PRD_MST.PRODUCT_SEQ), 0))
 				.from(TB_PRD_MST)
 				.fetchOne(Record1::value1);
+	}
+
+	public List<Map<String, Object>> findAll() {
+		return this.dslContext
+				.select(
+						TB_PRD_MST.PRODUCT_SEQ
+						,TB_PRD_MST.PRODUCT_NM
+						, Tables.TB_BRAND_MST.BRAND_NM
+						,TB_CM_AFILE.AFILE_SEQ
+						,TB_CM_AFILE.URL_PATH_CD
+				)
+				.from(TB_PRD_MST)
+				.leftOuterJoin(TB_CM_AFILE)
+				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.innerJoin(Tables.TB_BRAND_MST)
+				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
+				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.fetchMaps();
+	}
+
+	public List<Map<String, Object>> findAllByBrand(int brandSeq) {
+		return this.dslContext
+				.select(
+						TB_PRD_MST.PRODUCT_SEQ
+						,TB_PRD_MST.PRODUCT_NM
+						, Tables.TB_BRAND_MST.BRAND_NM
+						,TB_CM_AFILE.AFILE_SEQ
+						,TB_CM_AFILE.URL_PATH_CD
+				)
+				.from(TB_PRD_MST)
+				.leftOuterJoin(TB_CM_AFILE)
+				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.innerJoin(Tables.TB_BRAND_MST)
+				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
+				.where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)))
+				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.fetchMaps();
 	}
 
 	public List<Map<String, Object>> findProductForBrand(int brandSeq) {

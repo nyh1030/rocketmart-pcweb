@@ -90,7 +90,11 @@ public class BrandCtl {
 			tbCateMstRecord.setCate1Cd("1");
 		}
 
-		model.addAttribute("productList", categorySvc.findAllForCategoryWithBrandPrdInfo(tbCateMstRecord, brandSeq));
+		if (!StringUtils.isEmpty(depth) && !StringUtils.isEmpty(cateCd)) {
+			model.addAttribute("productList", categorySvc.findAllForCategoryWithBrandPrdInfo(tbCateMstRecord, brandSeq));
+		} else {
+			model.addAttribute("productList", productSvc.findAllByBrand(brandSeq));
+		}
 
 		return prefixPath.concat("/brand_detail");
 	}
