@@ -18,7 +18,7 @@ const PRODUCT_ATRBT = {
 
 // 제품 인증
 const PRODUCT_CRT = {
-	'10': 'Natural&Organic (USDA, COSMOS, ECOCERT, etc)',
+	'10': 'Natural & Organic (USDA, COSMOS, ECOCERT, etc)',
 	'20': 'Cruelty Free & Vegan Certificate',
 	'30': 'Halal Certificate'
 };
@@ -39,7 +39,7 @@ const EXPORT_HIST = {
 const TRADING_CONDITIONS = {
 	'10': 'Export of finished products',
 	'20': 'Export in the form of raw material (Semi-finishied)',
-	'30': 'Consignment Production for buyer orders'
+	'30': 'OEM / ODM'
 };
 
 // 브랜드 인증

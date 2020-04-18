@@ -72,6 +72,7 @@ public class ProductCtl {
 		model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productInfo.get("CATE1_CD")));
 		model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productInfo.get("CATE2_CD")));
 		model.addAttribute("productCate3", productSvc.findCateInoByCate3Cd((String) productInfo.get("CATE3_CD")));
+		model.addAttribute("productSeq", productSeq);
 
 		if(null != principal){
 			model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
