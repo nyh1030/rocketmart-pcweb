@@ -29,7 +29,8 @@
                             <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
                                 <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
-                                <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정하기</button>
+                                <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정</button>
+                                <button type="button" class="ps-btn" th:onclick="|javascript:EventScope.deleteOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 삭제</button>
                             </li>
                         </th:block>
                     </ul>
@@ -123,6 +124,20 @@
                 });
             },
 
+            deleteBrand(brandSeq) {
+                axios({
+                    method: 'delete',
+                    url: `/seller/brand/${brandSeq}`
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('정상적으로 삭제되었습니다.');
+                        location.reload();
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
             deleteProduct(productSeq) {
                 axios({
                     method: 'delete',
@@ -146,6 +161,10 @@
 
             updateOnclickListener(brandSeq) {
                 CommonUtils.redirectPage(`/seller/brand_modify/${brandSeq}`);
+            },
+            deleteOnclickListener(brandSeq) {
+                alert(brandSeq);
+                if (confirm('브랜드를 삭제하시겠습니까?')) PageScope.deleteBrand(brandSeq);
             },
 
             choiceBrandLogoImage(brandSeq, brandNm, _this) {

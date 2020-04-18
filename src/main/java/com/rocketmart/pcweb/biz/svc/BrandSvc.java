@@ -2,6 +2,7 @@ package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.dao.repository.BrandRepository;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import com.rocketmart.pcweb.common.file.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,5 +152,9 @@ public class BrandSvc {
 		returnMap.put("BRAND_Z", BRAND_Z);
 		returnMap.put("BRAND_ETC", BRAND_ETC);
 		return returnMap;
+	}
+
+	public String deleteBrand(int brandSeq) {
+		return brandRepository.deleteBrand(brandSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
 }

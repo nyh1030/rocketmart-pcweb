@@ -109,4 +109,16 @@ public class BrandRepository {
 				.groupBy(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
 				.fetchMaps();
 	}
+
+	public int deleteBrand(int brandSeq) {
+		this.dslContext.update(TB_PRD_MST)
+				.set(TB_PRD_MST.DEL_YN, "Y")
+				.where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq))
+				.execute();
+
+		return this.dslContext.update(TB_BRAND_MST)
+				.set(TB_BRAND_MST.DEL_YN, "Y")
+				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq))
+				.execute();
+	}
 }

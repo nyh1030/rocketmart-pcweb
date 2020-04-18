@@ -2,7 +2,6 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
-import com.rocketmart.pcweb.common.file.FileUtils;
 import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +36,10 @@ public class BrandRestCtl {
 		brandDto.setRegUsrId(principal.getName());
 		brandDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(brandSvc.updateOneForBrandInfo(brandDto) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/seller/brand/{brandSeq}")
+	public ResponseEntity<String> deleteProduct(@PathVariable(value = "brandSeq") int brandSeq) {
+		return new ResponseEntity<>(brandSvc.deleteBrand(brandSeq), HttpStatus.OK);
 	}
 }
