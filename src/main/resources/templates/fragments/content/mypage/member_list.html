@@ -48,11 +48,12 @@
                                         <col style="width:7%">
                                         <col style="width:12%">
                                         <col style="width:12%">
-                                        <col style="width:12%">
-                                        <col style="width:12%">
+                                        <col style="width:9%">
+                                        <col style="width:11%">
                                         <col style="width:15%">
                                         <!--<col style="width:15%">-->
                                         <col>
+                                        <col style="width:8%">
                                     </colgroup>
                                     <thead>
                                     <tr>
@@ -65,6 +66,7 @@
                                         <th>회사명</th>
                                         <!--<th>회사URL</th>-->
                                         <th>등록일시</th>
+                                        <th>비밀번호<br>초기화</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -81,12 +83,8 @@
                                             <td th:text="${member.get('MEM_ID')}"></td>
                                             <!--<td th:text="${member.get('MEM_NM')}"></td>-->
                                             <td class="link-type">
-                                                <a th:if="${member.get('ROLE').equals('BUYER')}" th:text="${member.get('MEM_NM')}"
-                                                   th:href="|javascript:link.detail('BUYER', '${member.get('MEM_ID')}');|"
-                                                   style="cursor: pointer;"></a>
-                                                <a th:if="${member.get('ROLE').equals('SELLER')}" th:text="${member.get('MEM_NM')}"
-                                                   th:href="|javascript:link.detail('SELLER', '${member.get('MEM_ID')}');|"
-                                                   style="cursor: pointer;"></a>
+                                                <a th:text="${member.get('MEM_NM')}"
+                                                   th:href="|javascript:PageScope.detail('${member.get('ROLE')}', '${member.get('MEM_ID')}');|"></a>
                                             </td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('N')}">준회원</td>
                                             <td th:if="${member.get('APPROVAL_YN').equals('Y')}">정회원</td>
@@ -94,6 +92,7 @@
                                             <td th:text="${member.get('COMPANY_NM')}"></td>
                                             <!--<td th:text="${member.get('COMPANY_URL')}">--></td>
                                             <td th:text="${#strings.substring(member.get('REG_TS'),0,19)}"></td>
+                                            <td><button type="button" id="btnPasswordInit" name="btnPasswordInit" th:value="${member.get('MEM_ID')}" class="ps-btn init">INIT</button></td>
                                         </tr>
                                     </th:block>
                                     </tbody>
@@ -116,28 +115,60 @@
         <!-- //.container : E -->
     </div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+$(() => {
+    PageScope.init();
+    EventScope.init();
+});
 
-        var form = null;
+const PageScope = {
 
-        var link = {
+    init() {
 
-            init : function() {
-               form = $("#detailFrm");
-            },
-            detail : function(flag, id) {
+    },
 
-                if(flag === "SELLER") {
-                    form.attr("action", "/seller/seller_detail");
-                }else if(flag === "BUYER") {
-                    form.attr("action", "/buyer/buyer_detail");
-                }
-                form.find(".memId").val(id);
-                form.submit();
-            }
+    detail(flag, memId) {
+        if(flag === "SELLER") {
+            $("#detailFrm").attr("action", "/seller/seller_detail");
+        }else if(flag === "BUYER") {
+            $("#detailFrm").attr("action", "/buyer/buyer_detail");
         }
+        $("#detailFrm").find(".memId").val(memId);
+        $("#detailFrm").submit();
+    },
 
-        link.init();
-    </script>
+    initMemPw(memId) {
+        axios({
+            method: 'post',
+            url: '/admin/rest/member/mempw/init',
+            params: {
+                memId: memId
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                alert('비밀번호를 1234로 초기화 하였습니다.');
+            }
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+};
+
+const EventScope = {
+
+    init() {
+        this.clickEventListener();
+    },
+
+    clickEventListener() {
+        $('[name="btnPasswordInit"]').on('click', function() {
+            if(confirm('비밀번호를 초기화 하시겠습니까?')) {
+                PageScope.initMemPw($(this).val());
+            }
+        });
+    }
+};
+</script>
 </th:block>
 </html>

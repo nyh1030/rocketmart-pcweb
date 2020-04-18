@@ -98,8 +98,10 @@
                                             </td>
                                             <td>
                                                 <div class="btns type">
-                                                    <button type="button" id="btnAsk" name="btnAsk" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                                    <button type="button" id="btnAsk" name="btnAsk" th:if="${wish.ASK_YN == 'N'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.ASK_YN == 'Y'}" th:value="${wish.INQUIRY_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
                                                     <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
+                                                    <button type="button" id="btnDelete" name="btnDelete" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -121,114 +123,133 @@
         <input type="hidden" id="returnGbn" name="returnGbn" value="wishList"/>
     </form>
 
-    <script type="text/javascript">
-        $(() => {
-            PageScope.init();
-            EventScope.init();
-        });
+<script type="text/javascript">
+    $(() => {
+        PageScope.init();
+        EventScope.init();
+    });
 
-        const PageScope = {
+    const PageScope = {
 
-            init() {
-                $('.check-all').on('click',this.checkAll);
+        init() {
+            $('.check-all').on('click',this.checkAll);
 
-                $('.tooltip-box a').on('click',function(){
-                    var productSeq = parseInt($(this).attr('value'));
-                    axios({
-                        method: 'get',
-                        url: `/any/product/fob/list/${productSeq}`
-                    }).then(response => {
-                        if (response.status === 200) {
-                            const data = response.data || [];
-                            const $tblFobPriceTbody = $('#tblFobPrice > tbody');
-                            $tblFobPriceTbody.empty();
+            $('.tooltip-box a').on('click',function(){
+                var productSeq = parseInt($(this).attr('value'));
+                axios({
+                    method: 'get',
+                    url: `/any/product/fob/list/${productSeq}`
+                }).then(response => {
+                    if (response.status === 200) {
+                        const data = response.data || [];
+                        const $tblFobPriceTbody = $('#tblFobPrice > tbody');
+                        $tblFobPriceTbody.empty();
 
-                            if (data.length > 0) {
-                                data.forEach(item => {
-                                    $tblFobPriceTbody.append(`
-                                                    <tr>
-                                                        <td>${item.RANGE_START + ' ~ ' + item.RANGE_START}</td>
-                                                        <td>${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}</td>
-                                                        <td>${item.SUPPLY_RATE}</td>
-                                                    </tr>
-                                                `);
-                                });
+                        if (data.length > 0) {
+                            data.forEach(item => {
+                                $tblFobPriceTbody.append(`
+                                                <tr>
+                                                    <td>${item.RANGE_START + ' ~ ' + item.RANGE_START}</td>
+                                                    <td>${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}</td>
+                                                    <td>${item.SUPPLY_RATE}</td>
+                                                </tr>
+                                            `);
+                            });
 
-                                $(this).toggleClass('on');
-                                if($(this).hasClass('on')){
-                                    $(this).siblings('.cont').show();
-                                }else{
-                                    $(this).siblings('.cont').hide();
-                                }
-                            } else {
-                                alert('FOB price does not exist');
+                            $(this).toggleClass('on');
+                            if($(this).hasClass('on')){
+                                $(this).siblings('.cont').show();
+                            }else{
+                                $(this).siblings('.cont').hide();
                             }
-
-
-
+                        } else {
+                            alert('FOB price does not exist');
                         }
-                    }).catch(error => {
-                        console.log(error);
-                    });
-                });
-
-                $('.tooltip-box .btn-close').on('click',function () {
-                    $(this).parent().hide();
-                })
-            },
-
-            checkAll() {
-                $( '.check' ).prop( 'checked', this.checked );
-            },
-
-            getParameters() {
-                return {
-                    brandNm: $('#txtBrandNm').val(),
-                    brandHomePageUrl: $('#txtHomepageUrl').val(),
-                    brandYouTubeUrl: $('#txtYoutubeUrl').val(),
-                    brandInstagramUrl: $('#txtInstagramUrl').val(),
-                }
-            },
-
-            invokeValidation() {
-                if (0 === $("[name='productSeqArr']:checked").length) {
-                    alert('Please check the product');
-                    return false;
-                }else{
-                    $('#productSeq').val(CommonUtils.getCheckValToCommaString($('[name="productSeqArr"]')));
-                }
-                return true;
-            }
-        };
-
-        const EventScope = {
-
-            init() {
-                this.clickEventListener();
-            },
-
-            clickEventListener() {
-                $('#btnAskAll').on('click', () => {
-                    if (!PageScope.invokeValidation()) return;
-
-                    if (confirm('Would you like to inquire about this product?')) {
-                        $('#inquiryFrm').submit();
                     }
+                }).catch(error => {
+                    console.log(error);
                 });
-                $('[name="btnAsk"]').on('click', function() {
-                    $('#productSeq').val($(this).val());
+            });
 
-                    if (confirm('Would you like to inquire about this product?')) {
-                        $('#inquiryFrm').submit();
-                    }
-                });
-                $('[name="btnDetail"]').on('click', function() {
-                    CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
-                });
+            $('.tooltip-box .btn-close').on('click',function () {
+                $(this).parent().hide();
+            })
+        },
 
+        checkAll() {
+            $( '.check' ).prop( 'checked', this.checked );
+        },
+
+        getParameters() {
+            return {
+                brandNm: $('#txtBrandNm').val(),
+                brandHomePageUrl: $('#txtHomepageUrl').val(),
+                brandYouTubeUrl: $('#txtYoutubeUrl').val(),
+                brandInstagramUrl: $('#txtInstagramUrl').val(),
             }
-        };
-    </script>
+        },
+
+        invokeValidation() {
+            if (0 === $("[name='productSeqArr']:checked").length) {
+                alert('Please check the product');
+                return false;
+            }else{
+                $('#productSeq').val(CommonUtils.getCheckValToCommaString($('[name="productSeqArr"]')));
+            }
+            return true;
+        },
+
+        deleteWishList(productSeq) {
+            axios({
+                method: 'delete',
+                url: `/any/rest/wishlist/delete/${productSeq}`
+            }).then(response => {
+                if (response.data === 200) {
+                    alert('Deleted successfully');
+                    location.reload();
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    };
+
+    const EventScope = {
+
+        init() {
+            this.clickEventListener();
+        },
+
+        clickEventListener() {
+            $('#btnAskAll').on('click', () => {
+                if (!PageScope.invokeValidation()) return;
+
+                if (confirm('Would you like to inquire about this product?')) {
+                    $('#inquiryFrm').submit();
+                }
+            });
+            $('[name="btnAsk"]').on('click', function() {
+                $('#productSeq').val($(this).val());
+
+                if (confirm('Would you like to inquire about this product?')) {
+                    $('#inquiryFrm').submit();
+                }
+            });
+            $('[name="btnInquiry"]').on('click', function() {
+                location.href='/any/inquiry/detail/'+$(this).val();
+            });
+            $('[name="btnDetail"]').on('click', function() {
+                CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
+            });
+            $('[name="btnDelete"]').on('click', function() {
+                if(confirm('Are you sure you want to delete this product?')) {
+                    PageScope.deleteWishList($(this).val());
+                }
+            });
+
+        }
+    };
+</script>
 
 </th:block>
 </html>

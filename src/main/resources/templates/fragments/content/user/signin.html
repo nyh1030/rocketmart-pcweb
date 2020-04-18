@@ -18,12 +18,13 @@
                         <div class="ps-tab active" id="sign-in">
                             <div class="ps-form__content">
                                 <form name="signin" th:action="@{/any/signin}" method="post">
-                                    <h5>Log In Your Account</h5>
+                                    <h5 class="form-forgot">Log In Your Account<a th:href="@{/any/signup}">SignUp</a></h5>
                                     <div class="form-group">
                                         <input class="form-control" id="username" name="username" type="text" placeholder="Email address" required>
                                     </div>
                                     <div class="form-group form-forgot">
-                                        <input class="form-control" id="password" name="password" type="password" placeholder="Password" required><!--<a href="">Forgot?</a>-->
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Password" required>
+                                        <a href="javascript:void(0);" th:onclick="'alert(\'Please request password reset\n-support@rocket-international.com\')'">Forgot?</a>
                                     </div>
                                     <div class="form-group">
                                         <div class="ps-checkbox">

@@ -261,4 +261,20 @@ public class MemberSvc {
 	public Map<String, Object> findOneForMemProductInfo(int productSeq, String memId) {
 		return memberRepository.findOneForMemProductInfo(productSeq, memId);
 	}
+
+	/**
+	 * 비밀번호 초기화
+	 * @param memId
+	 * @return int
+	 */
+	public int execModifyMemPwInfo(String memId) {
+		TbMemMstRecord tbMemMstRecord = new TbMemMstRecord();
+
+		tbMemMstRecord.setMemId(memId);
+		BCryptPasswordEncoder passwordEncoder = null;	// 암호화
+		passwordEncoder = new BCryptPasswordEncoder();
+		tbMemMstRecord.setMemPw(passwordEncoder.encode("1234"));
+
+		return memberRepository.execModifyMemPwInfo(tbMemMstRecord);
+	}
 }

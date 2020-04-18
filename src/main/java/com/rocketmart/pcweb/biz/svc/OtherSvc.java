@@ -128,7 +128,7 @@ public class OtherSvc {
 				tbInquiryDtlRecord.setProductSeq(productSeq);
 				resultDtlCnt += otherRepository.saveAllForInquiryDtlInfo(tbInquiryDtlRecord);
 				if(resultDtlCnt > 0){
-					//resultWishCnt += otherRepository.updateOneForWishInfo(tbInquiryDtlRecord, productSeq);
+					resultWishCnt += otherRepository.updateOneForWishInfo(tbInquiryDtlRecord, productSeq);
 				}
 			}
 

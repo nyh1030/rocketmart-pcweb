@@ -313,6 +313,11 @@
 
     $(function() {
         signup.init();
+
+        if ("?seller" === $(location).attr('search')){
+            $('.user-role input[type=radio][value="SELLER"]').prop('checked', true);
+            $('.user-role input[type=radio]').change();
+        }
     });
 })(jQuery);
 

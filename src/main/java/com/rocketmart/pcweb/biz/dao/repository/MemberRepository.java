@@ -167,4 +167,16 @@ public class MemberRepository {
                     .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq)))
                 .fetchOneMap();
     }
+
+    /**
+     * 비밀번호 초기화
+     * @param tbMemMstRecord
+     * @return
+     */
+    public int execModifyMemPwInfo(TbMemMstRecord tbMemMstRecord) {
+        return this.dslContext.update(TB_MEM_MST)
+                .set(TB_MEM_MST.MEM_PW, tbMemMstRecord.getMemPw())
+                .where(TB_MEM_MST.MEM_ID.eq(tbMemMstRecord.getMemId()))
+                .execute();
+    }
 }
