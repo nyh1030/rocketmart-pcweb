@@ -1,6 +1,8 @@
 package com.rocketmart.pcweb.biz.ctl.rest;
 
+import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
+import com.rocketmart.pcweb.common.api.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +49,20 @@ public class MemberRestCtl {
      * @param file
      * @param themaRelmCd
      * @param regMenuPart
-     * @return String
+     * @return ResponseEntity<String>
      */
     @PostMapping("/any/rest/member/bsnsRgstr/file/upload")
     public ResponseEntity<String> saveBsnsRgstrUpload(MultipartFile file, @RequestParam(value = "themaRelmCd") String themaRelmCd, @RequestParam(value = "regMenuPart") String regMenuPart) {
         return new ResponseEntity<>(memberSvc.saveBsnsRgstrUpload(file, themaRelmCd, regMenuPart), HttpStatus.OK);
+    }
+
+    /**
+     * 비밀번호 초기화
+     * @param memId
+     * @return ResponseEntity<String>
+     */
+    @PostMapping("/admin/rest/member/mempw/init")
+    public ResponseEntity<String> saveBsnsRgstrUpload(@RequestParam(value = "memId") String memId) {
+        return new ResponseEntity<>(memberSvc.execModifyMemPwInfo(memId) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
     }
 }

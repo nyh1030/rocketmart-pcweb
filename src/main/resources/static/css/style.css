@@ -1803,6 +1803,22 @@ button {
   cursor: pointer;
 }
 
+.ps-btn .init, button.ps-btn {
+  display: inline-block;
+  padding: 8px 21px;
+  font-size: 15px;
+  font-weight: 200;
+  line-height: 20px;
+  color: #000;
+  border: none;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #fcb800;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
 .ps-btn--rounded, button.ps-btn--rounded {
   border-radius: 50px;
 }
