@@ -16,6 +16,7 @@ import java.util.Map;
 import static com.rocketmart.jooq.Tables.*;
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
+import static com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
@@ -106,6 +107,8 @@ public class OtherRepository {
         return this.dslContext
                 .select(
                          TB_WISH_MST.WISH_SEQ
+                        ,TB_WISH_MST.ASK_YN
+                        ,TB_INQUIRY_DTL.INQUIRY_SEQ
                         ,TB_PRD_MST.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
                         ,TB_CM_AFILE.URL_PATH_CD
@@ -120,8 +123,10 @@ public class OtherRepository {
                     .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .join(TB_MEM_MST)
                     .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .leftJoin(TB_INQUIRY_DTL)
+                    .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
-                    .and(TB_WISH_MST.ASK_YN.eq("N"))
+                    //.and(TB_WISH_MST.ASK_YN.eq("N"))
                     .and(TB_WISH_MST.DEL_YN.eq("N"))
                 )
                 .orderBy(TB_WISH_MST.REG_TS.desc())

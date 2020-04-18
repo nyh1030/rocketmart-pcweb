@@ -98,7 +98,8 @@
                                             </td>
                                             <td>
                                                 <div class="btns type">
-                                                    <button type="button" id="btnAsk" name="btnAsk" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                                    <button type="button" id="btnAsk" name="btnAsk" th:if="${wish.ASK_YN == 'N'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.ASK_YN == 'Y'}" th:value="${wish.INQUIRY_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
                                                     <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
                                                     <button type="button" id="btnDelete" name="btnDelete" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Delete</button>
                                                 </div>
@@ -236,6 +237,9 @@
                     if (confirm('Would you like to inquire about this product?')) {
                         $('#inquiryFrm').submit();
                     }
+                });
+                $('[name="btnInquiry"]').on('click', function() {
+                    location.href='/any/inquiry/detail/'+$(this).val();
                 });
                 $('[name="btnDetail"]').on('click', function() {
                     CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
