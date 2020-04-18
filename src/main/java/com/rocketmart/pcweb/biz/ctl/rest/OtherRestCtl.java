@@ -11,9 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Arrays;
@@ -75,6 +73,20 @@ public class OtherRestCtl {
 		tbInquiryMstRecord.setRegUsrId(principal.getName());
 
 		return new ResponseEntity<>(otherSvc.saveInquiryInfo(tbInquiryMstRecord, productSeqs), HttpStatus.OK);
+	}
+
+	/**
+	 * Wishlist 삭제
+	 * @param productSeq
+	 * @param tbWishMstRecord
+	 * @param principal
+	 * @return ResponseEntity<String>
+	 */
+	@DeleteMapping("/any/rest/wishlist/delete/{productSeq}")
+	public ResponseEntity<String> deleteProduct(@PathVariable(value = "productSeq") int productSeq, TbWishMstRecord tbWishMstRecord, Principal principal) {
+		tbWishMstRecord.setProductSeq(productSeq);
+		tbWishMstRecord.setRegUsrId(principal.getName());
+		return new ResponseEntity<>(otherSvc.deleteWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }

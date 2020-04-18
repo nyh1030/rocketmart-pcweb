@@ -100,6 +100,7 @@
                                                 <div class="btns type">
                                                     <button type="button" id="btnAsk" name="btnAsk" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
                                                     <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
+                                                    <button type="button" id="btnDelete" name="btnDelete" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -198,6 +199,20 @@
                     $('#productSeq').val(CommonUtils.getCheckValToCommaString($('[name="productSeqArr"]')));
                 }
                 return true;
+            },
+
+            deleteWishList(productSeq) {
+                axios({
+                    method: 'delete',
+                    url: `/any/rest/wishlist/delete/${productSeq}`
+                }).then(response => {
+                    if (response.data === 200) {
+                        alert('Deleted successfully');
+                        location.reload();
+                    }
+                }).catch(error => {
+                    console.log(error);
+                });
             }
         };
 
@@ -224,6 +239,11 @@
                 });
                 $('[name="btnDetail"]').on('click', function() {
                     CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
+                });
+                $('[name="btnDelete"]').on('click', function() {
+                    if(confirm('Are you sure you want to delete this product?')) {
+                        PageScope.deleteWishList($(this).val());
+                    }
                 });
 
             }

@@ -146,6 +146,8 @@ public class OtherRepository {
                 .from(TB_INQUIRY_MST)
                 .join(TB_MEM_MST)
                     .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .join(TB_INQUIRY_DTL)
+                    .on(TB_INQUIRY_MST.INQUIRY_SEQ.eq(TB_INQUIRY_DTL.INQUIRY_SEQ))
                 .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
                     .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like(schMemId)))
                     .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like(schMemNm)))
