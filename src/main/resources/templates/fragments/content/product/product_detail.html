@@ -54,7 +54,7 @@
                             </div>
                             <th:block th:if="${not #strings.isEmpty(productInfo.PRODUCT_URL)}">
                                 <div class="youtube-area">
-                                    <iframe width="500" height="315" th:src="@{productInfo.PRODUCT_URL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="500" height="315" th:src="${productInfo.PRODUCT_URL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </th:block>
                         </div>
