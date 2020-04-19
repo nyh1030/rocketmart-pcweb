@@ -45,6 +45,9 @@ public class CategoryRepository {
                 .select(
                          TB_PRD_MST.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_PRD_MST.CATE1_CD
+                        ,TB_PRD_MST.CATE2_CD
+                        ,TB_PRD_MST.CATE3_CD
                         ,TB_BRAND_MST.BRAND_NM
                         ,TB_CM_AFILE.AFILE_SEQ
                         ,TB_CM_AFILE.URL_PATH_CD
@@ -71,6 +74,9 @@ public class CategoryRepository {
                 .select(
                         TB_PRD_MST.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_PRD_MST.CATE1_CD
+                        ,TB_PRD_MST.CATE2_CD
+                        ,TB_PRD_MST.CATE3_CD
                         ,TB_BRAND_MST.BRAND_NM
                         ,TB_CM_AFILE.AFILE_SEQ
                         ,TB_CM_AFILE.URL_PATH_CD

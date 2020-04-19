@@ -3,21 +3,21 @@
 <th:block layout:fragment="content">
     <div class="ps-breadcrumb">
         <div class="container">
-            <ul class="breadcrumb">
-                <li><a th:href="@{/}">Home</a></li>
+            <div class="breadcrumb">
+                <a th:href="@{/}">Home</a>
                 <th:block th:if="${productCate1 != null}">
-                    <li th:text="${productCate1.CATE1_NM}"></li>
+                    > <a th:href="@{'/any/category/list/1/'+${productCate1.CATE1_CD}}" th:text="${productCate1.CATE1_NM}"></a>
                 </th:block>
                 <th:block th:if="${productCate2 != null}">
-                    <li th:text="${productCate2.CATE2_NM}"></li>
+                    > <a th:href="@{'/any/category/list/2/'+${productCate2.CATE2_CD}}" th:text="${productCate2.CATE2_NM}"></a> >
                 </th:block>
                 <th:block th:if="${productCate3 != null}">
-                    <li th:text="${productCate3.CATE3_NM}"></li>
+                    > <a th:href="@{'/any/category/list/3/'+${productCate3.CATE3_CD}}" th:text="${productCate3.CATE3_NM}"></a> >
                 </th:block>
                 <th:block th:if="${productInfo != null}">
-                    <li th:text="${productInfo.PRODUCT_NM}"></li>
+                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" th:text="${productInfo.PRODUCT_NM}"></a>
                 </th:block>
-            </ul>
+            </div>
         </div>
     </div>
     <div class="ps-page--product">
@@ -52,6 +52,11 @@
                                 <div th:if="${productEtc1Afile != null}" class="item"><img th:src="${productEtc1Afile.URL_PATH_CD}"></div>
                                 <div th:if="${productEtc2Afile != null}" class="item"><img th:src="${productEtc2Afile.URL_PATH_CD}"></div>
                             </div>
+                            <th:block th:if="${not #strings.isEmpty(productInfo.PRODUCT_URL)}">
+                                <div class="youtube-area">
+                                    <iframe width="500" height="315" th:src="@{productInfo.PRODUCT_URL}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </th:block>
                         </div>
                         <div class="ps-product__info">
                             <h1 th:text="${productInfo.PRODUCT_NM}"></h1>

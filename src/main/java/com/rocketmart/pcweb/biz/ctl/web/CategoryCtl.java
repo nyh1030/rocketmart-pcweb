@@ -59,11 +59,26 @@ public class CategoryCtl {
         model.addAttribute("category1Depth", categoryList.stream().map(category -> category.get("CATE1_CD")).collect(Collectors.toList()));
         model.addAttribute("category2Depth", categoryList.stream().map(category -> category.get("CATE2_CD")).collect(Collectors.toList()));
         model.addAttribute("categoryList", categoryList);
+
         if (depth.isPresent() && cateCd.isPresent()) {
-            model.addAttribute("productList", categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord));
+            List<Map<String, Object>> productList = categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord);
+            model.addAttribute("productList", productList);
+            if (!productList.isEmpty()) {
+                if ("1".equals(depth.get())) {
+                    model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+                } else if ("2".equals(depth.get())) {
+                    model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+                    model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productList.get(0).get("CATE2_CD")));
+                } else if ("3".equals(depth.get())) {
+                    model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+                    model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productList.get(0).get("CATE2_CD")));
+                    model.addAttribute("productCate3", productSvc.findCateInoByCate3Cd((String) productList.get(0).get("CATE3_CD")));
+                }
+            }
         } else {
             model.addAttribute("productList", productSvc.findAll());
         }
+
         model.addAttribute("depth", depth.orElse(""));
         model.addAttribute("cateCd", cateCd.orElse(""));
 

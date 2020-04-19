@@ -91,7 +91,20 @@ public class BrandCtl {
 		}
 
 		if (!StringUtils.isEmpty(depth) && !StringUtils.isEmpty(cateCd)) {
-			model.addAttribute("productList", categorySvc.findAllForCategoryWithBrandPrdInfo(tbCateMstRecord, brandSeq));
+			List<Map<String, Object>> productList = categorySvc.findAllForCategoryWithBrandPrdInfo(tbCateMstRecord, brandSeq);
+			model.addAttribute("productList", productList);
+			if (!productList.isEmpty()) {
+				if ("1".equals(depth)) {
+					model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+				} else if ("2".equals(depth)) {
+					model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+					model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productList.get(0).get("CATE2_CD")));
+				} else if ("3".equals(depth)) {
+					model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
+					model.addAttribute("productCate2", productSvc.findCateInoByCate2Cd((String) productList.get(0).get("CATE2_CD")));
+					model.addAttribute("productCate3", productSvc.findCateInoByCate3Cd((String) productList.get(0).get("CATE3_CD")));
+				}
+			}
 		} else {
 			model.addAttribute("productList", productSvc.findAllByBrand(brandSeq));
 		}
