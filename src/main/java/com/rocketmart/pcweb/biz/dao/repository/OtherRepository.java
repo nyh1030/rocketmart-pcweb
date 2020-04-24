@@ -1,11 +1,10 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
-import com.rocketmart.jooq.tables.records.TbContactUsRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
-import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.jooq.tables.records.*;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
+import org.jooq.OrderedAggregateFunction;
+import org.jooq.TableField;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +19,7 @@ import static com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
-import static org.jooq.impl.DSL.currentTimestamp;
+import static org.jooq.impl.DSL.*;
 
 @Repository
 public class OtherRepository {
@@ -136,7 +135,7 @@ public class OtherRepository {
     /**
      * Inquiry 목록 조회
      */
-    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm) {
+    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm, String schProductNm) {
         return this.dslContext
                 .select(
                         TB_INQUIRY_MST.INQUIRY_SEQ
@@ -153,9 +152,12 @@ public class OtherRepository {
                     .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .join(TB_INQUIRY_DTL)
                     .on(TB_INQUIRY_MST.INQUIRY_SEQ.eq(TB_INQUIRY_DTL.INQUIRY_SEQ))
+                .join(TB_INQUIRY_DTL)
+                    .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
                     .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like(schMemId)))
                     .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like(schMemNm)))
+                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like(schProductNm)))
                 )
                 .orderBy(TB_INQUIRY_MST.REG_TS.desc())
                 .fetchMaps();
@@ -243,6 +245,40 @@ public class OtherRepository {
                 .where(TB_WISH_MST.PRODUCT_SEQ.equal(productSeq)
                     .and(TB_WISH_MST.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()
                 )))
+                .execute();
+    }
+
+    /**
+     * Click Log 목록(어드민)
+     */
+    public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+        return this.dslContext
+                .select(
+                        rownum().as("RN")
+                        ,TB_PRD_FOB_HST.REG_USR_ID
+                        ,count().as("TOT_CNT")
+                        ,TB_PRD_MST.PRODUCT_SEQ
+                        ,TB_PRD_MST.PRODUCT_NM
+                )
+                .from(TB_PRD_FOB_HST)
+                .join(TB_PRD_MST)
+                    .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like(schMemId)))
+                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like(schProductNm)))
+                .groupBy(TB_PRD_FOB_HST.REG_USR_ID, TB_PRD_FOB_HST.PRODUCT_SEQ)
+                .orderBy(TB_PRD_FOB_HST.REG_TS.desc())
+                .fetchMaps();
+    }
+
+    /**
+     * Click Log 등록(상품 가격 조회 이력 등록)
+     */
+    public int saveOneForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord) {
+        return this.dslContext.insertInto(TB_PRD_FOB_HST)
+                .set(TB_PRD_FOB_HST.FOB_SEQ, tbPrdFobHstRecord.getFobSeq())
+                .set(TB_PRD_FOB_HST.PRODUCT_SEQ, tbPrdFobHstRecord.getProductSeq())
+                .set(TB_PRD_FOB_HST.REG_USR_ID, tbPrdFobHstRecord.getRegUsrId())
+                .set(TB_PRD_FOB_HST.UPD_USR_ID, tbPrdFobHstRecord.getRegUsrId())
                 .execute();
     }
 

@@ -49,6 +49,7 @@ public class MemberRepository {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
                 .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getMemNm())))
+                .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getRole())))
                 .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
                 .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.eq(tbMemMstRecord.getCompanyNm())))
                 .orderBy(TB_MEM_MST.MEM_SEQ.desc())

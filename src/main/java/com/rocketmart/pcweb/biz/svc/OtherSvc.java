@@ -2,10 +2,7 @@ package com.rocketmart.pcweb.biz.svc;
 
 import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.TbInquiryMst;
-import com.rocketmart.jooq.tables.records.TbContactUsRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryDtlRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
-import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.jooq.tables.records.*;
 import com.rocketmart.pcweb.biz.dao.repository.OtherRepository;
 import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.AllArgsConstructor;
@@ -101,8 +98,8 @@ public class OtherSvc {
 	 * @param tbInquiryMstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm) {
-		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm);
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm, String schProductNm) {
+		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm, schProductNm);
 	}
 
 	/**
@@ -153,7 +150,24 @@ public class OtherSvc {
 	 */
 	public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
 		return otherRepository.findAllForInquiryDtlInfo(inquirySeq);
-	}	
+	}
 
+	/**
+	 * Click Log 목록(어드민)
+	 * @param tbPrdFobHstRecord
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+		return otherRepository.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm);
+	}
 
+	/**
+	 * Click Log 등록(상품 가격 조회 이력 등록)
+	 * @param tbPrdFobHstRecord
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int saveOneForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord) {
+		return otherRepository.saveOneForClickLogInfo(tbPrdFobHstRecord);
+	}
 }

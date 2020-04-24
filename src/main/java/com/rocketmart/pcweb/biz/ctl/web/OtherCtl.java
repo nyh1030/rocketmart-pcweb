@@ -1,9 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
-import com.rocketmart.jooq.tables.records.TbContactUsRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
-import com.rocketmart.jooq.tables.records.TbPrdMstRecord;
-import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.jooq.tables.records.*;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
@@ -91,13 +88,14 @@ public class OtherCtl {
     public String dispInquiryList(TbInquiryMstRecord tbInquiryMstRecord
             , @RequestParam(value = "schMemId", required = false) String schMemId
             , @RequestParam(value = "schMemNm", required = false) String schMemNm
+            , @RequestParam(value = "schProductNm", required = false) String schProductNm
             , Principal principal
             , Model model) {
         if(!"admin".equals(principal.getName())){
             tbInquiryMstRecord.setRegUsrId(principal.getName());
         }
 
-        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm));
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm, schProductNm));
         model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
 
         return prefixPath.concat("/mypage/inquiry_list");
@@ -138,6 +136,23 @@ public class OtherCtl {
         model.addAttribute("productList", this.otherSvc.findAllForInquiryDtlInfo(inquirySeq));
 
         return prefixPath.concat("/mypage/inquiry_detail");
+    }
+
+    /**
+     * Click Log 목록(어드민)
+     * @param tbPrdFobHstRecord
+     * @param model
+     * @return String
+     */
+    @RequestMapping("/admin/clicklog/list")
+    public String dispContactusList(TbPrdFobHstRecord tbPrdFobHstRecord
+            , @RequestParam(value = "schMemId", required = false) String schMemId
+            , @RequestParam(value = "schProductNm", required = false) String schProductNm
+            , Model model) {
+
+        model.addAttribute("clicklogList", otherSvc.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm));
+
+        return prefixPath.concat("/mypage/clicklog_list");
     }
 
 }

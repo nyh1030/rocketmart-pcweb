@@ -28,6 +28,11 @@
                             <form id="memberFrm" name="memberFrm" th:action="@{/admin/member/list}" method="post">
                             <div class="search-box">
                                 <input type="text" class="form-control" id="memNm" name="memNm" th:value="${memNm}" placeholder="회원명" style="width:20%">
+                                <select id="role" name="role" th:value="${role}" class="ps-select" style="width:20%">
+                                    <option value="">- 회원구분 -</option>
+                                    <option value="SELLER" th:selected="${role != null and role.equals('SELLER')}">SELLER</option>
+                                    <option value="BUYER" th:selected="${role != null and role.equals('BUYER')}">BUYER</option>
+                                </select>
                                 <select id="approvalYn" name="approvalYn" th:value="${approvalYn}" class="ps-select" style="width:20%">
                                     <option value="">- 회원등급 -</option>
                                     <option value="N" th:selected="${approvalYn != null and approvalYn.equals('N')}">준회원</option>

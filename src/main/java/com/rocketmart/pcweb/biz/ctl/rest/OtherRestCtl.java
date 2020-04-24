@@ -1,8 +1,10 @@
 package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.jooq.tables.TbInquiryMst;
+import com.rocketmart.jooq.tables.TbPrdFobHst;
 import com.rocketmart.jooq.tables.records.TbContactUsRecord;
 import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
+import com.rocketmart.jooq.tables.records.TbPrdFobHstRecord;
 import com.rocketmart.jooq.tables.records.TbWishMstRecord;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.common.api.ApiResponse;
@@ -87,6 +89,18 @@ public class OtherRestCtl {
 		tbWishMstRecord.setProductSeq(productSeq);
 		tbWishMstRecord.setRegUsrId(principal.getName());
 		return new ResponseEntity<>(otherSvc.deleteWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	/**
+	 * Clock Log 등록(상품 가격 조회 이력 등록)
+	 * @param tbPrdFobHstRecord
+	 * @return ResponseEntity<String>
+	 */
+	@PostMapping("/any/rest/clicklog/info/save")
+	public ResponseEntity<String> saveContactUsInfo(TbPrdFobHstRecord tbPrdFobHstRecord, Principal principal) {
+		tbPrdFobHstRecord.setRegUsrId(principal.getName());
+
+		return new ResponseEntity<>(otherSvc.saveOneForClickLogInfo(tbPrdFobHstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }

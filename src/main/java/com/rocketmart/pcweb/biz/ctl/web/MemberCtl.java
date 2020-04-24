@@ -216,6 +216,7 @@ public class MemberCtl {
 
         model.addAttribute("memList", memberSvc.findAllForMemInfo(tbMemMstRecord));
         model.addAttribute("memNm", tbMemMstRecord.getMemNm());
+        model.addAttribute("role", tbMemMstRecord.getRole());
         model.addAttribute("approvalYn", tbMemMstRecord.getApprovalYn());
         model.addAttribute("companyNm", tbMemMstRecord.getCompanyNm());
 
