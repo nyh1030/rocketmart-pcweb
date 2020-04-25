@@ -66,13 +66,13 @@
                                         <tr th:each="product : ${productList}">
                                             <td th:text="${product.ROW_NUM}"></td>
                                             <td th:text="${product.BRAND_NM}"></td>
-                                            <td><img th:src="${product.URL_PATH_CD}"></td>
+                                            <td><div class="img-box"><img th:src="${product.URL_PATH_CD}"></div></td>
                                             <td class="link-type" style="text-align: left">
                                                 <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}" th:text="${product.PRODUCT_NM}"></a>
                                             </td>
                                             <td th:text="${product.PRODUCT_CAPACITY}"></td>
                                             <td>
-                                                <div class="btns">
+                                                <div class="btns type-size">
                                                     <button type="button" class="ps-btn" th:onclick="|javascript:EventScope.redirectProductModify('${product.PRODUCT_SEQ}')|" >수정 <i class="fa fa-edit"></i></button>
                                                     <button type="button" class="ps-btn type-red" th:onclick="|javascript:EventScope.deleteProductRow('${product.PRODUCT_SEQ}')|">삭제 <i class="fa fa-trash-o"></i></button>
                                                 </div>

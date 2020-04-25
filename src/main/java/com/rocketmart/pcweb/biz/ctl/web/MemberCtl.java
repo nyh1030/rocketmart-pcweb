@@ -235,7 +235,7 @@ public class MemberCtl {
     @RequestMapping("/admin/pending/list")
     public String dispPendingList(TbMemMstRecord tbMemMstRecord, Model model) {
 
-        model.addAttribute("productList", productSvc.findAll());
+        model.addAttribute("productList", productSvc.findAllForPending());
         model.addAttribute("memNm", tbMemMstRecord.getMemNm());
         model.addAttribute("role", tbMemMstRecord.getRole());
 

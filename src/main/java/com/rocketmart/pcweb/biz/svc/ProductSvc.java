@@ -25,6 +25,10 @@ public class ProductSvc {
 		return productRepository.findAll();
 	}
 
+	public List<Map<String, Object>> findAllForPending() {
+		return productRepository.findAllForPending();
+	}
+
 	public List<Map<String, Object>> findAllByBrand(int brandSeq) {
 		return productRepository.findAllByBrand(brandSeq);
 	}

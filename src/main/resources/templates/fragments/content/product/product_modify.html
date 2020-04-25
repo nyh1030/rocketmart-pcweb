@@ -28,8 +28,8 @@
                             </ul>
                             <div class="ps-tabs">
                                 <!-- 기본정보 : S -->
-                                <div class="ps-tab active" id="tab-1">
-                                    <div sec:authorize="hasAuthority('ADMIN')" class="ps-checkbox mb-1">
+                                <div class="ps-tab active" id="tab-1" style="position:relative">
+                                    <div sec:authorize="hasAuthority('ADMIN')" class="ps-checkbox mb-1" style="position:absolute;right:0;top:-30px;">
                                         <input class="form-control" type="checkbox" id="chkReleaseYn" name="releaseYn" th:if="${#strings.equals(productInfo.RELEASE_YN, 'Y') ? 'checked' : ''}">
                                         <label for="chkReleaseYn">공개하기</label>
                                     </div>
