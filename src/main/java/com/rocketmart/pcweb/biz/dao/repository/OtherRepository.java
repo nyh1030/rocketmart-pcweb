@@ -263,6 +263,7 @@ public class OtherRepository {
                     .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                    .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
                 .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();

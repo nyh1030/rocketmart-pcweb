@@ -52,7 +52,7 @@ public class BrandCtl {
 	public String brandAdd(Model model, Principal principal) {
 		model.addAttribute("brandList", brandSvc.findAllForAfile(principal.getName()));
 		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime(principal.getName()));
-		return prefixPath.concat("/brand_add");
+		return prefixPath.concat("/brand_add"); 
 	}
 
 	@GetMapping("/seller/brand_register")

@@ -78,8 +78,16 @@
                             <h4>Quotation (Wholesale Price)</h4>
                             <div class="price-info-box">
                                 <th:block sec:authorize="isAuthenticated()">
-                                    <a href="javascript:void(0);" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}" th:value="${productInfo.FOB_SEQ}">Click Here</br></a>
-                                    <a href="javascript:void(0);" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Not Available Yet</br></a>
+                                    <th:block th:if="${memProductInfo != null}">
+                                        <th:block th:if="${memProductInfo.FOB_HST_YN.equals('N')}">
+                                            <a href="javascript:void(0);" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}" th:value="${productInfo.FOB_SEQ}">Click Here</br></a>
+                                            <a href="javascript:void(0);" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Not Available Yet</br></a>
+                                        </th:block>
+                                    </th:block>
+                                    <th:block th:if="${memProductInfo == null}">
+                                        <a href="javascript:void(0);" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}" th:value="${productInfo.FOB_SEQ}">Click Here</br></a>
+                                        <a href="javascript:void(0);" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Not Available Yet</br></a>
+                                    </th:block>
                                 </th:block>
                                 <th:block sec:authorize="isAnonymous()">
                                     <a href="javascript:void(0);" class="btn-login" th:onclick="'alert(\'Please login\')'">Login Required</br></a>
