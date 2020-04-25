@@ -154,6 +154,8 @@ public class OtherCtl {
             , Model model) {
 
         model.addAttribute("clicklogList", otherSvc.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm));
+        model.addAttribute("regUsrId", schMemId);
+        model.addAttribute("productNm", schProductNm);
 
         return prefixPath.concat("/mypage/clicklog_list");
     }

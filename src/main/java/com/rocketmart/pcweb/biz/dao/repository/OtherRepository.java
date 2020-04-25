@@ -261,8 +261,8 @@ public class OtherRepository {
                 .from(TB_PRD_FOB_HST)
                 .join(TB_PRD_MST)
                     .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like(schMemId)))
-                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm)))
+                .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
+                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                 .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 .orderBy(TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();
