@@ -186,6 +186,11 @@
                 this.tradingConditions = /*[[${productInfo.TRADING_CONDITIONS}]]*/ 'default' || '';
 
                 this.bindFields();
+
+/*                var fobHstYn = /!*[[${memProductInfo.FOB_HST_YN} ?: '']]*!/ 'default' || '';
+                if(fobHstYn === "Y"){
+                    $('#btnFobHst').hide();
+                }*/
             },
 
             bindFields() {
@@ -248,8 +253,7 @@
 
             getParameters() {
                 return {
-                    productSeq: /*[[${productInfo.PRODUCT_SEQ}]]*/ 'default' || '',
-                    fobSeq: /*[[${productInfo.FOB_SEQ}]]*/ 'default' || ''
+                    productSeq: /*[[${productInfo.PRODUCT_SEQ}]]*/ 'default' || ''
                 }
             }
 

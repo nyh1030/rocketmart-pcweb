@@ -79,7 +79,7 @@
                                             <td th:text="${contactus.get('COMPANY_NM')}"></td>
                                             <td class="link-type"><a th:href="@{'/admin/contactus/detail/' + ${contactus.get('CONTACT_SEQ')}}" th:text="${contactus.get('SUBJECT')}"></a></td>
                                             <td th:text="${#strings.substring(contactus.get('REG_TS'),0,19)}"></td>
-                                            <td><a href="#" class="txt-msg" th:title="${contactus.get('MESSAGE')}" th:text="${contactus.get('MESSAGE')}"></a></td>
+                                            <td><a href="javascript:void(0);" class="txt-msg" th:title="${contactus.get('MESSAGE')}" th:text="${contactus.get('MESSAGE')}"></a></td>
                                         </tr>
                                     </th:block>                                    
                                     </tbody>

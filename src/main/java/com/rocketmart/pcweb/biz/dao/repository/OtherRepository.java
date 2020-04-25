@@ -152,8 +152,8 @@ public class OtherRepository {
                     .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .join(TB_INQUIRY_DTL)
                     .on(TB_INQUIRY_MST.INQUIRY_SEQ.eq(TB_INQUIRY_DTL.INQUIRY_SEQ))
-                .join(TB_INQUIRY_DTL)
-                    .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                .join(TB_PRD_MST)
+                    .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
                     .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like(schMemId)))
                     .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like(schMemNm)))
@@ -254,18 +254,16 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
         return this.dslContext
                 .select(
-                        rownum().as("RN")
-                        ,TB_PRD_FOB_HST.REG_USR_ID
+                        TB_PRD_FOB_HST.REG_USR_ID
                         ,count().as("TOT_CNT")
-                        ,TB_PRD_MST.PRODUCT_SEQ
-                        ,TB_PRD_MST.PRODUCT_NM
+                        ,groupConcat(TB_PRD_MST.PRODUCT_NM, ", ").as("PRODUCT_NM")
                 )
                 .from(TB_PRD_FOB_HST)
                 .join(TB_PRD_MST)
                     .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like(schMemId)))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like(schProductNm)))
-                .groupBy(TB_PRD_FOB_HST.REG_USR_ID, TB_PRD_FOB_HST.PRODUCT_SEQ)
+                .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 .orderBy(TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();
     }
@@ -275,7 +273,6 @@ public class OtherRepository {
      */
     public int saveOneForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord) {
         return this.dslContext.insertInto(TB_PRD_FOB_HST)
-                .set(TB_PRD_FOB_HST.FOB_SEQ, tbPrdFobHstRecord.getFobSeq())
                 .set(TB_PRD_FOB_HST.PRODUCT_SEQ, tbPrdFobHstRecord.getProductSeq())
                 .set(TB_PRD_FOB_HST.REG_USR_ID, tbPrdFobHstRecord.getRegUsrId())
                 .set(TB_PRD_FOB_HST.UPD_USR_ID, tbPrdFobHstRecord.getRegUsrId())
