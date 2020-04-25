@@ -155,9 +155,9 @@ public class OtherRepository {
                 .join(TB_PRD_MST)
                     .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
-                    .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like(schMemId)))
-                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like(schMemNm)))
-                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like(schProductNm)))
+                    .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like("%"+schMemId+"%")))
+                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                 )
                 .orderBy(TB_INQUIRY_MST.REG_TS.desc())
                 .fetchMaps();
@@ -262,7 +262,7 @@ public class OtherRepository {
                 .join(TB_PRD_MST)
                     .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like(schMemId)))
-                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like(schProductNm)))
+                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm)))
                 .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 .orderBy(TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();

@@ -49,10 +49,10 @@ public class MemberRepository {
     public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
         return this.dslContext.selectFrom(TB_MEM_MST)
                 .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
-                .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getMemNm())))
-                .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.MEM_NM.eq(tbMemMstRecord.getRole())))
+                .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.like("%"+tbMemMstRecord.getMemNm()+"%")))
+                .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.ROLE.eq(tbMemMstRecord.getRole())))
                 .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
-                .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.eq(tbMemMstRecord.getCompanyNm())))
+                .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.like("%"+tbMemMstRecord.getCompanyNm()+"%")))
                 .orderBy(TB_MEM_MST.MEM_SEQ.desc())
                 .fetchMaps();
     }

@@ -97,6 +97,8 @@ public class OtherCtl {
 
         model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm, schProductNm));
         model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
+        model.addAttribute("memId", schMemId);
+        model.addAttribute("memNm", schMemNm);
         model.addAttribute("productNm", schProductNm);
 
         return prefixPath.concat("/mypage/inquiry_list");
