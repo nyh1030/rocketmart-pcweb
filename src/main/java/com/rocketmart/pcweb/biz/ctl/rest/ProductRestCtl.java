@@ -2,12 +2,14 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.pcweb.biz.dao.dto.ProductDto;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +30,15 @@ public class ProductRestCtl {
 	}
 
 	@PostMapping("/seller/product/info/save")
-	public ResponseEntity<String> saveProductInfo(@RequestBody ProductDto productDto) {
+	public ResponseEntity<String> saveProductInfo(@RequestBody ProductDto productDto, @NotNull Principal principal) {
+		productDto.setRegUsrId(principal.getName());
+		productDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(productSvc.saveOneForProductInfo(productDto), HttpStatus.OK);
 	}
 
 	@PutMapping("/seller/product/info/update")
-	public ResponseEntity<String> updateProductInfo(@RequestBody ProductDto productDto) throws Exception {
+	public ResponseEntity<String> updateProductInfo(@RequestBody ProductDto productDto, @NotNull Principal principal) throws Exception {
+		productDto.setUpdUsrId(principal.getName());
 		return new ResponseEntity<>(productSvc.updateOneForProductInfo(productDto), HttpStatus.OK);
 	}
 

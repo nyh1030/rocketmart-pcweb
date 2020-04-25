@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
+import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;

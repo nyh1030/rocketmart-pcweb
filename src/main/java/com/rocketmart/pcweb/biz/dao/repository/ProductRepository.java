@@ -8,6 +8,9 @@ import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +35,8 @@ public class ProductRepository {
 	public List<Map<String, Object>> findAll() {
 		return this.dslContext
 				.select(
-						TB_PRD_MST.PRODUCT_SEQ
+						DSL.rowNumber().over().as("ROW_NUM")
+						,TB_PRD_MST.PRODUCT_SEQ
 						,TB_PRD_MST.PRODUCT_NM
 						,TB_PRD_MST.PRODUCT_CAPACITY
 						,TB_PRD_MST.RELEASE_YN
@@ -45,7 +49,7 @@ public class ProductRepository {
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.innerJoin(TB_BRAND_MST)
 				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
-				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
 	}
@@ -72,9 +76,9 @@ public class ProductRepository {
 	public List<Map<String, Object>> findProductForBrand(int brandSeq) {
 		return this.dslContext.select(
 				TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_PRD_MST.PRODUCT_CAPACITY,
-				TB_PRD_MST.RETAIL_PRICE, TB_CM_AFILE.URL_PATH_CD)
+				TB_PRD_MST.RETAIL_PRICE, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RELEASE_YN)
 				.from(TB_PRD_MST)
-				.innerJoin(TB_CM_AFILE)
+				.leftOuterJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)).and(TB_PRD_MST.DEL_YN.equal("N"))
 				.fetchMaps();
@@ -85,7 +89,7 @@ public class ProductRepository {
 				TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM,TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM,TB_PRD_MST.CATE1_CD, TB_PRD_MST.CATE2_CD, TB_PRD_MST.CATE3_CD,
 				TB_PRD_MST.PRODUCT_CAPACITY, TB_PRD_MST.PRODUCT_URL, TB_PRD_MST.PRODUCT_LINEUP, TB_PRD_MST.SELLER_NOTE, TB_PRD_MST.PRODUCT_CONTENT,
 				TB_PRD_MST.RETAIL_PRICE, TB_PRD_MST.FOB_SEQ, TB_PRD_MST.GIVE_SAMPLE_YN, TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT,
-				TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS, TB_CM_AFILE.URL_PATH_CD,
+				TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RELEASE_YN,
 				TB_BRAND_MST.REG_USR_ID)
 				.from(TB_PRD_MST)
 				.innerJoin(TB_BRAND_MST)
@@ -124,7 +128,7 @@ public class ProductRepository {
 				.on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
 	}
@@ -140,7 +144,7 @@ public class ProductRepository {
 				.on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
 				.innerJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.where(TB_PRD_MST.CATE2_CD.equal(cateCd)).and(TB_PRD_MST.DEL_YN.equal("N"))
+				.where(TB_PRD_MST.CATE2_CD.equal(cateCd)).and(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
 				.and(DSL.exists(this.dslContext.selectQuery()))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
@@ -277,16 +281,16 @@ public class ProductRepository {
 						TB_PRD_MST.PRODUCT_ATRBT, TB_PRD_MST.PRODUCT_CRT, TB_PRD_MST.EXPORT_HST, TB_PRD_MST.TRADING_CONDITIONS,
 						TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ, TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ, TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ,
 						TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ, TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ,
-						TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ,
-						TB_BRAND_MST.REG_USR_ID, TB_BRAND_MST.UPD_USR_ID)
+						TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ, TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ, TB_PRD_MST.RELEASE_YN,
+						TB_PRD_MST.REG_USR_ID, TB_PRD_MST.REG_TS, TB_PRD_MST.UPD_USR_ID, TB_PRD_MST.UPD_TS)
 				.values(productDto.getBrandSeq(), productDto.getProductNm(), productDto.getCate1Cd(), productDto.getCate2Cd(), productDto.getCate3Cd(),
 						productDto.getProductUrl(), productDto.getProductCapacity(), productDto.getProductLineup(), productDto.getSellerNote(),
 						productDto.getProductContent(), productDto.getRetailPrice(), 1, productDto.getGiveSampleYn(),
 						productDto.getProductAtrbt(), productDto.getProductCrt(), productDto.getExportHst(), productDto.getTradingConditions(),
 						productDto.getProductFrontAfileSeq(), productDto.getProductBackAfileSeq(), productDto.getProductAspectAfileSeq(),
 						productDto.getProductShape1AfileSeq(), productDto.getProductShape2AfileSeq(), productDto.getProductOutside1AfileSeq(),
-						productDto.getProductOutside2AfileSeq(), productDto.getProductEtc1AfileSeq(), productDto.getProductEtc2AfileSeq(),
-						"ADMIN", "ADMIN")
+						productDto.getProductOutside2AfileSeq(), productDto.getProductEtc1AfileSeq(), productDto.getProductEtc2AfileSeq(), productDto.getReleaseYn(),
+						productDto.getRegUsrId(), Timestamp.valueOf(LocalDateTime.now()), productDto.getUpdUsrId(), Timestamp.valueOf(LocalDateTime.now()))
 				.execute();
 	}
 
@@ -336,6 +340,9 @@ public class ProductRepository {
 				.set(TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ, productDto.getProductOutside2AfileSeq())
 				.set(TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ, productDto.getProductEtc1AfileSeq())
 				.set(TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ, productDto.getProductEtc2AfileSeq())
+				.set(TB_PRD_MST.RELEASE_YN, productDto.getReleaseYn())
+				.set(TB_PRD_MST.UPD_USR_ID, productDto.getUpdUsrId())
+				.set(TB_PRD_MST.UPD_TS, Timestamp.valueOf(LocalDateTime.now()))
 				.where(TB_PRD_MST.PRODUCT_SEQ.equal(productDto.getProductSeq()))
 				.execute();
 	}

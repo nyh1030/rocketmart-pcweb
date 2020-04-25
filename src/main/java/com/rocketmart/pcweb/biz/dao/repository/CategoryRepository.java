@@ -57,7 +57,7 @@ public class CategoryRepository {
                 .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
                 .innerJoin(TB_BRAND_MST)
                 .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
-                .where(TB_PRD_MST.DEL_YN.equal("N"))
+                .where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
                 .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
@@ -82,11 +82,11 @@ public class CategoryRepository {
                         ,TB_CM_AFILE.URL_PATH_CD
                 )
                 .from(TB_PRD_MST)
-                .innerJoin(TB_CM_AFILE)
+                .leftOuterJoin(TB_CM_AFILE)
                 .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
                 .innerJoin(TB_BRAND_MST)
                 .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
-                .where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)))
+                .where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq))).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
                 .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
                 .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
@@ -97,14 +97,14 @@ public class CategoryRepository {
     public List<Map<String, Object>> findAll() {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
-                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD)))))
+                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.RELEASE_YN.equal("Y")).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD)))))
                 .fetchMaps();
     }
 
     public List<Map<String, Object>> findAllByBrandSeq(int brandSeq) {
         return this.dslContext.select()
                 .from(TB_CATE_MST)
-                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq).and(TB_PRD_MST.DEL_YN.equal("N"))).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
+                .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq).and(TB_PRD_MST.DEL_YN.equal("N"))).and(TB_PRD_MST.RELEASE_YN.equal("Y")).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
                 .fetchMaps();
     }
 }

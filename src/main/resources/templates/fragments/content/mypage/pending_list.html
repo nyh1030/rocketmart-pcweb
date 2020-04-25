@@ -64,17 +64,17 @@
                                     </th:block>
                                     <th:block th:if="${not #lists.isEmpty(productList)}">
                                         <tr th:each="product : ${productList}">
-                                            <td th:text="1"></td>
+                                            <td th:text="${product.ROW_NUM}"></td>
                                             <td th:text="${product.BRAND_NM}"></td>
-                                            <td><a th:href="@{/any/product_detail/${product.PRODUCT_SEQ}}"><img th:src="${product.URL_PATH_CD}"></a></td>
-                                            <td class="link-type">
-                                                <a th:text="${product.PRODUCT_NM}"></a>
+                                            <td><img th:src="${product.URL_PATH_CD}"></td>
+                                            <td class="link-type" style="text-align: left">
+                                                <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}" th:text="${product.PRODUCT_NM}"></a>
                                             </td>
                                             <td th:text="${product.PRODUCT_CAPACITY}"></td>
                                             <td>
                                                 <div class="btns">
-                                                    <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${product.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${product.PRODUCT_SEQ})">삭제 <i class="fa fa-trash-o"></i></button>
+                                                    <button type="button" class="ps-btn" th:onclick="|javascript:EventScope.redirectProductModify('${product.PRODUCT_SEQ}')|" >수정 <i class="fa fa-edit"></i></button>
+                                                    <button type="button" class="ps-btn type-red" th:onclick="|javascript:EventScope.deleteProductRow('${product.PRODUCT_SEQ}')|">삭제 <i class="fa fa-trash-o"></i></button>
                                                 </div>
                                             </td>
                                             <td th:text="${#strings.equals(product.RELEASE_YN, 'Y') ? '공개' : '비공개'}"></td>
@@ -102,6 +102,20 @@ const PageScope = {
 
     init() {
 
+    },
+
+    deleteProduct(productSeq) {
+        axios({
+            method: 'delete',
+            url: `/seller/product/${productSeq}`
+        }).then(response => {
+            if (response.data === 200) {
+                alert('정상적으로 삭제되었습니다.');
+                location.reload();
+            }
+        }).catch(error => {
+            console.log(error);
+        });
     }
 };
 
@@ -112,6 +126,16 @@ const EventScope = {
     },
 
     clickEventListener() {
+    },
+
+    redirectProductModify(productSeq) {
+        CommonUtils.redirectPage(`/seller/product_modify/${productSeq}`);
+    },
+
+    deleteProductRow(productSeq) {
+        if (confirm('정말 이 제품을 삭제하시겠습니까?')) {
+            PageScope.deleteProduct(productSeq);
+        }
     }
 };
 </script>

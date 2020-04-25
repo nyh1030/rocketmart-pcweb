@@ -37,4 +37,7 @@ public class ProductDto {
 	private String tradingPrice;
 	private String supplyRate;
 	private String exposureSupplyRate;
+	private String releaseYn;
+	private String regUsrId;
+	private String updUsrId;
 }

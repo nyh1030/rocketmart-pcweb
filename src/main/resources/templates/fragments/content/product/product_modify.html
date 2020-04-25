@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block layout:fragment="content">
     <div class="ps-store-list">
         <!-- .container : S -->
@@ -29,6 +29,10 @@
                             <div class="ps-tabs">
                                 <!-- 기본정보 : S -->
                                 <div class="ps-tab active" id="tab-1">
+                                    <div sec:authorize="hasAuthority('ADMIN')" class="ps-checkbox mb-1">
+                                        <input class="form-control" type="checkbox" id="chkReleaseYn" name="releaseYn" th:if="${#strings.equals(productInfo.RELEASE_YN, 'Y') ? 'checked' : ''}">
+                                        <label for="chkReleaseYn">공개하기</label>
+                                    </div>
                                     <div class="mb-5">
                                         <label for="txtProductNm" class="bul-type">제품명 <span class="required">*</span></label>
                                         <input type="text" id="txtProductNm" class="form-control" th:value="${productInfo.PRODUCT_NM}" required>
@@ -855,7 +859,8 @@
                     rangeEnd: CommonUtils.getDataToCommaString($('[name="rangeEnd"]')),
                     tradingPrice: CommonUtils.getDataToCommaString($('[name="tradingPrice"]')),
                     supplyRate: CommonUtils.getDataToCommaString($('[name="supplyRate"]')),
-                    exposureSupplyRate: CommonUtils.getDataToCommaString($('[name="exposureSupplyRate"]'))
+                    exposureSupplyRate: CommonUtils.getDataToCommaString($('[name="exposureSupplyRate"]')),
+                    releaseYn: $('#chkReleaseYn').prop('checked') ? 'Y' : 'N'
                 }
             },
 
