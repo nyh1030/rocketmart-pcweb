@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorator="layout/main">
 <th:block layout:fragment="content">
     <div class="ps-vendor-dashboard ps-store-list">
         <!-- .container : S -->
@@ -11,11 +11,11 @@
                         <h3 class="widget-title">Mypage</h3>
                         <ul class="ps-list--arrow">
                             <li><a th:href="@{/admin/member/list}">MemberList</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
-                            <li><a th:href="@{/admin/brand/list}">BrandList</a></li>
+                            <li><a th:href="@{/admin/brand/list}" class="active">BrandList</a></li>
                             <li><a th:href="@{/admin/pending/list}">PendingList</a></li>
                             <li><a th:href="@{/any/inquiry/list}">Inquiry</a></li>
                             <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
-                            <li><a th:href="@{/admin/clicklog/list}"class="active">Click Log</a></li>
+                            <li><a th:href="@{/admin/clicklog/list}">Click Log</a></li>
                         </ul>
                     </aside>
                 </div>
@@ -27,42 +27,43 @@
                             <h3>Click Log</h3>
                         </div>
                         <div class="ps-block__content">
-                            <form id="clicklogFrm" name="clicklogFrm" th:action="@{/admin/clicklog/list}" method="post">
+                            <form id="adminBrandFrm" name="adminBrandFrm" th:action="@{/admin/brand/list}" method="post">
                             <div class="search-box">
-                                <input type="text" class="form-control" id="schMemId" name="schMemId" th:value="${schMemId}" placeholder="바이어" style="width:20%">
-                                <input type="text" class="form-control" id="schProductNm" name="schProductNm" th:value="${schProductNm}" placeholder="상품명" style="width:20%">
+                                <input type="text" class="form-control" id="schCompanyNm" name="schCompanyNm" th:value="${schCompanyNm}" placeholder="회사명" style="width:20%">
+                                <input type="text" class="form-control" id="schMemId" name="schMemId" th:value="${schMemId}" placeholder="셀러" style="width:20%">
+                                <input type="text" class="form-control" id="schBrandNm" name="schBrandNm" th:value="${schBrandNm}" placeholder="브랜드명" style="width:20%">
                                 <button type="submit" id="btnSearch" class="ps-btn type-black">Search</button>
                             </div>
                             </form>
-                            <p class="total">Total : <em class="num" th:text="${#lists.size(clicklogList)}"></em> result</p>
+                            <p class="total">Total : <em class="num" th:text="${#lists.size(adminBrandList)}"></em> result</p>
                             <div class="table-responsive">
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
                                         <col style="width:6%">
+                                        <col style="width:15%">
                                         <col style="width:20%">
-                                        <col style="width:12%">
                                         <col>
                                     </colgroup>
                                     <thead>
                                     <tr>
                                         <th>순번</th>
-                                        <th>바이어</th>
-                                        <th>조회 상품수</th>
-                                        <th>제품명</th>
+                                        <th>회사명</th>
+                                        <th>셀러ID</th>
+                                        <th>브랜드명</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <th:block th:if="${#lists.isEmpty(clicklogList)}">
+                                    <th:block th:if="${#lists.isEmpty(adminBrandList)}">
                                         <tr>
-                                            <td colspan="7">등록된 조회 상품이력이 없습니다.</td>
+                                            <td colspan="7">등록된 브랜드 내역이 없습니다.</td>
                                         </tr>
                                     </th:block>
-                                    <th:block th:if="${not #lists.isEmpty(clicklogList)}">
-                                        <tr th:each="clicklog : ${clicklogList}">
-                                            <td th:text="${clicklogStat.size - clicklogStat.index}"></td>
-                                            <td th:text="${clicklog.REG_USR_ID}"></td>
-                                            <td th:text="${clicklog.TOT_CNT}"></td>
-                                            <td><a href="javascript:void(0);" th:title="${clicklog.PRODUCT_NM}" th:text="${clicklog.PRODUCT_NM}"></a></td>
+                                    <th:block th:if="${not #lists.isEmpty(adminBrandList)}">
+                                        <tr th:each="adminBrand : ${adminBrandList}">
+                                            <td th:text="${adminBrandStat.size - adminBrandStat.index}"></td>
+                                            <td th:text="${adminBrand.COMPANY_NM}"></td>
+                                            <td th:text="${adminBrand.MEM_ID}"></td>
+                                            <td><a href="javascript:void(0);" th:title="${adminBrand.BRAND_NM}" th:text="${adminBrand.BRAND_NM}"></a></td>
                                         </tr>
                                     </th:block>                                    
                                     </tbody>

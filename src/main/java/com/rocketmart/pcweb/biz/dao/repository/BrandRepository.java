@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
 import org.jooq.Field;
@@ -13,10 +14,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import static com.rocketmart.jooq.Tables.TB_CATE_MST;
+import static com.rocketmart.jooq.Tables.TB_MEM_MST;
 import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
+import static org.jooq.impl.DSL.count;
+import static org.jooq.impl.DSL.groupConcat;
 
 @Repository
 public class BrandRepository {
@@ -125,5 +129,27 @@ public class BrandRepository {
 				.set(TB_BRAND_MST.DEL_YN, "Y")
 				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq))
 				.execute();
+	}
+
+	/**
+	 * 브랜드 목록(어드민)
+	 */
+	public List<Map<String, Object>> findAllForAdminBrandInfo(TbBrandMstRecord tbBrandMstRecord, String schCompanyNm, String schMemId, String schBrandNm) {
+		return this.dslContext
+				.select(
+						TB_MEM_MST.COMPANY_NM
+						,TB_MEM_MST.MEM_ID
+						,count().as("TOT_CNT")
+						,groupConcat(TB_BRAND_MST.BRAND_NM, ", ").as("BRAND_NM")
+				)
+				.from(TB_MEM_MST)
+					.join(TB_BRAND_MST)
+					.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
+				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
+				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
+				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
+				.groupBy(TB_MEM_MST.MEM_ID, TB_MEM_MST.COMPANY_NM)
+				.orderBy(count().desc(), TB_BRAND_MST.REG_TS.desc())
+				.fetchMaps();
 	}
 }

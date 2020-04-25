@@ -264,7 +264,7 @@ public class OtherRepository {
                 .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                 .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
-                .orderBy(TB_PRD_FOB_HST.REG_TS.desc())
+                .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();
     }
 

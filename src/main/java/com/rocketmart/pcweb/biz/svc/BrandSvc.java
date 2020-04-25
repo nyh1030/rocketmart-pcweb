@@ -1,5 +1,7 @@
 package com.rocketmart.pcweb.biz.svc;
 
+import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
+import com.rocketmart.jooq.tables.records.TbPrdFobHstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import com.rocketmart.pcweb.biz.dao.repository.BrandRepository;
 import com.rocketmart.pcweb.common.api.ApiResponse;
@@ -157,4 +159,14 @@ public class BrandSvc {
 	public String deleteBrand(int brandSeq) {
 		return brandRepository.deleteBrand(brandSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
 	}
+
+	/**
+	 * 브랜드 목록(어드민)
+	 * @param tbBrandMstRecord
+	 * @return List<Map<String, Object>>
+	 */
+	public List<Map<String, Object>> findAllForAdminBrandInfo(TbBrandMstRecord tbBrandMstRecord, String schCompanyNm, String schMemId, String schBrandNm) {
+		return brandRepository.findAllForAdminBrandInfo(tbBrandMstRecord, schCompanyNm, schMemId, schBrandNm);
+	}
+
 }

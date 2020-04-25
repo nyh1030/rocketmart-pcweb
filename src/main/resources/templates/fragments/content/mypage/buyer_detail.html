@@ -12,11 +12,11 @@
                         <ul class="ps-list--arrow">
                             <th:block sec:authorize="hasAuthority('ADMIN')">
                                 <li><a th:href="@{/admin/member/list}">MemberList</a></li>
-                                <li><a th:href="@{/admin/member/list}">BrandList</a></li>
-                                <li><a th:href="@{/admin/member/list}">PendingList</a></li>
+                                <li><a th:href="@{/admin/brand/list}">BrandList</a></li>
+                                <li><a th:href="@{/admin/pending/list}">PendingList</a></li>
                                 <li><a th:href="@{/any/inquiry/list}">Inquiry</a></li>
                                 <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
-                                <li><a th:href="@{/admin/clicklog/list}">ClickLog</a></li>
+                                <li><a th:href="@{/admin/clicklog/list}">Click Log</a></li>
                             </th:block>
                             <th:block sec:authorize="hasAuthority('BUYER') and !hasAuthority('ADMIN')">
                                 <li><a th:href="@{/any/inquiry/list}">Inquiry</a></li>

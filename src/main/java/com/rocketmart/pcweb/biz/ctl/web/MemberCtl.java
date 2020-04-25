@@ -225,20 +225,4 @@ public class MemberCtl {
 
         return prefixPath.concat("/mypage/member_list");
     }
-
-    /**
-     * 회원 목록 조회(어드민)
-     * @param tbMemMstRecord
-     * @param model
-     * @return String
-     */
-    @RequestMapping("/admin/pending/list")
-    public String dispPendingList(TbMemMstRecord tbMemMstRecord, Model model) {
-
-        model.addAttribute("productList", productSvc.findAllForPending());
-        model.addAttribute("memNm", tbMemMstRecord.getMemNm());
-        model.addAttribute("role", tbMemMstRecord.getRole());
-
-        return prefixPath.concat("/mypage/pending_list");
-    }
 }

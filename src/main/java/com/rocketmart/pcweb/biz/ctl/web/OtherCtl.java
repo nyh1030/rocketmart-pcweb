@@ -1,6 +1,7 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.jooq.tables.records.*;
+import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
@@ -27,6 +28,9 @@ public class OtherCtl {
 
     @Autowired
     private MemberSvc memberSvc;
+
+    @Autowired
+    private BrandSvc brandSvc;
 
     /**
      * ContactUs 목록(어드민)
@@ -154,10 +158,52 @@ public class OtherCtl {
             , Model model) {
 
         model.addAttribute("clicklogList", otherSvc.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm));
-        model.addAttribute("regUsrId", schMemId);
-        model.addAttribute("productNm", schProductNm);
+        model.addAttribute("schMemId", schMemId);
+        model.addAttribute("schProductNm", schProductNm);
 
         return prefixPath.concat("/mypage/clicklog_list");
+    }
+
+    /**
+     * 브랜드 목록(어드민)
+     * @param tbBrandMstRecord
+     * @param model
+     * @return String
+     */
+    @RequestMapping("/admin/brand/list")
+    public String dispContactusList(TbBrandMstRecord tbBrandMstRecord
+            , @RequestParam(value = "schCompanyNm", required = false) String schCompanyNm
+            , @RequestParam(value = "schMemId", required = false) String schMemId
+            , @RequestParam(value = "schBrandNm", required = false) String schBrandNm
+            , Model model) {
+
+        model.addAttribute("adminBrandList", brandSvc.findAllForAdminBrandInfo(tbBrandMstRecord, schCompanyNm, schMemId, schBrandNm));
+        model.addAttribute("schCompanyNm", schCompanyNm);
+        model.addAttribute("schMemId", schMemId);
+        model.addAttribute("schBrandNm", schBrandNm);
+
+        return prefixPath.concat("/mypage/admin_brand_list");
+    }
+
+    /**
+     * Pending 목록(어드민)
+     * @param tbMemMstRecord
+     * @param schProductNm
+     * @param schBrandNm
+     * @param model
+     * @return String
+     */
+    @RequestMapping("/admin/pending/list")
+    public String dispPendingList(TbMemMstRecord tbMemMstRecord
+            , @RequestParam(value = "schProductNm", required = false) String schProductNm
+            , @RequestParam(value = "schBrandNm", required = false) String schBrandNm
+            , Model model) {
+
+        model.addAttribute("productList", productSvc.findAllForPending(schProductNm, schBrandNm));
+        model.addAttribute("schProductNm", schProductNm);
+        model.addAttribute("schBrandNm", schBrandNm);
+
+        return prefixPath.concat("/mypage/pending_list");
     }
 
 }

@@ -19,6 +19,7 @@ import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
+import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 
 @Repository
 public class ProductRepository {
@@ -54,7 +55,7 @@ public class ProductRepository {
 				.fetchMaps();
 	}
 
-	public List<Map<String, Object>> findAllForPending() {
+	public List<Map<String, Object>> findAllForPending(String schProductNm, String schBrandNm) {
 		return this.dslContext
 				.select(
 						DSL.rowNumber().over().as("ROW_NUM")
@@ -68,10 +69,12 @@ public class ProductRepository {
 				)
 				.from(TB_PRD_MST)
 				.leftOuterJoin(TB_CM_AFILE)
-				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+					.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.innerJoin(TB_BRAND_MST)
-				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
+					.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
+					.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+					.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
 	}
