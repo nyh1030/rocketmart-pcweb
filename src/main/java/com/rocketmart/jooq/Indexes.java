@@ -55,7 +55,6 @@ public class Indexes {
     public static final Index TB_PRD_FOB_PRIMARY = Indexes0.TB_PRD_FOB_PRIMARY;
     public static final Index TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final Index TB_PRD_FOB_HST_PRIMARY = Indexes0.TB_PRD_FOB_HST_PRIMARY;
-    public static final Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK = Indexes0.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK;
     public static final Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final Index TB_PRD_MST_PRIMARY = Indexes0.TB_PRD_MST_PRIMARY;
     public static final Index TB_PRD_MST_TB_PRD_MST_FK1 = Indexes0.TB_PRD_MST_TB_PRD_MST_FK1;
@@ -82,7 +81,6 @@ public class Indexes {
         public static Index TB_PRD_FOB_PRIMARY = Internal.createIndex("PRIMARY", TbPrdFob.TB_PRD_FOB, new OrderField[] { TbPrdFob.TB_PRD_FOB.FOB_SEQ }, true);
         public static Index TB_PRD_FOB_TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFob.TB_PRD_FOB, new OrderField[] { TbPrdFob.TB_PRD_FOB.PRODUCT_SEQ }, false);
         public static Index TB_PRD_FOB_HST_PRIMARY = Internal.createIndex("PRIMARY", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.FOB_HST_SEQ }, true);
-        public static Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK = Internal.createIndex("TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_fk", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.FOB_SEQ }, false);
         public static Index TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFobHst.TB_PRD_FOB_HST, new OrderField[] { TbPrdFobHst.TB_PRD_FOB_HST.PRODUCT_SEQ }, false);
         public static Index TB_PRD_MST_PRIMARY = Internal.createIndex("PRIMARY", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.PRODUCT_SEQ }, true);
         public static Index TB_PRD_MST_TB_PRD_MST_FK1 = Internal.createIndex("TB_PRD_MST_fk1", TbPrdMst.TB_PRD_MST, new OrderField[] { TbPrdMst.TB_PRD_MST.BRAND_SEQ }, false);

@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFob extends TableImpl<TbPrdFobRecord> {
 
-    private static final long serialVersionUID = 613850983;
+    private static final long serialVersionUID = 799266299;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_FOB</code>
@@ -70,27 +70,27 @@ public class TbPrdFob extends TableImpl<TbPrdFobRecord> {
     /**
      * The column <code>rocketmart.TB_PRD_FOB.RANGE_START</code>. 범위 구간 시작
      */
-    public final TableField<TbPrdFobRecord, Long> RANGE_START = createField(DSL.name("RANGE_START"), org.jooq.impl.SQLDataType.BIGINT.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.BIGINT)), this, "범위 구간 시작");
+    public final TableField<TbPrdFobRecord, Integer> RANGE_START = createField(DSL.name("RANGE_START"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.INTEGER)), this, "범위 구간 시작");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB.RANGE_END</code>. 범위 구간 끝
      */
-    public final TableField<TbPrdFobRecord, Long> RANGE_END = createField(DSL.name("RANGE_END"), org.jooq.impl.SQLDataType.BIGINT.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.BIGINT)), this, "범위 구간 끝");
+    public final TableField<TbPrdFobRecord, Integer> RANGE_END = createField(DSL.name("RANGE_END"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.INTEGER)), this, "범위 구간 끝");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB.TRADING_PRICE</code>. 거래가(U$)
      */
-    public final TableField<TbPrdFobRecord, Long> TRADING_PRICE = createField(DSL.name("TRADING_PRICE"), org.jooq.impl.SQLDataType.BIGINT.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.BIGINT)), this, "거래가(U$)");
+    public final TableField<TbPrdFobRecord, Double> TRADING_PRICE = createField(DSL.name("TRADING_PRICE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "거래가(U$)");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB.SUPPLY_RATE</code>. 공급률
      */
-    public final TableField<TbPrdFobRecord, Integer> SUPPLY_RATE = createField(DSL.name("SUPPLY_RATE"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "공급률");
+    public final TableField<TbPrdFobRecord, Double> SUPPLY_RATE = createField(DSL.name("SUPPLY_RATE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "공급률");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
      */
-    public final TableField<TbPrdFobRecord, Integer> EXPOSURE_SUPPLY_RATE = createField(DSL.name("EXPOSURE_SUPPLY_RATE"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "노출 공급률");
+    public final TableField<TbPrdFobRecord, Double> EXPOSURE_SUPPLY_RATE = createField(DSL.name("EXPOSURE_SUPPLY_RATE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "노출 공급률");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB.OPTION_2</code>. 옵션2
@@ -205,7 +205,7 @@ public class TbPrdFob extends TableImpl<TbPrdFobRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row10<Integer, Integer, Long, Long, Long, Integer, Integer, String, String, String> fieldsRow() {
+    public Row10<Integer, Integer, Integer, Integer, Double, Double, Double, String, String, String> fieldsRow() {
         return (Row10) super.fieldsRow();
     }
 }

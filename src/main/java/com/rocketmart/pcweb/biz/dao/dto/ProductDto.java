@@ -16,7 +16,7 @@ public class ProductDto {
 	private String productLineup;
 	private String sellerNote;
 	private String productContent;
-	private int retailPrice;
+	private double retailPrice;
 	private String fobSeq;
 	private String giveSampleYn;
 	private String productAtrbt;

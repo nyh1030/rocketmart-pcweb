@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = -2132883719;
+    private static final long serialVersionUID = 800353842;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_MST</code>
@@ -115,7 +115,7 @@ public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
     /**
      * The column <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)
      */
-    public final TableField<TbPrdMstRecord, Integer> RETAIL_PRICE = createField(DSL.name("RETAIL_PRICE"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "소비자가격(USD)");
+    public final TableField<TbPrdMstRecord, Double> RETAIL_PRICE = createField(DSL.name("RETAIL_PRICE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "소비자가격(USD)");
 
     /**
      * The column <code>rocketmart.TB_PRD_MST.FOB_SEQ</code>. 도매가격(FOB) 일련번호
@@ -216,6 +216,11 @@ public class TbPrdMst extends TableImpl<TbPrdMstRecord> {
      * The column <code>rocketmart.TB_PRD_MST.UPD_TS</code>. 수정일시
      */
     public final TableField<TbPrdMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
+
+    /**
+     * The column <code>rocketmart.TB_PRD_MST.RELEASE_YN</code>.
+     */
+    public final TableField<TbPrdMstRecord, String> RELEASE_YN = createField(DSL.name("RELEASE_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "");
 
     /**
      * Create a <code>rocketmart.TB_PRD_MST</code> table reference

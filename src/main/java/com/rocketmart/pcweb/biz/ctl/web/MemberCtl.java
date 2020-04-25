@@ -2,6 +2,7 @@ package com.rocketmart.pcweb.biz.ctl.web;
 
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
+import com.rocketmart.pcweb.biz.svc.ProductSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class MemberCtl {
 
     @Autowired
     private MemberSvc memberSvc;
+    @Autowired
+    private ProductSvc productSvc;
 
     private String prefixPath = "fragments/content";
 
@@ -221,5 +224,21 @@ public class MemberCtl {
         model.addAttribute("companyNm", tbMemMstRecord.getCompanyNm());
 
         return prefixPath.concat("/mypage/member_list");
+    }
+
+    /**
+     * 회원 목록 조회(어드민)
+     * @param tbMemMstRecord
+     * @param model
+     * @return String
+     */
+    @RequestMapping("/admin/pending/list")
+    public String dispPendingList(TbMemMstRecord tbMemMstRecord, Model model) {
+
+        model.addAttribute("productList", productSvc.findAll());
+        model.addAttribute("memNm", tbMemMstRecord.getMemNm());
+        model.addAttribute("role", tbMemMstRecord.getRole());
+
+        return prefixPath.concat("/mypage/pending_list");
     }
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<th:block layout:fragment="content">
+    <div class="ps-vendor-dashboard ps-store-list">
+        <!-- .container : S -->
+        <div class="container">
+            <div class="ps-section__wrapper">
+                <!-- .ps-section__left : S -->
+                <div class="ps-section__left">
+                    <aside class="widget widget--vendor">
+                        <h3 class="widget-title">Mypage</h3>
+                        <ul class="ps-list--arrow">
+                            <li><a th:href="@{/admin/member/list}">MemberList</a></li> <!-- D : 활성화된 메뉴 .active 추가됨 -->
+                            <li><a th:href="@{/admin/pending/list}" class="active">PendingList</a></li>
+                            <li><a th:href="@{/any/inquiry/list}">Inquiry</a></li>
+                            <li><a th:href="@{/admin/contactus/list}">Contact Us</a></li>
+                            <li><a th:href="@{/any/wishlist/list}">WishList</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- //.ps-section__left : E -->
+                <!-- .ps-section__right : S -->
+                <div class="ps-section__right">
+                    <div class="ps-block--vendor-dashboard">
+                        <div class="ps-block__header">
+                            <h3>PendingList</h3>
+                        </div>
+                        <div class="ps-block__content">
+                            <form id="memberFrm" name="memberFrm" th:action="@{/admin/pending/list}" method="post">
+                            <div class="search-box">
+                            </div>
+                            </form>
+                            <p class="total">Total : <em class="num" th:text="${#lists.size(productList)}"></em> result</p>
+                            <div class="table-responsive">
+                                <form id="detailFrm" action="" method="post">
+                                    <input type="hidden" class="memId" name="memId" />
+                                </form>
+                                <table class="table ps-table ps-table--vendor">
+                                    <colgroup>
+                                        <col style="width:5%">
+                                        <col style="width:10%">
+                                        <col style="width:15%">
+                                        <col style="width:30%">
+                                        <col style="width:10%">
+                                        <col style="width:20%">
+                                        <col style="width:10%">
+                                    </colgroup>
+                                    <thead>
+                                    <tr>
+                                        <th>순번</th>
+                                        <th>브랜드</th>
+                                        <th>제품이미지</th>
+                                        <th>제품명</th>
+                                        <th>사이즈</th>
+                                        <th>CHECK</th>
+                                        <th>공개여부</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <th:block th:if="${#lists.isEmpty(productList)}">
+                                        <tr>
+                                            <td colspan="8">등록된 상품 정보가 없습니다.</td>
+                                        </tr>
+                                    </th:block>
+                                    <th:block th:if="${not #lists.isEmpty(productList)}">
+                                        <tr th:each="product : ${productList}">
+                                            <td th:text="1"></td>
+                                            <td th:text="${product.BRAND_NM}"></td>
+                                            <td><a th:href="@{/any/product_detail/${product.PRODUCT_SEQ}}"><img th:src="${product.URL_PATH_CD}"></a></td>
+                                            <td class="link-type">
+                                                <a th:text="${product.PRODUCT_NM}"></a>
+                                            </td>
+                                            <td th:text="${product.PRODUCT_CAPACITY}"></td>
+                                            <td>
+                                                <div class="btns">
+                                                    <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${product.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
+                                                    <button type="button" class="ps-btn type-red" onclick="EventScope.deleteProductRow(${product.PRODUCT_SEQ})">삭제 <i class="fa fa-trash-o"></i></button>
+                                                </div>
+                                            </td>
+                                            <td th:text="${#strings.equals(product.RELEASE_YN, 'Y') ? '공개' : '비공개'}"></td>
+                                        </tr>
+                                    </th:block>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.ps-section__right : E -->
+            </div>
+        </div>
+        <!-- //.container : E -->
+    </div>
+
+<script type="text/javascript">
+$(() => {
+    PageScope.init();
+    EventScope.init();
+});
+
+const PageScope = {
+
+    init() {
+
+    }
+};
+
+const EventScope = {
+
+    init() {
+        this.clickEventListener();
+    },
+
+    clickEventListener() {
+    }
+};
+</script>
+</th:block>
+</html>

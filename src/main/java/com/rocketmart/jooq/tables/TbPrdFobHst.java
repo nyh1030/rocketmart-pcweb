@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
 
-    private static final long serialVersionUID = 657783075;
+    private static final long serialVersionUID = -815097577;
 
     /**
      * The reference instance of <code>rocketmart.TB_PRD_FOB_HST</code>
@@ -62,11 +62,6 @@ public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
      * The column <code>rocketmart.TB_PRD_FOB_HST.FOB_HST_SEQ</code>. FOB 조회 일련번호
      */
     public final TableField<TbPrdFobHstRecord, Integer> FOB_HST_SEQ = createField(DSL.name("FOB_HST_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "FOB 조회 일련번호");
-
-    /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.FOB_SEQ</code>. 도매가격(FOB) 일련번호
-     */
-    public final TableField<TbPrdFobHstRecord, Integer> FOB_SEQ = createField(DSL.name("FOB_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "도매가격(FOB) 일련번호");
 
     /**
      * The column <code>rocketmart.TB_PRD_FOB_HST.PRODUCT_SEQ</code>. 상품 일련번호
@@ -133,7 +128,7 @@ public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.TB_PRD_FOB_HST_PRIMARY, Indexes.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK, Indexes.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK);
+        return Arrays.<Index>asList(Indexes.TB_PRD_FOB_HST_PRIMARY, Indexes.TB_PRD_FOB_HST_TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK);
     }
 
     @Override
@@ -153,11 +148,7 @@ public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
 
     @Override
     public List<ForeignKey<TbPrdFobHstRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<TbPrdFobHstRecord, ?>>asList(Keys.TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK, Keys.TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK);
-    }
-
-    public TbPrdFob tbPrdFob() {
-        return new TbPrdFob(this, Keys.TB_PRD_FOB_HST_TB_PRD_FOB_FOB_SEQ_FK);
+        return Arrays.<ForeignKey<TbPrdFobHstRecord, ?>>asList(Keys.TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK);
     }
 
     public TbPrdMst tbPrdMst() {
@@ -191,11 +182,11 @@ public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, Integer, Integer, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row6<Integer, Integer, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }

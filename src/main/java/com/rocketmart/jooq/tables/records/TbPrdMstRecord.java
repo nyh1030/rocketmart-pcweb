@@ -27,7 +27,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 1745209564;
+    private static final long serialVersionUID = 778854844;
 
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SEQ</code>. 상품 일련번호
@@ -186,15 +186,15 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
     /**
      * Setter for <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)
      */
-    public void setRetailPrice(Integer value) {
+    public void setRetailPrice(Double value) {
         set(11, value);
     }
 
     /**
      * Getter for <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)
      */
-    public Integer getRetailPrice() {
-        return (Integer) get(11);
+    public Double getRetailPrice() {
+        return (Double) get(11);
     }
 
     /**
@@ -477,6 +477,20 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
         return (Timestamp) get(31);
     }
 
+    /**
+     * Setter for <code>rocketmart.TB_PRD_MST.RELEASE_YN</code>.
+     */
+    public void setReleaseYn(String value) {
+        set(32, value);
+    }
+
+    /**
+     * Getter for <code>rocketmart.TB_PRD_MST.RELEASE_YN</code>.
+     */
+    public String getReleaseYn() {
+        return (String) get(32);
+    }
+
     // -------------------------------------------------------------------------
     // Primary key information
     // -------------------------------------------------------------------------
@@ -500,7 +514,7 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
     /**
      * Create a detached, initialised TbPrdMstRecord
      */
-    public TbPrdMstRecord(Integer productSeq, Integer brandSeq, String productNm, String cate1Cd, String cate2Cd, String cate3Cd, String productUrl, String productCapacity, String productLineup, String sellerNote, String productContent, Integer retailPrice, Integer fobSeq, String giveSampleYn, String productAtrbt, String productCrt, String exportHst, String tradingConditions, Integer productFrontAfileSeq, Integer productBackAfileSeq, Integer productAspectAfileSeq, Integer productShape1AfileSeq, Integer productShape2AfileSeq, Integer productOutside1AfileSeq, Integer productOutside2AfileSeq, Integer productEtc1AfileSeq, Integer productEtc2AfileSeq, String delYn, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs) {
+    public TbPrdMstRecord(Integer productSeq, Integer brandSeq, String productNm, String cate1Cd, String cate2Cd, String cate3Cd, String productUrl, String productCapacity, String productLineup, String sellerNote, String productContent, Double retailPrice, Integer fobSeq, String giveSampleYn, String productAtrbt, String productCrt, String exportHst, String tradingConditions, Integer productFrontAfileSeq, Integer productBackAfileSeq, Integer productAspectAfileSeq, Integer productShape1AfileSeq, Integer productShape2AfileSeq, Integer productOutside1AfileSeq, Integer productOutside2AfileSeq, Integer productEtc1AfileSeq, Integer productEtc2AfileSeq, String delYn, String regUsrId, Timestamp regTs, String updUsrId, Timestamp updTs, String releaseYn) {
         super(TbPrdMst.TB_PRD_MST);
 
         set(0, productSeq);
@@ -535,5 +549,6 @@ public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
         set(29, regTs);
         set(30, updUsrId);
         set(31, updTs);
+        set(32, releaseYn);
     }
 }

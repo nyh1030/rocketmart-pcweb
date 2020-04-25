@@ -8,7 +8,6 @@ import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,6 @@ import static com.rocketmart.jooq.tables.TbCateMst.TB_CATE_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
-import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
 
 @Repository
 public class ProductRepository {
@@ -36,14 +34,16 @@ public class ProductRepository {
 				.select(
 						TB_PRD_MST.PRODUCT_SEQ
 						,TB_PRD_MST.PRODUCT_NM
-						, Tables.TB_BRAND_MST.BRAND_NM
+						,TB_PRD_MST.PRODUCT_CAPACITY
+						,TB_PRD_MST.RELEASE_YN
+						,TB_BRAND_MST.BRAND_NM
 						,TB_CM_AFILE.AFILE_SEQ
 						,TB_CM_AFILE.URL_PATH_CD
 				)
 				.from(TB_PRD_MST)
 				.leftOuterJoin(TB_CM_AFILE)
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.innerJoin(Tables.TB_BRAND_MST)
+				.innerJoin(TB_BRAND_MST)
 				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
 				.where(TB_PRD_MST.DEL_YN.equal("N"))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
@@ -294,17 +294,17 @@ public class ProductRepository {
 		return this.dslContext.insertInto(TB_PRD_FOB)
 				.columns(TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
 						TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE, TB_PRD_FOB.EXPOSURE_SUPPLY_RATE)
-				.values(Integer.parseInt(paramMap.get("productSeq").toString()), Long.parseLong(paramMap.get("rangeStart").toString()), Long.parseLong(paramMap.get("rangeEnd").toString()),
-						Long.parseLong(paramMap.get("tradingPrice").toString()), Integer.parseInt(paramMap.get("supplyRate").toString()), Integer.parseInt(paramMap.get("exposureSupplyRate").toString()))
+				.values(Integer.parseInt(paramMap.get("productSeq").toString()), Integer.parseInt(paramMap.get("rangeStart").toString()), Integer.parseInt(paramMap.get("rangeEnd").toString()),
+						Double.parseDouble(paramMap.get("tradingPrice").toString()), Double.parseDouble(paramMap.get("supplyRate").toString()), Double.parseDouble(paramMap.get("exposureSupplyRate").toString()))
 				.execute();
 	}
 
 	public int updateOneForFobInfo(Map<String, Object> paramMap) {
 		return this.dslContext.update(TB_PRD_FOB)
-				.set(TB_PRD_FOB.RANGE_START, Long.parseLong(paramMap.get("rangeStart").toString()))
-				.set(TB_PRD_FOB.RANGE_END, Long.parseLong(paramMap.get("rangeEnd").toString()))
-				.set(TB_PRD_FOB.TRADING_PRICE, Long.parseLong(paramMap.get("tradingPrice").toString()))
-				.set(TB_PRD_FOB.SUPPLY_RATE, Integer.parseInt(paramMap.get("supplyRate").toString()))
+				.set(TB_PRD_FOB.RANGE_START, Integer.valueOf(paramMap.get("rangeStart").toString()))
+				.set(TB_PRD_FOB.RANGE_END, Integer.valueOf(paramMap.get("rangeEnd").toString()))
+				.set(TB_PRD_FOB.TRADING_PRICE, Double.valueOf(paramMap.get("tradingPrice").toString()))
+				.set(TB_PRD_FOB.SUPPLY_RATE, Double.valueOf(paramMap.get("supplyRate").toString()))
 				.where(TB_PRD_FOB.FOB_SEQ.equal((int) paramMap.get("fobSeq")))
 				.and(TB_PRD_FOB.PRODUCT_SEQ.equal((int) paramMap.get("productSeq")))
 				.execute();
