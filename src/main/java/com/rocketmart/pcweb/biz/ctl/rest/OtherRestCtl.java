@@ -85,7 +85,7 @@ public class OtherRestCtl {
 	 * @return ResponseEntity<String>
 	 */
 	@DeleteMapping("/any/rest/wishlist/delete/{productSeq}")
-	public ResponseEntity<String> deleteProduct(@PathVariable(value = "productSeq") int productSeq, TbWishMstRecord tbWishMstRecord, Principal principal) {
+	public ResponseEntity<String> deleteWishListInfo(@PathVariable(value = "productSeq") int productSeq, TbWishMstRecord tbWishMstRecord, Principal principal) {
 		tbWishMstRecord.setProductSeq(productSeq);
 		tbWishMstRecord.setRegUsrId(principal.getName());
 		return new ResponseEntity<>(otherSvc.deleteWishListInfo(tbWishMstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
@@ -101,6 +101,16 @@ public class OtherRestCtl {
 		tbPrdFobHstRecord.setRegUsrId(principal.getName());
 
 		return new ResponseEntity<>(otherSvc.saveOneForClickLogInfo(tbPrdFobHstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	/**
+	 * Contact Us 회신여부 변경
+	 * @param contactSeq
+	 * @return ResponseEntity<String>
+	 */
+	@GetMapping("/admin/rest/contactus/update/{contactSeq}")
+	public ResponseEntity<String> updateReplyYn(@PathVariable(value = "contactSeq") int contactSeq) {
+		return new ResponseEntity<>(otherSvc.updateReplyYn(contactSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }

@@ -18,7 +18,7 @@
                         <div class="ps-tab active" id="sign-in">
                             <div class="ps-form__content">
                                 <form name="signin" th:action="@{/any/signin}" method="post">
-                                    <h5 class="form-forgot">Log In Your Account<a th:href="@{/any/signup}">SignUp</a></h5>
+                                    <h5 class="form-forgot">Log In Your Account</h5>
                                     <div class="form-group">
                                         <input class="form-control" id="username" name="username" type="text" placeholder="Email address" required>
                                     </div>
@@ -33,6 +33,9 @@
                                     </div>
                                     <div class="form-group submtit">
                                         <button type="submit" class="ps-btn ps-btn--fullwidth">Login</button>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <h5>Not Member Yet? <a th:href="@{/any/signup}" style="color: #06c;">Sign-Up</a></h5>
                                     </div>
                                 </form>
                             </div>

@@ -107,7 +107,6 @@ public class OtherRepository {
                 .select(
                          TB_WISH_MST.WISH_SEQ
                         ,TB_WISH_MST.ASK_YN
-                        ,TB_INQUIRY_DTL.INQUIRY_SEQ
                         ,TB_PRD_MST.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
                         ,TB_CM_AFILE.URL_PATH_CD
@@ -122,12 +121,11 @@ public class OtherRepository {
                     .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .join(TB_MEM_MST)
                     .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .leftJoin(TB_INQUIRY_DTL)
-                    .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
                     //.and(TB_WISH_MST.ASK_YN.eq("N"))
                     .and(TB_WISH_MST.DEL_YN.eq("N"))
                 )
+                .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
                 .orderBy(TB_WISH_MST.REG_TS.desc())
                 .fetchMaps();
     }
@@ -277,6 +275,16 @@ public class OtherRepository {
                 .set(TB_PRD_FOB_HST.PRODUCT_SEQ, tbPrdFobHstRecord.getProductSeq())
                 .set(TB_PRD_FOB_HST.REG_USR_ID, tbPrdFobHstRecord.getRegUsrId())
                 .set(TB_PRD_FOB_HST.UPD_USR_ID, tbPrdFobHstRecord.getRegUsrId())
+                .execute();
+    }
+
+    /**
+     * Contact Us 회신여부 변경
+     */
+    public int updateReplyYn(int contactSeq) {
+        return this.dslContext.update(TB_CONTACT_US)
+                .set(TB_CONTACT_US.REPLY_YN, iif(TB_CONTACT_US.REPLY_YN.eq("Y"),"N", "Y"))
+                .where(TB_CONTACT_US.CONTACT_SEQ.equal(contactSeq))
                 .execute();
     }
 

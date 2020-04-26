@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbContactUs extends TableImpl<TbContactUsRecord> {
 
-    private static final long serialVersionUID = 2136451004;
+    private static final long serialVersionUID = -850480138;
 
     /**
      * The reference instance of <code>rocketmart.TB_CONTACT_US</code>
@@ -92,6 +92,11 @@ public class TbContactUs extends TableImpl<TbContactUsRecord> {
      * The column <code>rocketmart.TB_CONTACT_US.REG_TS</code>. 등록일시
      */
     public final TableField<TbContactUsRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
+
+    /**
+     * The column <code>rocketmart.TB_CONTACT_US.REPLY_YN</code>. 회신여부
+     */
+    public final TableField<TbContactUsRecord, String> REPLY_YN = createField(DSL.name("REPLY_YN"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.VARCHAR)), this, "회신여부");
 
     /**
      * Create a <code>rocketmart.TB_CONTACT_US</code> table reference
@@ -178,11 +183,11 @@ public class TbContactUs extends TableImpl<TbContactUsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, String, String, String, String, String, Timestamp> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Integer, String, String, String, String, String, Timestamp, String> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

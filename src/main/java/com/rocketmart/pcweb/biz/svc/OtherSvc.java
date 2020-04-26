@@ -8,9 +8,13 @@ import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -170,4 +174,15 @@ public class OtherSvc {
 	public int saveOneForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord) {
 		return otherRepository.saveOneForClickLogInfo(tbPrdFobHstRecord);
 	}
+
+	/**
+	 * Contact Us 회신여부 변경
+	 * @param contactSeq
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int updateReplyYn(int contactSeq) {
+		return otherRepository.updateReplyYn(contactSeq);
+	}
+
 }

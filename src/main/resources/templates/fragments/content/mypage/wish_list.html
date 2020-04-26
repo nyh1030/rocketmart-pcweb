@@ -99,7 +99,7 @@
                                             <td>
                                                 <div class="btns type">
                                                     <button type="button" id="btnAsk" name="btnAsk" th:if="${wish.ASK_YN == 'N'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
-                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.ASK_YN == 'Y'}" th:value="${wish.INQUIRY_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
+                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.ASK_YN == 'Y'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
                                                     <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
                                                     <button type="button" id="btnDelete" name="btnDelete" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Delete</button>
                                                 </div>
@@ -117,6 +117,7 @@
         </div>
         <!-- //.container : E -->
     </div>
+
 
     <form id="inquiryFrm" name="inquiryFrm" th:action="@{/any/inquiry/register}" method="post">
         <input type="hidden" id="productSeq" name="productSeq"/>
