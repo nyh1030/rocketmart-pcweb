@@ -176,7 +176,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-deal-of-day .ps-product__thumbnail,
 #homepage-5 .ps-search-trending .ps-product__thumbnail{width:220px;height:220px;}
 #homepage-5 .ps-deal-of-day .ps-product__container,
-#homepage-5 .ps-search-trending .ps-product__container{width:220px;}
+#homepage-5 .ps-search-trending .ps-product__container{width:220px;text-align:center;}
 #homepage-5 .ps-deal-of-day .owl-stage-outer{padding-left:5px;}
 #homepage-5 .ps-brand-logo{padding:60px 0;}
 #homepage-5 .ps-brand-logo .ps-product .ps-product__thumbnail{width:150px;height:150px;}
@@ -243,12 +243,15 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .brand-list-wrap .list-box > li .name,
 .brand-list-wrap .list-box > li .num{display:block;color:#333;font-weight:500;}
 .brand-list-wrap .list-box > li .name{display:block;width:100%;padding:0 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; }
+.btn-top{position:fixed;right:50px;bottom:40px;font-size:26px;border:2px solid #000;display:block;width:55px;height:55px;text-align:center;line-height:53px;border-radius:3px;}
+.btn-top:hover{border-color:#fcb800}
 .ps-form--account .ps-checkbox > label em{color:#09c;text-decoration:underline;font-style:normal;}
 .ps-shopping.ps-tab-root .ps-product .ps-product__thumbnail{width:165px;height:165px;}
 .ps-shopping.ps-tab-root .ps-product .ps-product__thumbnail img{width:100%;height:100%;object-fit:contain;}
 .youtube-area {border: 1px solid #f1f1f1;margin-top:20px}
 .ps-table td .img-box{width:130px;height:130px;}
 .ps-table td .btns.type-size button{padding:10px 12px;font-size:13px;line-height:0;}
+
 /* popup */
 .jquery-modal.blocker{z-index:10;}
 .modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}

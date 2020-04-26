@@ -315,6 +315,7 @@
                             </div>
                         </li>
                     </ul>
+                    <a href="#none" class="btn-top"><i class="fa fa-arrow-up"></i></a>
                 </div>
             </div>
         </div>
@@ -370,6 +371,10 @@
                     const targetTop = target.offset().top - headerTop;
                     $('html,body').animate({scrollTop:targetTop}, 300);
                 });
+                $('.brand-list-wrap .btn-top').on('click',function(e){
+                    $('html,body').animate({scrollTop:0}, 300);
+                });
+
             }
         };
 
