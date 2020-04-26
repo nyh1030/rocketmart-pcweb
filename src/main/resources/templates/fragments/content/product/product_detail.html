@@ -14,9 +14,6 @@
                 <th:block th:if="${productCate3 != null}">
                     > <a th:href="@{'/any/category/list/3/'+${productCate3.CATE3_CD}}" th:text="${productCate3.CATE3_NM}"></a>
                 </th:block>
-                <th:block th:if="${productInfo != null}">
-                    <a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" th:text="${productInfo.PRODUCT_NM}"></a>
-                </th:block>
             </div>
         </div>
     </div>
@@ -29,15 +26,15 @@
                             <figure>
                                 <div class="ps-wrapper">
                                     <div class="ps-product__gallery" data-arrow="true">
-                                        <div th:if="${productFrontAfile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productFrontAfile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productBackAfile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productBackAfile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productAspectAfile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productAspectAfile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productShape1Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productShape1Afile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productShape2Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productShape2Afile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productOutside1Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productOutside1Afile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productOutside2Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productOutside2Afile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productEtc1Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productEtc1Afile.URL_PATH_CD}"></a></div>
-                                        <div th:if="${productEtc2Afile != null}" class="item"><a th:href="@{/any/product_detail/{productSeq}(productSeq=${productSeq})}" target="_blank"><img th:src="${productEtc2Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productFrontAfile != null}" class="item"><a th:href="${productFrontAfile.URL_PATH_CD}" target="_blank"><img th:src="${productFrontAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productBackAfile != null}" class="item"><a th:href="${productBackAfile.URL_PATH_CD}" target="_blank"><img th:src="${productBackAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productAspectAfile != null}" class="item"><a th:href="${productAspectAfile.URL_PATH_CD}" target="_blank"><img th:src="${productAspectAfile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productShape1Afile != null}" class="item"><a th:href="${productShape1Afile.URL_PATH_CD}" target="_blank"><img th:src="${productShape1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productShape2Afile != null}" class="item"><a th:href="${productShape2Afile.URL_PATH_CD}" target="_blank"><img th:src="${productShape2Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productOutside1Afile != null}" class="item"><a th:href="${productOutside1Afile.URL_PATH_CD}" target="_blank"><img th:src="${productOutside1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productOutside2Afile != null}" class="item"><a th:href="${productOutside2Afile.URL_PATH_CD}" target="_blank"><img th:src="${productOutside2Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productEtc1Afile != null}" class="item"><a th:href="${productEtc1Afile.URL_PATH_CD}" target="_blank"><img th:src="${productEtc1Afile.URL_PATH_CD}"></a></div>
+                                        <div th:if="${productEtc2Afile != null}" class="item"><a th:href="${productEtc2Afile.URL_PATH_CD}" target="_blank"><img th:src="${productEtc2Afile.URL_PATH_CD}"></a></div>
                                     </div>
                                 </div>
                             </figure>

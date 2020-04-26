@@ -72,7 +72,7 @@ public class ProductRepository {
 					.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.innerJoin(TB_BRAND_MST)
 					.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
-				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("N"))
 					.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
 					.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
@@ -93,7 +93,7 @@ public class ProductRepository {
 				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.innerJoin(Tables.TB_BRAND_MST)
 				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
-				.where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq)))
+				.where(TB_PRD_MST.DEL_YN.equal("N").and(TB_PRD_MST.BRAND_SEQ.equal(brandSeq))).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
 				.orderBy(TB_PRD_MST.REG_TS.desc())
 				.fetchMaps();
 	}

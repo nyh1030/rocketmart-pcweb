@@ -30,7 +30,7 @@
                                 <!-- 기본정보 : S -->
                                 <div class="ps-tab active" id="tab-1" style="position:relative">
                                     <div sec:authorize="hasAuthority('ADMIN')" class="ps-checkbox mb-1" style="position:absolute;right:0;top:-30px;">
-                                        <input class="form-control" type="checkbox" id="chkReleaseYn" name="releaseYn" th:if="${#strings.equals(productInfo.RELEASE_YN, 'Y') ? 'checked' : ''}">
+                                        <input class="form-control" type="checkbox" id="chkReleaseYn" name="releaseYn" th:checked="${#strings.equals(productInfo.RELEASE_YN, 'Y')}">
                                         <label for="chkReleaseYn">공개하기</label>
                                     </div>
                                     <div class="mb-5">
@@ -323,6 +323,8 @@
                 <!-- //.ps-section__right : E -->
             </div>
         </div>
+        <input sec:authorize="hasAuthority('ADMIN')" name="isAdmin" value="true">
+        <input sec:authorize="!hasAuthority('ADMIN')" name="isAdmin" value="false">
         <!-- //.container : E -->
     </div>
 
@@ -817,7 +819,11 @@
                     success: function(response) {
                         if (response === 200) {
                             alert('상품 정보가 수정되었습니다.');
-                            CommonUtils.forwardPage('/seller/brand_add');
+                            if ($('[name="isAdmin"]').val() === "true") {
+                                CommonUtils.forwardPage('/admin/pending/list');
+                            } else {
+                                CommonUtils.forwardPage('/seller/brand_add');
+                            }
                         }
                     },
                     error: function() {
