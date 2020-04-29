@@ -84,22 +84,22 @@ public class OtherCtl {
 
     /**
      * Inquiry 목록 조회
-     * @param tbInquiryMstRecord
+     * @param tbInquiryDtlRecord
      * @param model
      * @return String
      */
     @RequestMapping("/any/inquiry/list")
-    public String dispInquiryList(TbInquiryMstRecord tbInquiryMstRecord
+    public String dispInquiryList(TbInquiryDtlRecord tbInquiryDtlRecord
             , @RequestParam(value = "schMemId", required = false) String schMemId
             , @RequestParam(value = "schMemNm", required = false) String schMemNm
             , @RequestParam(value = "schProductNm", required = false) String schProductNm
             , Principal principal
             , Model model) {
         if(!"admin".equals(principal.getName())){
-            tbInquiryMstRecord.setRegUsrId(principal.getName());
+            tbInquiryDtlRecord.setRegUsrId(principal.getName());
         }
 
-        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm, schProductNm));
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm));
         model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
         model.addAttribute("memId", schMemId);
         model.addAttribute("memNm", schMemNm);
@@ -130,17 +130,17 @@ public class OtherCtl {
 
     /**
      * Inquiry 상세정보 조회
-     * @param inquirySeq
+     * @param inquiryDelSeq
      * @param model
      * @return String
      */
-    @GetMapping("/any/inquiry/detail/{inquirySeq}")
-    public String dispInquiryDetail(@PathVariable("inquirySeq") int inquirySeq, Model model) {
+    @GetMapping("/any/inquiry/detail/{inquiryDtlSeq}")
+    public String dispInquiryDetail(@PathVariable("inquiryDtlSeq") int inquiryDelSeq, Model model) {
 
         // Inquiry 상세정보 조회_마스터
-        model.addAttribute("inquiryInfo", this.otherSvc.findOneForInquiryMstInfo(inquirySeq));
+        //model.addAttribute("inquiryInfo", this.otherSvc.findOneForInquiryMstInfo(inquirySeq));
         // Inquiry 상세정보 조회_상세
-        model.addAttribute("productList", this.otherSvc.findAllForInquiryDtlInfo(inquirySeq));
+        model.addAttribute("inquiryInfo", this.otherSvc.findAllForInquiryDtlInfo(inquiryDelSeq));
 
         return prefixPath.concat("/mypage/inquiry_detail");
     }

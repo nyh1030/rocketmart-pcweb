@@ -43,7 +43,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
-    private static final long serialVersionUID = 1129202190;
+    private static final long serialVersionUID = 2132001038;
 
     /**
      * The reference instance of <code>rocketmart.TB_INQUIRY_DTL</code>
@@ -64,14 +64,14 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     public final TableField<TbInquiryDtlRecord, Integer> INQUIRY_DTL_SEQ = createField(DSL.name("INQUIRY_DTL_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "상품문의 상세 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_SEQ</code>. 상품문의 일련번호
-     */
-    public final TableField<TbInquiryDtlRecord, Integer> INQUIRY_SEQ = createField(DSL.name("INQUIRY_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "상품문의 일련번호");
-
-    /**
      * The column <code>rocketmart.TB_INQUIRY_DTL.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public final TableField<TbInquiryDtlRecord, Integer> PRODUCT_SEQ = createField(DSL.name("PRODUCT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "상품 일련번호");
+
+    /**
+     * The column <code>rocketmart.TB_INQUIRY_DTL.MESSAGE</code>. 문의내용
+     */
+    public final TableField<TbInquiryDtlRecord, String> MESSAGE = createField(DSL.name("MESSAGE"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "문의내용");
 
     /**
      * The column <code>rocketmart.TB_INQUIRY_DTL.REG_USR_ID</code>. 등록자아이디
@@ -133,7 +133,7 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.TB_INQUIRY_DTL_PRIMARY, Indexes.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK, Indexes.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK);
+        return Arrays.<Index>asList(Indexes.TB_INQUIRY_DTL_PRIMARY, Indexes.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK);
     }
 
     @Override
@@ -153,11 +153,7 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
     @Override
     public List<ForeignKey<TbInquiryDtlRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<TbInquiryDtlRecord, ?>>asList(Keys.TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK, Keys.TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK);
-    }
-
-    public TbInquiryMst tbInquiryMst() {
-        return new TbInquiryMst(this, Keys.TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK);
+        return Arrays.<ForeignKey<TbInquiryDtlRecord, ?>>asList(Keys.TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK);
     }
 
     public TbPrdMst tbPrdMst() {
@@ -195,7 +191,7 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, Integer, Integer, String, Timestamp, String, Timestamp> fieldsRow() {
+    public Row7<Integer, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
         return (Row7) super.fieldsRow();
     }
 }

@@ -2,10 +2,7 @@ package com.rocketmart.pcweb.biz.ctl.rest;
 
 import com.rocketmart.jooq.tables.TbInquiryMst;
 import com.rocketmart.jooq.tables.TbPrdFobHst;
-import com.rocketmart.jooq.tables.records.TbContactUsRecord;
-import com.rocketmart.jooq.tables.records.TbInquiryMstRecord;
-import com.rocketmart.jooq.tables.records.TbPrdFobHstRecord;
-import com.rocketmart.jooq.tables.records.TbWishMstRecord;
+import com.rocketmart.jooq.tables.records.*;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -60,21 +57,20 @@ public class OtherRestCtl {
 
 	/**
 	 * Inquiry 등록
-	 * @param tbInquiryMstRecord
+	 * @param tbInquiryDtlRecord
 	 * @param productSeq
 	 * @param principal
 	 * @return ResponseEntity<String>
 	 */
 	@PostMapping("/any/rest/inquiry/info/save")
-	public ResponseEntity<String> saveInquiryInfo(@NotNull TbInquiryMstRecord tbInquiryMstRecord, @NotNull @RequestParam(value = "productSeq") String productSeq, @NotNull Principal principal) {
+	public ResponseEntity<String> saveInquiryInfo(@NotNull TbInquiryDtlRecord tbInquiryDtlRecord, @NotNull @RequestParam(value = "productSeq") String productSeq, @NotNull Principal principal) {
 		List<Integer> productSeqs = Arrays.stream(productSeq.split(",", -1))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
 
+		tbInquiryDtlRecord.setRegUsrId(principal.getName());
 
-		tbInquiryMstRecord.setRegUsrId(principal.getName());
-
-		return new ResponseEntity<>(otherSvc.saveInquiryInfo(tbInquiryMstRecord, productSeqs), HttpStatus.OK);
+		return new ResponseEntity<>(otherSvc.saveInquiryInfo(tbInquiryDtlRecord, productSeqs), HttpStatus.OK);
 	}
 
 	/**

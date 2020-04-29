@@ -45,7 +45,6 @@ public class Indexes {
     public static final Index TB_CM_AFILE_PRIMARY = Indexes0.TB_CM_AFILE_PRIMARY;
     public static final Index TB_CONTACT_US_PRIMARY = Indexes0.TB_CONTACT_US_PRIMARY;
     public static final Index TB_INQUIRY_DTL_PRIMARY = Indexes0.TB_INQUIRY_DTL_PRIMARY;
-    public static final Index TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK = Indexes0.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK;
     public static final Index TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = Indexes0.TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final Index TB_INQUIRY_MST_PRIMARY = Indexes0.TB_INQUIRY_MST_PRIMARY;
     public static final Index TB_INQUIRY_MST_TB_INQUIRY_MST_INQUIRY_SEQ_UINDEX = Indexes0.TB_INQUIRY_MST_TB_INQUIRY_MST_INQUIRY_SEQ_UINDEX;
@@ -71,7 +70,6 @@ public class Indexes {
         public static Index TB_CM_AFILE_PRIMARY = Internal.createIndex("PRIMARY", TbCmAfile.TB_CM_AFILE, new OrderField[] { TbCmAfile.TB_CM_AFILE.AFILE_SEQ, TbCmAfile.TB_CM_AFILE.AFILE_NO }, true);
         public static Index TB_CONTACT_US_PRIMARY = Internal.createIndex("PRIMARY", TbContactUs.TB_CONTACT_US, new OrderField[] { TbContactUs.TB_CONTACT_US.CONTACT_SEQ }, true);
         public static Index TB_INQUIRY_DTL_PRIMARY = Internal.createIndex("PRIMARY", TbInquiryDtl.TB_INQUIRY_DTL, new OrderField[] { TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ }, true);
-        public static Index TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK = Internal.createIndex("TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_fk", TbInquiryDtl.TB_INQUIRY_DTL, new OrderField[] { TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_SEQ }, false);
         public static Index TB_INQUIRY_DTL_TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createIndex("TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_fk", TbInquiryDtl.TB_INQUIRY_DTL, new OrderField[] { TbInquiryDtl.TB_INQUIRY_DTL.PRODUCT_SEQ }, false);
         public static Index TB_INQUIRY_MST_PRIMARY = Internal.createIndex("PRIMARY", TbInquiryMst.TB_INQUIRY_MST, new OrderField[] { TbInquiryMst.TB_INQUIRY_MST.INQUIRY_SEQ }, true);
         public static Index TB_INQUIRY_MST_TB_INQUIRY_MST_INQUIRY_SEQ_UINDEX = Internal.createIndex("TB_INQUIRY_MST_INQUIRY_SEQ_uindex", TbInquiryMst.TB_INQUIRY_MST, new OrderField[] { TbInquiryMst.TB_INQUIRY_MST.INQUIRY_SEQ }, true);

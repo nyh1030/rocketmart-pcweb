@@ -133,31 +133,29 @@ public class OtherRepository {
     /**
      * Inquiry 목록 조회
      */
-    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm, String schProductNm) {
+    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
         return this.dslContext
                 .select(
-                        TB_INQUIRY_MST.INQUIRY_SEQ
-                        ,TB_INQUIRY_MST.MESSAGE
+                        TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
+                        ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_MEM_MST.MEM_ID
                         ,TB_MEM_MST.MEM_NM
-                        ,TB_INQUIRY_MST.REG_USR_ID
-                        ,TB_INQUIRY_MST.REG_TS
-                        ,TB_INQUIRY_MST.UPD_USR_ID
-                        ,TB_INQUIRY_MST.UPD_TS
+                        ,TB_INQUIRY_DTL.REG_USR_ID
+                        ,TB_INQUIRY_DTL.REG_TS
+                        ,TB_INQUIRY_DTL.UPD_USR_ID
+                        ,TB_INQUIRY_DTL.UPD_TS
                 )
-                .from(TB_INQUIRY_MST)
+                .from(TB_INQUIRY_DTL)
                 .join(TB_MEM_MST)
-                    .on(TB_INQUIRY_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .join(TB_INQUIRY_DTL)
-                    .on(TB_INQUIRY_MST.INQUIRY_SEQ.eq(TB_INQUIRY_DTL.INQUIRY_SEQ))
+                    .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .join(TB_PRD_MST)
                     .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
-                .where(isNotEmpty(tbInquiryMstRecord.getRegUsrId(), TB_INQUIRY_MST.REG_USR_ID.eq(tbInquiryMstRecord.getRegUsrId()))
-                    .and(isNotEmpty(schMemId, TB_INQUIRY_MST.REG_USR_ID.like("%"+schMemId+"%")))
+                .where(isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                    .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
                     .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                 )
-                .orderBy(TB_INQUIRY_MST.REG_TS.desc())
+                .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 .fetchMaps();
     }
 
@@ -186,10 +184,11 @@ public class OtherRepository {
     /**
      * Inquiry 상세정보 조회_상세
      */
-    public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
+    public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquiryDtlSeq) {
         return this.dslContext
                 .select(
-                        TB_INQUIRY_DTL.INQUIRY_SEQ
+                        TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
+                        ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_INQUIRY_DTL.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
                         ,TB_CM_AFILE.URL_PATH_CD
@@ -203,8 +202,8 @@ public class OtherRepository {
                 .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .join(TB_CM_AFILE)
                 .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .where(TB_INQUIRY_DTL.INQUIRY_SEQ.eq(inquirySeq))
-                .orderBy(TB_INQUIRY_DTL.INQUIRY_SEQ.asc())
+                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.eq(inquiryDtlSeq))
+                .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.asc())
                 .fetchMaps();
     }
 
@@ -225,8 +224,8 @@ public class OtherRepository {
      */
     public int saveAllForInquiryDtlInfo(TbInquiryDtlRecord tbInquiryDtlRecord) {
         return this.dslContext.insertInto(TB_INQUIRY_DTL)
-                .set(TB_INQUIRY_DTL.INQUIRY_SEQ, tbInquiryDtlRecord.getInquirySeq())
                 .set(TB_INQUIRY_DTL.PRODUCT_SEQ, tbInquiryDtlRecord.getProductSeq())
+                .set(TB_INQUIRY_DTL.MESSAGE, tbInquiryDtlRecord.getMessage())
                 .set(TB_INQUIRY_DTL.REG_USR_ID, tbInquiryDtlRecord.getRegUsrId())
                 .set(TB_INQUIRY_DTL.UPD_USR_ID, tbInquiryDtlRecord.getRegUsrId())
                 .execute();

@@ -99,25 +99,25 @@ public class OtherSvc {
 
 	/**
 	 * Inquiry 목록 조회
-	 * @param tbInquiryMstRecord
+	 * @param tbInquiryDtlRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, String schMemId, String schMemNm, String schProductNm) {
-		return otherRepository.findAllForInquiryInfo(tbInquiryMstRecord, schMemId, schMemNm, schProductNm);
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+		return otherRepository.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
 	}
 
 	/**
 	 * Inquiry 등록
-	 * @param tbInquiryMstRecord
+	 * @param tbInquiryDtlRecord
 	 * @param productSeqs
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public String saveInquiryInfo(TbInquiryMstRecord tbInquiryMstRecord, List<Integer> productSeqs) {
+	public String saveInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, List<Integer> productSeqs) {
 		int resultMstSeq = 0;
 		int resultDtlCnt = 0;
 		int resultWishCnt = 0;
-		TbInquiryMstRecord inquiryMstRecord = otherRepository.saveOneForInquiryMstInfo(tbInquiryMstRecord);
+/*		TbInquiryMstRecord inquiryMstRecord = otherRepository.saveOneForInquiryMstInfo(tbInquiryMstRecord);
 		resultMstSeq = inquiryMstRecord.getInquirySeq();
 
 		if (resultMstSeq > 0){
@@ -133,6 +133,13 @@ public class OtherSvc {
 				}
 			}
 
+		}*/
+		for(Integer productSeq : productSeqs){
+			tbInquiryDtlRecord.setProductSeq(productSeq);
+			resultDtlCnt += otherRepository.saveAllForInquiryDtlInfo(tbInquiryDtlRecord);
+			if(resultDtlCnt > 0){
+				resultWishCnt += otherRepository.updateOneForWishInfo(tbInquiryDtlRecord, productSeq);
+			}
 		}
 
 		return resultDtlCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode();
@@ -149,11 +156,11 @@ public class OtherSvc {
 
 	/**
 	 * Inquiry 상세정보 조회_상세
-	 * @param inquirySeq
+	 * @param inquiryDelSeq
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquirySeq) {
-		return otherRepository.findAllForInquiryDtlInfo(inquirySeq);
+	public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquiryDelSeq) {
+		return otherRepository.findAllForInquiryDtlInfo(inquiryDelSeq);
 	}
 
 	/**

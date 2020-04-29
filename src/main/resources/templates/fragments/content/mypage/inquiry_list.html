@@ -79,7 +79,7 @@
                                         <td th:text="${inquiry.MEM_ID}"></td>
                                         <td th:text="${inquiry.MEM_NM}"></td>
                                         <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
-                                        <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.INQUIRY_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                        <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.INQUIRY_DTL_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
                                     </tr>
                                 </th:block>
                                 </tbody>

@@ -124,7 +124,7 @@
                                     <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
                                     <th:block th:if="${memProductInfo != null}">
                                         <th:block th:if="${memProductInfo.INQUIRY_YN.equals('Y')}">
-                                            <a th:href="@{'/any/inquiry/detail/' + ${memProductInfo.INQUIRY_SEQ}}">
+                                            <a th:href="@{'/any/inquiry/detail/' + ${memProductInfo.INQUIRY_DTL_SEQ}}">
                                                 <span class="ps-btn" id="btnInquiryHst">INQUIRY HISTORY</span>
                                             </a>
                                         </th:block>

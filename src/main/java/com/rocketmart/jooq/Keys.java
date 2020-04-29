@@ -86,7 +86,6 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<TbInquiryDtlRecord, TbInquiryMstRecord> TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK = ForeignKeys0.TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK;
     public static final ForeignKey<TbInquiryDtlRecord, TbPrdMstRecord> TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = ForeignKeys0.TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final ForeignKey<TbPrdFobRecord, TbPrdMstRecord> TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = ForeignKeys0.TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK;
     public static final ForeignKey<TbPrdFobHstRecord, TbPrdMstRecord> TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = ForeignKeys0.TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK;
@@ -127,7 +126,6 @@ public class Keys {
     }
 
     private static class ForeignKeys0 {
-        public static final ForeignKey<TbInquiryDtlRecord, TbInquiryMstRecord> TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_INQUIRY_MST_PRIMARY, TbInquiryDtl.TB_INQUIRY_DTL, "TB_INQUIRY_DTL_TB_INQUIRY_MST_INQUIRY_SEQ_fk", TbInquiryDtl.TB_INQUIRY_DTL.INQUIRY_SEQ);
         public static final ForeignKey<TbInquiryDtlRecord, TbPrdMstRecord> TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbInquiryDtl.TB_INQUIRY_DTL, "TB_INQUIRY_DTL_TB_PRD_MST_PRODUCT_SEQ_fk", TbInquiryDtl.TB_INQUIRY_DTL.PRODUCT_SEQ);
         public static final ForeignKey<TbPrdFobRecord, TbPrdMstRecord> TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbPrdFob.TB_PRD_FOB, "TB_PRD_FOB_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFob.TB_PRD_FOB.PRODUCT_SEQ);
         public static final ForeignKey<TbPrdFobHstRecord, TbPrdMstRecord> TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_FK = Internal.createForeignKey(com.rocketmart.jooq.Keys.KEY_TB_PRD_MST_PRIMARY, TbPrdFobHst.TB_PRD_FOB_HST, "TB_PRD_FOB_HST_TB_PRD_MST_PRODUCT_SEQ_fk", TbPrdFobHst.TB_PRD_FOB_HST.PRODUCT_SEQ);
