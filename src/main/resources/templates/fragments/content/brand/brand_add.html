@@ -38,7 +38,7 @@
                         </th:block>
                             <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
-                                <a th:text="${brand.BRAND_NM}" th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" target="_blank" style="color: #fcb800!important"></a>
+                                <a th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" target="_blank" class="btn-share"><i class="fa fa-external-link"></i></a>
                                 <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
                                 <div class="btn-row">
                                     <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정</button>
