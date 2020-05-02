@@ -37,6 +37,13 @@ const CommonUtils = {
     keyEventOnlyNumber(obj, blnComma) {
         if (blnComma) obj.value = obj.value.replace(/[^0-9\.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         else obj.value = obj.value.replace(/[^0-9\.]/g,'');
+    },
+    keyEventLimit(obj) {
+        var _pattern2 = /^\d*[.]\d{2}$/; // 현재 value값이 소수점 둘째짜리 숫자이면 더이상 입력 불가
+        if (_pattern2.test(this.removeComma(obj.value))) {
+            alert(`소수점 둘째자리까지만 입력가능합니다.`);
+            obj.value = obj.value.substring(0, obj.value.length - 1)
+        }
     }
 };
 

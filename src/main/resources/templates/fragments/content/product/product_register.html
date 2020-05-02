@@ -83,7 +83,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" required placeholder="Number only" onkeypress="CommonUtils.keyEventLimit(this);" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
@@ -671,7 +671,7 @@
                 PageScope.objDataTables.row.add([
                     `<td><input type="text" name="rangeStart" data-name="구간 시작" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     `<td><input type="text" name="rangeEnd" data-name="구간 끝" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                    `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="0" onkeypress="CommonUtils.keyEventLimit(this);" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
                     `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                     `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
                 ]).draw(false);
@@ -864,8 +864,8 @@
                     $(_this).val(0);
                     return;
                 }
-                const supplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100).toFixed(2);
-                const exposureSupplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100 + 5).toFixed(2);
+                const supplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100.0).toFixed(2);
+                const exposureSupplyRate = (parseFloat($(_this).val()) / parseFloat(retailPrice) * 100.0 + 5).toFixed(2);
                 $(_this).parent().next().children().val(supplyRate !== 'NaN' ? supplyRate : 0); // 공급률
                 $(_this).parent().next().next().children().val(exposureSupplyRate !== 'NaN' ? exposureSupplyRate : 0); // 노출 공급률
             },

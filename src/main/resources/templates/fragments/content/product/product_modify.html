@@ -84,7 +84,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatDecimal(productInfo.RETAIL_PRICE, 0, 'COMMA', 3, 'POINT')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatDecimal(productInfo.RETAIL_PRICE, 0, 'COMMA', 2, 'POINT')}" required placeholder="Number only" onkeypress="CommonUtils.keyEventLimit(this);" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>
@@ -654,9 +654,9 @@
                     _this.objDataTables.row.add([
                         `<td><input type="text" name="rangeStart" data-name="구간 시작" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.RANGE_START)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                         `<td><input type="text" name="rangeEnd" data-name="구간 끝" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.RANGE_END)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                        `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
-                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
-                        `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.EXPOSURE_SUPPLY_RATE}" onkeyup="CommonUtils.keyEventOnlyNumber(this, true)" readonly /></td>`,
+                        `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}" onkeypress="CommonUtils.keyEventLimit(this);" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                        `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.SUPPLY_RATE}" readonly /></td>`,
+                        `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="${item.EXPOSURE_SUPPLY_RATE}" readonly /></td>`,
                     ]).draw(false);
                 });
 
@@ -874,9 +874,9 @@
                 PageScope.objDataTables.row.add([
                     `<td><input type="text" name="rangeStart" data-name="구간 시작" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
                     `<td><input type="text" name="rangeEnd" data-name="구간 끝" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" maxlength="15" /></td>`,
-                    `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
-                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
-                    `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" onkeyup="CommonUtils.keyEventOnlyNumber(this, true);" readonly /></td>`,
+                    `<td><input type="text" name="tradingPrice" data-name="거래가" style="text-align: right" value="0" onkeypress="CommonUtils.keyEventLimit(this);" onkeyup="CommonUtils.keyEventOnlyNumber(this, true), EventScope.calculateSupplyRate(this);" maxlength="15" /></td>`,
+                    `<td class="last"><input type="text" name="supplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" readonly /></td>`,
+                    `<td class="last"><input type="text" name="exposureSupplyRate" style="text-align: right; background-color: #b8b8b8; font-weight: bold" value="0" readonly /></td>`,
                 ]).draw(false);
             },
 
