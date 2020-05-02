@@ -145,6 +145,7 @@
             $('#signup').on('submit', this.validateForm);
             $('.agreeContents input[type=checkbox]').on('click',this.openPopup);
         },
+
         //비밀번호 확인
         confirmPasswordForm: function() {
             if('' !== $('#memPwChk').val()){
@@ -159,6 +160,7 @@
                 $('#chkNotice').html('');
             }
         },
+
         changeMemberForm: function() {
             var value = $(this).val();
             if (value === 'SELLER') {
@@ -183,6 +185,7 @@
                 $( '[name="sellerType"]' ).hide();
             }
         },
+
         ensurePhoneNumber: function(e) {
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 91, 107, 109, 110, 187, 189, 190]) !== -1 || (e.keyCode === 65 && e.ctrlKey === true) || (e.keyCode >= 35 && e.keyCode <= 39)) {
                 return;
@@ -191,6 +194,7 @@
                 e.preventDefault();
             }
         },
+
         inputFileForm: function(){
             var fileTarget = $('.filebox .upload-hidden');
             fileTarget.on('change', function(){
@@ -202,6 +206,7 @@
                 $(this).siblings('.form-control').val(fileName);
             });
         },
+
         idOverLapChk: function() {
             var rtn = true;
             var memId =  $("#memId").val();
@@ -235,6 +240,7 @@
 
             return rtn;
         },
+
         bsnsTypeChk: function(){
             var rtn = true;
 
@@ -252,6 +258,7 @@
 
             return rtn;
         },
+
         sellerAgreeChk: function() {
             var rtn = true;
 
@@ -270,6 +277,7 @@
 
             return rtn;
         },
+
         openPopup: function () {
             this.blur();
 
@@ -281,8 +289,8 @@
                     }
                 });
             }
-
         },
+
         validateForm: function() {
             //1. 아이디 중복체크
             if(!signup.idOverLapChk()){

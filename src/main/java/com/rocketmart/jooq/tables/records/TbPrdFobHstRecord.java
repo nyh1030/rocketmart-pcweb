@@ -30,87 +30,87 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFobHstRecord extends UpdatableRecordImpl<TbPrdFobHstRecord> implements Record6<Integer, Integer, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = 2001626444;
+    private static final long serialVersionUID = 1852035212;
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.FOB_HST_SEQ</code>. FOB 조회 일련번호
+     * Setter for <code>rocketmart.tb_prd_fob_hst.FOB_HST_SEQ</code>. FOB 조회 일련번호
      */
     public void setFobHstSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.FOB_HST_SEQ</code>. FOB 조회 일련번호
+     * Getter for <code>rocketmart.tb_prd_fob_hst.FOB_HST_SEQ</code>. FOB 조회 일련번호
      */
     public Integer getFobHstSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Setter for <code>rocketmart.tb_prd_fob_hst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public void setProductSeq(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Getter for <code>rocketmart.tb_prd_fob_hst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public Integer getProductSeq() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.REG_USR_ID</code>. 등록자 아이디
+     * Setter for <code>rocketmart.tb_prd_fob_hst.REG_USR_ID</code>. 등록자 아이디
      */
     public void setRegUsrId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.REG_USR_ID</code>. 등록자 아이디
+     * Getter for <code>rocketmart.tb_prd_fob_hst.REG_USR_ID</code>. 등록자 아이디
      */
     public String getRegUsrId() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_prd_fob_hst.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_prd_fob_hst.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.UPD_USR_ID</code>. 수정자 아이디
+     * Setter for <code>rocketmart.tb_prd_fob_hst.UPD_USR_ID</code>. 수정자 아이디
      */
     public void setUpdUsrId(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.UPD_USR_ID</code>. 수정자 아이디
+     * Getter for <code>rocketmart.tb_prd_fob_hst.UPD_USR_ID</code>. 수정자 아이디
      */
     public String getUpdUsrId() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB_HST.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.tb_prd_fob_hst.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB_HST.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.tb_prd_fob_hst.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(5);

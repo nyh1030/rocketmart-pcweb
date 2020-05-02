@@ -21,7 +21,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row7;
+import org.jooq.Row8;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
 
-    private static final long serialVersionUID = 2132001038;
+    private static final long serialVersionUID = -330919596;
 
     /**
-     * The reference instance of <code>rocketmart.TB_INQUIRY_DTL</code>
+     * The reference instance of <code>rocketmart.tb_inquiry_dtl</code>
      */
     public static final TbInquiryDtl TB_INQUIRY_DTL = new TbInquiryDtl();
 
@@ -59,56 +59,61 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.INQUIRY_DTL_SEQ</code>. 상품문의 상세 일련번호
+     * The column <code>rocketmart.tb_inquiry_dtl.INQUIRY_DTL_SEQ</code>. 상품문의 상세 일련번호
      */
     public final TableField<TbInquiryDtlRecord, Integer> INQUIRY_DTL_SEQ = createField(DSL.name("INQUIRY_DTL_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "상품문의 상세 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.PRODUCT_SEQ</code>. 상품 일련번호
+     * The column <code>rocketmart.tb_inquiry_dtl.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public final TableField<TbInquiryDtlRecord, Integer> PRODUCT_SEQ = createField(DSL.name("PRODUCT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "상품 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.MESSAGE</code>. 문의내용
+     * The column <code>rocketmart.tb_inquiry_dtl.MESSAGE</code>. 문의내용
      */
     public final TableField<TbInquiryDtlRecord, String> MESSAGE = createField(DSL.name("MESSAGE"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "문의내용");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.REG_USR_ID</code>. 등록자아이디
+     * The column <code>rocketmart.tb_inquiry_dtl.REPLY_YN</code>. 회신여부
+     */
+    public final TableField<TbInquiryDtlRecord, String> REPLY_YN = createField(DSL.name("REPLY_YN"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.VARCHAR)), this, "회신여부");
+
+    /**
+     * The column <code>rocketmart.tb_inquiry_dtl.REG_USR_ID</code>. 등록자아이디
      */
     public final TableField<TbInquiryDtlRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자아이디");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_inquiry_dtl.REG_TS</code>. 등록일시
      */
     public final TableField<TbInquiryDtlRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.UPD_USR_ID</code>. 수정자아이디
+     * The column <code>rocketmart.tb_inquiry_dtl.UPD_USR_ID</code>. 수정자아이디
      */
     public final TableField<TbInquiryDtlRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "수정자아이디");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_DTL.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_inquiry_dtl.UPD_TS</code>. 수정일시
      */
     public final TableField<TbInquiryDtlRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_INQUIRY_DTL</code> table reference
+     * Create a <code>rocketmart.tb_inquiry_dtl</code> table reference
      */
     public TbInquiryDtl() {
-        this(DSL.name("TB_INQUIRY_DTL"), null);
+        this(DSL.name("tb_inquiry_dtl"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_INQUIRY_DTL</code> table reference
+     * Create an aliased <code>rocketmart.tb_inquiry_dtl</code> table reference
      */
     public TbInquiryDtl(String alias) {
         this(DSL.name(alias), TB_INQUIRY_DTL);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_INQUIRY_DTL</code> table reference
+     * Create an aliased <code>rocketmart.tb_inquiry_dtl</code> table reference
      */
     public TbInquiryDtl(Name alias) {
         this(alias, TB_INQUIRY_DTL);
@@ -187,11 +192,11 @@ public class TbInquiryDtl extends TableImpl<TbInquiryDtlRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row7 type methods
+    // Row8 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row7<Integer, Integer, String, String, Timestamp, String, Timestamp> fieldsRow() {
-        return (Row7) super.fieldsRow();
+    public Row8<Integer, Integer, String, String, String, Timestamp, String, Timestamp> fieldsRow() {
+        return (Row8) super.fieldsRow();
     }
 }

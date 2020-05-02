@@ -111,8 +111,10 @@ public class OtherRepository {
                         ,TB_PRD_MST.PRODUCT_NM
                         ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_PRD_MST.RETAIL_PRICE
+                        ,TB_PRD_MST.GIVE_SAMPLE_YN
                         ,TB_MEM_MST.APPROVAL_YN
                         ,TB_MEM_MST.MEM_NM
+                        ,DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN")
                 )
                 .from(TB_WISH_MST)
                 .join(TB_PRD_MST)
@@ -121,8 +123,9 @@ public class OtherRepository {
                     .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .join(TB_MEM_MST)
                     .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .leftJoin(TB_INQUIRY_DTL)
+                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID)).and(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
-                    //.and(TB_WISH_MST.ASK_YN.eq("N"))
                     .and(TB_WISH_MST.DEL_YN.eq("N"))
                 )
                 .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
@@ -136,25 +139,32 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
         return this.dslContext
                 .select(
-                        TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
+                        max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ).as("INQUIRY_DTL_SEQ")
                         ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_MEM_MST.MEM_ID
                         ,TB_MEM_MST.MEM_NM
+                        ,TB_PRD_MST.PRODUCT_SEQ
+                        ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_INQUIRY_DTL.REG_USR_ID
                         ,TB_INQUIRY_DTL.REG_TS
                         ,TB_INQUIRY_DTL.UPD_USR_ID
                         ,TB_INQUIRY_DTL.UPD_TS
+                        ,count(iif(TB_INQUIRY_DTL.REPLY_YN.eq("N"),1,null)).as("REPLY_YN_CNT")
                 )
                 .from(TB_INQUIRY_DTL)
                 .join(TB_MEM_MST)
                     .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .join(TB_PRD_MST)
                     .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                .join(TB_CM_AFILE)
+                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
                 .where(isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
                     .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
                     .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                 )
+                .groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
                 .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 .fetchMaps();
     }
@@ -184,26 +194,31 @@ public class OtherRepository {
     /**
      * Inquiry 상세정보 조회_상세
      */
-    public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquiryDtlSeq) {
+    public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq) {
         return this.dslContext
                 .select(
                         TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
                         ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_INQUIRY_DTL.PRODUCT_SEQ
                         ,TB_PRD_MST.PRODUCT_NM
+                        ,TB_MEM_MST.MEM_ID
+                        ,TB_MEM_MST.MEM_NM
                         ,TB_CM_AFILE.URL_PATH_CD
                         ,TB_INQUIRY_DTL.REG_USR_ID
                         ,TB_INQUIRY_DTL.REG_TS
                         ,TB_INQUIRY_DTL.UPD_USR_ID
                         ,TB_INQUIRY_DTL.UPD_TS
+                        ,TB_INQUIRY_DTL.REPLY_YN
                 )
                 .from(TB_INQUIRY_DTL)
                 .join(TB_PRD_MST)
-                .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                    .on(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
                 .join(TB_CM_AFILE)
-                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.eq(inquiryDtlSeq))
-                .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.asc())
+                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .join(TB_MEM_MST)
+                    .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .where(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq))
+                .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.desc())
                 .fetchMaps();
     }
 
@@ -258,9 +273,12 @@ public class OtherRepository {
                 .from(TB_PRD_FOB_HST)
                 .join(TB_PRD_MST)
                     .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                .join(TB_MEM_MST)
+                    .on(TB_PRD_FOB_HST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
                     .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                     .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
+                    .and(TB_MEM_MST.ROLE.eq("BUYER"))
                 .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
                 .fetchMaps();
@@ -280,10 +298,20 @@ public class OtherRepository {
     /**
      * Contact Us 회신여부 변경
      */
-    public int updateReplyYn(int contactSeq) {
+    public int updateContactUsReplyYn(int contactSeq) {
         return this.dslContext.update(TB_CONTACT_US)
                 .set(TB_CONTACT_US.REPLY_YN, iif(TB_CONTACT_US.REPLY_YN.eq("Y"),"N", "Y"))
                 .where(TB_CONTACT_US.CONTACT_SEQ.equal(contactSeq))
+                .execute();
+    }
+
+    /**
+     * Inquiry 회신여부 변경
+     */
+    public int updateInquiryReplyYn(int inquiryDtlSeq) {
+        return this.dslContext.update(TB_INQUIRY_DTL)
+                .set(TB_INQUIRY_DTL.REPLY_YN, iif(TB_INQUIRY_DTL.REPLY_YN.eq("Y"),"N", "Y"))
+                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.equal(inquiryDtlSeq))
                 .execute();
     }
 

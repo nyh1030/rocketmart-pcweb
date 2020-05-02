@@ -30,199 +30,199 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCateMstRecord extends UpdatableRecordImpl<TbCateMstRecord> implements Record14<Integer, String, String, String, String, String, String, Integer, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = 1165550557;
+    private static final long serialVersionUID = 335680733;
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE_SEQ</code>. 카테고리 일련번호
+     * Setter for <code>rocketmart.tb_cate_mst.CATE_SEQ</code>. 카테고리 일련번호
      */
     public void setCateSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE_SEQ</code>. 카테고리 일련번호
+     * Getter for <code>rocketmart.tb_cate_mst.CATE_SEQ</code>. 카테고리 일련번호
      */
     public Integer getCateSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE1_CD</code>. 카테고리1 코드
+     * Setter for <code>rocketmart.tb_cate_mst.CATE1_CD</code>. 카테고리1 코드
      */
     public void setCate1Cd(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE1_CD</code>. 카테고리1 코드
+     * Getter for <code>rocketmart.tb_cate_mst.CATE1_CD</code>. 카테고리1 코드
      */
     public String getCate1Cd() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE1_NM</code>. 카테고리1 명
+     * Setter for <code>rocketmart.tb_cate_mst.CATE1_NM</code>. 카테고리1 명
      */
     public void setCate1Nm(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE1_NM</code>. 카테고리1 명
+     * Getter for <code>rocketmart.tb_cate_mst.CATE1_NM</code>. 카테고리1 명
      */
     public String getCate1Nm() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE2_CD</code>. 카테고리2 코드
+     * Setter for <code>rocketmart.tb_cate_mst.CATE2_CD</code>. 카테고리2 코드
      */
     public void setCate2Cd(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE2_CD</code>. 카테고리2 코드
+     * Getter for <code>rocketmart.tb_cate_mst.CATE2_CD</code>. 카테고리2 코드
      */
     public String getCate2Cd() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE2_NM</code>. 카테고리2 명
+     * Setter for <code>rocketmart.tb_cate_mst.CATE2_NM</code>. 카테고리2 명
      */
     public void setCate2Nm(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE2_NM</code>. 카테고리2 명
+     * Getter for <code>rocketmart.tb_cate_mst.CATE2_NM</code>. 카테고리2 명
      */
     public String getCate2Nm() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE3_CD</code>. 카테고리3 코드
+     * Setter for <code>rocketmart.tb_cate_mst.CATE3_CD</code>. 카테고리3 코드
      */
     public void setCate3Cd(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE3_CD</code>. 카테고리3 코드
+     * Getter for <code>rocketmart.tb_cate_mst.CATE3_CD</code>. 카테고리3 코드
      */
     public String getCate3Cd() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.CATE3_NM</code>. 카테고리3 명
+     * Setter for <code>rocketmart.tb_cate_mst.CATE3_NM</code>. 카테고리3 명
      */
     public void setCate3Nm(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.CATE3_NM</code>. 카테고리3 명
+     * Getter for <code>rocketmart.tb_cate_mst.CATE3_NM</code>. 카테고리3 명
      */
     public String getCate3Nm() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.DEPTH</code>. DEPTH
+     * Setter for <code>rocketmart.tb_cate_mst.DEPTH</code>. DEPTH
      */
     public void setDepth(Integer value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.DEPTH</code>. DEPTH
+     * Getter for <code>rocketmart.tb_cate_mst.DEPTH</code>. DEPTH
      */
     public Integer getDepth() {
         return (Integer) get(7);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.TAG_YN</code>. tag 임시
+     * Setter for <code>rocketmart.tb_cate_mst.TAG_YN</code>. tag 임시
      */
     public void setTagYn(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.TAG_YN</code>. tag 임시
+     * Getter for <code>rocketmart.tb_cate_mst.TAG_YN</code>. tag 임시
      */
     public String getTagYn() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.DEL_YN</code>. 삭제여부
+     * Setter for <code>rocketmart.tb_cate_mst.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.DEL_YN</code>. 삭제여부
+     * Getter for <code>rocketmart.tb_cate_mst.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.REG_USR_ID</code>. 등록자 아이디
+     * Setter for <code>rocketmart.tb_cate_mst.REG_USR_ID</code>. 등록자 아이디
      */
     public void setRegUsrId(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.REG_USR_ID</code>. 등록자 아이디
+     * Getter for <code>rocketmart.tb_cate_mst.REG_USR_ID</code>. 등록자 아이디
      */
     public String getRegUsrId() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_cate_mst.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_cate_mst.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(11);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.UPD_USR_ID</code>. 수정자 아이디
+     * Setter for <code>rocketmart.tb_cate_mst.UPD_USR_ID</code>. 수정자 아이디
      */
     public void setUpdUsrId(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.UPD_USR_ID</code>. 수정자 아이디
+     * Getter for <code>rocketmart.tb_cate_mst.UPD_USR_ID</code>. 수정자 아이디
      */
     public String getUpdUsrId() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CATE_MST.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.tb_cate_mst.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CATE_MST.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.tb_cate_mst.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(13);

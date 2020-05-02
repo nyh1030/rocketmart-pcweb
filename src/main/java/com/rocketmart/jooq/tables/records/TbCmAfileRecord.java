@@ -30,213 +30,213 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCmAfileRecord extends UpdatableRecordImpl<TbCmAfileRecord> implements Record15<Integer, Integer, String, String, String, String, String, Integer, String, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -1860038144;
+    private static final long serialVersionUID = -1934959104;
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.AFILE_SEQ</code>. 첨부파일 일련번호
+     * Setter for <code>rocketmart.tb_cm_afile.AFILE_SEQ</code>. 첨부파일 일련번호
      */
     public void setAfileSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.AFILE_SEQ</code>. 첨부파일 일련번호
+     * Getter for <code>rocketmart.tb_cm_afile.AFILE_SEQ</code>. 첨부파일 일련번호
      */
     public Integer getAfileSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.AFILE_NO</code>. 첨부파일 순번
+     * Setter for <code>rocketmart.tb_cm_afile.AFILE_NO</code>. 첨부파일 순번
      */
     public void setAfileNo(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.AFILE_NO</code>. 첨부파일 순번
+     * Getter for <code>rocketmart.tb_cm_afile.AFILE_NO</code>. 첨부파일 순번
      */
     public Integer getAfileNo() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.ORGN_FILE_NM</code>. 원본 파일명
+     * Setter for <code>rocketmart.tb_cm_afile.ORGN_FILE_NM</code>. 원본 파일명
      */
     public void setOrgnFileNm(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.ORGN_FILE_NM</code>. 원본 파일명
+     * Getter for <code>rocketmart.tb_cm_afile.ORGN_FILE_NM</code>. 원본 파일명
      */
     public String getOrgnFileNm() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.URL_PATH_CD</code>. URL 경로 코드
+     * Setter for <code>rocketmart.tb_cm_afile.URL_PATH_CD</code>. URL 경로 코드
      */
     public void setUrlPathCd(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.URL_PATH_CD</code>. URL 경로 코드
+     * Getter for <code>rocketmart.tb_cm_afile.URL_PATH_CD</code>. URL 경로 코드
      */
     public String getUrlPathCd() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.AFILE_PATH</code>. 첨부파일 경로
+     * Setter for <code>rocketmart.tb_cm_afile.AFILE_PATH</code>. 첨부파일 경로
      */
     public void setAfilePath(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.AFILE_PATH</code>. 첨부파일 경로
+     * Getter for <code>rocketmart.tb_cm_afile.AFILE_PATH</code>. 첨부파일 경로
      */
     public String getAfilePath() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.REG_FILE_NM</code>. 등록 파일명
+     * Setter for <code>rocketmart.tb_cm_afile.REG_FILE_NM</code>. 등록 파일명
      */
     public void setRegFileNm(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.REG_FILE_NM</code>. 등록 파일명
+     * Getter for <code>rocketmart.tb_cm_afile.REG_FILE_NM</code>. 등록 파일명
      */
     public String getRegFileNm() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.EXT</code>. 확장자명
+     * Setter for <code>rocketmart.tb_cm_afile.EXT</code>. 확장자명
      */
     public void setExt(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.EXT</code>. 확장자명
+     * Getter for <code>rocketmart.tb_cm_afile.EXT</code>. 확장자명
      */
     public String getExt() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.AFILE_SIZE</code>. 첨부파일 사이즈
+     * Setter for <code>rocketmart.tb_cm_afile.AFILE_SIZE</code>. 첨부파일 사이즈
      */
     public void setAfileSize(Integer value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.AFILE_SIZE</code>. 첨부파일 사이즈
+     * Getter for <code>rocketmart.tb_cm_afile.AFILE_SIZE</code>. 첨부파일 사이즈
      */
     public Integer getAfileSize() {
         return (Integer) get(7);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.THEMA_RELM_CD</code>. 영역 코드
+     * Setter for <code>rocketmart.tb_cm_afile.THEMA_RELM_CD</code>. 영역 코드
      */
     public void setThemaRelmCd(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.THEMA_RELM_CD</code>. 영역 코드
+     * Getter for <code>rocketmart.tb_cm_afile.THEMA_RELM_CD</code>. 영역 코드
      */
     public String getThemaRelmCd() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.REG_MENU_PART</code>. 등록 메뉴 경로
+     * Setter for <code>rocketmart.tb_cm_afile.REG_MENU_PART</code>. 등록 메뉴 경로
      */
     public void setRegMenuPart(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.REG_MENU_PART</code>. 등록 메뉴 경로
+     * Getter for <code>rocketmart.tb_cm_afile.REG_MENU_PART</code>. 등록 메뉴 경로
      */
     public String getRegMenuPart() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.DEL_YN</code>. 삭제여부
+     * Setter for <code>rocketmart.tb_cm_afile.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.DEL_YN</code>. 삭제여부
+     * Getter for <code>rocketmart.tb_cm_afile.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.REG_USR_ID</code>. 등록자ID
+     * Setter for <code>rocketmart.tb_cm_afile.REG_USR_ID</code>. 등록자ID
      */
     public void setRegUsrId(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.REG_USR_ID</code>. 등록자ID
+     * Getter for <code>rocketmart.tb_cm_afile.REG_USR_ID</code>. 등록자ID
      */
     public String getRegUsrId() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_cm_afile.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_cm_afile.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(12);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.UPD_USR_ID</code>. 수정자ID
+     * Setter for <code>rocketmart.tb_cm_afile.UPD_USR_ID</code>. 수정자ID
      */
     public void setUpdUsrId(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.UPD_USR_ID</code>. 수정자ID
+     * Getter for <code>rocketmart.tb_cm_afile.UPD_USR_ID</code>. 수정자ID
      */
     public String getUpdUsrId() {
         return (String) get(13);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CM_AFILE.UPD_DT</code>. 수정일시
+     * Setter for <code>rocketmart.tb_cm_afile.UPD_DT</code>. 수정일시
      */
     public void setUpdDt(Timestamp value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CM_AFILE.UPD_DT</code>. 수정일시
+     * Getter for <code>rocketmart.tb_cm_afile.UPD_DT</code>. 수정일시
      */
     public Timestamp getUpdDt() {
         return (Timestamp) get(14);

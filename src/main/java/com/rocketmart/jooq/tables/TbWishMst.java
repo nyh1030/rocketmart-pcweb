@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbWishMst extends TableImpl<TbWishMstRecord> {
 
-    private static final long serialVersionUID = 785690428;
+    private static final long serialVersionUID = 153858972;
 
     /**
-     * The reference instance of <code>rocketmart.TB_WISH_MST</code>
+     * The reference instance of <code>rocketmart.tb_wish_mst</code>
      */
     public static final TbWishMst TB_WISH_MST = new TbWishMst();
 
@@ -59,61 +59,61 @@ public class TbWishMst extends TableImpl<TbWishMstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.WISH_SEQ</code>. 위시 일련번호
+     * The column <code>rocketmart.tb_wish_mst.WISH_SEQ</code>. 위시 일련번호
      */
     public final TableField<TbWishMstRecord, Integer> WISH_SEQ = createField(DSL.name("WISH_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "위시 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.PRODUCT_SEQ</code>. 상품 일련번호
+     * The column <code>rocketmart.tb_wish_mst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public final TableField<TbWishMstRecord, Integer> PRODUCT_SEQ = createField(DSL.name("PRODUCT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "상품 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.ASK_YN</code>. 문의여부
+     * The column <code>rocketmart.tb_wish_mst.ASK_YN</code>. 문의여부
      */
     public final TableField<TbWishMstRecord, String> ASK_YN = createField(DSL.name("ASK_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "문의여부");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.DEL_YN</code>. 삭제여부
+     * The column <code>rocketmart.tb_wish_mst.DEL_YN</code>. 삭제여부
      */
     public final TableField<TbWishMstRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.REG_USR_ID</code>. 등록자아이디
+     * The column <code>rocketmart.tb_wish_mst.REG_USR_ID</code>. 등록자아이디
      */
     public final TableField<TbWishMstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자아이디");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_wish_mst.REG_TS</code>. 등록일시
      */
     public final TableField<TbWishMstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.UPD_USR_ID</code>. 수정자아이디
+     * The column <code>rocketmart.tb_wish_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public final TableField<TbWishMstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자아이디");
 
     /**
-     * The column <code>rocketmart.TB_WISH_MST.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_wish_mst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbWishMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_WISH_MST</code> table reference
+     * Create a <code>rocketmart.tb_wish_mst</code> table reference
      */
     public TbWishMst() {
-        this(DSL.name("TB_WISH_MST"), null);
+        this(DSL.name("tb_wish_mst"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_WISH_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_wish_mst</code> table reference
      */
     public TbWishMst(String alias) {
         this(DSL.name(alias), TB_WISH_MST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_WISH_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_wish_mst</code> table reference
      */
     public TbWishMst(Name alias) {
         this(alias, TB_WISH_MST);

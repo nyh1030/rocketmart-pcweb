@@ -130,17 +130,17 @@ public class OtherCtl {
 
     /**
      * Inquiry 상세정보 조회
-     * @param inquiryDelSeq
+     * @param productSeq
      * @param model
      * @return String
      */
-    @GetMapping("/any/inquiry/detail/{inquiryDtlSeq}")
-    public String dispInquiryDetail(@PathVariable("inquiryDtlSeq") int inquiryDelSeq, Model model) {
+    @GetMapping("/any/inquiry/detail/{productSeq}")
+    public String dispInquiryDetail(@PathVariable("productSeq") int productSeq, Model model) {
 
         // Inquiry 상세정보 조회_마스터
         //model.addAttribute("inquiryInfo", this.otherSvc.findOneForInquiryMstInfo(inquirySeq));
         // Inquiry 상세정보 조회_상세
-        model.addAttribute("inquiryInfo", this.otherSvc.findAllForInquiryDtlInfo(inquiryDelSeq));
+        model.addAttribute("inquiryInfoList", this.otherSvc.findAllForInquiryDtlInfo(productSeq));
 
         return prefixPath.concat("/mypage/inquiry_detail");
     }

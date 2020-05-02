@@ -27,465 +27,465 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdMstRecord extends UpdatableRecordImpl<TbPrdMstRecord> {
 
-    private static final long serialVersionUID = 778854844;
+    private static final long serialVersionUID = -1947128772;
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public void setProductSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public Integer getProductSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.BRAND_SEQ</code>. 브랜드 일련번호
+     * Setter for <code>rocketmart.tb_prd_mst.BRAND_SEQ</code>. 브랜드 일련번호
      */
     public void setBrandSeq(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.BRAND_SEQ</code>. 브랜드 일련번호
+     * Getter for <code>rocketmart.tb_prd_mst.BRAND_SEQ</code>. 브랜드 일련번호
      */
     public Integer getBrandSeq() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_NM</code>. 상품명
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_NM</code>. 상품명
      */
     public void setProductNm(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_NM</code>. 상품명
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_NM</code>. 상품명
      */
     public String getProductNm() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.CATE1_CD</code>. 카테고리1 코드
+     * Setter for <code>rocketmart.tb_prd_mst.CATE1_CD</code>. 카테고리1 코드
      */
     public void setCate1Cd(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.CATE1_CD</code>. 카테고리1 코드
+     * Getter for <code>rocketmart.tb_prd_mst.CATE1_CD</code>. 카테고리1 코드
      */
     public String getCate1Cd() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.CATE2_CD</code>. 카테고리2 코드
+     * Setter for <code>rocketmart.tb_prd_mst.CATE2_CD</code>. 카테고리2 코드
      */
     public void setCate2Cd(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.CATE2_CD</code>. 카테고리2 코드
+     * Getter for <code>rocketmart.tb_prd_mst.CATE2_CD</code>. 카테고리2 코드
      */
     public String getCate2Cd() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.CATE3_CD</code>. 카테고리3 코드
+     * Setter for <code>rocketmart.tb_prd_mst.CATE3_CD</code>. 카테고리3 코드
      */
     public void setCate3Cd(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.CATE3_CD</code>. 카테고리3 코드
+     * Getter for <code>rocketmart.tb_prd_mst.CATE3_CD</code>. 카테고리3 코드
      */
     public String getCate3Cd() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_URL</code>. 상품소개영상 URL
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_URL</code>. 상품소개영상 URL
      */
     public void setProductUrl(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_URL</code>. 상품소개영상 URL
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_URL</code>. 상품소개영상 URL
      */
     public String getProductUrl() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_CAPACITY</code>. 상품 용량
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_CAPACITY</code>. 상품 용량
      */
     public void setProductCapacity(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_CAPACITY</code>. 상품 용량
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_CAPACITY</code>. 상품 용량
      */
     public String getProductCapacity() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_LINEUP</code>. 상품 색상/라인업
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_LINEUP</code>. 상품 색상/라인업
      */
     public void setProductLineup(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_LINEUP</code>. 상품 색상/라인업
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_LINEUP</code>. 상품 색상/라인업
      */
     public String getProductLineup() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.SELLER_NOTE</code>. SELLER 노트
+     * Setter for <code>rocketmart.tb_prd_mst.SELLER_NOTE</code>. SELLER 노트
      */
     public void setSellerNote(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.SELLER_NOTE</code>. SELLER 노트
+     * Getter for <code>rocketmart.tb_prd_mst.SELLER_NOTE</code>. SELLER 노트
      */
     public String getSellerNote() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_CONTENT</code>. 상품상세설명
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_CONTENT</code>. 상품상세설명
      */
     public void setProductContent(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_CONTENT</code>. 상품상세설명
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_CONTENT</code>. 상품상세설명
      */
     public String getProductContent() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)
+     * Setter for <code>rocketmart.tb_prd_mst.RETAIL_PRICE</code>. 소비자가격(USD)
      */
     public void setRetailPrice(Double value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.RETAIL_PRICE</code>. 소비자가격(USD)
+     * Getter for <code>rocketmart.tb_prd_mst.RETAIL_PRICE</code>. 소비자가격(USD)
      */
     public Double getRetailPrice() {
         return (Double) get(11);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.FOB_SEQ</code>. 도매가격(FOB) 일련번호
+     * Setter for <code>rocketmart.tb_prd_mst.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
     public void setFobSeq(Integer value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.FOB_SEQ</code>. 도매가격(FOB) 일련번호
+     * Getter for <code>rocketmart.tb_prd_mst.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
     public Integer getFobSeq() {
         return (Integer) get(12);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.GIVE_SAMPLE_YN</code>. 무료 샘플 제공 여부
+     * Setter for <code>rocketmart.tb_prd_mst.GIVE_SAMPLE_YN</code>. 무료 샘플 제공 여부
      */
     public void setGiveSampleYn(String value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.GIVE_SAMPLE_YN</code>. 무료 샘플 제공 여부
+     * Getter for <code>rocketmart.tb_prd_mst.GIVE_SAMPLE_YN</code>. 무료 샘플 제공 여부
      */
     public String getGiveSampleYn() {
         return (String) get(13);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ATRBT</code>. 상품 속성
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_ATRBT</code>. 상품 속성
      */
     public void setProductAtrbt(String value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ATRBT</code>. 상품 속성
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_ATRBT</code>. 상품 속성
      */
     public String getProductAtrbt() {
         return (String) get(14);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_CRT</code>. 상품 인증
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_CRT</code>. 상품 인증
      */
     public void setProductCrt(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_CRT</code>. 상품 인증
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_CRT</code>. 상품 인증
      */
     public String getProductCrt() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.EXPORT_HST</code>. 수출이력
+     * Setter for <code>rocketmart.tb_prd_mst.EXPORT_HST</code>. 수출이력
      */
     public void setExportHst(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.EXPORT_HST</code>. 수출이력
+     * Getter for <code>rocketmart.tb_prd_mst.EXPORT_HST</code>. 수출이력
      */
     public String getExportHst() {
         return (String) get(16);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.TRADING_CONDITIONS</code>. 가능한거래조건
+     * Setter for <code>rocketmart.tb_prd_mst.TRADING_CONDITIONS</code>. 가능한거래조건
      */
     public void setTradingConditions(String value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.TRADING_CONDITIONS</code>. 가능한거래조건
+     * Getter for <code>rocketmart.tb_prd_mst.TRADING_CONDITIONS</code>. 가능한거래조건
      */
     public String getTradingConditions() {
         return (String) get(17);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
      */
     public void setProductFrontAfileSeq(Integer value) {
         set(18, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_FRONT_AFILE_SEQ</code>. 파일첨부 제품정면
      */
     public Integer getProductFrontAfileSeq() {
         return (Integer) get(18);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
      */
     public void setProductBackAfileSeq(Integer value) {
         set(19, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_BACK_AFILE_SEQ</code>. 파일첨부 제품후면
      */
     public Integer getProductBackAfileSeq() {
         return (Integer) get(19);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
      */
     public void setProductAspectAfileSeq(Integer value) {
         set(20, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_ASPECT_AFILE_SEQ</code>. 파일첨부 제품측면
      */
     public Integer getProductAspectAfileSeq() {
         return (Integer) get(20);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
      */
     public void setProductShape1AfileSeq(Integer value) {
         set(21, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_SHAPE1_AFILE_SEQ</code>. 파일첨부 제품제형1
      */
     public Integer getProductShape1AfileSeq() {
         return (Integer) get(21);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
      */
     public void setProductShape2AfileSeq(Integer value) {
         set(22, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_SHAPE2_AFILE_SEQ</code>. 파일첨부 제품제형2
      */
     public Integer getProductShape2AfileSeq() {
         return (Integer) get(22);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
      */
     public void setProductOutside1AfileSeq(Integer value) {
         set(23, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_OUTSIDE1_AFILE_SEQ</code>. 파일첨부 외부패키지1
      */
     public Integer getProductOutside1AfileSeq() {
         return (Integer) get(23);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
      */
     public void setProductOutside2AfileSeq(Integer value) {
         set(24, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_OUTSIDE2_AFILE_SEQ</code>. 파일첨부 외부패키지2
      */
     public Integer getProductOutside2AfileSeq() {
         return (Integer) get(24);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
      */
     public void setProductEtc1AfileSeq(Integer value) {
         set(25, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_ETC1_AFILE_SEQ</code>. 파일첨부 기타1
      */
     public Integer getProductEtc1AfileSeq() {
         return (Integer) get(25);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
+     * Setter for <code>rocketmart.tb_prd_mst.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
      */
     public void setProductEtc2AfileSeq(Integer value) {
         set(26, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
+     * Getter for <code>rocketmart.tb_prd_mst.PRODUCT_ETC2_AFILE_SEQ</code>. 파일첨부 기타2
      */
     public Integer getProductEtc2AfileSeq() {
         return (Integer) get(26);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.DEL_YN</code>. 삭제여부
+     * Setter for <code>rocketmart.tb_prd_mst.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
         set(27, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.DEL_YN</code>. 삭제여부
+     * Getter for <code>rocketmart.tb_prd_mst.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
         return (String) get(27);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.REG_USR_ID</code>. 등록자ID
+     * Setter for <code>rocketmart.tb_prd_mst.REG_USR_ID</code>. 등록자ID
      */
     public void setRegUsrId(String value) {
         set(28, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.REG_USR_ID</code>. 등록자ID
+     * Getter for <code>rocketmart.tb_prd_mst.REG_USR_ID</code>. 등록자ID
      */
     public String getRegUsrId() {
         return (String) get(28);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_prd_mst.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(29, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_prd_mst.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(29);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.UPD_USR_ID</code>. 수정자ID
+     * Setter for <code>rocketmart.tb_prd_mst.UPD_USR_ID</code>. 수정자ID
      */
     public void setUpdUsrId(String value) {
         set(30, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.UPD_USR_ID</code>. 수정자ID
+     * Getter for <code>rocketmart.tb_prd_mst.UPD_USR_ID</code>. 수정자ID
      */
     public String getUpdUsrId() {
         return (String) get(30);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.tb_prd_mst.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(31, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.tb_prd_mst.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(31);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_MST.RELEASE_YN</code>.
+     * Setter for <code>rocketmart.tb_prd_mst.RELEASE_YN</code>.
      */
     public void setReleaseYn(String value) {
         set(32, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_MST.RELEASE_YN</code>.
+     * Getter for <code>rocketmart.tb_prd_mst.RELEASE_YN</code>.
      */
     public String getReleaseYn() {
         return (String) get(32);

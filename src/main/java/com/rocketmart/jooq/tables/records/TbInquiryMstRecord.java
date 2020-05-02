@@ -30,87 +30,87 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryMstRecord extends UpdatableRecordImpl<TbInquiryMstRecord> implements Record6<Integer, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -760711564;
+    private static final long serialVersionUID = -1508776332;
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.INQUIRY_SEQ</code>. 상품문의 일련번호
+     * Setter for <code>rocketmart.tb_inquiry_mst.INQUIRY_SEQ</code>. 상품문의 일련번호
      */
     public void setInquirySeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.INQUIRY_SEQ</code>. 상품문의 일련번호
+     * Getter for <code>rocketmart.tb_inquiry_mst.INQUIRY_SEQ</code>. 상품문의 일련번호
      */
     public Integer getInquirySeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.MESSAGE</code>. 문의 내용
+     * Setter for <code>rocketmart.tb_inquiry_mst.MESSAGE</code>. 문의 내용
      */
     public void setMessage(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.MESSAGE</code>. 문의 내용
+     * Getter for <code>rocketmart.tb_inquiry_mst.MESSAGE</code>. 문의 내용
      */
     public String getMessage() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.REG_USR_ID</code>. 등록자아이디
+     * Setter for <code>rocketmart.tb_inquiry_mst.REG_USR_ID</code>. 등록자아이디
      */
     public void setRegUsrId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.REG_USR_ID</code>. 등록자아이디
+     * Getter for <code>rocketmart.tb_inquiry_mst.REG_USR_ID</code>. 등록자아이디
      */
     public String getRegUsrId() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_inquiry_mst.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_inquiry_mst.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.UPD_USR_ID</code>. 수정자아이디
+     * Setter for <code>rocketmart.tb_inquiry_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public void setUpdUsrId(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.UPD_USR_ID</code>. 수정자아이디
+     * Getter for <code>rocketmart.tb_inquiry_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public String getUpdUsrId() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_INQUIRY_MST.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.tb_inquiry_mst.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_INQUIRY_MST.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.tb_inquiry_mst.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(5);

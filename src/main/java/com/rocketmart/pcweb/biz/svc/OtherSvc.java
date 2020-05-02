@@ -109,11 +109,11 @@ public class OtherSvc {
 	/**
 	 * Inquiry 등록
 	 * @param tbInquiryDtlRecord
-	 * @param productSeqs
+	 * @param productSeqArr
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public String saveInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, List<Integer> productSeqs) {
+	public String saveInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, List<Integer> productSeqArr) {
 		int resultMstSeq = 0;
 		int resultDtlCnt = 0;
 		int resultWishCnt = 0;
@@ -134,7 +134,7 @@ public class OtherSvc {
 			}
 
 		}*/
-		for(Integer productSeq : productSeqs){
+		for(Integer productSeq : productSeqArr){
 			tbInquiryDtlRecord.setProductSeq(productSeq);
 			resultDtlCnt += otherRepository.saveAllForInquiryDtlInfo(tbInquiryDtlRecord);
 			if(resultDtlCnt > 0){
@@ -156,11 +156,11 @@ public class OtherSvc {
 
 	/**
 	 * Inquiry 상세정보 조회_상세
-	 * @param inquiryDelSeq
+	 * @param productSeq
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryDtlInfo(int inquiryDelSeq) {
-		return otherRepository.findAllForInquiryDtlInfo(inquiryDelSeq);
+	public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq) {
+		return otherRepository.findAllForInquiryDtlInfo(productSeq);
 	}
 
 	/**
@@ -188,8 +188,18 @@ public class OtherSvc {
 	 * @return int
 	 */
 	@Transactional(rollbackFor = Exception.class)
-	public int updateReplyYn(int contactSeq) {
-		return otherRepository.updateReplyYn(contactSeq);
+	public int updateContactUsReplyYn(int contactSeq) {
+		return otherRepository.updateContactUsReplyYn(contactSeq);
+	}
+
+	/**
+	 * Inquiry 회신여부 변경
+	 * @param inquiryDtlSeq
+	 * @return int
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public int updateInquiryReplyYn(int inquiryDtlSeq) {
+		return otherRepository.updateInquiryReplyYn(inquiryDtlSeq);
 	}
 
 }

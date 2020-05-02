@@ -9,35 +9,109 @@
                     <h3>Inquiry</h3>
                 </div>
                 <div class="ps-block__content contact-box">
-                    <div class="mb-5">
+                    <div class="mb-10">
                         <label for="" class="bul-type">PRODUCT</label>
                         <div class="prd-wrap">
-                            <div class="item" th:each="productList : ${productList}">
+<!--                            <div class="item" th:each="productList : ${productList}">
                                 <div class="img-box"><img th:src="${productList.URL_PATH_CD}"></div>
                                 <span class="name" th:text="${productList.PRODUCT_NM}"></span>
                                 <input type="hidden" id="productSeq" name="productSeq" th:value="${productList.PRODUCT_SEQ}"/>
-                            </div>
+                            </div>-->
+                            <th:block th:if="${not #lists.isEmpty(inquiryInfoList)}">
+                                <div class="item" th:each="inquiry : ${inquiryInfoList}">
+                                    <th:block th:if="${inquiryStat.index == 0}">
+                                        <div class="img-box"><img th:src="${inquiry.URL_PATH_CD}"></div>
+                                        <span class="name" th:text="${inquiry.PRODUCT_NM}"></span>
+                                        <input type="hidden" id="productSeq" name="productSeq" th:value="${inquiry.PRODUCT_SEQ}"/>
+                                    </th:block>
+                                </div>
+                            </th:block>
                         </div>
                     </div>
-                    <div class="mb-5">
-                        <label for="memId" class="bul-type">MEM_ID</label>
-                        <input type="text" id="memId" name="memId" class="form-control" th:value="${inquiryInfo.REG_USR_ID}" disabled>
-                    </div>
-                    <div class="mb-5">
-                        <label for="memNm" class="bul-type">MEM_NM</label>
-                        <input type="text" id="memNm" name="memNm" class="form-control" th:value="${inquiryInfo.MEM_NM}" disabled>
-                    </div>
-                    <div class="mb-5">
+                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                        <th:block th:if="${not #lists.isEmpty(inquiryInfoList)}">
+                            <th:block th:each="inquiry : ${inquiryInfoList}">
+                                <th:block th:if="${inquiryStat.index == 0}">
+                                    <div class="mb-10">
+                                        <label for="memId" class="bul-type">MEM_ID</label>
+                                        <input type="text" id="memId" name="memId" class="form-control" th:value="${inquiry.REG_USR_ID}" disabled>
+                                    </div>
+                                    <div class="mb-10">
+                                        <label for="memNm" class="bul-type">MEM_NM</label>
+                                        <input type="text" id="memNm" name="memNm" class="form-control" th:value="${inquiry.MEM_NM}" disabled>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </th:block>
+                    </th:block>
+                    <!--
+                    <div class="mb-10">
                         <label for="regTs" class="bul-type">REG_TS</label>
                         <input type="text" id="regTs" name="regTs" class="form-control" th:value="${#strings.substring(inquiryInfo.REG_TS,0,19)}" disabled>
                     </div>
-                    <div class="mb-5">
+                    <div class="mb-10">
                         <label for="message" class="bul-type">MESSAGE</label>
                         <textarea id="message" name="message" maxlength="4000" class="form-control" th:text="${inquiryInfo.MESSAGE}" disabled></textarea>
+                    </div>-->
+                    <div class="mb-10" id="askMessage" style="display:none">
+                        <label for="message" class="bul-type">MESSAGE</label>
+                        <textarea id="message" name="message" maxlength="4000" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-10">
+                        <label for="" class="bul-type">HISTORY</label>
+                        <div class="table-responsive">
+                            <table class="table ps-table ps-table--vendor">
+                                <colgroup>
+                                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                                        <col>
+                                        <col style="width:20%">
+                                        <col style="width:10%">
+                                    </th:block>
+                                    <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                        <col>
+                                        <col style="width:20%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                                        <th>MESSAGE</th>
+                                        <th>REG_TS</th>
+                                        <th>REPLY</th>
+                                    </th:block>
+                                    <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                        <th>MESSAGE</th>
+                                        <th>REG_TS</th>
+                                    </th:block>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:if="${not #lists.isEmpty(inquiryInfoList)}">
+                                    <tr th:each="inquiry : ${inquiryInfoList}">
+                                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                                            <td class="link-type"><a th:href="'#modalMessage' + ${inquiryStat.index}" rel="modal:open" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                            <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
+                                            <td><input type="checkbox" name="chkReplyYn" th:value="${inquiry.INQUIRY_DTL_SEQ}"
+                                                       th:checked="${#strings.equals(inquiry.REPLY_YN,'Y')}"/></td>
+                                        </th:block>
+                                        <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                            <td class="link-type"><a th:href="'#modalMessage' + ${inquiryStat.index}" rel="modal:open" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                            <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
+                                        </th:block>
+                                        <div class="modal-dialog" style="min-width:80%; width:auto;height:auto;display:none" th:id="'modalMessage' + ${inquiryStat.index}"><p th:text="${inquiry.MESSAGE}"></p></div>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="btns">
+                <div class="btns" id="divDetail">
+                    <button type="button" id="btnAskAgain" class="ps-btn type-yellow">Ask Again</button>
                     <button type="button" id="btnList" class="ps-btn type-black">List</button>
+                </div>
+                <div class="btns" id="divAsk" style="display: none">
+                    <button type="button" id="btnSubmit" class="ps-btn type-black">Submit</button>
+                    <button type="button" id="btnCancel" class="ps-btn type-black">Cancel</button>
                 </div>
             </div>
         </div>
@@ -59,9 +133,62 @@
         init() {
 
         },
+
+        updateReplyYn(inquiryDtlSeq) {
+            axios({
+                method: 'get',
+                url: `/admin/rest/inquiry/update/${inquiryDtlSeq}`
+            }).then(response => {
+                if (response.data === 200) {
+                    alert('Update successfully');
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+
+        openPopup: function () {
+            this.blur();
+
+            if(this.checked){
+                $.modalPopup({
+                    url: '/any/'+$(this).attr('id'),
+                    close: function(result) {
+                        console.log(result);
+                    }
+                });
+            }
+        },
+
+        saveInquiryInfo() {
+            axios({
+                method: 'post',
+                url: '/any/rest/inquiry/info/save',
+                params: Object.assign(this.getParameters())
+            }).then(response => {
+                if (response.data === 200) {
+                    alert('Submitted successfully');
+                    location.reload();
+                }else{
+                    alert('Failed to submit');
+                }
+            }).catch(error => {
+                console.log(error);
+                alert('[Error] Please contact administrator');
+            });
+        },
+
+        getParameters() {
+            return {
+                productSeqs: CommonUtils.getNamesToCommaString($('[name="productSeq"]')),
+                message: $('#message').val()
+            }
+        },
+
         returnPage(){
             CommonUtils.forwardPage('/any/inquiry/list');
         }
+
     };
 
     const EventScope = {
@@ -71,8 +198,26 @@
         },
 
         clickEventListener() {
+            $('#btnAskAgain').on('click', () => {
+                $('#askMessage').show();
+                $('#divDetail').hide();
+                $('#divAsk').show();
+            });
             $('#btnList').on('click', () => {
                 PageScope.returnPage();
+            });
+            $('#btnCancel').on('click', () => {
+                $('#askMessage').hide();
+                $('#divAsk').hide();
+                $('#divDetail').show();
+            });
+            $('#btnSubmit').on('click', () => {
+                if (confirm('Do you want to submit?')) {
+                    PageScope.saveInquiryInfo();
+                }
+            });
+            $('[name="chkReplyYn"]').on('click', function() {
+                PageScope.updateReplyYn($(this).val());
             });
         }
     };

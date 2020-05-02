@@ -30,115 +30,115 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbWishMstRecord extends UpdatableRecordImpl<TbWishMstRecord> implements Record8<Integer, Integer, String, String, String, Timestamp, String, Timestamp> {
 
-    private static final long serialVersionUID = -657697246;
+    private static final long serialVersionUID = 1768994210;
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.WISH_SEQ</code>. 위시 일련번호
+     * Setter for <code>rocketmart.tb_wish_mst.WISH_SEQ</code>. 위시 일련번호
      */
     public void setWishSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.WISH_SEQ</code>. 위시 일련번호
+     * Getter for <code>rocketmart.tb_wish_mst.WISH_SEQ</code>. 위시 일련번호
      */
     public Integer getWishSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Setter for <code>rocketmart.tb_wish_mst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public void setProductSeq(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.PRODUCT_SEQ</code>. 상품 일련번호
+     * Getter for <code>rocketmart.tb_wish_mst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public Integer getProductSeq() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.ASK_YN</code>. 문의여부
+     * Setter for <code>rocketmart.tb_wish_mst.ASK_YN</code>. 문의여부
      */
     public void setAskYn(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.ASK_YN</code>. 문의여부
+     * Getter for <code>rocketmart.tb_wish_mst.ASK_YN</code>. 문의여부
      */
     public String getAskYn() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.DEL_YN</code>. 삭제여부
+     * Setter for <code>rocketmart.tb_wish_mst.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.DEL_YN</code>. 삭제여부
+     * Getter for <code>rocketmart.tb_wish_mst.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.REG_USR_ID</code>. 등록자아이디
+     * Setter for <code>rocketmart.tb_wish_mst.REG_USR_ID</code>. 등록자아이디
      */
     public void setRegUsrId(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.REG_USR_ID</code>. 등록자아이디
+     * Getter for <code>rocketmart.tb_wish_mst.REG_USR_ID</code>. 등록자아이디
      */
     public String getRegUsrId() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_wish_mst.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_wish_mst.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.UPD_USR_ID</code>. 수정자아이디
+     * Setter for <code>rocketmart.tb_wish_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public void setUpdUsrId(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.UPD_USR_ID</code>. 수정자아이디
+     * Getter for <code>rocketmart.tb_wish_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public String getUpdUsrId() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_WISH_MST.UPD_TS</code>. 수정일시
+     * Setter for <code>rocketmart.tb_wish_mst.UPD_TS</code>. 수정일시
      */
     public void setUpdTs(Timestamp value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_WISH_MST.UPD_TS</code>. 수정일시
+     * Getter for <code>rocketmart.tb_wish_mst.UPD_TS</code>. 수정일시
      */
     public Timestamp getUpdTs() {
         return (Timestamp) get(7);

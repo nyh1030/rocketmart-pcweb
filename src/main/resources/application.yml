@@ -32,7 +32,7 @@ spring:
 
 afile:
   host: "http://localhost:8080"
-  path: "C:\\rocketmart-pcweb\\src\\main\\resources\\static\\afiles\\"
+  path: "C:\\rocketmart\\workspace\\rocketmart-pcweb\\src\\main\\resources\\static\\afiles\\"
 
 logging:
   level:

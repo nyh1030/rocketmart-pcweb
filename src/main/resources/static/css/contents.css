@@ -82,7 +82,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-block__content .info-list > li .btn-file{font-size:14px;text-decoration:none;margin-left:10px;}
 .ps-block__content .info-list > li .btn-file .fa{margin-right:3px;}
 .ps-block__content textarea.form-control{height:250px;}
-.ps-block__content.contact-box{width:50%;margin:0 auto;}
+.ps-block__content.contact-box{width:60%;margin:0 auto;}
 .ps-block__content.contact-box .prd-wrap{overflow:hidden}
 .ps-block__content.contact-box .item{float:left;width:140px;margin:13px 13px 0 0;}
 .ps-block__content.contact-box .item:nth-child(4n){margin-right:0;}

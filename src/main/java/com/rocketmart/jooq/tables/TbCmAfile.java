@@ -42,10 +42,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCmAfile extends TableImpl<TbCmAfileRecord> {
 
-    private static final long serialVersionUID = -780871132;
+    private static final long serialVersionUID = 1922907620;
 
     /**
-     * The reference instance of <code>rocketmart.TB_CM_AFILE</code>
+     * The reference instance of <code>rocketmart.tb_cm_afile</code>
      */
     public static final TbCmAfile TB_CM_AFILE = new TbCmAfile();
 
@@ -58,96 +58,96 @@ public class TbCmAfile extends TableImpl<TbCmAfileRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.AFILE_SEQ</code>. 첨부파일 일련번호
+     * The column <code>rocketmart.tb_cm_afile.AFILE_SEQ</code>. 첨부파일 일련번호
      */
     public final TableField<TbCmAfileRecord, Integer> AFILE_SEQ = createField(DSL.name("AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "첨부파일 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.AFILE_NO</code>. 첨부파일 순번
+     * The column <code>rocketmart.tb_cm_afile.AFILE_NO</code>. 첨부파일 순번
      */
     public final TableField<TbCmAfileRecord, Integer> AFILE_NO = createField(DSL.name("AFILE_NO"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "첨부파일 순번");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.ORGN_FILE_NM</code>. 원본 파일명
+     * The column <code>rocketmart.tb_cm_afile.ORGN_FILE_NM</code>. 원본 파일명
      */
     public final TableField<TbCmAfileRecord, String> ORGN_FILE_NM = createField(DSL.name("ORGN_FILE_NM"), org.jooq.impl.SQLDataType.VARCHAR(400).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "원본 파일명");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.URL_PATH_CD</code>. URL 경로 코드
+     * The column <code>rocketmart.tb_cm_afile.URL_PATH_CD</code>. URL 경로 코드
      */
     public final TableField<TbCmAfileRecord, String> URL_PATH_CD = createField(DSL.name("URL_PATH_CD"), org.jooq.impl.SQLDataType.VARCHAR(2000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "URL 경로 코드");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.AFILE_PATH</code>. 첨부파일 경로
+     * The column <code>rocketmart.tb_cm_afile.AFILE_PATH</code>. 첨부파일 경로
      */
     public final TableField<TbCmAfileRecord, String> AFILE_PATH = createField(DSL.name("AFILE_PATH"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "첨부파일 경로");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.REG_FILE_NM</code>. 등록 파일명
+     * The column <code>rocketmart.tb_cm_afile.REG_FILE_NM</code>. 등록 파일명
      */
     public final TableField<TbCmAfileRecord, String> REG_FILE_NM = createField(DSL.name("REG_FILE_NM"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "등록 파일명");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.EXT</code>. 확장자명
+     * The column <code>rocketmart.tb_cm_afile.EXT</code>. 확장자명
      */
     public final TableField<TbCmAfileRecord, String> EXT = createField(DSL.name("EXT"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "확장자명");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.AFILE_SIZE</code>. 첨부파일 사이즈
+     * The column <code>rocketmart.tb_cm_afile.AFILE_SIZE</code>. 첨부파일 사이즈
      */
     public final TableField<TbCmAfileRecord, Integer> AFILE_SIZE = createField(DSL.name("AFILE_SIZE"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "첨부파일 사이즈");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.THEMA_RELM_CD</code>. 영역 코드
+     * The column <code>rocketmart.tb_cm_afile.THEMA_RELM_CD</code>. 영역 코드
      */
     public final TableField<TbCmAfileRecord, String> THEMA_RELM_CD = createField(DSL.name("THEMA_RELM_CD"), org.jooq.impl.SQLDataType.VARCHAR(20).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "영역 코드");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.REG_MENU_PART</code>. 등록 메뉴 경로
+     * The column <code>rocketmart.tb_cm_afile.REG_MENU_PART</code>. 등록 메뉴 경로
      */
     public final TableField<TbCmAfileRecord, String> REG_MENU_PART = createField(DSL.name("REG_MENU_PART"), org.jooq.impl.SQLDataType.VARCHAR(200).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "등록 메뉴 경로");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.DEL_YN</code>. 삭제여부
+     * The column <code>rocketmart.tb_cm_afile.DEL_YN</code>. 삭제여부
      */
     public final TableField<TbCmAfileRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.REG_USR_ID</code>. 등록자ID
+     * The column <code>rocketmart.tb_cm_afile.REG_USR_ID</code>. 등록자ID
      */
     public final TableField<TbCmAfileRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "등록자ID");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_cm_afile.REG_TS</code>. 등록일시
      */
     public final TableField<TbCmAfileRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.UPD_USR_ID</code>. 수정자ID
+     * The column <code>rocketmart.tb_cm_afile.UPD_USR_ID</code>. 수정자ID
      */
     public final TableField<TbCmAfileRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "수정자ID");
 
     /**
-     * The column <code>rocketmart.TB_CM_AFILE.UPD_DT</code>. 수정일시
+     * The column <code>rocketmart.tb_cm_afile.UPD_DT</code>. 수정일시
      */
     public final TableField<TbCmAfileRecord, Timestamp> UPD_DT = createField(DSL.name("UPD_DT"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_CM_AFILE</code> table reference
+     * Create a <code>rocketmart.tb_cm_afile</code> table reference
      */
     public TbCmAfile() {
-        this(DSL.name("TB_CM_AFILE"), null);
+        this(DSL.name("tb_cm_afile"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_CM_AFILE</code> table reference
+     * Create an aliased <code>rocketmart.tb_cm_afile</code> table reference
      */
     public TbCmAfile(String alias) {
         this(DSL.name(alias), TB_CM_AFILE);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_CM_AFILE</code> table reference
+     * Create an aliased <code>rocketmart.tb_cm_afile</code> table reference
      */
     public TbCmAfile(Name alias) {
         this(alias, TB_CM_AFILE);

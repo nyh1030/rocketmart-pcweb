@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/main">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" layout:decorator="layout/main">
 <th:block layout:fragment="content">
 <div class="ps-vendor-dashboard ps-store-list">
     <!-- .container : S -->
@@ -52,34 +52,75 @@
                         <div class="table-responsive">
                             <table class="table ps-table ps-table--vendor">
                                 <colgroup>
-                                    <col style="width:6%">
-                                    <col style="width:12%">
-                                    <col style="width:8%">
-                                    <col style="width:15%">
-                                    <col>
+                                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                                        <col style="width:6%">
+                                        <col style="width:12%">
+                                        <col style="width:8%">
+                                        <col style="width:10%">
+                                        <col style="width:18%">
+                                        <col style="width:12%">
+                                        <col>
+                                        <col style="width:7%">
+                                    </th:block>
+                                    <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                        <col style="width:6%">
+                                        <col style="width:10%">
+                                        <col style="width:20%">
+                                        <col style="width:12%">
+                                        <col>
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th>NO</th>
-                                    <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>REG_TS</th>
-                                    <th>MESSAGE</th>
+                                    <th:block sec:authorize="hasAuthority('ADMIN')">
+                                        <th>NO</th>
+                                        <th>ID</th>
+                                        <th>NAME</th>
+                                        <th>IMAGE</th>
+                                        <th>PRODUCT</th>
+                                        <th>REG_TS</th>
+                                        <th>MESSAGE</th>
+                                        <th>REPLY</th>
+                                    </th:block>
+                                    <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                        <th>NO</th>
+                                        <th>IMAGE</th>
+                                        <th>PRODUCT</th>
+                                        <th>REG_TS</th>
+                                        <th>MESSAGE</th>
+                                    </th:block>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <th:block th:if="${#lists.isEmpty(inquiryList)}">
                                     <tr>
-                                        <td colspan="5">There is no registered inquiry.</td>
+                                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                                            <td colspan="8">There is no registered inquiry.</td>
+                                        </th:block>
+                                        <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                            <td colspan="5">There is no registered inquiry.</td>
+                                        </th:block>
                                     </tr>
                                 </th:block>
                                 <th:block th:if="${not #lists.isEmpty(inquiryList)}">
                                     <tr th:each="inquiry : ${inquiryList}">
                                         <td th:text="${inquiryStat.size - inquiryStat.index}"></td>
-                                        <td th:text="${inquiry.MEM_ID}"></td>
-                                        <td th:text="${inquiry.MEM_NM}"></td>
-                                        <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
-                                        <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.INQUIRY_DTL_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                                            <td th:text="${inquiry.MEM_ID}"></td>
+                                            <td th:text="${inquiry.MEM_NM}"></td>
+                                            <td><div class="img-box"><img th:src="${inquiry.URL_PATH_CD}"></div></td>
+                                            <td th:text="${inquiry.PRODUCT_NM}"></td>
+                                            <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
+                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                            <td th:if="${inquiry.REPLY_YN_CNT == 0}">회신</td>
+                                            <td th:if="${inquiry.REPLY_YN_CNT != 0}"><font color="red">미회신</font></td>
+                                        </th:block>
+                                        <th:block sec:authorize="!hasAuthority('ADMIN')">
+                                            <td><div class="img-box"><img th:src="${inquiry.URL_PATH_CD}"></div></td>
+                                            <td th:text="${inquiry.PRODUCT_NM}"></td>
+                                            <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
+                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                        </th:block>
+
                                     </tr>
                                 </th:block>
                                 </tbody>

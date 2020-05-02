@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
@@ -58,19 +59,19 @@ public class OtherRestCtl {
 	/**
 	 * Inquiry 등록
 	 * @param tbInquiryDtlRecord
-	 * @param productSeq
+	 * @param productSeqs
 	 * @param principal
 	 * @return ResponseEntity<String>
 	 */
 	@PostMapping("/any/rest/inquiry/info/save")
-	public ResponseEntity<String> saveInquiryInfo(@NotNull TbInquiryDtlRecord tbInquiryDtlRecord, @NotNull @RequestParam(value = "productSeq") String productSeq, @NotNull Principal principal) {
-		List<Integer> productSeqs = Arrays.stream(productSeq.split(",", -1))
+	public ResponseEntity<String> saveInquiryInfo(@NotNull TbInquiryDtlRecord tbInquiryDtlRecord, @NotNull @RequestParam(value = "productSeqs") String productSeqs, @NotNull Principal principal) {
+		List<Integer> productSeqArr = Arrays.stream(productSeqs.split(",", -1))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
 
 		tbInquiryDtlRecord.setRegUsrId(principal.getName());
 
-		return new ResponseEntity<>(otherSvc.saveInquiryInfo(tbInquiryDtlRecord, productSeqs), HttpStatus.OK);
+		return new ResponseEntity<>(otherSvc.saveInquiryInfo(tbInquiryDtlRecord, productSeqArr), HttpStatus.OK);
 	}
 
 	/**
@@ -105,8 +106,18 @@ public class OtherRestCtl {
 	 * @return ResponseEntity<String>
 	 */
 	@GetMapping("/admin/rest/contactus/update/{contactSeq}")
-	public ResponseEntity<String> updateReplyYn(@PathVariable(value = "contactSeq") int contactSeq) {
-		return new ResponseEntity<>(otherSvc.updateReplyYn(contactSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	public ResponseEntity<String> updateContactUsReplyYn(@PathVariable(value = "contactSeq") int contactSeq) {
+		return new ResponseEntity<>(otherSvc.updateContactUsReplyYn(contactSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+	}
+
+	/**
+	 * Inquiry 회신여부 변경
+	 * @param inquiryDtlSeq
+	 * @return ResponseEntity<String>
+	 */
+	@GetMapping("/admin/rest/inquiry/update/{inquiryDtlSeq}")
+	public ResponseEntity<String> updateInquiryReplyYn(@PathVariable(value = "inquiryDtlSeq") int inquiryDtlSeq) {
+		return new ResponseEntity<>(otherSvc.updateInquiryReplyYn(inquiryDtlSeq) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 }

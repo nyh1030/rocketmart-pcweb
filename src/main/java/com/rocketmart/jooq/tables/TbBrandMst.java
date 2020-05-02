@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
 
-    private static final long serialVersionUID = 1854109968;
+    private static final long serialVersionUID = -873805744;
 
     /**
-     * The reference instance of <code>rocketmart.TB_BRAND_MST</code>
+     * The reference instance of <code>rocketmart.tb_brand_mst</code>
      */
     public static final TbBrandMst TB_BRAND_MST = new TbBrandMst();
 
@@ -59,91 +59,91 @@ public class TbBrandMst extends TableImpl<TbBrandMstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_SEQ</code>. 브랜드 일련번호
+     * The column <code>rocketmart.tb_brand_mst.BRAND_SEQ</code>. 브랜드 일련번호
      */
     public final TableField<TbBrandMstRecord, Integer> BRAND_SEQ = createField(DSL.name("BRAND_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "브랜드 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_NM</code>. 브랜드명
+     * The column <code>rocketmart.tb_brand_mst.BRAND_NM</code>. 브랜드명
      */
     public final TableField<TbBrandMstRecord, String> BRAND_NM = createField(DSL.name("BRAND_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "브랜드명");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ</code>. 브랜드 로고 첨부 일련번호
+     * The column <code>rocketmart.tb_brand_mst.BRAND_LOGO_AFILE_SEQ</code>. 브랜드 로고 첨부 일련번호
      */
     public final TableField<TbBrandMstRecord, Integer> BRAND_LOGO_AFILE_SEQ = createField(DSL.name("BRAND_LOGO_AFILE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "브랜드 로고 첨부 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_OWNERSHIP</code>. 브랜드 오너십
+     * The column <code>rocketmart.tb_brand_mst.BRAND_OWNERSHIP</code>. 브랜드 오너십
      */
     public final TableField<TbBrandMstRecord, String> BRAND_OWNERSHIP = createField(DSL.name("BRAND_OWNERSHIP"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "브랜드 오너십");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_HOMEPAGE_URL</code>. 브랜드 홈페이지URL
+     * The column <code>rocketmart.tb_brand_mst.BRAND_HOMEPAGE_URL</code>. 브랜드 홈페이지URL
      */
     public final TableField<TbBrandMstRecord, String> BRAND_HOMEPAGE_URL = createField(DSL.name("BRAND_HOMEPAGE_URL"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 홈페이지URL");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_YOUTUBE_URL</code>. 브랜드 유튜브URL
+     * The column <code>rocketmart.tb_brand_mst.BRAND_YOUTUBE_URL</code>. 브랜드 유튜브URL
      */
     public final TableField<TbBrandMstRecord, String> BRAND_YOUTUBE_URL = createField(DSL.name("BRAND_YOUTUBE_URL"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 유튜브URL");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_INSTAGRAM_URL</code>. 브랜드 인스타그램URL
+     * The column <code>rocketmart.tb_brand_mst.BRAND_INSTAGRAM_URL</code>. 브랜드 인스타그램URL
      */
     public final TableField<TbBrandMstRecord, String> BRAND_INSTAGRAM_URL = createField(DSL.name("BRAND_INSTAGRAM_URL"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 인스타그램URL");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_CERIFY</code>. 브랜드 인증
+     * The column <code>rocketmart.tb_brand_mst.BRAND_CERIFY</code>. 브랜드 인증
      */
     public final TableField<TbBrandMstRecord, String> BRAND_CERIFY = createField(DSL.name("BRAND_CERIFY"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "브랜드 인증");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.BRAND_INTRODUCTION</code>. 브랜드 소개
+     * The column <code>rocketmart.tb_brand_mst.BRAND_INTRODUCTION</code>. 브랜드 소개
      */
     public final TableField<TbBrandMstRecord, String> BRAND_INTRODUCTION = createField(DSL.name("BRAND_INTRODUCTION"), org.jooq.impl.SQLDataType.CLOB.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.CLOB)), this, "브랜드 소개");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.DEL_YN</code>. 삭제여부
+     * The column <code>rocketmart.tb_brand_mst.DEL_YN</code>. 삭제여부
      */
     public final TableField<TbBrandMstRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.REG_USR_ID</code>. 등록자 아이디
+     * The column <code>rocketmart.tb_brand_mst.REG_USR_ID</code>. 등록자 아이디
      */
     public final TableField<TbBrandMstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_brand_mst.REG_TS</code>. 등록일시
      */
     public final TableField<TbBrandMstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.UPD_USR_ID</code>. 수정자 아이디
+     * The column <code>rocketmart.tb_brand_mst.UPD_USR_ID</code>. 수정자 아이디
      */
     public final TableField<TbBrandMstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_BRAND_MST.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_brand_mst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbBrandMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_BRAND_MST</code> table reference
+     * Create a <code>rocketmart.tb_brand_mst</code> table reference
      */
     public TbBrandMst() {
-        this(DSL.name("TB_BRAND_MST"), null);
+        this(DSL.name("tb_brand_mst"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_BRAND_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_brand_mst</code> table reference
      */
     public TbBrandMst(String alias) {
         this(DSL.name(alias), TB_BRAND_MST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_BRAND_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_brand_mst</code> table reference
      */
     public TbBrandMst(Name alias) {
         this(alias, TB_BRAND_MST);

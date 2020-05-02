@@ -37,7 +37,7 @@
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
                                         <col style="width:6%">
-                                        <col style="width:15%" sec:authorize="hasAuthority('ADMIN')">
+                                        <col style="width:10%">
                                         <col>
                                         <col style="width:15%">
                                         <col style="width:13%">
@@ -46,7 +46,7 @@
                                     <thead>
                                     <tr>
                                         <th><input type="checkbox" id="productSeqAll" name="productSeqAll" class="check-all"/></th>
-                                        <th sec:authorize="hasAuthority('ADMIN')">BUYER</th>
+                                        <th>IMAGE</th>
                                         <th>PRODUCT</th>
                                         <th>RETAIL PRICE</th>
                                         <th>FOB PRICE</th>
@@ -63,6 +63,7 @@
                                         <tr th:each="wish : ${wishList}">
                                             <td><input type="checkbox" id="productSeqArr" name="productSeqArr" th:value="${wish.PRODUCT_SEQ}" class="check"/></td>
                                             <td th:text="${wish.MEM_NM}" sec:authorize="hasAuthority('ADMIN')"></td>
+                                            <td><div class="img-box"><img th:src="${wish.URL_PATH_CD}"></div></td>
                                             <td th:text="${wish.PRODUCT_NM}" class="txt-left"></td>
                                             <td th:text="'$' + ${wish.RETAIL_PRICE}"></td>
                                             <td th:if="${wish.APPROVAL_YN == 'N'}">Pending</td>
@@ -89,7 +90,12 @@
 
                                                                 </tbody>
                                                             </table>
-                                                            <p class="txt-impt">* Free Sample: Available</p>
+                                                            <th:block th:if="${wish.GIVE_SAMPLE_YN == 'Y'}">
+                                                                <p class="txt-impt">* Free Sample: Available</p>
+                                                            </th:block>
+                                                            <th:block th:if="${wish.GIVE_SAMPLE_YN == 'N'}">
+                                                                <p class="txt-impt">* Free Sample: Not Available</p>
+                                                            </th:block>
                                                         </div>
                                                         <a href="#" class="btn-close">X</a>
                                                     </div>
@@ -98,8 +104,8 @@
                                             </td>
                                             <td>
                                                 <div class="btns type">
-                                                    <button type="button" id="btnAsk" name="btnAsk" th:if="${wish.ASK_YN == 'N'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
-                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.ASK_YN == 'Y'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
+                                                    <button type="button" id="btnAsk" name="btnAsk" th:if="${wish.INQUIRY_YN == 'N'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Ask This</button>
+                                                    <button type="button" id="btnInquiry" name="btnInquiry" th:if="${wish.INQUIRY_YN == 'Y'}" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Inquiry History</button>
                                                     <button type="button" id="btnDetail" name="btnDetail" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-black">Details</button>
                                                     <button type="button" id="btnDelete" name="btnDelete" th:value="${wish.PRODUCT_SEQ}" class="ps-btn type-yellow">Delete</button>
                                                 </div>
@@ -133,8 +139,10 @@
     const PageScope = {
 
         init() {
+            //전체선택
             $('.check-all').on('click',this.checkAll);
 
+            //가격조회
             $('.tooltip-box a').on('click',function(){
                 var productSeq = parseInt($(this).attr('value'));
                 axios({
@@ -150,9 +158,9 @@
                             data.forEach(item => {
                                 $tblFobPriceTbody.append(`
                                                 <tr>
-                                                    <td>${item.RANGE_START + ' ~ ' + item.RANGE_START}</td>
-                                                    <td>${CommonUtils.formatNumberWithCommas(item.TRADING_PRICE)}</td>
-                                                    <td>${item.SUPPLY_RATE}</td>
+                                                    <td>${CommonUtils.formatNumberWithCommas(item.RANGE_START) + ' ~ ' + CommonUtils.formatNumberWithCommas(item.RANGE_END)}</td>
+                                                    <td>${'$' + CommonUtils.formatNumberWithCommas(((item.RETAIL_PRICE * item.EXPOSURE_SUPPLY_RATE) / 100.0).toFixed(3))}</td>
+                                                    <td>${item.EXPOSURE_SUPPLY_RATE + '%'}</td>
                                                 </tr>
                                             `);
                             });
@@ -163,6 +171,9 @@
                             }else{
                                 $(this).siblings('.cont').hide();
                             }
+
+                            //ClickLog History
+                            PageScope.savePrdFobHst(productSeq);
                         } else {
                             alert('FOB price does not exist');
                         }
@@ -212,6 +223,24 @@
             }).catch(error => {
                 console.log(error);
             });
+        },
+
+        savePrdFobHst(productSeq) {
+            axios({
+                method: 'post',
+                url: '/any/rest/clicklog/info/save',
+                params: Object.assign(this.getClickLogParameters())
+            }).then(response => {
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+
+        getClickLogParameters() {
+            return {
+                productSeq: productSeq
+            }
         }
     };
 
@@ -240,7 +269,7 @@
                 location.href='/any/inquiry/detail/'+$(this).val();
             });
             $('[name="btnDetail"]').on('click', function() {
-                CommonUtils.forwardPage("/any/product_detail/"+$(this).val());
+                CommonUtils.openPage("/any/product_detail/"+$(this).val());
             });
             $('[name="btnDelete"]').on('click', function() {
                 if(confirm('Are you sure you want to delete this product?')) {

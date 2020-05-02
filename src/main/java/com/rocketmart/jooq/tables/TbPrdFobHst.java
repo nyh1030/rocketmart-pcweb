@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
 
-    private static final long serialVersionUID = -815097577;
+    private static final long serialVersionUID = 926524791;
 
     /**
-     * The reference instance of <code>rocketmart.TB_PRD_FOB_HST</code>
+     * The reference instance of <code>rocketmart.tb_prd_fob_hst</code>
      */
     public static final TbPrdFobHst TB_PRD_FOB_HST = new TbPrdFobHst();
 
@@ -59,51 +59,51 @@ public class TbPrdFobHst extends TableImpl<TbPrdFobHstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.FOB_HST_SEQ</code>. FOB 조회 일련번호
+     * The column <code>rocketmart.tb_prd_fob_hst.FOB_HST_SEQ</code>. FOB 조회 일련번호
      */
     public final TableField<TbPrdFobHstRecord, Integer> FOB_HST_SEQ = createField(DSL.name("FOB_HST_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "FOB 조회 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.PRODUCT_SEQ</code>. 상품 일련번호
+     * The column <code>rocketmart.tb_prd_fob_hst.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public final TableField<TbPrdFobHstRecord, Integer> PRODUCT_SEQ = createField(DSL.name("PRODUCT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "상품 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.REG_USR_ID</code>. 등록자 아이디
+     * The column <code>rocketmart.tb_prd_fob_hst.REG_USR_ID</code>. 등록자 아이디
      */
     public final TableField<TbPrdFobHstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_prd_fob_hst.REG_TS</code>. 등록일시
      */
     public final TableField<TbPrdFobHstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.UPD_USR_ID</code>. 수정자 아이디
+     * The column <code>rocketmart.tb_prd_fob_hst.UPD_USR_ID</code>. 수정자 아이디
      */
     public final TableField<TbPrdFobHstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB_HST.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_prd_fob_hst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbPrdFobHstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_PRD_FOB_HST</code> table reference
+     * Create a <code>rocketmart.tb_prd_fob_hst</code> table reference
      */
     public TbPrdFobHst() {
-        this(DSL.name("TB_PRD_FOB_HST"), null);
+        this(DSL.name("tb_prd_fob_hst"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_PRD_FOB_HST</code> table reference
+     * Create an aliased <code>rocketmart.tb_prd_fob_hst</code> table reference
      */
     public TbPrdFobHst(String alias) {
         this(DSL.name(alias), TB_PRD_FOB_HST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_PRD_FOB_HST</code> table reference
+     * Create an aliased <code>rocketmart.tb_prd_fob_hst</code> table reference
      */
     public TbPrdFobHst(Name alias) {
         this(alias, TB_PRD_FOB_HST);

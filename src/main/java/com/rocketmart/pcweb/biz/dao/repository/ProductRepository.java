@@ -178,8 +178,11 @@ public class ProductRepository {
 	public List<Map<String, Object>> findFobByProductSeq(int productSeq) {
 		return this.dslContext.select(
 				TB_PRD_FOB.FOB_SEQ, TB_PRD_FOB.PRODUCT_SEQ, TB_PRD_FOB.RANGE_START, TB_PRD_FOB.RANGE_END,
-				TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE, TB_PRD_FOB.EXPOSURE_SUPPLY_RATE)
+				TB_PRD_FOB.TRADING_PRICE, TB_PRD_FOB.SUPPLY_RATE, TB_PRD_FOB.EXPOSURE_SUPPLY_RATE,
+				TB_PRD_MST.RETAIL_PRICE)
 				.from(TB_PRD_FOB)
+				.innerJoin(TB_PRD_MST)
+					.on(TB_PRD_FOB.PRODUCT_SEQ.equal(TB_PRD_MST.PRODUCT_SEQ))
 				.where(TB_PRD_FOB.PRODUCT_SEQ.equal(productSeq)).and(TB_PRD_FOB.DEL_YN.equal("N"))
 				.fetchMaps();
 	}

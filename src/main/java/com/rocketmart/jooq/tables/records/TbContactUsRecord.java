@@ -30,115 +30,115 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbContactUsRecord extends UpdatableRecordImpl<TbContactUsRecord> implements Record8<Integer, String, String, String, String, String, Timestamp, String> {
 
-    private static final long serialVersionUID = -128039590;
+    private static final long serialVersionUID = -65202854;
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.CONTACT_SEQ</code>. 컨택 일련번호
+     * Setter for <code>rocketmart.tb_contact_us.CONTACT_SEQ</code>. 컨택 일련번호
      */
     public void setContactSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.CONTACT_SEQ</code>. 컨택 일련번호
+     * Getter for <code>rocketmart.tb_contact_us.CONTACT_SEQ</code>. 컨택 일련번호
      */
     public Integer getContactSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.USR_NM</code>. 문의자명
+     * Setter for <code>rocketmart.tb_contact_us.USR_NM</code>. 문의자명
      */
     public void setUsrNm(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.USR_NM</code>. 문의자명
+     * Getter for <code>rocketmart.tb_contact_us.USR_NM</code>. 문의자명
      */
     public String getUsrNm() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.EMAIL</code>. email
+     * Setter for <code>rocketmart.tb_contact_us.EMAIL</code>. email
      */
     public void setEmail(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.EMAIL</code>. email
+     * Getter for <code>rocketmart.tb_contact_us.EMAIL</code>. email
      */
     public String getEmail() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.COMPANY_NM</code>. 회사명
+     * Setter for <code>rocketmart.tb_contact_us.COMPANY_NM</code>. 회사명
      */
     public void setCompanyNm(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.COMPANY_NM</code>. 회사명
+     * Getter for <code>rocketmart.tb_contact_us.COMPANY_NM</code>. 회사명
      */
     public String getCompanyNm() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.SUBJECT</code>. 문의 제목
+     * Setter for <code>rocketmart.tb_contact_us.SUBJECT</code>. 문의 제목
      */
     public void setSubject(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.SUBJECT</code>. 문의 제목
+     * Getter for <code>rocketmart.tb_contact_us.SUBJECT</code>. 문의 제목
      */
     public String getSubject() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.MESSAGE</code>. 문의 본문
+     * Setter for <code>rocketmart.tb_contact_us.MESSAGE</code>. 문의 본문
      */
     public void setMessage(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.MESSAGE</code>. 문의 본문
+     * Getter for <code>rocketmart.tb_contact_us.MESSAGE</code>. 문의 본문
      */
     public String getMessage() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.REG_TS</code>. 등록일시
+     * Setter for <code>rocketmart.tb_contact_us.REG_TS</code>. 등록일시
      */
     public void setRegTs(Timestamp value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.REG_TS</code>. 등록일시
+     * Getter for <code>rocketmart.tb_contact_us.REG_TS</code>. 등록일시
      */
     public Timestamp getRegTs() {
         return (Timestamp) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_CONTACT_US.REPLY_YN</code>. 회신여부
+     * Setter for <code>rocketmart.tb_contact_us.REPLY_YN</code>. 회신여부
      */
     public void setReplyYn(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_CONTACT_US.REPLY_YN</code>. 회신여부
+     * Getter for <code>rocketmart.tb_contact_us.REPLY_YN</code>. 회신여부
      */
     public String getReplyYn() {
         return (String) get(7);

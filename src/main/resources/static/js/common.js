@@ -9,6 +9,9 @@ const CommonUtils = {
     backwardPage() {
         history.back();
     },
+    openPage(targetPage) {
+        window.open(targetPage);
+    },
     getCheckValToCommaString(objTarget) {
         let returnArray = [];
         objTarget.each(function() {

@@ -42,10 +42,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFob extends TableImpl<TbPrdFobRecord> {
 
-    private static final long serialVersionUID = 799266299;
+    private static final long serialVersionUID = -1444017605;
 
     /**
-     * The reference instance of <code>rocketmart.TB_PRD_FOB</code>
+     * The reference instance of <code>rocketmart.tb_prd_fob</code>
      */
     public static final TbPrdFob TB_PRD_FOB = new TbPrdFob();
 
@@ -58,71 +58,71 @@ public class TbPrdFob extends TableImpl<TbPrdFobRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.FOB_SEQ</code>. 도매가격(FOB) 일련번호
+     * The column <code>rocketmart.tb_prd_fob.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
     public final TableField<TbPrdFobRecord, Integer> FOB_SEQ = createField(DSL.name("FOB_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "도매가격(FOB) 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.PRODUCT_SEQ</code>. 상품 일련번호
+     * The column <code>rocketmart.tb_prd_fob.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public final TableField<TbPrdFobRecord, Integer> PRODUCT_SEQ = createField(DSL.name("PRODUCT_SEQ"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "상품 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.RANGE_START</code>. 범위 구간 시작
+     * The column <code>rocketmart.tb_prd_fob.RANGE_START</code>. 범위 구간 시작
      */
     public final TableField<TbPrdFobRecord, Integer> RANGE_START = createField(DSL.name("RANGE_START"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.INTEGER)), this, "범위 구간 시작");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.RANGE_END</code>. 범위 구간 끝
+     * The column <code>rocketmart.tb_prd_fob.RANGE_END</code>. 범위 구간 끝
      */
     public final TableField<TbPrdFobRecord, Integer> RANGE_END = createField(DSL.name("RANGE_END"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("0", org.jooq.impl.SQLDataType.INTEGER)), this, "범위 구간 끝");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.TRADING_PRICE</code>. 거래가(U$)
+     * The column <code>rocketmart.tb_prd_fob.TRADING_PRICE</code>. 거래가(U$)
      */
     public final TableField<TbPrdFobRecord, Double> TRADING_PRICE = createField(DSL.name("TRADING_PRICE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "거래가(U$)");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.SUPPLY_RATE</code>. 공급률
+     * The column <code>rocketmart.tb_prd_fob.SUPPLY_RATE</code>. 공급률
      */
     public final TableField<TbPrdFobRecord, Double> SUPPLY_RATE = createField(DSL.name("SUPPLY_RATE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "공급률");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
+     * The column <code>rocketmart.tb_prd_fob.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
      */
     public final TableField<TbPrdFobRecord, Double> EXPOSURE_SUPPLY_RATE = createField(DSL.name("EXPOSURE_SUPPLY_RATE"), org.jooq.impl.SQLDataType.DOUBLE.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.DOUBLE)), this, "노출 공급률");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.OPTION_2</code>. 옵션2
+     * The column <code>rocketmart.tb_prd_fob.OPTION_2</code>. 옵션2
      */
     public final TableField<TbPrdFobRecord, String> OPTION_2 = createField(DSL.name("OPTION_2"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "옵션2");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.OPTION_3</code>. 옵션3
+     * The column <code>rocketmart.tb_prd_fob.OPTION_3</code>. 옵션3
      */
     public final TableField<TbPrdFobRecord, String> OPTION_3 = createField(DSL.name("OPTION_3"), org.jooq.impl.SQLDataType.VARCHAR(100).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "옵션3");
 
     /**
-     * The column <code>rocketmart.TB_PRD_FOB.DEL_YN</code>. 삭제여부
+     * The column <code>rocketmart.tb_prd_fob.DEL_YN</code>. 삭제여부
      */
     public final TableField<TbPrdFobRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
-     * Create a <code>rocketmart.TB_PRD_FOB</code> table reference
+     * Create a <code>rocketmart.tb_prd_fob</code> table reference
      */
     public TbPrdFob() {
-        this(DSL.name("TB_PRD_FOB"), null);
+        this(DSL.name("tb_prd_fob"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_PRD_FOB</code> table reference
+     * Create an aliased <code>rocketmart.tb_prd_fob</code> table reference
      */
     public TbPrdFob(String alias) {
         this(DSL.name(alias), TB_PRD_FOB);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_PRD_FOB</code> table reference
+     * Create an aliased <code>rocketmart.tb_prd_fob</code> table reference
      */
     public TbPrdFob(Name alias) {
         this(alias, TB_PRD_FOB);

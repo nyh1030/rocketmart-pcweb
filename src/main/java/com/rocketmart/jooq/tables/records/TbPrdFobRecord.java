@@ -28,143 +28,143 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbPrdFobRecord extends UpdatableRecordImpl<TbPrdFobRecord> implements Record10<Integer, Integer, Integer, Integer, Double, Double, Double, String, String, String> {
 
-    private static final long serialVersionUID = 2080589761;
+    private static final long serialVersionUID = -1142204095;
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.FOB_SEQ</code>. 도매가격(FOB) 일련번호
+     * Setter for <code>rocketmart.tb_prd_fob.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
     public void setFobSeq(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.FOB_SEQ</code>. 도매가격(FOB) 일련번호
+     * Getter for <code>rocketmart.tb_prd_fob.FOB_SEQ</code>. 도매가격(FOB) 일련번호
      */
     public Integer getFobSeq() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.PRODUCT_SEQ</code>. 상품 일련번호
+     * Setter for <code>rocketmart.tb_prd_fob.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public void setProductSeq(Integer value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.PRODUCT_SEQ</code>. 상품 일련번호
+     * Getter for <code>rocketmart.tb_prd_fob.PRODUCT_SEQ</code>. 상품 일련번호
      */
     public Integer getProductSeq() {
         return (Integer) get(1);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.RANGE_START</code>. 범위 구간 시작
+     * Setter for <code>rocketmart.tb_prd_fob.RANGE_START</code>. 범위 구간 시작
      */
     public void setRangeStart(Integer value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.RANGE_START</code>. 범위 구간 시작
+     * Getter for <code>rocketmart.tb_prd_fob.RANGE_START</code>. 범위 구간 시작
      */
     public Integer getRangeStart() {
         return (Integer) get(2);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.RANGE_END</code>. 범위 구간 끝
+     * Setter for <code>rocketmart.tb_prd_fob.RANGE_END</code>. 범위 구간 끝
      */
     public void setRangeEnd(Integer value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.RANGE_END</code>. 범위 구간 끝
+     * Getter for <code>rocketmart.tb_prd_fob.RANGE_END</code>. 범위 구간 끝
      */
     public Integer getRangeEnd() {
         return (Integer) get(3);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.TRADING_PRICE</code>. 거래가(U$)
+     * Setter for <code>rocketmart.tb_prd_fob.TRADING_PRICE</code>. 거래가(U$)
      */
     public void setTradingPrice(Double value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.TRADING_PRICE</code>. 거래가(U$)
+     * Getter for <code>rocketmart.tb_prd_fob.TRADING_PRICE</code>. 거래가(U$)
      */
     public Double getTradingPrice() {
         return (Double) get(4);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.SUPPLY_RATE</code>. 공급률
+     * Setter for <code>rocketmart.tb_prd_fob.SUPPLY_RATE</code>. 공급률
      */
     public void setSupplyRate(Double value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.SUPPLY_RATE</code>. 공급률
+     * Getter for <code>rocketmart.tb_prd_fob.SUPPLY_RATE</code>. 공급률
      */
     public Double getSupplyRate() {
         return (Double) get(5);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
+     * Setter for <code>rocketmart.tb_prd_fob.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
      */
     public void setExposureSupplyRate(Double value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
+     * Getter for <code>rocketmart.tb_prd_fob.EXPOSURE_SUPPLY_RATE</code>. 노출 공급률
      */
     public Double getExposureSupplyRate() {
         return (Double) get(6);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.OPTION_2</code>. 옵션2
+     * Setter for <code>rocketmart.tb_prd_fob.OPTION_2</code>. 옵션2
      */
     public void setOption_2(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.OPTION_2</code>. 옵션2
+     * Getter for <code>rocketmart.tb_prd_fob.OPTION_2</code>. 옵션2
      */
     public String getOption_2() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.OPTION_3</code>. 옵션3
+     * Setter for <code>rocketmart.tb_prd_fob.OPTION_3</code>. 옵션3
      */
     public void setOption_3(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.OPTION_3</code>. 옵션3
+     * Getter for <code>rocketmart.tb_prd_fob.OPTION_3</code>. 옵션3
      */
     public String getOption_3() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>rocketmart.TB_PRD_FOB.DEL_YN</code>. 삭제여부
+     * Setter for <code>rocketmart.tb_prd_fob.DEL_YN</code>. 삭제여부
      */
     public void setDelYn(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>rocketmart.TB_PRD_FOB.DEL_YN</code>. 삭제여부
+     * Getter for <code>rocketmart.tb_prd_fob.DEL_YN</code>. 삭제여부
      */
     public String getDelYn() {
         return (String) get(9);

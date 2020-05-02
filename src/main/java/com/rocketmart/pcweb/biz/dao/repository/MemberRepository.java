@@ -165,9 +165,9 @@ public class MemberRepository {
                         DSL.nvl2(TB_PRD_FOB_HST.FOB_HST_SEQ,"Y", "N").as("FOB_HST_YN")
                 )
                 .from(TB_MEM_MST)
-                    .leftJoin(TB_INQUIRY_DTL)
+                .leftJoin(TB_INQUIRY_DTL)
                     .on(TB_MEM_MST.MEM_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
-                    .leftJoin(TB_PRD_FOB_HST)
+                .leftJoin(TB_PRD_FOB_HST)
                     .on(TB_MEM_MST.MEM_ID.eq(TB_PRD_FOB_HST.REG_USR_ID))
                 .where(TB_MEM_MST.MEM_ID.eq(memId)
                     .and(

@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbCateMst extends TableImpl<TbCateMstRecord> {
 
-    private static final long serialVersionUID = -408686744;
+    private static final long serialVersionUID = -19135736;
 
     /**
-     * The reference instance of <code>rocketmart.TB_CATE_MST</code>
+     * The reference instance of <code>rocketmart.tb_cate_mst</code>
      */
     public static final TbCateMst TB_CATE_MST = new TbCateMst();
 
@@ -59,91 +59,91 @@ public class TbCateMst extends TableImpl<TbCateMstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE_SEQ</code>. 카테고리 일련번호
+     * The column <code>rocketmart.tb_cate_mst.CATE_SEQ</code>. 카테고리 일련번호
      */
     public final TableField<TbCateMstRecord, Integer> CATE_SEQ = createField(DSL.name("CATE_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "카테고리 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE1_CD</code>. 카테고리1 코드
+     * The column <code>rocketmart.tb_cate_mst.CATE1_CD</code>. 카테고리1 코드
      */
     public final TableField<TbCateMstRecord, String> CATE1_CD = createField(DSL.name("CATE1_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리1 코드");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE1_NM</code>. 카테고리1 명
+     * The column <code>rocketmart.tb_cate_mst.CATE1_NM</code>. 카테고리1 명
      */
     public final TableField<TbCateMstRecord, String> CATE1_NM = createField(DSL.name("CATE1_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리1 명");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE2_CD</code>. 카테고리2 코드
+     * The column <code>rocketmart.tb_cate_mst.CATE2_CD</code>. 카테고리2 코드
      */
     public final TableField<TbCateMstRecord, String> CATE2_CD = createField(DSL.name("CATE2_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리2 코드");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE2_NM</code>. 카테고리2 명
+     * The column <code>rocketmart.tb_cate_mst.CATE2_NM</code>. 카테고리2 명
      */
     public final TableField<TbCateMstRecord, String> CATE2_NM = createField(DSL.name("CATE2_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리2 명");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE3_CD</code>. 카테고리3 코드
+     * The column <code>rocketmart.tb_cate_mst.CATE3_CD</code>. 카테고리3 코드
      */
     public final TableField<TbCateMstRecord, String> CATE3_CD = createField(DSL.name("CATE3_CD"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리3 코드");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.CATE3_NM</code>. 카테고리3 명
+     * The column <code>rocketmart.tb_cate_mst.CATE3_NM</code>. 카테고리3 명
      */
     public final TableField<TbCateMstRecord, String> CATE3_NM = createField(DSL.name("CATE3_NM"), org.jooq.impl.SQLDataType.VARCHAR(50).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "카테고리3 명");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.DEPTH</code>. DEPTH
+     * The column <code>rocketmart.tb_cate_mst.DEPTH</code>. DEPTH
      */
     public final TableField<TbCateMstRecord, Integer> DEPTH = createField(DSL.name("DEPTH"), org.jooq.impl.SQLDataType.INTEGER.defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.INTEGER)), this, "DEPTH");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.TAG_YN</code>. tag 임시
+     * The column <code>rocketmart.tb_cate_mst.TAG_YN</code>. tag 임시
      */
     public final TableField<TbCateMstRecord, String> TAG_YN = createField(DSL.name("TAG_YN"), org.jooq.impl.SQLDataType.VARCHAR(10).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "tag 임시");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.DEL_YN</code>. 삭제여부
+     * The column <code>rocketmart.tb_cate_mst.DEL_YN</code>. 삭제여부
      */
     public final TableField<TbCateMstRecord, String> DEL_YN = createField(DSL.name("DEL_YN"), org.jooq.impl.SQLDataType.CHAR(1).defaultValue(org.jooq.impl.DSL.field("'N'", org.jooq.impl.SQLDataType.CHAR)), this, "삭제여부");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.REG_USR_ID</code>. 등록자 아이디
+     * The column <code>rocketmart.tb_cate_mst.REG_USR_ID</code>. 등록자 아이디
      */
     public final TableField<TbCateMstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_cate_mst.REG_TS</code>. 등록일시
      */
     public final TableField<TbCateMstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.UPD_USR_ID</code>. 수정자 아이디
+     * The column <code>rocketmart.tb_cate_mst.UPD_USR_ID</code>. 수정자 아이디
      */
     public final TableField<TbCateMstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자 아이디");
 
     /**
-     * The column <code>rocketmart.TB_CATE_MST.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_cate_mst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbCateMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_CATE_MST</code> table reference
+     * Create a <code>rocketmart.tb_cate_mst</code> table reference
      */
     public TbCateMst() {
-        this(DSL.name("TB_CATE_MST"), null);
+        this(DSL.name("tb_cate_mst"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_CATE_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_cate_mst</code> table reference
      */
     public TbCateMst(String alias) {
         this(DSL.name(alias), TB_CATE_MST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_CATE_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_cate_mst</code> table reference
      */
     public TbCateMst(Name alias) {
         this(alias, TB_CATE_MST);

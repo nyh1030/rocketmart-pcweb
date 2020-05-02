@@ -43,10 +43,10 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TbInquiryMst extends TableImpl<TbInquiryMstRecord> {
 
-    private static final long serialVersionUID = -536014705;
+    private static final long serialVersionUID = 1194892239;
 
     /**
-     * The reference instance of <code>rocketmart.TB_INQUIRY_MST</code>
+     * The reference instance of <code>rocketmart.tb_inquiry_mst</code>
      */
     public static final TbInquiryMst TB_INQUIRY_MST = new TbInquiryMst();
 
@@ -59,51 +59,51 @@ public class TbInquiryMst extends TableImpl<TbInquiryMstRecord> {
     }
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.INQUIRY_SEQ</code>. 상품문의 일련번호
+     * The column <code>rocketmart.tb_inquiry_mst.INQUIRY_SEQ</code>. 상품문의 일련번호
      */
     public final TableField<TbInquiryMstRecord, Integer> INQUIRY_SEQ = createField(DSL.name("INQUIRY_SEQ"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "상품문의 일련번호");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.MESSAGE</code>. 문의 내용
+     * The column <code>rocketmart.tb_inquiry_mst.MESSAGE</code>. 문의 내용
      */
     public final TableField<TbInquiryMstRecord, String> MESSAGE = createField(DSL.name("MESSAGE"), org.jooq.impl.SQLDataType.VARCHAR(4000).defaultValue(org.jooq.impl.DSL.field("NULL", org.jooq.impl.SQLDataType.VARCHAR)), this, "문의 내용");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.REG_USR_ID</code>. 등록자아이디
+     * The column <code>rocketmart.tb_inquiry_mst.REG_USR_ID</code>. 등록자아이디
      */
     public final TableField<TbInquiryMstRecord, String> REG_USR_ID = createField(DSL.name("REG_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "등록자아이디");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.REG_TS</code>. 등록일시
+     * The column <code>rocketmart.tb_inquiry_mst.REG_TS</code>. 등록일시
      */
     public final TableField<TbInquiryMstRecord, Timestamp> REG_TS = createField(DSL.name("REG_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "등록일시");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.UPD_USR_ID</code>. 수정자아이디
+     * The column <code>rocketmart.tb_inquiry_mst.UPD_USR_ID</code>. 수정자아이디
      */
     public final TableField<TbInquiryMstRecord, String> UPD_USR_ID = createField(DSL.name("UPD_USR_ID"), org.jooq.impl.SQLDataType.VARCHAR(50).nullable(false), this, "수정자아이디");
 
     /**
-     * The column <code>rocketmart.TB_INQUIRY_MST.UPD_TS</code>. 수정일시
+     * The column <code>rocketmart.tb_inquiry_mst.UPD_TS</code>. 수정일시
      */
     public final TableField<TbInquiryMstRecord, Timestamp> UPD_TS = createField(DSL.name("UPD_TS"), org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("current_timestamp()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "수정일시");
 
     /**
-     * Create a <code>rocketmart.TB_INQUIRY_MST</code> table reference
+     * Create a <code>rocketmart.tb_inquiry_mst</code> table reference
      */
     public TbInquiryMst() {
-        this(DSL.name("TB_INQUIRY_MST"), null);
+        this(DSL.name("tb_inquiry_mst"), null);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_INQUIRY_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_inquiry_mst</code> table reference
      */
     public TbInquiryMst(String alias) {
         this(DSL.name(alias), TB_INQUIRY_MST);
     }
 
     /**
-     * Create an aliased <code>rocketmart.TB_INQUIRY_MST</code> table reference
+     * Create an aliased <code>rocketmart.tb_inquiry_mst</code> table reference
      */
     public TbInquiryMst(Name alias) {
         this(alias, TB_INQUIRY_MST);
