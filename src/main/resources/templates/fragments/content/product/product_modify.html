@@ -84,7 +84,7 @@
                                 <div class="ps-tab" id="tab-2" style="display: none">
                                     <div class="mb-5">
                                         <label for="txtRetailPrice" class="bul-type">소비자 가격 (USD) <span class="required">*</span></label>
-                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatInteger(productInfo.RETAIL_PRICE, 0, 'COMMA')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
+                                        <input type="text" id="txtRetailPrice" class="form-control" th:value="${#numbers.formatDecimal(productInfo.RETAIL_PRICE, 0, 'COMMA', 3, 'POINT')}" required placeholder="Number only" onkeyup="CommonUtils.keyEventOnlyNumber(this, true); EventScope.calculateSupplyRateForRetailPrice(this);" maxlength="15" />
                                     </div>
                                     <div class="mb-5">
                                         <label class="bul-type">도매 가격 (FOB 기준) <span class="required">*</span></label>

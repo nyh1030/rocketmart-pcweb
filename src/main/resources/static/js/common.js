@@ -32,7 +32,7 @@ const CommonUtils = {
         return targetValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     removeComma(targetValue) {
-        return parseInt(targetValue.replace(/,/g,""));
+        return parseFloat(targetValue.replace(/,/g,""));
     },
     keyEventOnlyNumber(obj, blnComma) {
         if (blnComma) obj.value = obj.value.replace(/[^0-9\.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -38,6 +38,7 @@
                         </th:block>
                             <th:block th:if="${not #lists.isEmpty(brandList)}">
                             <li th:each="brand : ${brandList}">
+                                <a th:text="${brand.BRAND_NM}" th:href="@{/any/brand_detail/{brandSeq}(brandSeq=${brand.BRAND_SEQ})}" target="_blank" style="color: #fcb800!important"></a>
                                 <div class="img-box"><a href="javascript:;" th:data-brand-nm="${brand.BRAND_NM}" th:onclick="|javascript:EventScope.choiceBrandLogoImage('${brand.BRAND_SEQ}', this.getAttribute('data-brand-nm'), this)|"><img th:src="${brand.URL_PATH_CD}"></a></div>
                                 <div class="btn-row">
                                     <button type="button" class="ps-btn type-orange" th:onclick="|javascript:EventScope.updateOnclickListener('${brand.BRAND_SEQ}')|"><i class="fa fa-edit"></i> 수정</button>
@@ -49,7 +50,8 @@
                     <div class="btn-box">
                         <button type="button" id="btnAddProduct" class="ps-btn type-black">제품 추가하기</button>
                     </div>
-                    <p class="total mt-80">총 <em id="totalCount" class="num">0</em>개 제품이 등록되어 있습니다.</p>
+                    <p class="total mt-80">총 <em id="totalCount" class="num">0</em>개 제품이 등록되어 있습니다. <span style="color: #f05025; font-weight: bold">(*상품 정보를 확인하시려면 상품명을 클릭해주세요)
+</span></p>
                     <div class="table-responsive">
                         <table id="tblProduct" class="table ps-table ps-table--vendor">
                             <colgroup>
@@ -113,7 +115,7 @@
                                                 <td>
                                                 <div class="img-box"><a href="/any/product_detail/${item.PRODUCT_SEQ}"><img src="${item.URL_PATH_CD}"></a></div>
                                                 </td>
-                                                <td style="text-align: left">${item.PRODUCT_NM}</td>
+                                                <td class="link-type" style="text-align: left"><a href="/any/product_detail/${item.PRODUCT_SEQ}" target="_blank">${item.PRODUCT_NM}</a></td>
                                                 <td style="text-align: center">${item.PRODUCT_CAPACITY}</td>
                                                 <td style="text-align: right">${CommonUtils.formatNumberWithCommas(item.RETAIL_PRICE)}</td>
                                                 <td>

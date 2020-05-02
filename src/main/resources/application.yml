@@ -10,8 +10,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password: rocket2019!
-    url: jdbc:mariadb://49.50.167.112:3306/rocketmart
+    password: rocket2020!
+    url: jdbc:mariadb://18.138.83.79:3306/rocketmart
     hikari:
       maximum-pool-size: 10
 
