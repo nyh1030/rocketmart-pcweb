@@ -11,7 +11,7 @@
 - 배포(CI) - Jenkins
 - Layout - Responsive, Bootstrap 4.x
 - Compatible Browsers	Firefox, Safari, Opera, Chrome, Edge
-- 네이버 클라우드 플랫폼 / Linux
+- 네이버 클라우드 플랫폼(Linux) //2020-05-01 AWS(Window)로 서버 
 - To - Do List : gitkraken 사용
 
 
