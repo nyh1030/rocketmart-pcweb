@@ -76,7 +76,7 @@
                             <div class="price-info-box">
                                 <th:block sec:authorize="isAuthenticated()">
                                     <th:block th:if="${memProductInfo != null}">
-                                        <th:block th:if="${memProductInfo.FOB_HST_YN.equals('N')}">
+                                        <th:block th:if="${#strings.isEmpty(memProductInfo.FOB_HST_YN)}">
                                             <a href="javascript:void(0);" class="btn-login" id="btnFobHst" th:if="${memInfo.APPROVAL_YN.equals('Y')}" th:value="${productInfo.FOB_SEQ}">Click Here</br></a>
                                             <a href="javascript:void(0);" class="btn-login" th:if="${memInfo.APPROVAL_YN.equals('N')}" th:onclick="'alert(\'Waiting for approval\')'">Not Available Yet</br></a>
                                         </th:block>
@@ -121,15 +121,20 @@
                             </div>
                             <div class="btn-box">
                                 <th:block sec:authorize="isAuthenticated()">
-                                    <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                    <th:block th:if="${#strings.isEmpty(memProductInfo.WISH_YN)}">
+                                        <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                    </th:block>
+                                    <th:block th:if="${not #strings.isEmpty(memProductInfo.WISH_YN)}">
+                                        <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart"></i> WISHLIST</span>
+                                    </th:block>
                                     <th:block th:if="${memProductInfo != null}">
-                                        <th:block th:if="${memProductInfo.INQUIRY_YN.equals('Y')}">
-                                            <a th:href="@{'/any/inquiry/detail/' + ${memProductInfo.INQUIRY_DTL_SEQ}}">
+                                        <th:block th:if="${not #strings.isEmpty(memProductInfo.INQUIRY_YN)}">
+                                            <a th:href="@{'/any/inquiry/detail/' + ${productInfo.PRODUCT_SEQ}}">
                                                 <span class="ps-btn" id="btnInquiryHst">INQUIRY HISTORY</span>
                                             </a>
                                         </th:block>
-                                        <th:block th:if="${memProductInfo.INQUIRY_YN.equals('N')}">
-                                            <span class="ps-btn" id="btnInquiryReg" th:if="${memProductInfo.INQUIRY_YN.equals('N')}">ASK NOW</span>
+                                        <th:block th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">
+                                            <span class="ps-btn" id="btnInquiryReg" th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">ASK NOW</span>
                                         </th:block>
                                     </th:block>
                                     <th:block th:if="${memProductInfo == null}">

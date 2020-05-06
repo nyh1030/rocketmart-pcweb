@@ -135,12 +135,16 @@ public class OtherCtl {
      * @return String
      */
     @GetMapping("/any/inquiry/detail/{productSeq}")
-    public String dispInquiryDetail(@PathVariable("productSeq") int productSeq, Model model) {
+    public String dispInquiryDetail(@PathVariable("productSeq") int productSeq, Principal principal, Model model) {
+        String regUsrId = "";
+        if(!"admin".equals(principal.getName())){
+            regUsrId = principal.getName();
+        }
 
         // Inquiry 상세정보 조회_마스터
         //model.addAttribute("inquiryInfo", this.otherSvc.findOneForInquiryMstInfo(inquirySeq));
         // Inquiry 상세정보 조회_상세
-        model.addAttribute("inquiryInfoList", this.otherSvc.findAllForInquiryDtlInfo(productSeq));
+        model.addAttribute("inquiryInfoList", this.otherSvc.findAllForInquiryDtlInfo(productSeq, regUsrId));
 
         return prefixPath.concat("/mypage/inquiry_detail");
     }

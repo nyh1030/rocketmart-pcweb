@@ -156,11 +156,11 @@ public class OtherSvc {
 
 	/**
 	 * Inquiry 상세정보 조회_상세
-	 * @param productSeq
+	 * @param productSeq, regUsrId
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq) {
-		return otherRepository.findAllForInquiryDtlInfo(productSeq);
+	public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq, String regUsrId) {
+		return otherRepository.findAllForInquiryDtlInfo(productSeq, regUsrId);
 	}
 
 	/**

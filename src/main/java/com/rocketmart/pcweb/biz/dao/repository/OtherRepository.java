@@ -139,7 +139,7 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
         return this.dslContext
                 .select(
-                        max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ).as("INQUIRY_DTL_SEQ")
+                        TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
                         ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_MEM_MST.MEM_ID
                         ,TB_MEM_MST.MEM_NM
@@ -150,7 +150,14 @@ public class OtherRepository {
                         ,TB_INQUIRY_DTL.REG_TS
                         ,TB_INQUIRY_DTL.UPD_USR_ID
                         ,TB_INQUIRY_DTL.UPD_TS
-                        ,count(iif(TB_INQUIRY_DTL.REPLY_YN.eq("N"),1,null)).as("REPLY_YN_CNT")
+                        ,(select(count())
+                            .from(TB_INQUIRY_DTL)
+                            .where(
+                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                    .and(TB_INQUIRY_DTL.REPLY_YN.eq("N"))
+                                    .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                            ).asField("REPLY_YN_CNT")
+                        )
                 )
                 .from(TB_INQUIRY_DTL)
                 .join(TB_MEM_MST)
@@ -159,12 +166,17 @@ public class OtherRepository {
                     .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
                 .join(TB_CM_AFILE)
                     .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .where(isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                    .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
-                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
-                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
+                                                            select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
+                                                            .from(TB_INQUIRY_DTL)
+                                                            .where(
+                                                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                                    .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
+                                                                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                                                                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                                                            ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
+                                                        )
                 )
-                .groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
                 .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 .fetchMaps();
     }
@@ -194,7 +206,7 @@ public class OtherRepository {
     /**
      * Inquiry 상세정보 조회_상세
      */
-    public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq) {
+    public List<Map<String, Object>> findAllForInquiryDtlInfo(int productSeq, String regUsrId) {
         return this.dslContext
                 .select(
                         TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
@@ -218,6 +230,7 @@ public class OtherRepository {
                 .join(TB_MEM_MST)
                     .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
                 .where(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq))
+                    .and(isNotEmpty(regUsrId, TB_INQUIRY_DTL.REG_USR_ID.eq(regUsrId)))
                 .orderBy(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.desc())
                 .fetchMaps();
     }

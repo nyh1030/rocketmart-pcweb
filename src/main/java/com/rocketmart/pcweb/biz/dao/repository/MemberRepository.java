@@ -1,7 +1,5 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
-import com.rocketmart.jooq.tables.TbCmAfile;
-import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -12,11 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 import static com.rocketmart.jooq.Tables.TB_PRD_FOB_HST;
+import static com.rocketmart.jooq.Tables.TB_WISH_MST;
+import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
-import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
-import static org.jooq.impl.DSL.currentTimestamp;
+import static org.jooq.impl.DSL.*;
 
 @Repository
 public class MemberRepository {
@@ -161,19 +160,30 @@ public class MemberRepository {
                         TB_MEM_MST.ONLINE_YN, TB_MEM_MST.ONLINE_TEXT, TB_MEM_MST.BSNS_RGSTR_SEQ, TB_MEM_MST.USE_YN,
                         TB_MEM_MST.REG_USR_ID, TB_MEM_MST.REG_TS, TB_MEM_MST.UPD_USR_ID, TB_MEM_MST.UPD_TS,
                         TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,
-                        DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN"),
-                        DSL.nvl2(TB_PRD_FOB_HST.FOB_HST_SEQ,"Y", "N").as("FOB_HST_YN")
+                        (select(TB_WISH_MST.WISH_SEQ)
+                                .from(TB_WISH_MST)
+                                .where(TB_WISH_MST.PRODUCT_SEQ.eq(productSeq)
+                                        .and(isNotEmpty(memId, TB_WISH_MST.REG_USR_ID.eq(memId)))
+                                        .and(TB_WISH_MST.DEL_YN.eq("N"))
+                                )
+                        ).asField("WISH_YN"),
+                        (select(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ)
+                                .from(TB_INQUIRY_DTL)
+                                .where(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq)
+                                    .and(isNotEmpty(memId, TB_INQUIRY_DTL.REG_USR_ID.eq(memId)))
+                                )
+                        ).asField("INQUIRY_YN"),
+                        (select(TB_PRD_FOB_HST.FOB_HST_SEQ)
+                                .from(TB_PRD_FOB_HST)
+                                .where(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(productSeq)
+                                        .and(isNotEmpty(memId, TB_PRD_FOB_HST.REG_USR_ID.eq(memId)))
+                                )
+                        ).asField("FOB_HST_YN")
                 )
                 .from(TB_MEM_MST)
-                .leftJoin(TB_INQUIRY_DTL)
+                .leftOuterJoin(TB_INQUIRY_DTL)
                     .on(TB_MEM_MST.MEM_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
-                .leftJoin(TB_PRD_FOB_HST)
-                    .on(TB_MEM_MST.MEM_ID.eq(TB_PRD_FOB_HST.REG_USR_ID))
-                .where(TB_MEM_MST.MEM_ID.eq(memId)
-                    .and(
-                            TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq).or(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(productSeq))
-                        )
-                )
+                .where(isNotEmpty(memId, TB_MEM_MST.MEM_ID.eq(memId)))
                 .groupBy(
                     TB_MEM_MST.MEM_SEQ
                 )
