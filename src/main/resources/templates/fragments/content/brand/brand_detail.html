@@ -211,10 +211,13 @@
                                     <div class="row">
                                         <th:block th:if="${not #lists.isEmpty(productList)}">
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 " th:each="productList : ${productList}">
-                                                <div class="ps-product">
+                                                <div class="ps-product type-center">
                                                     <div class="ps-product__thumbnail"><a th:href="@{'/any/product_detail/'+${productList.get('PRODUCT_SEQ')}}"><img th:src="${productList.get('URL_PATH_CD')}"></a></div>
                                                     <div class="ps-product__container"><a class="ps-product__vendor" th:href="@{'/any/product_detail/'+${productList.get('PRODUCT_SEQ')}}" th:text="${productList.get('BRAND_NM')}"></a>
-                                                        <div class="ps-product__content"><a class="ps-product__title" th:text="${productList.get('PRODUCT_NM')}"></a></div>
+                                                        <div class="ps-product__content">
+                                                            <a class="ps-product__title" th:text="${productList.get('PRODUCT_NM')}"></a>
+                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(productList.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

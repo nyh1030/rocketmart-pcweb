@@ -151,6 +151,7 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-product--detail .photo-upload li .dz-file-preview .dz-image img,
 .ps-product--detail .photo-upload li .dz-complete .dz-image img{height:100%}
 .ps-product--detail .photo-upload li .dz-file-preview .dz-remove,
+.ps-product--detail .photo-upload li .dz-file-preview .dz-remove,
 .ps-product--detail .photo-upload li .dz-complete .dz-remove{margin-top:18px;}
 .ps-product--detail .table_wrap{position:relative;padding-bottom:50px;margin-top:20px;}
 .ps-product--detail .table_wrap .dataTables_wrapper{height:335px;overflow-y:auto;margin-bottom:30px;}
@@ -161,6 +162,8 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .ps-product--detail .table_wrap table .last{background:#f5fbff;}
 .ps-product--detail .table_wrap .btns{position:absolute;right:0;bottom:0;margin:0;}
 .ps-product--detail .table_wrap .ps-btn{padding:10px 20px;font-size:13px;}
+.ps-shopping-product .ps-product.type-center{text-align:center;}
+.ps-shopping-product .ps-product.type-center .ps-product__price{color:#f30!important;font-weight:500;font-size:17px;}
 .register{padding-bottom:50px;}
 .register .form-group .form-control.type-inline{width:290px;display:inline-block;height:30px;padding:0 10px;font-size:13px;}
 .register .form-group .chk-wrap{margin-bottom:5px;}

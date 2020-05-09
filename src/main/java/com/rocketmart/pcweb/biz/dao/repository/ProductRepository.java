@@ -39,6 +39,7 @@ public class ProductRepository {
 						DSL.rowNumber().over().as("ROW_NUM")
 						,TB_PRD_MST.PRODUCT_SEQ
 						,TB_PRD_MST.PRODUCT_NM
+						,TB_PRD_MST.RETAIL_PRICE
 						,TB_PRD_MST.PRODUCT_CAPACITY
 						,TB_PRD_MST.RELEASE_YN
 						,TB_BRAND_MST.BRAND_NM
@@ -84,7 +85,8 @@ public class ProductRepository {
 				.select(
 						TB_PRD_MST.PRODUCT_SEQ
 						,TB_PRD_MST.PRODUCT_NM
-						, Tables.TB_BRAND_MST.BRAND_NM
+						,TB_PRD_MST.RETAIL_PRICE
+						,TB_BRAND_MST.BRAND_NM
 						,TB_CM_AFILE.AFILE_SEQ
 						,TB_CM_AFILE.URL_PATH_CD
 				)

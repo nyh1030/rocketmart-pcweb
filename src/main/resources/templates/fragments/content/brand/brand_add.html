@@ -117,7 +117,7 @@
                                                 </td>
                                                 <td class="link-type" style="text-align: left"><a href="/any/product_detail/${item.PRODUCT_SEQ}" target="_blank">${item.PRODUCT_NM}</a></td>
                                                 <td style="text-align: center">${item.PRODUCT_CAPACITY}</td>
-                                                <td style="text-align: right">${CommonUtils.formatNumberWithCommas(item.RETAIL_PRICE)}</td>
+                                                <td style="text-align: right">${CommonUtils.formatNumberWithCommas(item.RETAIL_PRICE.toFixed(1))}</td>
                                                 <td>
                                                     <div class="btns">
                                                         <button type="button" class="ps-btn" onclick="EventScope.redirectProductModify(${item.PRODUCT_SEQ})" >수정 <i class="fa fa-edit"></i></button>
