@@ -99,7 +99,7 @@ public class OtherCtl {
             tbInquiryDtlRecord.setRegUsrId(principal.getName());
         }
 
-        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm));
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, principal.getName()));
         model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
         model.addAttribute("memId", schMemId);
         model.addAttribute("memNm", schMemNm);

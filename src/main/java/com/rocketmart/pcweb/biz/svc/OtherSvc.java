@@ -102,8 +102,12 @@ public class OtherSvc {
 	 * @param tbInquiryDtlRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
-		return otherRepository.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, String usrName) {
+		if(usrName.equals("admin")){
+			return otherRepository.findAllForAdminInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+		}else{
+			return otherRepository.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+		}
 	}
 
 	/**
