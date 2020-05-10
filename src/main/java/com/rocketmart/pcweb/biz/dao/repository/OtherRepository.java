@@ -1,9 +1,11 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.tables.TbInquiryDtl;
 import com.rocketmart.jooq.tables.records.*;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
 import org.jooq.OrderedAggregateFunction;
+import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -185,7 +187,10 @@ public class OtherRepository {
     /**
      * Inquiry 목록 조회(admin)
      */
+
     public List<Map<String, Object>> findAllForAdminInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+        TbInquiryDtl TID = TB_INQUIRY_DTL.as("TID");
+
         return this.dslContext
                 .select(
                         TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
@@ -200,11 +205,12 @@ public class OtherRepository {
                         ,TB_INQUIRY_DTL.UPD_USR_ID
                         ,TB_INQUIRY_DTL.UPD_TS
                         ,(select(count())
-                                .from(TB_INQUIRY_DTL)
+                                .from(TID)
                                 .where(
-                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                                                .and(TB_INQUIRY_DTL.REPLY_YN.eq("N"))
-                                                .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TID.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                .and(TID.REPLY_YN.eq("N"))
+                                                .and(TID.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                                                .and(TID.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
                                 ).asField("REPLY_YN_CNT")
                         )
                 )
