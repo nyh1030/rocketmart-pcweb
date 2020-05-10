@@ -110,7 +110,7 @@
                                             <td><div class="img-box"><img th:src="${inquiry.URL_PATH_CD}"></div></td>
                                             <td th:text="${inquiry.PRODUCT_NM}"></td>
                                             <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
-                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ} + '/' + ${inquiry.REG_USR_ID}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
                                             <td th:if="${inquiry.REPLY_YN_CNT == 0}">회신</td>
                                             <td th:if="${inquiry.REPLY_YN_CNT != 0}"><font color="red">미회신</font></td>
                                         </th:block>
@@ -118,7 +118,7 @@
                                             <td><div class="img-box"><img th:src="${inquiry.URL_PATH_CD}"></div></td>
                                             <td th:text="${inquiry.PRODUCT_NM}"></td>
                                             <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
-                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
+                                            <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ} + '/' + ${inquiry.REG_USR_ID}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
                                         </th:block>
 
                                     </tr>

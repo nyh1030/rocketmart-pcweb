@@ -114,6 +114,7 @@ public class OtherRepository {
                         ,TB_PRD_MST.GIVE_SAMPLE_YN
                         ,TB_MEM_MST.APPROVAL_YN
                         ,TB_MEM_MST.MEM_NM
+                        ,TB_INQUIRY_DTL.REG_USR_ID
                         ,DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN")
                 )
                 .from(TB_WISH_MST)

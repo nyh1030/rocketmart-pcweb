@@ -44,10 +44,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
             // 페이지 권한 설정
-/*            .antMatchers("/admin/**").hasRole("ADMIN")
-            .antMatchers("/seller/**").hasRole("SELLER")
-            .antMatchers("/buyer/**").hasRole("BUYER")*/
-            .antMatchers("/**").permitAll()
+            .antMatchers("/admin/**").hasAuthority("ADMIN")
+            .antMatchers("/seller/**").hasAuthority("SELLER")
+            .antMatchers("/buyer/**").hasAuthority("BUYER")
+            .antMatchers("/any/**").hasAnyAuthority("SELLER", "BUYER")
+            //.antMatchers("/**").permitAll()
             .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/any/signin")

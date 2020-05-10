@@ -167,7 +167,7 @@ public class MemberRepository {
                                         .and(TB_WISH_MST.DEL_YN.eq("N"))
                                 )
                         ).asField("WISH_YN"),
-                        (select(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ)
+                        (select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
                                 .from(TB_INQUIRY_DTL)
                                 .where(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(productSeq)
                                     .and(isNotEmpty(memId, TB_INQUIRY_DTL.REG_USR_ID.eq(memId)))

@@ -134,11 +134,12 @@ public class OtherCtl {
      * @param model
      * @return String
      */
-    @GetMapping("/any/inquiry/detail/{productSeq}")
-    public String dispInquiryDetail(@PathVariable("productSeq") int productSeq, Principal principal, Model model) {
-        String regUsrId = "";
+    @RequestMapping("/any/inquiry/detail/{productSeq}/{regUsrId}")
+    public String dispInquiryDetail(@PathVariable("productSeq") int productSeq, @PathVariable("regUsrId") String regUsrId, Principal principal, Model model) {
         if(!"admin".equals(principal.getName())){
             regUsrId = principal.getName();
+        }else if("admin".equals(principal.getName())){
+
         }
 
         // Inquiry 상세정보 조회_마스터

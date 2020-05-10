@@ -121,24 +121,30 @@
                             </div>
                             <div class="btn-box">
                                 <th:block sec:authorize="isAuthenticated()">
-                                    <th:block th:if="${#strings.isEmpty(memProductInfo.WISH_YN)}">
-                                        <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
-                                    </th:block>
-                                    <th:block th:if="${not #strings.isEmpty(memProductInfo.WISH_YN)}">
-                                        <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart"></i> WISHLIST</span>
-                                    </th:block>
-                                    <th:block th:if="${memProductInfo != null}">
-                                        <th:block th:if="${not #strings.isEmpty(memProductInfo.INQUIRY_YN)}">
-                                            <a th:href="@{'/any/inquiry/detail/' + ${productInfo.PRODUCT_SEQ}}">
-                                                <span class="ps-btn" id="btnInquiryHst">INQUIRY HISTORY</span>
-                                            </a>
+                                    <th:block sec:authorize="hasAuthority('BUYER')">
+                                        <th:block th:if="${#strings.isEmpty(memProductInfo.WISH_YN)}">
+                                            <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart-o"></i> WISHLIST</span>
                                         </th:block>
-                                        <th:block th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">
-                                            <span class="ps-btn" id="btnInquiryReg" th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">ASK NOW</span>
+                                        <th:block th:if="${not #strings.isEmpty(memProductInfo.WISH_YN)}">
+                                            <span class="ps-btn type-pink" id="btnAddWish"><i class="fa fa-heart"></i> WISHLIST</span>
+                                        </th:block>
+                                        <th:block th:if="${memProductInfo != null}">
+                                            <th:block th:if="${not #strings.isEmpty(memProductInfo.INQUIRY_YN)}">
+                                                <a th:href="@{'/any/inquiry/detail/' + ${productInfo.PRODUCT_SEQ} + '/' + ${memProductInfo.REG_USR_ID}}">
+                                                    <span class="ps-btn" id="btnInquiryHst">INQUIRY HISTORY</span>
+                                                </a>
+                                            </th:block>
+                                            <th:block th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">
+                                                <span class="ps-btn" id="btnInquiryReg" th:if="${#strings.isEmpty(memProductInfo.INQUIRY_YN)}">ASK NOW</span>
+                                            </th:block>
+                                        </th:block>
+                                        <th:block th:if="${memProductInfo == null}">
+                                            <span class="ps-btn" id="btnInquiryReg">ASK NOW</span>
                                         </th:block>
                                     </th:block>
-                                    <th:block th:if="${memProductInfo == null}">
-                                        <span class="ps-btn" id="btnInquiryReg">ASK NOW</span>
+                                    <th:block sec:authorize="hasAuthority('SELLER') and !hasAuthority('ADMIN')">
+                                        <span class="ps-btn type-pink" th:onclick="'alert(\'This button is only available for Buyers\')'"><i class="fa fa-heart-o"></i> WISHLIST</span>
+                                        <span class="ps-btn" th:onclick="'alert(\'This button is only available for Buyers\')'">ASK NOW</span>
                                     </th:block>
                                 </th:block>
                                 <th:block sec:authorize="isAnonymous()">
