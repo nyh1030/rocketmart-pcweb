@@ -69,12 +69,11 @@
                                     </tbody>
                                 </table>
                             </div>
-<!--                            <div class="ps-pagination">
-                                <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>
+                            <!--<div th:if="${bookPage.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+                                <li class="pagination">
+                                    </li>
+                                        <a th:href="@{/listBooks(size=${bookPage.size}, page=${pageNumber})}" th:text=${pageNumber} th:class="${pageNumber==bookPage.number + 1} ? active"></a>
+                                    </li>
                                 </ul>
                             </div>-->
                         </div>

@@ -159,8 +159,8 @@
                                 $tblFobPriceTbody.append(`
                                                 <tr>
                                                     <td>${CommonUtils.formatNumberWithCommas(item.RANGE_START) + ' ~ ' + CommonUtils.formatNumberWithCommas(item.RANGE_END)}</td>
-                                                    <td>${'$' + CommonUtils.formatNumberWithCommas(((item.RETAIL_PRICE * item.EXPOSURE_SUPPLY_RATE) / 100.0).toFixed(3))}</td>
-                                                    <td>${item.EXPOSURE_SUPPLY_RATE + '%'}</td>
+                                                    <td>${'$' + CommonUtils.formatNumberWithCommas(((item.RETAIL_PRICE * item.EXPOSURE_SUPPLY_RATE) / 100.0).toFixed(1))}</td>
+                                                    <td>${(item.EXPOSURE_SUPPLY_RATE).toFixed(1) + '%'}</td>
                                                 </tr>
                                             `);
                             });
