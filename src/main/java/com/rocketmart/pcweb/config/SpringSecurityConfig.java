@@ -48,6 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/seller/**").hasAuthority("SELLER")
             .antMatchers("/buyer/**").hasAuthority("BUYER")
             .antMatchers("/any/**").hasAnyAuthority("SELLER", "BUYER")
+            .antMatchers("/any/signup/**").permitAll()
             //.antMatchers("/**").permitAll()
             .and() // 로그인 설정
                 .formLogin()
