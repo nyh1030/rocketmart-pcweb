@@ -162,11 +162,13 @@ public class BrandSvc {
 
 	/**
 	 * 브랜드 목록(어드민)
-	 * @param tbBrandMstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForAdminBrandInfo(TbBrandMstRecord tbBrandMstRecord, String schCompanyNm, String schMemId, String schBrandNm) {
-		return brandRepository.findAllForAdminBrandInfo(tbBrandMstRecord, schCompanyNm, schMemId, schBrandNm);
+	public List<Map<String, Object>> findAllForAdminBrandInfo(String schCompanyNm, String schMemId, String schBrandNm, int startIndex, int pageSize) {
+		return brandRepository.findAllForAdminBrandInfo(schCompanyNm, schMemId, schBrandNm, startIndex, pageSize);
 	}
 
+	public int findAllCnt(String schCompanyNm, String schMemId, String schBrandNm) {
+		return brandRepository.findAllCnt(schCompanyNm, schMemId, schBrandNm);
+	}
 }
