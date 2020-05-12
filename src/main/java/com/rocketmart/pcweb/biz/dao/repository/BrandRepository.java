@@ -134,10 +134,11 @@ public class BrandRepository {
 	/**
 	 * 브랜드 목록(어드민)
 	 */
-	public List<Map<String, Object>> findAllForAdminBrandInfo(TbBrandMstRecord tbBrandMstRecord, String schCompanyNm, String schMemId, String schBrandNm) {
+	public List<Map<String, Object>> findAllForAdminBrandInfo(String schCompanyNm, String schMemId, String schBrandNm, int startIndex, int pageSize) {
 		return this.dslContext
 				.select(
-						TB_MEM_MST.COMPANY_NM
+						DSL.rowNumber().over().as("ROW_NUM")
+						,TB_MEM_MST.COMPANY_NM
 						,TB_MEM_MST.MEM_ID
 						,TB_BRAND_MST.BRAND_SEQ
 						,TB_BRAND_MST.BRAND_NM
@@ -148,7 +149,20 @@ public class BrandRepository {
 				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
 				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
 				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
-				.orderBy(TB_BRAND_MST.REG_TS.desc())
+				.offset(startIndex)
+				.limit(pageSize)
 				.fetchMaps();
+	}
+
+	public int findAllCnt(String schCompanyNm, String schMemId, String schBrandNm) {
+		Record1<Integer> integerRecord1 = this.dslContext
+				.select(count())
+				.from(TB_MEM_MST)
+				.join(TB_BRAND_MST)
+				.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
+				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%" + schCompanyNm + "%")))
+				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%" + schMemId + "%")))
+				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%" + schBrandNm + "%"))).fetchAny();
+		return integerRecord1.value1();
 	}
 }

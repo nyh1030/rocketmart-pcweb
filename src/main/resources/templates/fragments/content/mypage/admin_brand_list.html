@@ -35,7 +35,7 @@
                                 <button type="submit" id="btnSearch" class="ps-btn type-black">Search</button>
                             </div>
                             </form>
-                            <p class="total">Total : <em class="num" th:text="${#lists.size(adminBrandList)}"></em> result</p>
+                            <p class="total">Total : <em class="num" th:text="${totalCnt}"></em> result</p>
                             <div class="table-responsive">
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
@@ -63,7 +63,7 @@
                                     </th:block>
                                     <th:block th:if="${not #lists.isEmpty(adminBrandList)}">
                                         <tr th:each="adminBrand : ${adminBrandList}">
-                                            <td th:text="${adminBrandStat.size - adminBrandStat.index}"></td>
+                                            <td th:text="${adminBrand.ROW_NUM}"></td>
                                             <td th:text="${adminBrand.COMPANY_NM}"></td>
                                             <td th:text="${adminBrand.MEM_ID}"></td>
                                             <td class="link-type">
@@ -80,13 +80,37 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!--<div th:if="${bookPage.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
-                                <li class="pagination">
+                            <div class="ps-pagination">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=1'}" aria-label="Previous">
+                                            <span aria-hidden="true">처음</span>
+                                        </a>
                                     </li>
-                                        <a th:href="@{/listBooks(size=${bookPage.size}, page=${pageNumber})}" th:text=${pageNumber} th:class="${pageNumber==bookPage.number + 1} ? active"></a>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                            <span aria-hidden="true">이전</span>
+                                        </a>
+                                    </li>
+                                    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                                        <li class="page-item"
+                                            th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                            th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                        </li>
+                                    </th:block>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                            <span aria-hidden="true">다음</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                            <span aria-hidden="true">끝</span>
+                                        </a>
                                     </li>
                                 </ul>
-                            </div>-->
+                            </nav>
                         </div>
                     </div>
                 </div>

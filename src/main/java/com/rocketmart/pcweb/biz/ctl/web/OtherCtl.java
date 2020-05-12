@@ -5,6 +5,7 @@ import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.OtherSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
+import com.rocketmart.pcweb.common.Pagination.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,9 +181,22 @@ public class OtherCtl {
             , @RequestParam(value = "schCompanyNm", required = false) String schCompanyNm
             , @RequestParam(value = "schMemId", required = false) String schMemId
             , @RequestParam(value = "schBrandNm", required = false) String schBrandNm
+            , @RequestParam(defaultValue = "1") int page
             , Model model) {
 
-        model.addAttribute("adminBrandList", brandSvc.findAllForAdminBrandInfo(tbBrandMstRecord, schCompanyNm, schMemId, schBrandNm));
+        int totalCnt = brandSvc.findAllCnt(schCompanyNm, schMemId, schBrandNm);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("adminBrandList", brandSvc.findAllForAdminBrandInfo(schCompanyNm, schMemId, schBrandNm, startIndex, pageSize));
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
         model.addAttribute("schCompanyNm", schCompanyNm);
         model.addAttribute("schMemId", schMemId);
         model.addAttribute("schBrandNm", schBrandNm);
