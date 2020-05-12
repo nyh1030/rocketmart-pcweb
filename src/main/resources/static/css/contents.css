@@ -200,6 +200,10 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 #homepage-5 .ps-search-trending{padding:60px 0 0;}
 #homepage-5 .ps-search-trending .no_data{border:0;text-align:center;margin-top:40px;}
 #homepage-5 .ps-search-trending .ps-product{padding:20px 0 0;}
+/*#homepage-5 .ps-search-trending .ps-tabs .ps-tabs .cont{display:none;}*/
+#homepage-5 .ps-search-trending .ps-tabs .ps-tabs .cont{padding-bottom:30px}
+#homepage-5 .ps-search-trending .ps-tabs .ps-tabs .cont.active{display:block;}
+#homepage-5 .ps-block--categories-tabs .ps-tabs .ps-tabs{border-top:0;}
 .ps-page--shop .ps-block--vendor{overflow:hidden;margin-bottom:70px;}
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail{float:left;width:20%;}
 .ps-page--shop .ps-block--vendor .ps-block__thumbnail .logo-box{width:160px;height:160px;margin:0 auto;}

@@ -223,161 +223,176 @@
                                 <a th:if="${#lists.contains(category2Depth, '106')}" href="#tab-1-6">Baby Care</a>
                                 <a th:if="${#lists.contains(category2Depth, '107')}" href="#tab-1-7">Mom</a>
                             </div>
+
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
-                                    <div th:if="${#lists.contains(category2Depth, '101')}" class="ps-tab" id="tab-1-1">
-                                        <th:block th:if="${#arrays.length(cate101_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate101_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
+                                    <div th:if="${#lists.contains(category2Depth, '101')}" class="cont" id="tab-1-1">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate101_productList) > 0}">
+                                                        <div th:each="product : ${cate101_productList}">
+                                                            <div class="ps-product">
+                                                                <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                    <div class="ps-product__thumbnail">
+                                                                        <img th:src="${product.URL_PATH_CD}">
+                                                                    </div>
+                                                                    <div class="ps-product__container">
+                                                                        <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                        <div class="ps-product__content">
+                                                                            <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                            <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
                                                             </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '102')}" class="ps-tab" id="tab-1-2">
-                                        <th:block th:if="${#arrays.length(cate102_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate102_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '102')}" class="cont" id="tab-1-2">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate102_productList) > 0}">
+                                                    <div th:each="product : ${cate102_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '103')}" class="ps-tab" id="tab-1-3">
-                                        <th:block th:if="${#arrays.length(cate103_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate103_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '103')}" class="cont" id="tab-1-3">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate103_productList) > 0}">
+                                                    <div th:each="product : ${cate103_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '104')}" class="ps-tab" id="tab-1-4">
-                                        <th:block th:if="${#arrays.length(cate104_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate104_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '104')}" class="cont" id="tab-1-4">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate104_productList) > 0}">
+                                                    <div th:each="product : ${cate104_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '105')}" class="ps-tab" id="tab-1-5">
-                                        <th:block th:if="${#arrays.length(cate105_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate105_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '105')}" class="cont" id="tab-1-5">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate105_productList) > 0}">
+                                                    <div th:each="product : ${cate105_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '106')}" class="ps-tab" id="tab-1-6">
-                                        <th:block th:if="${#arrays.length(cate106_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate106_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '106')}" class="cont" id="tab-1-6">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate106_productList) > 0}">
+                                                    <div th:each="product : ${cate106_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '107')}" class="ps-tab" id="tab-1-7">
-                                        <th:block th:if="${#arrays.length(cate107_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate107_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '107')}" class="cont" id="tab-1-7">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate107_productList) > 0}">
+                                                    <div th:each="product : ${cate107_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -404,115 +419,125 @@
                             </div>
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
-                                    <div th:if="${#lists.contains(category2Depth, '201')}" class="ps-tab" id="tab-2-1">
-                                        <th:block th:if="${#arrays.length(cate201_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate201_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '201')}" class="cont" id="tab-2-1">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate201_productList) > 0}">
+                                                    <div th:each="product : ${cate201_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '202')}" class="ps-tab" id="tab-2-2">
-                                        <th:block th:if="${#arrays.length(cate202_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate202_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '202')}" class="cont" id="tab-2-2">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate202_productList) > 0}">
+                                                    <div th:each="product : ${cate202_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '203')}" class="ps-tab" id="tab-2-3">
-                                        <th:block th:if="${#arrays.length(cate203_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate203_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '203')}" class="cont" id="tab-2-3">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate203_productList) > 0}">
+                                                    <div th:each="product : ${cate203_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '204')}" class="ps-tab" id="tab-2-4">
-                                        <th:block th:if="${#arrays.length(cate204_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate204_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '204')}" class="cont" id="tab-2-4">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate204_productList) > 0}">
+                                                    <div th:each="product : ${cate204_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '205')}" class="ps-tab" id="tab-2-5">
-                                        <th:block th:if="${#arrays.length(cate205_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate205_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '205')}" class="cont" id="tab-2-5">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate205_productList) > 0}">
+                                                    <div th:each="product : ${cate205_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -539,115 +564,125 @@
                             </div>
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
-                                    <div th:if="${#lists.contains(category2Depth, '301')}" class="ps-tab" id="tab-3-1">
-                                        <th:block th:if="${#arrays.length(cate301_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate301_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '301')}" class="cont" id="tab-3-1">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate301_productList) > 0}">
+                                                    <div th:each="product : ${cate301_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '302')}" class="ps-tab" id="tab-3-2">
-                                        <th:block th:if="${#arrays.length(cate302_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate302_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '302')}" class="cont" id="tab-3-2">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate302_productList) > 0}">
+                                                    <div th:each="product : ${cate302_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '303')}" class="ps-tab" id="tab-3-3">
-                                        <th:block th:if="${#arrays.length(cate303_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate303_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '303')}" class="cont" id="tab-3-3">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate303_productList) > 0}">
+                                                    <div th:each="product : ${cate303_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '304')}" class="ps-tab" id="tab-3-4">
-                                        <th:block th:if="${#arrays.length(cate304_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate304_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '304')}" class="cont" id="tab-3-4">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate304_productList) > 0}">
+                                                    <div th:each="product : ${cate304_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '305')}" class="ps-tab" id="tab-3-5">
-                                        <th:block th:if="${#arrays.length(cate305_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate305_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '305')}" class="cont" id="tab-3-5">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate305_productList) > 0}">
+                                                    <div th:each="product : ${cate305_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -672,71 +707,77 @@
                             </div>
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
-                                    <div th:if="${#lists.contains(category2Depth, '401')}" class="ps-tab" id="tab-4-1">
-                                        <th:block th:if="${#arrays.length(cate401_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate401_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '401')}" class="cont" id="tab-4-1">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate401_productList) > 0}">
+                                                    <div th:each="product : ${cate401_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '402')}" class="ps-tab" id="tab-4-2">
-                                        <th:block th:if="${#arrays.length(cate402_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate402_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '402')}" class="cont" id="tab-4-2">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate402_productList) > 0}">
+                                                    <div th:each="product : ${cate402_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '403')}" class="ps-tab" id="tab-4-3">
-                                        <th:block th:if="${#arrays.length(cate403_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate403_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '403')}" class="cont" id="tab-4-3">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate403_productList) > 0}">
+                                                    <div th:each="product : ${cate403_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -760,49 +801,53 @@
                             </div>
                             <div class="ps-tabs">
                                 <div class="ps-tabs">
-                                    <div th:if="${#lists.contains(category2Depth, '501')}" class="ps-tab" id="tab-5-1">
-                                        <th:block th:if="${#arrays.length(cate501_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate501_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '501')}" class="cont" id="tab-5-1">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate501_productList) > 0}">
+                                                    <div th:each="product : ${cate501_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
-                                    <div th:if="${#lists.contains(category2Depth, '502')}" class="ps-tab" id="tab-5-2">
-                                        <th:block th:if="${#arrays.length(cate502_productList) > 0}">
-                                            <div class="row">
-                                                <div th:each="product : ${cate502_productList}" class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                                    <div class="ps-product">
-                                                        <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
-                                                            <div class="ps-product__thumbnail">
-                                                                <img th:src="${product.URL_PATH_CD}">
-                                                            </div>
-                                                            <div class="ps-product__container">
-                                                                <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
-                                                                <div class="ps-product__content">
-                                                                    <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
-                                                                    <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                    <div th:if="${#lists.contains(category2Depth, '502')}" class="cont" id="tab-5-2">
+                                        <div class="ps-section__content">
+                                            <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="4" data-owl-item-xl="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                                                <th:block th:if="${#arrays.length(cate502_productList) > 0}">
+                                                    <div th:each="product : ${cate1502_productList}">
+                                                        <div class="ps-product">
+                                                            <a th:href="@{/any/product_detail/{productSeq}(productSeq=${product.PRODUCT_SEQ})}">
+                                                                <div class="ps-product__thumbnail">
+                                                                    <img th:src="${product.URL_PATH_CD}">
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="ps-product__container">
+                                                                    <span class="ps-product__vendor" th:text="${product.BRAND_NM}"></span>
+                                                                    <div class="ps-product__content">
+                                                                        <span class="ps-product__title" th:text="${product.PRODUCT_NM}"></span>
+                                                                        <p class="ps-product__price" th:text="${'$'.concat(#numbers.formatDecimal(product.RETAIL_PRICE, 0, 'COMMA', 1, 'POINT'))}"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </th:block>
                                             </div>
-                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -836,15 +881,15 @@
 
             init() {
                 $('#dvCate1').find('a').eq(0).addClass('active');
-                $('#dvCate1').next().children().find('.ps-tab').eq(0).addClass('active');
+                $('#dvCate1').next().children().find('.cont').eq(0).addClass('active').siblings().hide();
                 $('#dvCate2').find('a').eq(0).addClass('active');
-                $('#dvCate2').next().children().find('.ps-tab').eq(0).addClass('active');
+                $('#dvCate2').next().children().find('.cont').eq(0).addClass('active').siblings().hide();
                 $('#dvCate3').find('a').eq(0).addClass('active');
-                $('#dvCate3').next().children().find('.ps-tab').eq(0).addClass('active');
+                $('#dvCate3').next().children().find('.cont').eq(0).addClass('active').siblings().hide();
                 $('#dvCate4').find('a').eq(0).addClass('active');
-                $('#dvCate4').next().children().find('.ps-tab').eq(0).addClass('active');
+                $('#dvCate4').next().children().find('.cont').eq(0).addClass('active').siblings().hide();
                 $('#dvCate5').find('a').eq(0).addClass('active');
-                $('#dvCate5').next().children().find('.ps-tab').eq(0).addClass('active');
+                $('#dvCate5').next().children().find('.cont').eq(0).addClass('active').siblings().hide();
             }
         };
 
