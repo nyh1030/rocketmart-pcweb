@@ -99,6 +99,8 @@
                 <!-- //.ps-section__right : E -->
             </div>
         </div>
+        <input sec:authorize="hasAuthority('ADMIN')" name="isAdmin" value="true">
+        <input sec:authorize="!hasAuthority('ADMIN')" name="isAdmin" value="false">
         <!-- //.container : E -->
     </div>
 
@@ -226,7 +228,11 @@
                     success: function(response) {
                         if (response === 200) {
                             alert('브랜드 정보가 수정되었습니다.');
-                            CommonUtils.forwardPage('/seller/brand_add');
+                            if ($('[name="isAdmin"]').val() === "true") {
+                                CommonUtils.forwardPage('/admin/brand/list');
+                            } else {
+                                CommonUtils.forwardPage('/seller/brand_add');
+                            }
                         }
                     },
                     error: function() {

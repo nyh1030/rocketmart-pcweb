@@ -139,8 +139,8 @@ public class BrandRepository {
 				.select(
 						TB_MEM_MST.COMPANY_NM
 						,TB_MEM_MST.MEM_ID
-						,count().as("TOT_CNT")
-						,groupConcat(TB_BRAND_MST.BRAND_NM, ", ").as("BRAND_NM")
+						,TB_BRAND_MST.BRAND_SEQ
+						,TB_BRAND_MST.BRAND_NM
 				)
 				.from(TB_MEM_MST)
 					.join(TB_BRAND_MST)
@@ -148,8 +148,7 @@ public class BrandRepository {
 				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
 				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
 				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
-				.groupBy(TB_MEM_MST.MEM_ID, TB_MEM_MST.COMPANY_NM)
-				.orderBy(count().desc(), TB_BRAND_MST.REG_TS.desc())
+				.orderBy(TB_BRAND_MST.REG_TS.desc())
 				.fetchMaps();
 	}
 }
