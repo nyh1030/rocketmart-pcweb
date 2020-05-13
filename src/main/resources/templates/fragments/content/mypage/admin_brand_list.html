@@ -96,7 +96,7 @@
                                         <li class="page-item"
                                             th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                                             th:each="pageButton : ${#numbers.sequence(start, end)}">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                            <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
                                         </li>
                                     </th:block>
                                     <li class="page-item">
