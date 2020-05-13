@@ -1,8 +1,6 @@
 package com.rocketmart.pcweb.biz.ctl.web;
 
-import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.jooq.tables.records.TbCateMstRecord;
-import com.rocketmart.jooq.tables.records.TbPrdFobHstRecord;
 import com.rocketmart.pcweb.biz.svc.BrandSvc;
 import com.rocketmart.pcweb.biz.svc.CategorySvc;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
@@ -52,7 +49,15 @@ public class BrandCtl {
 	public String brandAdd(Model model, Principal principal) {
 		model.addAttribute("brandList", brandSvc.findAllForAfile(principal.getName()));
 		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime(principal.getName()));
-		return prefixPath.concat("/brand_add"); 
+		return prefixPath.concat("/brand_add");
+	}
+
+	@GetMapping("/seller/brand_add/{brandSeq}")
+	public String brandAdd(Model model, Principal principal, @PathVariable(value = "brandSeq") int brandSeq) {
+		model.addAttribute("brandList", brandSvc.findAllForAfileWithBrandSeq(brandSeq));
+		model.addAttribute("updateDateTime", brandSvc.findLastUpdatedDateTime(principal.getName()));
+		model.addAttribute("brandSeq", brandSeq);
+		return prefixPath.concat("/brand_add");
 	}
 
 	@GetMapping("/seller/brand_register")

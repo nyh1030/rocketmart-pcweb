@@ -165,4 +165,13 @@ public class BrandRepository {
 				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%" + schBrandNm + "%"))).fetchAny();
 		return integerRecord1.value1();
 	}
+
+	public List<Map<String, Object>> findAllForAfileWithBrandSeq(int brandSeq) {
+		return this.dslContext.select(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
+				.from(TB_BRAND_MST)
+				.join(TB_CM_AFILE)
+				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq)).and(TB_BRAND_MST.DEL_YN.equal("N"))
+				.fetchMaps();
+	}
 }

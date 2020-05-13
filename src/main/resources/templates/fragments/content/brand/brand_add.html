@@ -81,11 +81,14 @@
                 <!-- //.ps-section__right : E -->
             </div>
         </div>
+        <input sec:authorize="hasAuthority('ADMIN')" name="isAdmin" value="true">
+        <input sec:authorize="!hasAuthority('ADMIN')" name="isAdmin" value="false">
         <!-- //.container : E -->
     </div>
 
     <script type="text/javascript">
         $(() => {
+            PageScope.init();
             EventScope.init();
         });
 
@@ -95,7 +98,11 @@
             currentBrandNm: "",
 
             init() {
-                this.setDataTables();
+                setTimeout(function () {
+                    if ($('[name="isAdmin"]').val() === "true") {
+                        $('.brand-list li a').click();
+                    }
+                }, 500);
             },
 
             getProductListForBrand(brandSeq) {

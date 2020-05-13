@@ -171,4 +171,8 @@ public class BrandSvc {
 	public int findAllCnt(String schCompanyNm, String schMemId, String schBrandNm) {
 		return brandRepository.findAllCnt(schCompanyNm, schMemId, schBrandNm);
 	}
+
+	public List<Map<String, Object>> findAllForAfileWithBrandSeq(int brandSeq) {
+		return brandRepository.findAllForAfileWithBrandSeq(brandSeq);
+	}
 }
