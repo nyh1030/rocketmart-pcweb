@@ -259,7 +259,9 @@ table tbody tr td .prd-box .img-box{display:inline-block;margin:0 15px 0 0;width
 .youtube-area {border: 1px solid #f1f1f1;margin-top:20px}
 .ps-table td .img-box{width:130px;height:130px;}
 .ps-table td .btns.type-size button{padding:10px 12px;font-size:13px;line-height:0;}
-
+.pagination a{border:0;font-size:15px;}
+.pagination a:hover{background:0;}
+.pagination a.active{font-weight: bold;border-radius: 50%;background: #fcb800;width: 30px;height: 30px;}
 /* popup */
 .jquery-modal.blocker{z-index:10;}
 .modal_popup{width:80%;height:80%;padding:40px 20px 40px 40px!important;}
