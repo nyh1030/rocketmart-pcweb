@@ -70,7 +70,7 @@
                                             <td th:if="${wish.APPROVAL_YN == 'Y'}">
                                                 <!-- .tooltip-box : S -->
                                                 <div class="tooltip-box">
-                                                    <a href="#" th:value="${wish.PRODUCT_SEQ}">Click Here</a>
+                                                    <a href="#" class="btn-click" th:value="${wish.PRODUCT_SEQ}">Click Here</a>
                                                     <div class="cont">
                                                         <div class="price-info-box">
                                                             <table id="tblFobPrice" class="tbl-price">
@@ -150,46 +150,52 @@
             //가격조회
             $('.tooltip-box a').on('click',function(){
                 var productSeq = parseInt($(this).attr('value'));
-                axios({
-                    method: 'get',
-                    url: `/any/product/fob/list/${productSeq}`
-                }).then(response => {
-                    if (response.status === 200) {
-                        const data = response.data || [];
-                        const $tblFobPriceTbody = $('#tblFobPrice > tbody');
-                        $tblFobPriceTbody.empty();
 
-                        if (data.length > 0) {
-                            data.forEach(item => {
-                                $tblFobPriceTbody.append(`
+                if(!isNaN(productSeq)){
+                    axios({
+                        method: 'get',
+                        url: `/any/product/fob/list/${productSeq}`
+                    }).then(response => {
+                        if (response.status === 200) {
+                            const data = response.data || [];
+                            const $tblFobPriceTbody = $('#tblFobPrice > tbody');
+                            $tblFobPriceTbody.empty();
+
+                            if (data.length > 0) {
+                                data.forEach(item => {
+                                    $tblFobPriceTbody.append(`
                                                 <tr>
                                                     <td>${CommonUtils.formatNumberWithCommas(item.RANGE_START) + ' ~ ' + CommonUtils.formatNumberWithCommas(item.RANGE_END)}</td>
                                                     <td>${'$' + CommonUtils.formatNumberWithCommas(((item.RETAIL_PRICE * item.EXPOSURE_SUPPLY_RATE) / 100.0).toFixed(1))}</td>
                                                     <td>${(item.EXPOSURE_SUPPLY_RATE).toFixed(1) + '%'}</td>
                                                 </tr>
                                             `);
-                            });
+                                });
 
-                            $(this).toggleClass('on');
-                            if($(this).hasClass('on')){
-                                $(this).siblings('.cont').show();
-                            }else{
-                                $(this).siblings('.cont').hide();
+                                $(this).toggleClass('on');
+                                if($(this).hasClass('on')){
+                                    $(this).siblings('.cont').show();
+                                }else{
+                                    $(this).siblings('.cont').hide();
+                                }
+
+
+                                //ClickLog History
+                                PageScope.savePrdFobHst(productSeq);
+
+                            } else {
+                                alert('FOB price does not exist');
                             }
-
-                            //ClickLog History
-                            PageScope.savePrdFobHst(productSeq);
-                        } else {
-                            alert('FOB price does not exist');
                         }
-                    }
-                }).catch(error => {
-                    console.log(error);
-                });
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                }
             });
 
             $('.tooltip-box .btn-close').on('click',function () {
                 $(this).parent().hide();
+                $('.tooltip-box .btn-click').removeClass('on');
             })
         },
 
@@ -234,7 +240,7 @@
             axios({
                 method: 'post',
                 url: '/any/rest/clicklog/info/save',
-                params: Object.assign(this.getClickLogParameters())
+                params: {productSeq: productSeq}
             }).then(response => {
 
             }).catch(error => {
@@ -242,11 +248,6 @@
             });
         },
 
-        getClickLogParameters() {
-            return {
-                productSeq: productSeq
-            }
-        }
     };
 
     const EventScope = {

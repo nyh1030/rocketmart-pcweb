@@ -353,6 +353,18 @@ public class OtherRepository {
     }
 
     /**
+     * Click Log 중복 체크
+     */
+    public boolean clickLogOverLapChk(int productSeq, String memId) {
+        return this.dslContext.selectCount()
+                .from(TB_PRD_FOB_HST)
+                .where(TB_PRD_FOB_HST.REG_USR_ID.eq(memId)
+                    .and(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(productSeq))
+                )
+                .fetchOne().value1() > 0;
+    }
+
+    /**
      * Click Log 등록(상품 가격 조회 이력 등록)
      */
     public int saveOneForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord) {

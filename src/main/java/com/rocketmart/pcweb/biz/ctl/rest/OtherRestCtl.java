@@ -94,10 +94,18 @@ public class OtherRestCtl {
 	 * @return ResponseEntity<String>
 	 */
 	@PostMapping("/any/rest/clicklog/info/save")
-	public ResponseEntity<String> saveContactUsInfo(TbPrdFobHstRecord tbPrdFobHstRecord, Principal principal) {
-		tbPrdFobHstRecord.setRegUsrId(principal.getName());
+	public ResponseEntity<String> saveClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, Principal principal) {
+		int resultCnt = 0;
 
-		return new ResponseEntity<>(otherSvc.saveOneForClickLogInfo(tbPrdFobHstRecord) > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
+		tbPrdFobHstRecord.setRegUsrId(principal.getName());
+		boolean overLapChk =otherSvc.clickLogOverLapChk(tbPrdFobHstRecord.getProductSeq(), principal.getName());
+
+		//중복없으면 등록
+		if(!overLapChk){
+			resultCnt = otherSvc.saveOneForClickLogInfo(tbPrdFobHstRecord);
+		}
+
+		return new ResponseEntity<>(resultCnt > 0 ? ApiResponse.SUCCESS.getCode() : ApiResponse.FAIL.getCode(), HttpStatus.OK);
 	}
 
 	/**
