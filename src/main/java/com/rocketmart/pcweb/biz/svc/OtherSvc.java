@@ -44,8 +44,8 @@ public class OtherSvc {
 	 * @param tbContactUsRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord) {
-		return otherRepository.findAllForContactUsInfo(tbContactUsRecord);
+	public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord, int startIndex, int pageSize) {
+		return otherRepository.findAllForContactUsInfo(tbContactUsRecord, startIndex, pageSize);
 	}
 
 	/**
@@ -102,11 +102,11 @@ public class OtherSvc {
 	 * @param tbInquiryDtlRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, String usrName) {
+	public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, String usrName, int startIndex, int pageSize) {
 		if(usrName.equals("admin")){
-			return otherRepository.findAllForAdminInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+			return otherRepository.findAllForAdminInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, startIndex, pageSize);
 		}else{
-			return otherRepository.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+			return otherRepository.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, startIndex, pageSize);
 		}
 	}
 
@@ -172,8 +172,8 @@ public class OtherSvc {
 	 * @param tbPrdFobHstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
-		return otherRepository.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm);
+	public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm, int startIndex, int pageSize) {
+		return otherRepository.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm, startIndex, pageSize);
 	}
 
 	/**
@@ -218,4 +218,19 @@ public class OtherSvc {
 		return otherRepository.updateInquiryReplyYn(inquiryDtlSeq);
 	}
 
+	public int findContactUsCnt(TbContactUsRecord tbContactUsRecord) {
+		return otherRepository.findContactUsCnt(tbContactUsRecord);
+	}
+
+	public int findInquiryCnt(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, String usrName) {
+		if(usrName.equals("admin")){
+			return otherRepository.findAllForAdminInquiryInfoCnt(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+		}else{
+			return otherRepository.findAllForInquiryInfoCnt(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
+		}
+	}
+
+	public int findClickLogCnt(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+		return otherRepository.findClickLogCnt(tbPrdFobHstRecord, schMemId, schProductNm);
+	}
 }

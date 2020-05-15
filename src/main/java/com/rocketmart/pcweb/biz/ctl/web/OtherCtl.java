@@ -40,9 +40,21 @@ public class OtherCtl {
      * @return String
      */
     @RequestMapping("/admin/contactus/list")
-    public String dispContactusList(TbContactUsRecord tbContactUsRecord, Model model) {
+    public String dispContactusList(TbContactUsRecord tbContactUsRecord, Model model, @RequestParam(defaultValue = "1") int page) {
 
-        model.addAttribute("contactusList", otherSvc.findAllForContactUsInfo(tbContactUsRecord));
+        int totalCnt = otherSvc.findContactUsCnt(tbContactUsRecord);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("contactusList", otherSvc.findAllForContactUsInfo(tbContactUsRecord, startIndex, pageSize));
         model.addAttribute("usrNm", tbContactUsRecord.getUsrNm());
         model.addAttribute("companyNm", tbContactUsRecord.getCompanyNm());
         model.addAttribute("subject", tbContactUsRecord.getSubject());
@@ -94,13 +106,26 @@ public class OtherCtl {
             , @RequestParam(value = "schMemId", required = false) String schMemId
             , @RequestParam(value = "schMemNm", required = false) String schMemNm
             , @RequestParam(value = "schProductNm", required = false) String schProductNm
+            , @RequestParam(defaultValue = "1") int page
             , Principal principal
             , Model model) {
         if(!"admin".equals(principal.getName())){
             tbInquiryDtlRecord.setRegUsrId(principal.getName());
         }
 
-        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, principal.getName()));
+        int totalCnt = otherSvc.findInquiryCnt(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, principal.getName());
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("inquiryList", otherSvc.findAllForInquiryInfo(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm, principal.getName(), startIndex, pageSize));
         model.addAttribute("memInfo", memberSvc.findOneForMemInfo(principal.getName()));
         model.addAttribute("memId", schMemId);
         model.addAttribute("memNm", schMemNm);
@@ -161,9 +186,22 @@ public class OtherCtl {
     public String dispContactusList(TbPrdFobHstRecord tbPrdFobHstRecord
             , @RequestParam(value = "schMemId", required = false) String schMemId
             , @RequestParam(value = "schProductNm", required = false) String schProductNm
+            , @RequestParam(defaultValue = "1") int page
             , Model model) {
 
-        model.addAttribute("clicklogList", otherSvc.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm));
+        int totalCnt = otherSvc.findClickLogCnt(tbPrdFobHstRecord, schMemId, schProductNm);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("clicklogList", otherSvc.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm, startIndex, pageSize));
         model.addAttribute("schMemId", schMemId);
         model.addAttribute("schProductNm", schProductNm);
 
@@ -216,9 +254,22 @@ public class OtherCtl {
     public String dispPendingList(TbMemMstRecord tbMemMstRecord
             , @RequestParam(value = "schProductNm", required = false) String schProductNm
             , @RequestParam(value = "schBrandNm", required = false) String schBrandNm
+            , @RequestParam(defaultValue = "1") int page
             , Model model) {
 
-        model.addAttribute("productList", productSvc.findAllForPending(schProductNm, schBrandNm));
+        int totalCnt = brandSvc.findPendingCnt(schProductNm, schBrandNm);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("productList", productSvc.findAllForPending(schProductNm, schBrandNm, startIndex, pageSize));
         model.addAttribute("schProductNm", schProductNm);
         model.addAttribute("schBrandNm", schBrandNm);
 

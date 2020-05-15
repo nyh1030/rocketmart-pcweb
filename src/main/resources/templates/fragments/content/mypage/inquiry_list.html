@@ -48,7 +48,7 @@
                             <button type="submit" id="btnSearch" class="ps-btn type-black">Search</button>
                         </div>
                         </form>
-                        <p class="total">Total : <em class="num" th:text="${#lists.size(inquiryList)}"></em> result</p>
+                        <p class="total">Total : <em class="num" th:text="${totalCnt}"></em> result</p>
                         <div class="table-responsive">
                             <table class="table ps-table ps-table--vendor">
                                 <colgroup>
@@ -103,7 +103,7 @@
                                 </th:block>
                                 <th:block th:if="${not #lists.isEmpty(inquiryList)}">
                                     <tr th:each="inquiry : ${inquiryList}">
-                                        <td th:text="${inquiryStat.size - inquiryStat.index}"></td>
+                                        <td th:text="${inquiry.ROW_NUM}"></td>
                                         <th:block sec:authorize="hasAuthority('ADMIN')">
                                             <td th:text="${inquiry.MEM_ID}"></td>
                                             <td th:text="${inquiry.MEM_NM}"></td>
@@ -120,20 +120,42 @@
                                             <td th:text="${#strings.substring(inquiry.REG_TS,0,19)}"></td>
                                             <td class="link-type"><a th:href="@{'/any/inquiry/detail/' + ${inquiry.PRODUCT_SEQ} + '/' + ${inquiry.REG_USR_ID}}" class="txt-msg" th:title="${inquiry.MESSAGE}" th:text="${inquiry.MESSAGE}"></a></td>
                                         </th:block>
-
                                     </tr>
                                 </th:block>
                                 </tbody>
                             </table>
                         </div>
-<!--                            <div class="ps-pagination">
+                        <div class="ps-pagination">
                             <ul class="pagination">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>
+                                <li class="page-item">
+                                    <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/inquiry/list?page=1'}" aria-label="Previous">
+                                        <span aria-hidden="true">처음</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/inquiry/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                        <span aria-hidden="true">이전</span>
+                                    </a>
+                                </li>
+                                <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                                    <li class="page-item"
+                                        th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                        th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                        <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/any/inquiry/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                    </li>
+                                </th:block>
+                                <li class="page-item">
+                                    <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/inquiry/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                        <span aria-hidden="true">다음</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/inquiry/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                        <span aria-hidden="true">끝</span>
+                                    </a>
+                                </li>
                             </ul>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>

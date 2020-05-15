@@ -175,4 +175,8 @@ public class BrandSvc {
 	public List<Map<String, Object>> findAllForAfileWithBrandSeq(int brandSeq) {
 		return brandRepository.findAllForAfileWithBrandSeq(brandSeq);
 	}
+
+	public int findPendingCnt(String schProductNm, String schBrandNm) {
+		return brandRepository.findPendingCnt(schProductNm, schBrandNm);
+	}
 }

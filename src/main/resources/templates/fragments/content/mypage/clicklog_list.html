@@ -34,7 +34,7 @@
                                 <button type="submit" id="btnSearch" class="ps-btn type-black">Search</button>
                             </div>
                             </form>
-                            <p class="total">Total : <em class="num" th:text="${#lists.size(clicklogList)}"></em> result</p>
+                            <p class="total">Total : <em class="num" th:text="${totalCnt}"></em> result</p>
                             <div class="table-responsive">
                                 <table class="table ps-table ps-table--vendor">
                                     <colgroup>
@@ -59,7 +59,7 @@
                                     </th:block>
                                     <th:block th:if="${not #lists.isEmpty(clicklogList)}">
                                         <tr th:each="clicklog : ${clicklogList}">
-                                            <td th:text="${clicklogStat.size - clicklogStat.index}"></td>
+                                            <td th:text="${clicklog.ROW_NUM}"></td>
                                             <td th:text="${clicklog.REG_USR_ID}"></td>
                                             <td th:text="${clicklog.TOT_CNT}"></td>
                                             <td><a href="javascript:void(0);" th:title="${clicklog.PRODUCT_NM}" th:text="${clicklog.PRODUCT_NM}"></a></td>
@@ -68,14 +68,37 @@
                                     </tbody>
                                 </table>
                             </div>
-<!--                            <div class="ps-pagination">
+                            <div class="ps-pagination">
                                 <ul class="pagination">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">Next Page<i class="icon-chevron-right"></i></a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/clicklog/list?page=1'}" aria-label="Previous">
+                                            <span aria-hidden="true">처음</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/clicklog/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                            <span aria-hidden="true">이전</span>
+                                        </a>
+                                    </li>
+                                    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                                        <li class="page-item"
+                                            th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                            th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                            <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/clicklog/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                        </li>
+                                    </th:block>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/clicklog/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                            <span aria-hidden="true">다음</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/clicklog/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                            <span aria-hidden="true">끝</span>
+                                        </a>
+                                    </li>
                                 </ul>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </div>
