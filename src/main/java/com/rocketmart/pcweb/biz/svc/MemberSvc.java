@@ -248,8 +248,8 @@ public class MemberSvc {
 	 * @param
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
-		return memberRepository.findAllForMemInfo(tbMemMstRecord);
+	public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord, int startIndex, int pageSize) {
+		return memberRepository.findAllForMemInfo(tbMemMstRecord, startIndex, pageSize);
 	}
 
 	/**
@@ -276,5 +276,9 @@ public class MemberSvc {
 		tbMemMstRecord.setMemPw(passwordEncoder.encode("1234"));
 
 		return memberRepository.execModifyMemPwInfo(tbMemMstRecord);
+	}
+
+	public int findAllCnt(TbMemMstRecord tbMemMstRecord) {
+		return memberRepository.findAllCnt(tbMemMstRecord);
 	}
 }

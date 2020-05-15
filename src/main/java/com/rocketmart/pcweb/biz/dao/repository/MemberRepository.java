@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.Tables;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import static com.rocketmart.jooq.Tables.TB_PRD_FOB_HST;
 import static com.rocketmart.jooq.Tables.TB_WISH_MST;
+import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbInquiryDtl.TB_INQUIRY_DTL;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
@@ -45,14 +47,36 @@ public class MemberRepository {
     /**
      * 회원 목록 조회
      */
-    public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord) {
-        return this.dslContext.selectFrom(TB_MEM_MST)
-                .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
-                .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.like("%"+tbMemMstRecord.getMemNm()+"%")))
-                .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.ROLE.eq(tbMemMstRecord.getRole())))
-                .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
-                .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.like("%"+tbMemMstRecord.getCompanyNm()+"%")))
-                .orderBy(TB_MEM_MST.MEM_SEQ.desc())
+    public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord, int startIndex, int pageSize) {
+        return this.dslContext
+                .select(
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("MEM_ID"),
+                        field("MEM_NM"),
+                        field("ROLE"),
+                        field("APPROVAL_YN"),
+                        field("TEL"),
+                        field("COMPANY_NM"),
+                        field("REG_TS")
+                ).from(
+                        select(
+                                TB_MEM_MST.MEM_ID,
+                                TB_MEM_MST.MEM_NM,
+                                TB_MEM_MST.ROLE,
+                                TB_MEM_MST.APPROVAL_YN,
+                                TB_MEM_MST.TEL,
+                                TB_MEM_MST.COMPANY_NM,
+                                TB_MEM_MST.REG_TS
+                        ).from(TB_MEM_MST)
+                        .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
+                        .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.like("%"+tbMemMstRecord.getMemNm()+"%")))
+                        .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.ROLE.eq(tbMemMstRecord.getRole())))
+                        .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
+                        .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.like("%"+tbMemMstRecord.getCompanyNm()+"%")))
+                        .orderBy(TB_MEM_MST.REG_TS.desc())
+                )
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -201,4 +225,15 @@ public class MemberRepository {
                 .where(TB_MEM_MST.MEM_ID.eq(tbMemMstRecord.getMemId()))
                 .execute();
     }
+
+	public int findAllCnt(TbMemMstRecord tbMemMstRecord) {
+        return this.dslContext.
+                selectCount().from(TB_MEM_MST)
+                .where(TB_MEM_MST.MEM_ID.notEqual("admin"))
+                .and(isNotEmpty(tbMemMstRecord.getMemNm(), TB_MEM_MST.MEM_NM.like("%"+tbMemMstRecord.getMemNm()+"%")))
+                .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.ROLE.eq(tbMemMstRecord.getRole())))
+                .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
+                .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.like("%"+tbMemMstRecord.getCompanyNm()+"%")))
+                .fetchOne().value1();
+	}
 }

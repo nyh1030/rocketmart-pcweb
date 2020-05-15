@@ -3,12 +3,14 @@ package com.rocketmart.pcweb.biz.ctl.web;
 import com.rocketmart.jooq.tables.records.TbMemMstRecord;
 import com.rocketmart.pcweb.biz.svc.MemberSvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
+import com.rocketmart.pcweb.common.Pagination.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -215,13 +217,27 @@ public class MemberCtl {
      * @return String
      */
     @RequestMapping("/admin/member/list")
-    public String dispMemberList(TbMemMstRecord tbMemMstRecord, Model model) {
+    public String dispMemberList(TbMemMstRecord tbMemMstRecord, Model model, @RequestParam(defaultValue = "1") int page) {
 
-        model.addAttribute("memList", memberSvc.findAllForMemInfo(tbMemMstRecord));
+        int totalCnt = memberSvc.findAllCnt(tbMemMstRecord);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("memList", memberSvc.findAllForMemInfo(tbMemMstRecord, startIndex, pageSize));
         model.addAttribute("memNm", tbMemMstRecord.getMemNm());
         model.addAttribute("role", tbMemMstRecord.getRole());
         model.addAttribute("approvalYn", tbMemMstRecord.getApprovalYn());
         model.addAttribute("companyNm", tbMemMstRecord.getCompanyNm());
+
+
 
         return prefixPath.concat("/mypage/member_list");
     }

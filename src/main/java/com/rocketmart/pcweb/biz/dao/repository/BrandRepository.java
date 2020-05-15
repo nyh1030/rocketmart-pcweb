@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
 import org.jooq.DSLContext;
@@ -19,8 +20,7 @@ import static com.rocketmart.jooq.tables.TbBrandMst.TB_BRAND_MST;
 import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
-import static org.jooq.impl.DSL.count;
-import static org.jooq.impl.DSL.groupConcat;
+import static org.jooq.impl.DSL.*;
 
 @Repository
 public class BrandRepository {
@@ -137,18 +137,25 @@ public class BrandRepository {
 	public List<Map<String, Object>> findAllForAdminBrandInfo(String schCompanyNm, String schMemId, String schBrandNm, int startIndex, int pageSize) {
 		return this.dslContext
 				.select(
-						DSL.rowNumber().over().as("ROW_NUM")
-						,TB_MEM_MST.COMPANY_NM
-						,TB_MEM_MST.MEM_ID
-						,TB_BRAND_MST.BRAND_SEQ
-						,TB_BRAND_MST.BRAND_NM
+						DSL.rowNumber().over().as("ROW_NUM"),
+						field("COMPANY_NM"),
+						field("MEM_ID"),
+						field("BRAND_SEQ"),
+						field("BRAND_NM")
+				).from(select(
+								TB_MEM_MST.COMPANY_NM
+								,TB_MEM_MST.MEM_ID
+								,TB_BRAND_MST.BRAND_SEQ
+								,TB_BRAND_MST.BRAND_NM
+						).from(TB_MEM_MST)
+							.join(TB_BRAND_MST)
+							.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
+						.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
+						.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
+						.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
+						.and(TB_BRAND_MST.DEL_YN.equal("N"))
+						.orderBy(TB_MEM_MST.REG_TS.desc())
 				)
-				.from(TB_MEM_MST)
-					.join(TB_BRAND_MST)
-					.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
-				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
-				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
-				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
 				.offset(startIndex)
 				.limit(pageSize)
 				.fetchMaps();
