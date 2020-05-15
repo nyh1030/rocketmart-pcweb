@@ -41,15 +41,39 @@ public class OtherRepository {
     /**
      * ContactUs 목록 조회
      */
-    public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord ) {
-        return this.dslContext.selectFrom(TB_CONTACT_US)
-                .where(DSL.trueCondition())                
-                .and(isNotEmpty(tbContactUsRecord.getUsrNm(), TB_CONTACT_US.USR_NM.eq(tbContactUsRecord.getUsrNm())))
-                .and(isNotEmpty(tbContactUsRecord.getEmail(), TB_CONTACT_US.EMAIL.eq(tbContactUsRecord.getEmail())))
-                .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.eq(tbContactUsRecord.getCompanyNm())))
-                .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.eq(tbContactUsRecord.getSubject())))
-                .and(isNotEmpty(tbContactUsRecord.getMessage(), TB_CONTACT_US.MESSAGE.eq(tbContactUsRecord.getMessage())))
-                .orderBy(TB_CONTACT_US.REG_TS.desc())
+    public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord, int startIndex, int pageSize) {
+        return this.dslContext
+                .select(
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("CONTACT_SEQ"),
+                        field("USR_NM"),
+                        field("EMAIL"),
+                        field("COMPANY_NM"),
+                        field("SUBJECT"),
+                        field("MESSAGE"),
+                        field("REG_TS"),
+                        field("REPLY_YN")
+                ).from(
+                        select(
+                                TB_CONTACT_US.CONTACT_SEQ,
+                                TB_CONTACT_US.USR_NM,
+                                TB_CONTACT_US.EMAIL,
+                                TB_CONTACT_US.COMPANY_NM,
+                                TB_CONTACT_US.SUBJECT,
+                                TB_CONTACT_US.MESSAGE,
+                                TB_CONTACT_US.REG_TS,
+                                TB_CONTACT_US.REPLY_YN
+                        ).from(TB_CONTACT_US)
+                        .where(DSL.trueCondition())
+                        .and(isNotEmpty(tbContactUsRecord.getUsrNm(), TB_CONTACT_US.USR_NM.eq(tbContactUsRecord.getUsrNm())))
+                        .and(isNotEmpty(tbContactUsRecord.getEmail(), TB_CONTACT_US.EMAIL.eq(tbContactUsRecord.getEmail())))
+                        .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.eq(tbContactUsRecord.getCompanyNm())))
+                        .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.eq(tbContactUsRecord.getSubject())))
+                        .and(isNotEmpty(tbContactUsRecord.getMessage(), TB_CONTACT_US.MESSAGE.eq(tbContactUsRecord.getMessage())))
+                        .orderBy(TB_CONTACT_US.REG_TS.desc())
+                )
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -139,9 +163,23 @@ public class OtherRepository {
     /**
      * Inquiry 목록 조회
      */
-    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+    public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("INQUIRY_DTL_SEQ"),
+                        field("MESSAGE"),
+                        field("MEM_ID"),
+                        field("MEM_NM"),
+                        field("PRODUCT_SEQ"),
+                        field("PRODUCT_NM"),
+                        field("URL_PATH_CD"),
+                        field("REG_USR_ID"),
+                        field("REG_TS"),
+                        field("UPD_USR_ID"),
+                        field("UPD_TS"),
+                        field("REPLY_YN_CNT")
+                ).from(select(
                         TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
                         ,TB_INQUIRY_DTL.MESSAGE
                         ,TB_MEM_MST.MEM_ID
@@ -154,33 +192,36 @@ public class OtherRepository {
                         ,TB_INQUIRY_DTL.UPD_USR_ID
                         ,TB_INQUIRY_DTL.UPD_TS
                         ,(select(count())
-                            .from(TB_INQUIRY_DTL)
-                            .where(
+                                .from(TB_INQUIRY_DTL)
+                                .where(
                                         isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                                    .and(TB_INQUIRY_DTL.REPLY_YN.eq("N"))
-                                    .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                            ).asField("REPLY_YN_CNT")
+                                                .and(TB_INQUIRY_DTL.REPLY_YN.eq("N"))
+                                                .and(TB_INQUIRY_DTL.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                                ).asField("REPLY_YN_CNT")
                         )
+                        )
+                                .from(TB_INQUIRY_DTL)
+                                .join(TB_MEM_MST)
+                                .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                                .join(TB_PRD_MST)
+                                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                                .join(TB_CM_AFILE)
+                                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
+                                        select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
+                                                .from(TB_INQUIRY_DTL)
+                                                .where(
+                                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                                .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
+                                                                .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                                                                .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                                                ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
+                                        )
+                                )
+                                .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 )
-                .from(TB_INQUIRY_DTL)
-                .join(TB_MEM_MST)
-                    .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .join(TB_PRD_MST)
-                    .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
-                .join(TB_CM_AFILE)
-                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
-                                                            select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
-                                                            .from(TB_INQUIRY_DTL)
-                                                            .where(
-                                                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                                                                    .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
-                                                                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
-                                                                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
-                                                            ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
-                                                        )
-                )
-                .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -188,51 +229,68 @@ public class OtherRepository {
      * Inquiry 목록 조회(admin)
      */
 
-    public List<Map<String, Object>> findAllForAdminInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+    public List<Map<String, Object>> findAllForAdminInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, int startIndex, int pageSize) {
         TbInquiryDtl TID = TB_INQUIRY_DTL.as("TID");
 
         return this.dslContext
                 .select(
-                        TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
-                        ,TB_INQUIRY_DTL.MESSAGE
-                        ,TB_MEM_MST.MEM_ID
-                        ,TB_MEM_MST.MEM_NM
-                        ,TB_PRD_MST.PRODUCT_SEQ
-                        ,TB_PRD_MST.PRODUCT_NM
-                        ,TB_CM_AFILE.URL_PATH_CD
-                        ,TB_INQUIRY_DTL.REG_USR_ID
-                        ,TB_INQUIRY_DTL.REG_TS
-                        ,TB_INQUIRY_DTL.UPD_USR_ID
-                        ,TB_INQUIRY_DTL.UPD_TS
-                        ,(select(count())
-                                .from(TID)
-                                .where(
-                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TID.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                                                .and(TID.REPLY_YN.eq("N"))
-                                                .and(TID.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                                                .and(TID.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
-                                ).asField("REPLY_YN_CNT")
-                        )
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("INQUIRY_DTL_SEQ"),
+                        field("MESSAGE"),
+                        field("MEM_ID"),
+                        field("MEM_NM"),
+                        field("PRODUCT_SEQ"),
+                        field("PRODUCT_NM"),
+                        field("URL_PATH_CD"),
+                        field("REG_USR_ID"),
+                        field("REG_TS"),
+                        field("UPD_USR_ID"),
+                        field("UPD_TS"),
+                        field("REPLY_YN_CNT")
+                ).from(select(
+                            TB_INQUIRY_DTL.INQUIRY_DTL_SEQ
+                            ,TB_INQUIRY_DTL.MESSAGE
+                            ,TB_MEM_MST.MEM_ID
+                            ,TB_MEM_MST.MEM_NM
+                            ,TB_PRD_MST.PRODUCT_SEQ
+                            ,TB_PRD_MST.PRODUCT_NM
+                            ,TB_CM_AFILE.URL_PATH_CD
+                            ,TB_INQUIRY_DTL.REG_USR_ID
+                            ,TB_INQUIRY_DTL.REG_TS
+                            ,TB_INQUIRY_DTL.UPD_USR_ID
+                            ,TB_INQUIRY_DTL.UPD_TS
+                            ,(select(count())
+                                    .from(TID)
+                                    .where(
+                                            isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TID.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                    .and(TID.REPLY_YN.eq("N"))
+                                                    .and(TID.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                                                    .and(TID.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID))
+                                    ).asField("REPLY_YN_CNT")
+                            )
+                    )
+                    .from(TB_INQUIRY_DTL)
+                    .join(TB_MEM_MST)
+                    .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                    .join(TB_PRD_MST)
+                    .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                    .join(TB_CM_AFILE)
+                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                    .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
+                            select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
+                                    .from(TB_INQUIRY_DTL)
+                                    .where(
+                                            isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                    .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
+                                                    .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                                                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                                    ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ, TB_INQUIRY_DTL.REG_USR_ID)
+                            )
+                    )
+                    .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 )
-                .from(TB_INQUIRY_DTL)
-                .join(TB_MEM_MST)
-                .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .join(TB_PRD_MST)
-                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
-                .join(TB_CM_AFILE)
-                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
-                        select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
-                                .from(TB_INQUIRY_DTL)
-                                .where(
-                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
-                                                .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
-                                                .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
-                                                .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
-                                ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ, TB_INQUIRY_DTL.REG_USR_ID)
-                        )
-                )
-                .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -384,4 +442,62 @@ public class OtherRepository {
     }
 
 
+    public int findContactUsCnt(TbContactUsRecord tbContactUsRecord) {
+        return this.dslContext.selectCount().from(TB_CONTACT_US)
+                .where(DSL.trueCondition())
+                .and(isNotEmpty(tbContactUsRecord.getUsrNm(), TB_CONTACT_US.USR_NM.eq(tbContactUsRecord.getUsrNm())))
+                .and(isNotEmpty(tbContactUsRecord.getEmail(), TB_CONTACT_US.EMAIL.eq(tbContactUsRecord.getEmail())))
+                .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.eq(tbContactUsRecord.getCompanyNm())))
+                .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.eq(tbContactUsRecord.getSubject())))
+                .and(isNotEmpty(tbContactUsRecord.getMessage(), TB_CONTACT_US.MESSAGE.eq(tbContactUsRecord.getMessage())))
+                .fetchOne().value1();
+    }
+
+    public int findAllForAdminInquiryInfoCnt(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+        return this.dslContext
+                .selectCount()
+                .from(TB_INQUIRY_DTL)
+                .join(TB_MEM_MST)
+                .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .join(TB_PRD_MST)
+                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                .join(TB_CM_AFILE)
+                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
+                        select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
+                                .from(TB_INQUIRY_DTL)
+                                .where(
+                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
+                                                .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                                                .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                                ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ, TB_INQUIRY_DTL.REG_USR_ID)
+                        )
+                )
+                .fetchOne().value1();
+    }
+
+    public int findAllForInquiryInfoCnt(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm) {
+        return this.dslContext
+                .selectCount()
+                .from(TB_INQUIRY_DTL)
+                .join(TB_MEM_MST)
+                .on(TB_INQUIRY_DTL.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                .join(TB_PRD_MST)
+                .on(TB_PRD_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                .join(TB_CM_AFILE)
+                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                .where(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ.in(
+                        select(max(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ))
+                                .from(TB_INQUIRY_DTL)
+                                .where(
+                                        isNotEmpty(tbInquiryDtlRecord.getRegUsrId(), TB_INQUIRY_DTL.REG_USR_ID.eq(tbInquiryDtlRecord.getRegUsrId()))
+                                                .and(isNotEmpty(schMemId, TB_INQUIRY_DTL.REG_USR_ID.like("%"+schMemId+"%")))
+                                                .and(isNotEmpty(schMemNm, TB_MEM_MST.MEM_NM.like("%"+schMemNm+"%")))
+                                                .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                                ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
+                        )
+                )
+                .fetchOne().value1();
+    }
 }
