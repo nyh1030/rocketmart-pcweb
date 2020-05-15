@@ -1,5 +1,6 @@
 package com.rocketmart.pcweb.biz.dao.repository;
 
+import com.rocketmart.jooq.Tables;
 import com.rocketmart.jooq.tables.TbMemMst;
 import com.rocketmart.jooq.tables.records.TbBrandMstRecord;
 import com.rocketmart.pcweb.biz.dao.dto.BrandDto;
@@ -180,5 +181,20 @@ public class BrandRepository {
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
 				.where(TB_BRAND_MST.BRAND_SEQ.equal(brandSeq)).and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchMaps();
+	}
+
+	public int findPendingCnt(String schProductNm, String schBrandNm) {
+		return this.dslContext
+				.selectCount()
+				.from(TB_PRD_MST)
+				.leftOuterJoin(TB_CM_AFILE)
+				.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+				.innerJoin(TB_BRAND_MST)
+				.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
+				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("N"))
+				.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
+				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.fetchOne().value1();
 	}
 }

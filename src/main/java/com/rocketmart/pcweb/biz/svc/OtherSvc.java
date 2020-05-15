@@ -172,8 +172,8 @@ public class OtherSvc {
 	 * @param tbPrdFobHstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
-		return otherRepository.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm);
+	public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm, int startIndex, int pageSize) {
+		return otherRepository.findAllForClickLogInfo(tbPrdFobHstRecord, schMemId, schProductNm, startIndex, pageSize);
 	}
 
 	/**
@@ -216,5 +216,9 @@ public class OtherSvc {
 		}else{
 			return otherRepository.findAllForInquiryInfoCnt(tbInquiryDtlRecord, schMemId, schMemNm, schProductNm);
 		}
+	}
+
+	public int findClickLogCnt(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+		return otherRepository.findClickLogCnt(tbPrdFobHstRecord, schMemId, schProductNm);
 	}
 }

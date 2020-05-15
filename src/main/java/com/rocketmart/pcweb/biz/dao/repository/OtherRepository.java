@@ -389,24 +389,32 @@ public class OtherRepository {
     /**
      * Click Log 목록(어드민)
      */
-    public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+    public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        TB_PRD_FOB_HST.REG_USR_ID
-                        ,count().as("TOT_CNT")
-                        ,groupConcat(TB_PRD_MST.PRODUCT_NM, ", ").as("PRODUCT_NM")
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("REG_USR_ID"),
+                        field("TOT_CNT"),
+                        field("PRODUCT_NM")
+                ).from(select(
+                            TB_PRD_FOB_HST.REG_USR_ID
+                            ,count().as("TOT_CNT")
+                            ,groupConcat(TB_PRD_MST.PRODUCT_NM, ", ").as("PRODUCT_NM")
+                        )
+                        .from(TB_PRD_FOB_HST)
+                        .join(TB_PRD_MST)
+                            .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                        .join(TB_MEM_MST)
+                            .on(TB_PRD_FOB_HST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                        .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
+                            .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                            .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
+                            .and(TB_MEM_MST.ROLE.eq("BUYER"))
+                        .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
+                        .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
                 )
-                .from(TB_PRD_FOB_HST)
-                .join(TB_PRD_MST)
-                    .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                .join(TB_MEM_MST)
-                    .on(TB_PRD_FOB_HST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
-                    .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
-                    .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
-                    .and(TB_MEM_MST.ROLE.eq("BUYER"))
-                .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
-                .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -497,6 +505,24 @@ public class OtherRepository {
                                                 .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
                                 ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
                         )
+                )
+                .fetchOne().value1();
+    }
+
+    public int findClickLogCnt(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
+        return this.dslContext
+                .selectCount()
+                .from(select(TB_PRD_FOB_HST.REG_USR_ID)
+                        .from(TB_PRD_FOB_HST)
+                        .join(TB_PRD_MST)
+                        .on(TB_PRD_FOB_HST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                        .join(TB_MEM_MST)
+                        .on(TB_PRD_FOB_HST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                        .where(isNotEmpty(schMemId, TB_PRD_FOB_HST.REG_USR_ID.like("%"+schMemId+"%")))
+                        .and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+                        .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
+                        .and(TB_MEM_MST.ROLE.eq("BUYER"))
+                        .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
                 )
                 .fetchOne().value1();
     }

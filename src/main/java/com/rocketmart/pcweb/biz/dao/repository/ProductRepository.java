@@ -20,6 +20,8 @@ import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbPrdFob.TB_PRD_FOB;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
+import static org.jooq.impl.DSL.field;
+import static org.jooq.impl.DSL.select;
 
 @Repository
 public class ProductRepository {
@@ -56,27 +58,38 @@ public class ProductRepository {
 				.fetchMaps();
 	}
 
-	public List<Map<String, Object>> findAllForPending(String schProductNm, String schBrandNm) {
+	public List<Map<String, Object>> findAllForPending(String schProductNm, String schBrandNm, int startIndex, int pageSize) {
 		return this.dslContext
 				.select(
-						DSL.rowNumber().over().as("ROW_NUM")
-						,TB_PRD_MST.PRODUCT_SEQ
-						,TB_PRD_MST.PRODUCT_NM
-						,TB_PRD_MST.PRODUCT_CAPACITY
-						,TB_PRD_MST.RELEASE_YN
-						,TB_BRAND_MST.BRAND_NM
-						,TB_CM_AFILE.AFILE_SEQ
-						,TB_CM_AFILE.URL_PATH_CD
+						DSL.rowNumber().over().as("ROW_NUM"),
+						field("PRODUCT_SEQ"),
+						field("PRODUCT_NM"),
+						field("PRODUCT_CAPACITY"),
+						field("RELEASE_YN"),
+						field("BRAND_NM"),
+						field("AFILE_SEQ"),
+						field("URL_PATH_CD")
+				).from(select(
+							 TB_PRD_MST.PRODUCT_SEQ
+							,TB_PRD_MST.PRODUCT_NM
+							,TB_PRD_MST.PRODUCT_CAPACITY
+							,TB_PRD_MST.RELEASE_YN
+							,TB_BRAND_MST.BRAND_NM
+							,TB_CM_AFILE.AFILE_SEQ
+							,TB_CM_AFILE.URL_PATH_CD
+						)
+						.from(TB_PRD_MST)
+						.leftOuterJoin(TB_CM_AFILE)
+							.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+						.innerJoin(TB_BRAND_MST)
+							.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
+						.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("N"))
+							.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
+							.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
+						.orderBy(TB_PRD_MST.REG_TS.desc())
 				)
-				.from(TB_PRD_MST)
-				.leftOuterJoin(TB_CM_AFILE)
-					.on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-				.innerJoin(TB_BRAND_MST)
-					.on(TB_PRD_MST.BRAND_SEQ.equal(Tables.TB_BRAND_MST.BRAND_SEQ))
-				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("N"))
-					.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
-					.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
-				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.offset(startIndex)
+				.limit(pageSize)
 				.fetchMaps();
 	}
 
