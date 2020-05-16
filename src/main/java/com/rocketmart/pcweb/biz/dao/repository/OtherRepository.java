@@ -128,9 +128,22 @@ public class OtherRepository {
     /**
      * WishList 목록 조회
      */
-    public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord) {
+    public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("WISH_SEQ"),
+                        field("ASK_YN"),
+                        field("PRODUCT_SEQ"),
+                        field("PRODUCT_NM"),
+                        field("URL_PATH_CD"),
+                        field("RETAIL_PRICE"),
+                        field("GIVE_SAMPLE_YN"),
+                        field("APPROVAL_YN"),
+                        field("MEM_NM"),
+                        field("REG_USR_ID"),
+                        field("INQUIRY_YN")
+                ).from(select(
                          TB_WISH_MST.WISH_SEQ
                         ,TB_WISH_MST.ASK_YN
                         ,TB_PRD_MST.PRODUCT_SEQ
@@ -142,21 +155,24 @@ public class OtherRepository {
                         ,TB_MEM_MST.MEM_NM
                         ,TB_INQUIRY_DTL.REG_USR_ID
                         ,DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN")
+                    )
+                    .from(TB_WISH_MST)
+                    .join(TB_PRD_MST)
+                        .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                    .join(TB_CM_AFILE)
+                        .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                    .join(TB_MEM_MST)
+                        .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                    .leftJoin(TB_INQUIRY_DTL)
+                        .on(TB_WISH_MST.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID)).and(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                    .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
+                        .and(TB_WISH_MST.DEL_YN.eq("N"))
+                    )
+                    .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
+                    .orderBy(TB_WISH_MST.REG_TS.desc())
                 )
-                .from(TB_WISH_MST)
-                .join(TB_PRD_MST)
-                    .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
-                .join(TB_CM_AFILE)
-                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
-                .join(TB_MEM_MST)
-                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
-                .leftJoin(TB_INQUIRY_DTL)
-                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID)).and(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
-                .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
-                    .and(TB_WISH_MST.DEL_YN.eq("N"))
-                )
-                .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
-                .orderBy(TB_WISH_MST.REG_TS.desc())
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -535,6 +551,40 @@ public class OtherRepository {
                         .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
                         .and(TB_MEM_MST.ROLE.eq("BUYER"))
                         .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
+                )
+                .fetchOne().value1();
+    }
+
+    public int findWishListCnt(TbWishMstRecord tbWishMstRecord) {
+        return this.dslContext
+                .selectCount()
+                .from(
+                    select(
+                            TB_WISH_MST.WISH_SEQ
+                            ,TB_WISH_MST.ASK_YN
+                            ,TB_PRD_MST.PRODUCT_SEQ
+                            ,TB_PRD_MST.PRODUCT_NM
+                            ,TB_CM_AFILE.URL_PATH_CD
+                            ,TB_PRD_MST.RETAIL_PRICE
+                            ,TB_PRD_MST.GIVE_SAMPLE_YN
+                            ,TB_MEM_MST.APPROVAL_YN
+                            ,TB_MEM_MST.MEM_NM
+                            ,TB_INQUIRY_DTL.REG_USR_ID
+                            ,DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN")
+                    )
+                    .from(TB_WISH_MST)
+                    .join(TB_PRD_MST)
+                    .on(TB_WISH_MST.PRODUCT_SEQ.eq(TB_PRD_MST.PRODUCT_SEQ))
+                    .join(TB_CM_AFILE)
+                    .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.eq(TB_CM_AFILE.AFILE_SEQ))
+                    .join(TB_MEM_MST)
+                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_MEM_MST.MEM_ID))
+                    .leftJoin(TB_INQUIRY_DTL)
+                    .on(TB_WISH_MST.REG_USR_ID.eq(TB_INQUIRY_DTL.REG_USR_ID)).and(TB_WISH_MST.PRODUCT_SEQ.eq(TB_INQUIRY_DTL.PRODUCT_SEQ))
+                    .where(isNotEmpty(tbWishMstRecord.getRegUsrId(), TB_WISH_MST.REG_USR_ID.eq(tbWishMstRecord.getRegUsrId()))
+                            .and(TB_WISH_MST.DEL_YN.eq("N"))
+                    )
+                    .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
                 )
                 .fetchOne().value1();
     }
