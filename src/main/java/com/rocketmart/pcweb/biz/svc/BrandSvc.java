@@ -179,4 +179,24 @@ public class BrandSvc {
 	public int findPendingCnt(String schProductNm, String schBrandNm) {
 		return brandRepository.findPendingCnt(schProductNm, schBrandNm);
 	}
+
+	public int findForRegBrandCnt() {
+		return brandRepository.findForRegBrandCnt();
+	}
+
+	public int findForRegPrdCnt() {
+		return brandRepository.findForRegPrdCnt();
+	}
+
+	public int findForAppPrdCnt() {
+		return brandRepository.findForAppPrdCnt();
+	}
+
+	public int findForStaPrdCnt() {
+		return brandRepository.findForStaPrdCnt();
+	}
+
+	public int findAdminBrandCnt(String schCompanyNm, String schMemId, String schBrandNm) {
+		return brandRepository.findAdminBrandCnt(schCompanyNm, schMemId, schBrandNm);
+	}
 }

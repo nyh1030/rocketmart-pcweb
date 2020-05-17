@@ -40,8 +40,8 @@ public class CategorySvc {
 	 * @param
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord) {
-		return categoryRepository.findAllForCategoryPrdInfo(tbCateMstRecord);
+	public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord, int startIndex, int pageSize) {
+		return categoryRepository.findAllForCategoryPrdInfo(tbCateMstRecord, startIndex, pageSize);
 	}
 
 	/**
@@ -59,5 +59,9 @@ public class CategorySvc {
 
 	public List<Map<String, Object>> findAllByBrandSeq(int brandSeq) {
 		return categoryRepository.findAllByBrandSeq(brandSeq);
+	}
+
+	public int findCategoryPrdInfoCnt(TbCateMstRecord tbCateMstRecord) {
+		return categoryRepository.findCategoryPrdInfoCnt(tbCateMstRecord);
 	}
 }

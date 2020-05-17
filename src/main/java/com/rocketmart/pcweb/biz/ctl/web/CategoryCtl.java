@@ -3,11 +3,14 @@ package com.rocketmart.pcweb.biz.ctl.web;
 import com.rocketmart.jooq.tables.records.TbCateMstRecord;
 import com.rocketmart.pcweb.biz.svc.CategorySvc;
 import com.rocketmart.pcweb.biz.svc.ProductSvc;
+import com.rocketmart.pcweb.common.Pagination.Pagination;
+import com.rocketmart.pcweb.common.Pagination.PaginationImagePage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +37,7 @@ public class CategoryCtl {
     public String dispCategoryList(TbCateMstRecord tbCateMstRecord
             , @PathVariable("depth") Optional<String> depth
             , @PathVariable("cateCd") Optional<String> cateCd
+            , @RequestParam(defaultValue = "1") int page
             , Model model) {
 /*        model.addAttribute("cate1CdList", categorySvc.findAllForCategoryMenu("1"));
         model.addAttribute("cate2CdList", categorySvc.findAllForCategoryMenu("2"));
@@ -61,8 +65,20 @@ public class CategoryCtl {
         model.addAttribute("categoryList", categoryList);
 
         if (depth.isPresent() && cateCd.isPresent()) {
-            List<Map<String, Object>> productList = categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord);
+            int totalCnt = categorySvc.findCategoryPrdInfoCnt(tbCateMstRecord);
+
+            // 생성인자로  총 게시물 수, 현재 페이지를 전달
+            PaginationImagePage pagination = new PaginationImagePage(totalCnt, page);
+
+            // DB select start index
+            int startIndex = pagination.getStartIndex();
+            // 페이지 당 보여지는 게시글의 최대 개수
+            int pageSize = pagination.getPageSize();
+
+            List<Map<String, Object>> productList = categorySvc.findAllForCategoryPrdInfo(tbCateMstRecord, startIndex, pageSize);
             model.addAttribute("productList", productList);
+            model.addAttribute("pagination", pagination);
+            model.addAttribute("totalCnt", totalCnt);
             if (!productList.isEmpty()) {
                 if ("1".equals(depth.get())) {
                     model.addAttribute("productCate1", productSvc.findCateInoByCate1Cd((String) productList.get(0).get("CATE1_CD")));
@@ -76,7 +92,19 @@ public class CategoryCtl {
                 }
             }
         } else {
-            model.addAttribute("productList", productSvc.findAll());
+            int totalCnt = productSvc.findCategoryPrdCnt();
+
+            // 생성인자로  총 게시물 수, 현재 페이지를 전달
+            PaginationImagePage pagination = new PaginationImagePage(totalCnt, page);
+
+            // DB select start index
+            int startIndex = pagination.getStartIndex();
+            // 페이지 당 보여지는 게시글의 최대 개수
+            int pageSize = pagination.getPageSize();
+
+            model.addAttribute("productList", productSvc.findCategoryPrdAll(startIndex, pageSize));
+            model.addAttribute("pagination", pagination);
+            model.addAttribute("totalCnt", totalCnt);
         }
 
         model.addAttribute("depth", depth.orElse(""));

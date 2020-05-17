@@ -15,6 +15,8 @@ import static com.rocketmart.jooq.tables.TbCmAfile.TB_CM_AFILE;
 import static com.rocketmart.jooq.tables.TbMemMst.TB_MEM_MST;
 import static com.rocketmart.jooq.tables.TbPrdMst.TB_PRD_MST;
 import static com.rocketmart.pcweb.common.CommonUtils.isNotEmpty;
+import static org.jooq.impl.DSL.field;
+import static org.jooq.impl.DSL.select;
 
 @Repository
 public class CategoryRepository {
@@ -39,30 +41,43 @@ public class CategoryRepository {
      * 메인 > Category 목록 조회
      * @return List<Map<String, Object>>
      */
-    public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord) {
-
+    public List<Map<String, Object>> findAllForCategoryPrdInfo(TbCateMstRecord tbCateMstRecord, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                         TB_PRD_MST.PRODUCT_SEQ
-                        ,TB_PRD_MST.PRODUCT_NM
-                        ,TB_PRD_MST.RETAIL_PRICE
-                        ,TB_PRD_MST.CATE1_CD
-                        ,TB_PRD_MST.CATE2_CD
-                        ,TB_PRD_MST.CATE3_CD
-                        ,TB_BRAND_MST.BRAND_NM
-                        ,TB_CM_AFILE.AFILE_SEQ
-                        ,TB_CM_AFILE.URL_PATH_CD
+                        DSL.rowNumber().over().as("ROW_NUM"),
+                        field("PRODUCT_SEQ"),
+                        field("PRODUCT_NM"),
+                        field("RETAIL_PRICE"),
+                        field("CATE1_CD"),
+                        field("CATE2_CD"),
+                        field("CATE3_CD"),
+                        field("BRAND_NM"),
+                        field("AFILE_SEQ"),
+                        field("URL_PATH_CD")
+                ).from(select(
+                                 TB_PRD_MST.PRODUCT_SEQ
+                                ,TB_PRD_MST.PRODUCT_NM
+                                ,TB_PRD_MST.RETAIL_PRICE
+                                ,TB_PRD_MST.CATE1_CD
+                                ,TB_PRD_MST.CATE2_CD
+                                ,TB_PRD_MST.CATE3_CD
+                                ,TB_BRAND_MST.BRAND_NM
+                                ,TB_CM_AFILE.AFILE_SEQ
+                                ,TB_CM_AFILE.URL_PATH_CD
+                        )
+                        .from(TB_PRD_MST)
+                        .leftOuterJoin(TB_CM_AFILE)
+                        .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+                        .innerJoin(TB_BRAND_MST)
+                        .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
+                        .where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
+                        .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
+                        .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
+                        .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
+                        .orderBy(TB_PRD_MST.REG_TS.desc())
                 )
-                .from(TB_PRD_MST)
-                .leftOuterJoin(TB_CM_AFILE)
-                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
-                .innerJoin(TB_BRAND_MST)
-                .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
-                .where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
-                .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
-                .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
-                .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
-                .orderBy(TB_PRD_MST.REG_TS.desc())
+                .offset(startIndex)
+                .limit(pageSize)
                 .fetchMaps();
     }
 
@@ -109,4 +124,19 @@ public class CategoryRepository {
                 .where(DSL.exists(DSL.selectOne().from(TB_PRD_MST).where(TB_PRD_MST.BRAND_SEQ.equal(brandSeq).and(TB_PRD_MST.DEL_YN.equal("N"))).and(TB_PRD_MST.RELEASE_YN.equal("Y")).and(TB_PRD_MST.CATE3_CD.equal(TB_CATE_MST.CATE3_CD))))
                 .fetchMaps();
     }
+
+	public int findCategoryPrdInfoCnt(TbCateMstRecord tbCateMstRecord) {
+        return this.dslContext
+                .selectCount()
+                .from(TB_PRD_MST)
+                .leftOuterJoin(TB_CM_AFILE)
+                .on(TB_PRD_MST.PRODUCT_FRONT_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
+                .innerJoin(TB_BRAND_MST)
+                .on(TB_PRD_MST.BRAND_SEQ.equal(TB_BRAND_MST.BRAND_SEQ))
+                .where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("Y"))
+                .and(isNotEmpty(tbCateMstRecord.getCate1Cd(), TB_PRD_MST.CATE1_CD.eq(tbCateMstRecord.getCate1Cd())))
+                .and(isNotEmpty(tbCateMstRecord.getCate2Cd(), TB_PRD_MST.CATE2_CD.eq(tbCateMstRecord.getCate2Cd())))
+                .and(isNotEmpty(tbCateMstRecord.getCate3Cd(), TB_PRD_MST.CATE3_CD.eq(tbCateMstRecord.getCate3Cd())))
+                .fetchOne().value1();
+	}
 }

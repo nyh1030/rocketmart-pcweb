@@ -202,4 +202,12 @@ public class ProductSvc {
 	public List<Map<String, Object>> findProductListByCateCd(String cateCd) {
 		return productRepository.findProductListByCateCd(cateCd);
 	}
+
+	public int findCategoryPrdCnt() {
+		return productRepository.findCategoryPrdCnt();
+	}
+
+	public List<Map<String, Object>> findCategoryPrdAll(int startIndex, int pageSize) {
+		return productRepository.findCategoryPrdAll(startIndex, pageSize);
+	}
 }

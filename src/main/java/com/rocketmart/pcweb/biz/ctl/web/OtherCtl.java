@@ -222,7 +222,7 @@ public class OtherCtl {
             , @RequestParam(defaultValue = "1") int page
             , Model model) {
 
-        int totalCnt = brandSvc.findAllCnt(schCompanyNm, schMemId, schBrandNm);
+        int totalCnt = brandSvc.findAdminBrandCnt(schCompanyNm, schMemId, schBrandNm);
 
         // 생성인자로  총 게시물 수, 현재 페이지를 전달
         Pagination pagination = new Pagination(totalCnt, page);
@@ -232,6 +232,10 @@ public class OtherCtl {
         // 페이지 당 보여지는 게시글의 최대 개수
         int pageSize = pagination.getPageSize();
 
+        model.addAttribute("regBrandCnt", brandSvc.findForRegBrandCnt());
+        model.addAttribute("regPrdCnt", brandSvc.findForRegPrdCnt());
+        model.addAttribute("appPrdCnt", brandSvc.findForAppPrdCnt());
+        model.addAttribute("staPrdCnt", brandSvc.findForStaPrdCnt());
         model.addAttribute("adminBrandList", brandSvc.findAllForAdminBrandInfo(schCompanyNm, schMemId, schBrandNm, startIndex, pageSize));
         model.addAttribute("pagination", pagination);
         model.addAttribute("totalCnt", totalCnt);

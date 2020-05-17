@@ -194,7 +194,53 @@ public class BrandRepository {
 				.where(TB_PRD_MST.DEL_YN.equal("N")).and(TB_PRD_MST.RELEASE_YN.equal("N"))
 				.and(isNotEmpty(schProductNm, TB_PRD_MST.PRODUCT_NM.like("%"+schProductNm+"%")))
 				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
-				.orderBy(TB_PRD_MST.REG_TS.desc())
+				.fetchOne().value1();
+	}
+
+	public int findForRegBrandCnt() {
+		return this.dslContext
+				.selectCount()
+				.from(TB_BRAND_MST)
+				.where(TB_BRAND_MST.DEL_YN.equal("N"))
+				.fetchOne().value1();
+	}
+
+	public int findForRegPrdCnt() {
+		return this.dslContext
+				.selectCount()
+				.from(TB_PRD_MST)
+				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.fetchOne().value1();
+	}
+
+	public int findForAppPrdCnt() {
+		return this.dslContext
+				.selectCount()
+				.from(TB_PRD_MST)
+				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.and(TB_PRD_MST.RELEASE_YN.equal("Y"))
+				.fetchOne().value1();
+	}
+
+	public int findForStaPrdCnt() {
+		return this.dslContext
+				.selectCount()
+				.from(TB_PRD_MST)
+				.where(TB_PRD_MST.DEL_YN.equal("N"))
+				.and(TB_PRD_MST.RELEASE_YN.equal("N"))
+				.fetchOne().value1();
+	}
+
+	public int findAdminBrandCnt(String schCompanyNm, String schMemId, String schBrandNm) {
+		return this.dslContext
+				.selectCount()
+				.from(TB_MEM_MST)
+				.join(TB_BRAND_MST)
+				.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
+				.where(isNotEmpty(schCompanyNm, TB_MEM_MST.COMPANY_NM.like("%"+schCompanyNm+"%")))
+				.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
+				.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
+				.and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.fetchOne().value1();
 	}
 }

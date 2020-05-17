@@ -82,37 +82,39 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="ps-pagination">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=1'}" aria-label="Previous">
-                                            <span aria-hidden="true">처음</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
-                                            <span aria-hidden="true">이전</span>
-                                        </a>
-                                    </li>
-                                    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
-                                        <li class="page-item"
-                                            th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
-                                            th:each="pageButton : ${#numbers.sequence(start, end)}">
-                                            <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                            <th:block th:if="${!#lists.isEmpty(contactusList)}">
+                                <div class="ps-pagination">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=1'}" aria-label="Previous">
+                                                <span aria-hidden="true">처음</span>
+                                            </a>
                                         </li>
-                                    </th:block>
-                                    <li class="page-item">
-                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
-                                            <span aria-hidden="true">다음</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
-                                            <span aria-hidden="true">끝</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                        <li class="page-item">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                                <span aria-hidden="true">이전</span>
+                                            </a>
+                                        </li>
+                                        <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                                            <li class="page-item"
+                                                th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                                th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                                <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                            </li>
+                                        </th:block>
+                                        <li class="page-item">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                                <span aria-hidden="true">다음</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/contactus/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                                <span aria-hidden="true">끝</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </th:block>
                         </div>
                     </div>
                 </div>

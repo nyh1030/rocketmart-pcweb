@@ -189,7 +189,7 @@
                     </div>-->
                     <div class="ps-shopping ps-tab-root">
                         <div class="ps-shopping__header">
-                            <p><strong th:text="${#lists.size(productList)}"> </strong> Products found</p>
+                            <p><strong th:text="${totalCnt}"> </strong> Products found</p>
 <!--                            <div class="ps-shopping__actions">
                                 <select class="ps-select" data-placeholder="Sort Items">
                                     <option>Sort by latest</option>
@@ -233,14 +233,39 @@
                                         </th:block>
                                     </div>
                                 </div>
-<!--                                <div class="ps-pagination">
-                                    <ul class="pagination">
-                                        <li class="active"><<button type="button" id="">1</button></li>
-                                        <li><button type="button" id="">2</button></li>
-                                        <li><button type="button" id="">3</button></li>
-                                        <li><button type="button" id="">Next Page<i class="icon-chevron-right"></i></button></li>
-                                    </ul>
-                                </div>-->
+                                <th:block th:if="${!#lists.isEmpty(productList)}">
+                                    <div class="ps-pagination">
+                                        <ul class="pagination">
+                                            <li class="page-item">
+                                                <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/category/list' + ${!#strings.isEmpty(depth) ? '/' + depth : ''} + ${!#strings.isEmpty(cateCd) ? '/' + cateCd : ''} + '?page=1'}" aria-label="Previous">
+                                                    <span aria-hidden="true">First</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/category/list' + ${!#strings.isEmpty(depth) ? '/' + depth : ''} + ${!#strings.isEmpty(cateCd) ? '/' + cateCd : ''} + '?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                                    <span aria-hidden="true">Previous</span>
+                                                </a>
+                                            </li>
+                                            <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                                                <li class="page-item"
+                                                    th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                                    th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                                    <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/any/category/list' + ${!#strings.isEmpty(depth) ? '/' + depth : ''} + ${!#strings.isEmpty(cateCd) ? '/' + cateCd : ''} + '?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                                </li>
+                                            </th:block>
+                                            <li class="page-item">
+                                                <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/category/list' + ${!#strings.isEmpty(depth) ? '/' + depth : ''} + ${!#strings.isEmpty(cateCd) ? '/' + cateCd : ''} + '?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                                    <span aria-hidden="true">Next</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/any/category/list' + ${!#strings.isEmpty(depth) ? '/' + depth : ''} + ${!#strings.isEmpty(cateCd) ? '/' + cateCd : ''} + '?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                                    <span aria-hidden="true">End</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th:block>
                             </div>
                         </div>
                     </div>
