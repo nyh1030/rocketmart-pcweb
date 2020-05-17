@@ -93,8 +93,8 @@ public class OtherSvc {
 	 * @param tbWishMstRecord
 	 * @return List<Map<String, Object>>
 	 */
-	public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord) {
-		return otherRepository.findAllForWishInfo(tbWishMstRecord);
+	public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord, int startIndex, int pageSize) {
+		return otherRepository.findAllForWishInfo(tbWishMstRecord, startIndex, pageSize);
 	}
 
 	/**
@@ -233,4 +233,9 @@ public class OtherSvc {
 	public int findClickLogCnt(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm) {
 		return otherRepository.findClickLogCnt(tbPrdFobHstRecord, schMemId, schProductNm);
 	}
+
+	public int findWishListCnt(TbWishMstRecord tbWishMstRecord) {
+		return otherRepository.findWishListCnt(tbWishMstRecord);
+	}
+
 }

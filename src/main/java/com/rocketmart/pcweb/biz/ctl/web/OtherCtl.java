@@ -83,14 +83,26 @@ public class OtherCtl {
      * @return String
      */
     @RequestMapping("/any/wishlist/list")
-    public String dispWishList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model) {
+    public String dispWishList(TbWishMstRecord tbWishMstRecord, Principal principal, Model model, @RequestParam(defaultValue = "1") int page) {
         if(!"admin".equals(principal.getName())){
             tbWishMstRecord.setRegUsrId(principal.getName());
         }else{
             tbWishMstRecord.setRegUsrId("");
         }
 
-        model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord));
+        int totalCnt = otherSvc.findWishListCnt(tbWishMstRecord);
+
+        // 생성인자로  총 게시물 수, 현재 페이지를 전달
+        Pagination pagination = new Pagination(totalCnt, page);
+
+        // DB select start index
+        int startIndex = pagination.getStartIndex();
+        // 페이지 당 보여지는 게시글의 최대 개수
+        int pageSize = pagination.getPageSize();
+
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("totalCnt", totalCnt);
+        model.addAttribute("wishList", otherSvc.findAllForWishInfo(tbWishMstRecord, startIndex, pageSize));
 
         return prefixPath.concat("/mypage/wish_list");
     }
