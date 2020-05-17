@@ -73,8 +73,8 @@ public class MemberRepository {
                         .and(isNotEmpty(tbMemMstRecord.getRole(), TB_MEM_MST.ROLE.eq(tbMemMstRecord.getRole())))
                         .and(isNotEmpty(tbMemMstRecord.getApprovalYn(), TB_MEM_MST.APPROVAL_YN.eq(tbMemMstRecord.getApprovalYn())))
                         .and(isNotEmpty(tbMemMstRecord.getCompanyNm(), TB_MEM_MST.COMPANY_NM.like("%"+tbMemMstRecord.getCompanyNm()+"%")))
-                        .orderBy(TB_MEM_MST.REG_TS.desc())
                 )
+                .orderBy(field("REG_TS").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();

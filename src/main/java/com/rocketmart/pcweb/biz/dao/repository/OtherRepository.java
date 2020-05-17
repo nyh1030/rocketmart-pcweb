@@ -70,8 +70,8 @@ public class OtherRepository {
                         .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.eq(tbContactUsRecord.getCompanyNm())))
                         .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.eq(tbContactUsRecord.getSubject())))
                         .and(isNotEmpty(tbContactUsRecord.getMessage(), TB_CONTACT_US.MESSAGE.eq(tbContactUsRecord.getMessage())))
-                        .orderBy(TB_CONTACT_US.REG_TS.desc())
                 )
+                .orderBy(field("REG_TS").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();
@@ -169,8 +169,8 @@ public class OtherRepository {
                         .and(TB_WISH_MST.DEL_YN.eq("N"))
                     )
                     .groupBy(TB_WISH_MST.WISH_SEQ, TB_WISH_MST.ASK_YN, TB_PRD_MST.PRODUCT_SEQ, TB_PRD_MST.PRODUCT_NM, TB_CM_AFILE.URL_PATH_CD, TB_PRD_MST.RETAIL_PRICE, TB_MEM_MST.APPROVAL_YN, TB_MEM_MST.MEM_NM)
-                    .orderBy(TB_WISH_MST.REG_TS.desc())
                 )
+                .orderBy(field("REG_TS").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();
@@ -234,8 +234,8 @@ public class OtherRepository {
                                                 ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ)
                                         )
                                 )
-                                .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 )
+                .orderBy(field("REG_TS").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();
@@ -303,8 +303,8 @@ public class OtherRepository {
                                     ).groupBy(TB_INQUIRY_DTL.PRODUCT_SEQ, TB_INQUIRY_DTL.REG_USR_ID)
                             )
                     )
-                    .orderBy(TB_INQUIRY_DTL.REG_TS.desc())
                 )
+                .orderBy(field("REG_TS").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();
