@@ -103,6 +103,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <th:block th:if="${memProductInfo != null and memInfo.APPROVAL_YN.equals('Y')}">
                                         <th:block th:each="fob : ${fobList}">
                                             <tr>
                                                 <td th:text="${#numbers.formatInteger(fob.RANGE_START, 0, 'COMMA') + ' ~ ' + #numbers.formatInteger(fob.RANGE_END, 0, 'COMMA')}"></td>
@@ -110,6 +111,7 @@
                                                 <td th:text="${#numbers.formatDecimal(fob.EXPOSURE_SUPPLY_RATE, 0, 'COMMA', 1, 'POINT') + '%'}"></td>
                                             </tr>
                                         </th:block>
+                                    </th:block>
                                     </tbody>
                                 </table>
                                 <th:block th:if="${#strings.equals(productInfo.GIVE_SAMPLE_YN, 'Y')}">

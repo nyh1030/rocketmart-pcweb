@@ -88,12 +88,12 @@
                                 <div class="ps-pagination">
                                     <ul class="pagination">
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=1'}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=1' + '&schCompanyNm=' + ${schCompanyNm != null ? schCompanyNm : ''} + '&schMemId=' + ${schMemId != null ? schMemId : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">처음</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.prevBlock} + '&schCompanyNm=' + ${schCompanyNm != null ? schCompanyNm : ''} + '&schMemId=' + ${schMemId != null ? schMemId : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">이전</span>
                                             </a>
                                         </li>
@@ -101,16 +101,16 @@
                                             <li class="page-item"
                                                 th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                                                 th:each="pageButton : ${#numbers.sequence(start, end)}">
-                                                <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                                <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pageButton} + '&schCompanyNm=' + ${schCompanyNm != null ? schCompanyNm : ''} + '&schMemId=' + ${schMemId != null ? schMemId : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" th:text="${pageButton}"></a>
                                             </li>
                                         </th:block>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.nextBlock} + '&schCompanyNm=' + ${schCompanyNm != null ? schCompanyNm : ''} + '&schMemId=' + ${schMemId != null ? schMemId : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Next">
                                                 <span aria-hidden="true">다음</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/brand/list?page=' + ${pagination.totalPageCnt} + '&schCompanyNm=' + ${schCompanyNm != null ? schCompanyNm : ''} + '&schMemId=' + ${schMemId != null ? schMemId : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">끝</span>
                                             </a>
                                         </li>

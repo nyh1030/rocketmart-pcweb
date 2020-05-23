@@ -91,12 +91,12 @@
                                 <div class="ps-pagination">
                                     <ul class="pagination">
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=1'}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=1' + '&schProductNm=' + ${schProductNm != null ? schProductNm : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">처음</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.prevBlock}}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.prevBlock} + '&schProductNm=' + ${schProductNm != null ? schProductNm : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">이전</span>
                                             </a>
                                         </li>
@@ -104,16 +104,16 @@
                                             <li class="page-item"
                                                 th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                                                 th:each="pageButton : ${#numbers.sequence(start, end)}">
-                                                <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pageButton}}" th:text="${pageButton}"></a>
+                                                <a class="page-link" th:classappend="${#strings.equals(pageButton, pagination.page) ? 'active' : ''}"  style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pageButton} + '&schProductNm=' + ${schProductNm != null ? schProductNm : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" th:text="${pageButton}"></a>
                                             </li>
                                         </th:block>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.nextBlock}}" aria-label="Next">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.nextBlock} + '&schProductNm=' + ${schProductNm != null ? schProductNm : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Next">
                                                 <span aria-hidden="true">다음</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.totalPageCnt}}" aria-label="Previous">
+                                            <a class="page-link" style="color: #0c0c0c !important" th:href="@{'/admin/pending/list?page=' + ${pagination.totalPageCnt} + '&schProductNm=' + ${schProductNm != null ? schProductNm : ''} + '&schBrandNm=' + ${schBrandNm != null ? schBrandNm : ''}}" aria-label="Previous">
                                                 <span aria-hidden="true">끝</span>
                                             </a>
                                         </li>

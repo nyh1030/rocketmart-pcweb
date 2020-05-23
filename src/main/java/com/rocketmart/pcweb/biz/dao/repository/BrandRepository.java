@@ -116,6 +116,7 @@ public class BrandRepository {
 				.leftOuterJoin(TB_CM_AFILE)
 				.on(TB_BRAND_MST.BRAND_LOGO_AFILE_SEQ.equal(TB_CM_AFILE.AFILE_SEQ))
 				.where(DSL.exists(this.dslContext.selectOne().from(TB_PRD_MST).where(TB_BRAND_MST.BRAND_SEQ.equal(TB_PRD_MST.BRAND_SEQ)).and(TB_PRD_MST.RELEASE_YN.equal("Y"))))
+				.and(TB_BRAND_MST.DEL_YN.equal("N"))
 				.groupBy(TB_BRAND_MST.BRAND_SEQ, TB_BRAND_MST.BRAND_NM, TB_CM_AFILE.URL_PATH_CD)
 				.fetchMaps();
 	}
