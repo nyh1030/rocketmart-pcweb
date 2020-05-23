@@ -50,7 +50,7 @@ public class MemberRepository {
     public List<Map<String, Object>> findAllForMemInfo(TbMemMstRecord tbMemMstRecord, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
                         field("MEM_ID"),
                         field("MEM_NM"),
                         field("ROLE"),

@@ -44,7 +44,7 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForContactUsInfo(TbContactUsRecord tbContactUsRecord, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
                         field("CONTACT_SEQ"),
                         field("USR_NM"),
                         field("EMAIL"),
@@ -131,7 +131,7 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForWishInfo(TbWishMstRecord tbWishMstRecord, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
                         field("WISH_SEQ"),
                         field("ASK_YN"),
                         field("PRODUCT_SEQ"),
@@ -154,6 +154,7 @@ public class OtherRepository {
                         ,TB_MEM_MST.APPROVAL_YN
                         ,TB_MEM_MST.MEM_NM
                         ,TB_INQUIRY_DTL.REG_USR_ID
+                        ,TB_WISH_MST.REG_TS
                         ,DSL.nvl2(TB_INQUIRY_DTL.INQUIRY_DTL_SEQ,"Y", "N").as("INQUIRY_YN")
                     )
                     .from(TB_WISH_MST)
@@ -182,7 +183,7 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForInquiryInfo(TbInquiryDtlRecord tbInquiryDtlRecord, String schMemId, String schMemNm, String schProductNm, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
                         field("INQUIRY_DTL_SEQ"),
                         field("MESSAGE"),
                         field("MEM_ID"),
@@ -250,7 +251,7 @@ public class OtherRepository {
 
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
                         field("INQUIRY_DTL_SEQ"),
                         field("MESSAGE"),
                         field("MEM_ID"),
@@ -408,7 +409,7 @@ public class OtherRepository {
     public List<Map<String, Object>> findAllForClickLogInfo(TbPrdFobHstRecord tbPrdFobHstRecord, String schMemId, String schProductNm, int startIndex, int pageSize) {
         return this.dslContext
                 .select(
-                        DSL.rowNumber().over().as("ROW_NUM"),
+                        DSL.rowNumber().over(orderBy(field("TOT_CNT"))).as("ROW_NUM"),
                         field("REG_USR_ID"),
                         field("TOT_CNT"),
                         field("PRODUCT_NM")
@@ -427,8 +428,8 @@ public class OtherRepository {
                             .and(TB_PRD_FOB_HST.REG_USR_ID.notEqual("admin"))
                             .and(TB_MEM_MST.ROLE.eq("BUYER"))
                         .groupBy(TB_PRD_FOB_HST.REG_USR_ID)
-                        .orderBy(count().desc(), TB_PRD_FOB_HST.REG_TS.desc())
                 )
+                .orderBy(field("TOT_CNT").desc(), field("ROW_NUM").desc())
                 .offset(startIndex)
                 .limit(pageSize)
                 .fetchMaps();

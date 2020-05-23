@@ -138,7 +138,7 @@ public class BrandRepository {
 	public List<Map<String, Object>> findAllForAdminBrandInfo(String schCompanyNm, String schMemId, String schBrandNm, int startIndex, int pageSize) {
 		return this.dslContext
 				.select(
-						DSL.rowNumber().over().as("ROW_NUM"),
+						DSL.rowNumber().over(orderBy(field("REG_TS"))).as("ROW_NUM"),
 						field("COMPANY_NM"),
 						field("MEM_ID"),
 						field("BRAND_SEQ"),
@@ -148,6 +148,7 @@ public class BrandRepository {
 								,TB_MEM_MST.MEM_ID
 								,TB_BRAND_MST.BRAND_SEQ
 								,TB_BRAND_MST.BRAND_NM
+								,TB_BRAND_MST.REG_TS
 						).from(TB_MEM_MST)
 							.join(TB_BRAND_MST)
 							.on(TB_MEM_MST.MEM_ID.eq(TB_BRAND_MST.REG_USR_ID))
@@ -155,8 +156,8 @@ public class BrandRepository {
 						.and(isNotEmpty(schMemId, TB_MEM_MST.MEM_ID.like("%"+schMemId+"%")))
 						.and(isNotEmpty(schBrandNm, TB_BRAND_MST.BRAND_NM.like("%"+schBrandNm+"%")))
 						.and(TB_BRAND_MST.DEL_YN.equal("N"))
-						.orderBy(TB_MEM_MST.REG_TS.desc())
 				)
+				.orderBy(field("REG_TS").desc())
 				.offset(startIndex)
 				.limit(pageSize)
 				.fetchMaps();
