@@ -65,10 +65,10 @@ public class OtherRepository {
                                 TB_CONTACT_US.REPLY_YN
                         ).from(TB_CONTACT_US)
                         .where(DSL.trueCondition())
-                        .and(isNotEmpty(tbContactUsRecord.getUsrNm(), TB_CONTACT_US.USR_NM.eq(tbContactUsRecord.getUsrNm())))
+                        .and(isNotEmpty(tbContactUsRecord.getUsrNm(), TB_CONTACT_US.USR_NM.like("%"+tbContactUsRecord.getUsrNm()+"%")))
                         .and(isNotEmpty(tbContactUsRecord.getEmail(), TB_CONTACT_US.EMAIL.eq(tbContactUsRecord.getEmail())))
-                        .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.eq(tbContactUsRecord.getCompanyNm())))
-                        .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.eq(tbContactUsRecord.getSubject())))
+                        .and(isNotEmpty(tbContactUsRecord.getCompanyNm(), TB_CONTACT_US.COMPANY_NM.like("%"+tbContactUsRecord.getCompanyNm()+"%")))
+                        .and(isNotEmpty(tbContactUsRecord.getSubject(), TB_CONTACT_US.SUBJECT.like("%"+tbContactUsRecord.getSubject()+"%")))
                         .and(isNotEmpty(tbContactUsRecord.getMessage(), TB_CONTACT_US.MESSAGE.eq(tbContactUsRecord.getMessage())))
                 )
                 .orderBy(field("REG_TS").desc())
